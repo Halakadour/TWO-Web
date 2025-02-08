@@ -1,0 +1,54 @@
+name: two_website
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  easy_localization: ^3.0.7+1
+  flutter_svg: ^2.0.17
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  fonts: 
+   - family: Outfit
+     fonts:
+      - asset: assets/fonts/outfit/Outfit-Thin.ttf
+        weight: 100
+      - asset: assets/fonts/outfit/Outfit-ExtraLight.ttf
+        weight: 200  
+      - asset: assets/fonts/outfit/Outfit-Light.ttf
+        weight: 300  
+      - asset: assets/fonts/outfit/Outfit-Regular.ttf
+        weight: 400  
+      - asset: assets/fonts/outfit/Outfit-Medium.ttf
+        weight: 500 
+      - asset: assets/fonts/outfit/Outfit-SemiBold.ttf
+        weight: 600 
+      - asset: assets/fonts/outfit/Outfit-Bold.ttf
+        weight: 700 
+      - asset: assets/fonts/outfit/Outfit-ExtraBold.ttf
+        weight: 800   
+   - family: Almarai
+     fonts:
+      - asset: assets/fonts/almarai/Almarai-Light.ttf
+      - asset: assets/fonts/almarai/Almarai-Regular.ttf
+      - asset: assets/fonts/almarai/Almarai-Bold.ttf
+      - asset: assets/fonts/almarai/Almarai-ExtraBold.ttf
+  uses-material-design: true
+  assets :
+   - assets/lang/
+   - assets/icons/home/
+   - assets/icons/about-us/
+   - assets/icons/services/
+   - assets/icons/footer/
+   - assets/images/png/
+   - assets/images/svg/
