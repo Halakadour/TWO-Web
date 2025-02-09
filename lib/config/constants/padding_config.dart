@@ -10,6 +10,8 @@ const EdgeInsets marginBottom40 = EdgeInsets.only(bottom: 40);
 const EdgeInsets pagePadding =
     EdgeInsets.symmetric(horizontal: 30, vertical: 20);
 const EdgeInsets containerPadding = EdgeInsets.all(15);
+const EdgeInsets rectPadding =
+    EdgeInsets.symmetric(vertical: 10, horizontal: 40);
 
 // Heights
 const SizedBox h10 = SizedBox(height: 10);

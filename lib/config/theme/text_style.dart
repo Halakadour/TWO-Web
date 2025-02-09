@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTextStyle {
   static TextStyle heading00({
-    double fontSize = 40,
+    double fontSize = 50,
     Color color = Colors.black,
     TextDecoration? decoration,
   }) {
@@ -24,7 +24,7 @@ class AppTextStyle {
     return TextStyle(
       color: color,
       fontFamily: 'Almarai',
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w800,
       fontStyle: FontStyle.normal,
       fontSize: fontSize,
       decoration: decoration,
@@ -84,7 +84,7 @@ class AppTextStyle {
     return TextStyle(
       color: color,
       fontFamily: 'Almarai',
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
       fontSize: fontSize,
       decoration: decoration,

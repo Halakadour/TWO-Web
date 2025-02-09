@@ -8,7 +8,7 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 import 'package:two_website/sections/about-us/about_us_section.dart';
 import 'package:two_website/sections/home/home_section.dart';
-import 'package:two_website/sections/home/widgets/navigation_bar/contact_us_button.dart';
+import 'package:two_website/sections/home/widgets/navigation_bar/sign_up_button.dart';
 import 'package:two_website/sections/services/services_section.dart';
 
 import 'config/paths/assets_path.dart';
@@ -114,7 +114,7 @@ class _MainPageState extends State<MainPage> {
           w50,
           Row(
             children: [
-              ContactUsButton(onPressed: () => scrollToSection(4)),
+              const SignUpButton(),
               const CustomVerticalDivider(),
               GestureDetector(
                 onTapDown: (details) {

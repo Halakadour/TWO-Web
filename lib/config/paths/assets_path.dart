@@ -3,6 +3,7 @@ class IconsPath {
   static const _aboutUsIconsPath = 'assets/icons/about-us/';
   static const _servicesIconsPath = 'assets/icons/services/';
   static const _footerIconPath = 'assets/icons/footer/';
+  static const _authrIconPath = 'assets/icons/auth/';
 
   // HOME //
   static const facebook = '${_homeIconsPath}facebook.svg';
@@ -29,6 +30,14 @@ class IconsPath {
 
   // FOOTER //
   static const two = '${_footerIconPath}two.svg';
+
+  // AUTH //
+  static const google = '${_authrIconPath}google-logo.svg';
+  static const githup = '${_authrIconPath}githup-logo.svg';
+  static const email = '${_authrIconPath}Message.svg';
+  static const lock = '${_authrIconPath}Lock.svg';
+  static const eyeHide = '${_authrIconPath}eye-hide.svg';
+  static const eyeShow = '${_authrIconPath}eye-show.svg';
 }
 
 class ImagesPath {
