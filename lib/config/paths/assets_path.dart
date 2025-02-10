@@ -38,6 +38,10 @@ class IconsPath {
   static const lock = '${_authrIconPath}Lock.svg';
   static const eyeHide = '${_authrIconPath}eye-hide.svg';
   static const eyeShow = '${_authrIconPath}eye-show.svg';
+  static const idea = '${_authrIconPath}idea.svg';
+  static const bag = '${_authrIconPath}Bag.svg';
+  static const decurment = '${_authrIconPath}Decument.svg';
+  static const user = '${_authrIconPath}Profile.svg';
 }
 
 class ImagesPath {

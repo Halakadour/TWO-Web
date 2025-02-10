@@ -1,6 +1,6 @@
 class AppRouteConfig {
-  // MAIN //
-  static const main = 'main';
+  // LANDING //
+  static const main = 'landing';
   // AUTH //
   static const login = 'login';
   static const signup = 'signup';

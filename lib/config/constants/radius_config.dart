@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
 
-BorderRadius textfieldRadius = BorderRadius.circular(15);
+BorderRadius textfieldRadius = BorderRadius.circular(12);
 BorderRadius buttonRadius = BorderRadius.circular(30);
