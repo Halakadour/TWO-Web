@@ -5,9 +5,17 @@ import 'package:two_website/features/auth/data/models/register_new_user_model.da
 import '../../../../core/api/post_api.dart';
 import '../../../../core/api/post_api_with_token.dart';
 
-class RemoteAuthDataSource {
+abstract class AuthRemoteDataSource {
+  Future<RegisterNewUserModel> regist(
+      String name, String email, String password, String confirmPassword);
+  Future<LoginUserModel> login(String token, String email, String password);
+  Future<LogoutUserModel> logout(String token);
+}
+
+class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   static String baseUri = "http://ruhajaghel-001-site1.qtempurl.com";
 
+  @override
   Future<RegisterNewUserModel> regist(String name, String email,
       String password, String confirmPassword) async {
     final result = PostApi(
@@ -23,6 +31,7 @@ class RemoteAuthDataSource {
     return await result.call();
   }
 
+  @override
   Future<LoginUserModel> login(
       String token, String email, String password) async {
     final result = PostApiWithToken(
@@ -37,6 +46,7 @@ class RemoteAuthDataSource {
     return await result.call();
   }
 
+  @override
   Future<LogoutUserModel> logout(String token) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/logout"),

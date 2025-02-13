@@ -5,14 +5,14 @@ import 'package:two_website/features/auth/domain/repos/auth_repo.dart';
 
 import '../../../../core/error/failures.dart';
 
-class RegisterUsecase
+class LoginUsecase
     extends UseCase<Future<Either<Failure, UserEntity>>, UserEntity> {
   final AuthRepo authRepo;
-  RegisterUsecase(this.authRepo);
+  LoginUsecase(this.authRepo);
 
   @override
   Future<Either<Failure, UserEntity>> call(UserEntity param) async {
-    return await authRepo.registNewUser(
-        param.fullName!, param.email!, param.password!, param.password!);
+    return await authRepo.loginUser(
+        param.fullName!, param.email!, param.password!);
   }
 }
