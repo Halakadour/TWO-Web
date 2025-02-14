@@ -17,6 +17,10 @@ dependencies:
   flutter_bloc: ^9.0.0
   equatable: ^2.0.7
   internet_connection_checker: ^3.0.1
+  get_it: ^8.0.3
+  shared_preferences: ^2.5.2
+  url_launcher: ^6.3.1
+  bloc: ^9.0.0
 
 dev_dependencies:
   flutter_test:

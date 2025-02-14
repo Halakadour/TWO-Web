@@ -10,6 +10,7 @@ abstract class AuthRemoteDataSource {
       String name, String email, String password, String confirmPassword);
   Future<LoginUserModel> login(String token, String email, String password);
   Future<LogoutUserModel> logout(String token);
+  // Future<Unit> registLoginWithGoogle();
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {

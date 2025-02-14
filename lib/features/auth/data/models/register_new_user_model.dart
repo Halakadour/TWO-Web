@@ -18,7 +18,6 @@ class RegisterNewUserModel {
     required this.msg,
     required this.data,
   });
-
   factory RegisterNewUserModel.fromJson(Map<String, dynamic> json) =>
       RegisterNewUserModel(
         status: json["status"],

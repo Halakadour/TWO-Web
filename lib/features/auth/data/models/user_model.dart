@@ -1,6 +1,4 @@
-import 'package:two_website/features/auth/domain/entities/user_entity.dart';
-
-class UserModel extends UserEntity {
+class UserModel {
   final String token;
   final String name;
   final String email;
@@ -9,7 +7,7 @@ class UserModel extends UserEntity {
     required this.token,
     required this.name,
     required this.email,
-  }) : super(token: token, fullName: name, email: email);
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         token: json["token"],
