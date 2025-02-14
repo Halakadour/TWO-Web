@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../../../config/constants/padding_config.dart';
-import '../../../../../../../config/paths/assets_path.dart';
-import '../../../../../../../config/theme/color.dart';
-import '../../../../../../../config/theme/text_style.dart';
+import '../../../../../config/constants/padding_config.dart';
+import '../../../../../config/paths/assets_path.dart';
+import '../../../../../config/theme/color.dart';
+import '../../../../../config/theme/text_style.dart';
 
 class CustomCartoonButton extends StatelessWidget {
   const CustomCartoonButton({

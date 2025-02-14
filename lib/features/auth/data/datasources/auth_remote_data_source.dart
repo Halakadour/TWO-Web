@@ -13,9 +13,9 @@ abstract class AuthRemoteDataSource {
   // Future<Unit> registLoginWithGoogle();
 }
 
-class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
-  static String baseUri = "http://ruhajaghel-001-site1.qtempurl.com";
+String baseUri = "http://ruhajaghel-001-site1.qtempurl.com";
 
+class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<RegisterNewUserModel> regist(String name, String email,
       String password, String confirmPassword) async {

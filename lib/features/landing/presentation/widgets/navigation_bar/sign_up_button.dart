@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
-import '../../../../../../../config/constants/radius_config.dart';
-import '../../../../../../../config/theme/color.dart';
-import '../../../../../../../lang/locale_keys.g.dart';
+import '../../../../../config/constants/radius_config.dart';
+import '../../../../../config/theme/color.dart';
+import '../../../../../lang/locale_keys.g.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({super.key});

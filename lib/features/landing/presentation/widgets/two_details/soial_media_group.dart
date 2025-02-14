@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/widgets/custom_mouse_Region.dart';
 
-import '../../../../../../../config/constants/padding_config.dart';
-import '../../../../../../../config/paths/assets_path.dart';
+import '../../../../../config/constants/padding_config.dart';
+import '../../../../../config/paths/assets_path.dart';
 
 class SoialMediaGroup extends StatefulWidget {
   const SoialMediaGroup({

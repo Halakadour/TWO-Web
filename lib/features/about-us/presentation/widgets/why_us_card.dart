@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:two_website/core/widgets/custom_mouse_Region.dart';
 
-import '../../../../../../config/constants/padding_config.dart';
-import '../../../../../../config/theme/color.dart';
-import '../../../../../../config/theme/text_style.dart';
+import '../../../../config/constants/padding_config.dart';
+import '../../../../config/theme/color.dart';
+import '../../../../config/theme/text_style.dart';
 
 class WhyUsCard extends StatelessWidget {
   const WhyUsCard(

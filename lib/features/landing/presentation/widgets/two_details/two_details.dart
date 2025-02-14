@@ -4,8 +4,8 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
-import 'package:two_website/features/landing/presentation/sections/home/widgets/two_details/custom_cartoon_button.dart';
-import 'package:two_website/features/landing/presentation/sections/home/widgets/two_details/soial_media_group.dart';
+import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
+import 'package:two_website/features/landing/presentation/widgets/two_details/soial_media_group.dart';
 
 class TwoDetails extends StatefulWidget {
   const TwoDetails({super.key});

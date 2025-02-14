@@ -6,14 +6,14 @@ import 'package:two_website/config/constants/page_hight.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
-import 'package:two_website/features/landing/presentation/sections/about-us/about_us_section.dart';
-import 'package:two_website/features/landing/presentation/sections/home/home_section.dart';
-import 'package:two_website/features/landing/presentation/sections/home/widgets/navigation_bar/sign_up_button.dart';
-import 'package:two_website/features/landing/presentation/sections/services/services_section.dart';
+import 'package:two_website/features/about-us/presentation/pages/about_us_section.dart';
+import 'package:two_website/features/landing/presentation/pages/home_section.dart';
+import 'package:two_website/features/landing/presentation/widgets/navigation_bar/sign_up_button.dart';
+import 'package:two_website/features/services/presentation/pages/services_section.dart';
 
 import '../../../../config/paths/assets_path.dart';
 import '../../../../core/widgets/section.dart';
-import '../sections/home/widgets/navigation_bar/custom_vertical_divider.dart';
+import '../widgets/navigation_bar/custom_vertical_divider.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

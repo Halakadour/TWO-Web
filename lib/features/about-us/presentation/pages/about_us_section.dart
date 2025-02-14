@@ -8,7 +8,7 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/centerd_view.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
-import 'widgets/why_us_card.dart';
+import '../widgets/why_us_card.dart';
 
 class AboutUsSection extends StatefulWidget {
   const AboutUsSection({super.key});

@@ -9,7 +9,7 @@ import 'package:two_website/features/auth/presentation/widgets/already_have_coun
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/auth/presentation/widgets/decor_box.dart';
 import 'package:two_website/features/auth/presentation/widgets/google_git_row.dart';
-import 'package:two_website/features/landing/presentation/sections/home/widgets/two_details/custom_cartoon_button.dart';
+import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 
 import '../../../../config/constants/padding_config.dart';
 

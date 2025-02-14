@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../config/theme/color.dart';
+import '../../../../../config/theme/color.dart';
 
 class CustomVerticalDivider extends StatelessWidget {
   const CustomVerticalDivider({super.key});

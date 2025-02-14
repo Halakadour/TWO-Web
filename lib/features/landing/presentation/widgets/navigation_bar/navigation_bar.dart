@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
-import 'package:two_website/features/landing/presentation/sections/home/widgets/navigation_bar/nav_bar_item.dart';
+import 'package:two_website/features/landing/presentation/widgets/navigation_bar/nav_bar_item.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({super.key});
