@@ -11,15 +11,21 @@ class CustomTextFormField extends StatelessWidget {
     required this.prefixIconPath,
     this.postfixIconPath,
     required this.labelText,
+    required this.controller,
+    required this.validator,
   });
   final String prefixIconPath;
-  final String? postfixIconPath;
+  final Widget? postfixIconPath;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
   final String labelText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autocorrect: true,
+      controller: controller,
+      validator: validator,
       decoration: InputDecoration(
           filled: true,
           fillColor: AppColors.fieldColor,
@@ -32,11 +38,7 @@ class CustomTextFormField extends StatelessWidget {
           suffixIcon: postfixIconPath == null
               ? null
               : Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: SvgPicture.asset(
-                    postfixIconPath!,
-                  ),
-                ),
+                  padding: const EdgeInsets.all(10), child: postfixIconPath),
           label: Text(
             labelText,
             style: AppTextStyle.textfieldStyle(),

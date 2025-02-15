@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:two_website/config/constants/responsive_constant.dart';
 import 'package:two_website/config/routes/app_router.dart';
 
 import 'config/theme/theme.dart';
@@ -25,12 +27,15 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TWO',
       theme: AppTheme.getTheme(),
+      routerConfig: AppRouter().router,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       locale: context.locale,
-      routeInformationProvider: AppRouter().router.routeInformationProvider,
-      routeInformationParser: AppRouter().router.routeInformationParser,
-      routerDelegate: AppRouter().router.routerDelegate,
+      builder: (context, child) => ResponsiveBreakpoints.builder(
+        breakpoints: breakpoints,
+        breakpointsLandscape: breakpointsLandscape,
+        child: child!,
+      ),
     );
   }
 }

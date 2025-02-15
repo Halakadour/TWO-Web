@@ -15,14 +15,16 @@ class CreatePostUsecase
   final PostRepo postRepo;
   @override
   Future<Either<Failure, PostEntity>> call(PostParam param) {
-    return postRepo.createPost(param.image, param.body);
+    return postRepo.createPost(param.token, param.image, param.body);
   }
 }
 
 class PostParam {
+  final String token;
   final File image;
   final String body;
   PostParam({
+    required this.token,
     required this.image,
     required this.body,
   });

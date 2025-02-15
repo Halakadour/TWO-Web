@@ -58,4 +58,7 @@ class ImagesPath {
   static const mobile = '${_pngImagesPath}mobile.png';
   static const cloud = '${_pngImagesPath}cloud.png';
   static const cyber = '${_pngImagesPath}cyber.png';
+  static const calender = '${_pngImagesPath}Calendar.png';
+  static const diagram = '${_pngImagesPath}Diagram.png';
+  static const message = '${_pngImagesPath}Message.png';
 }

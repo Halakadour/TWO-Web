@@ -7,7 +7,7 @@ import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 
 class AppRouter {
-  GoRouter router = GoRouter(routes: [
+  GoRouter router = GoRouter(initialLocation: '/signup', routes: [
     GoRoute(
       name: AppRouteConfig.main,
       path: '/',

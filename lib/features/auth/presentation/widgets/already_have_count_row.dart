@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:two_website/config/routes/app_route_config.dart';
 
 import '../../../../config/theme/color.dart';
 import '../../../../config/theme/text_style.dart';
@@ -18,10 +20,12 @@ class AlreadyHaveCountRow extends StatelessWidget {
           "Already Have An Acount?   ",
           style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
         ),
-        Text(
-          LocaleKeys.signin.tr(),
-          style: AppTextStyle.subtitle01(color: AppColors.greenColor),
-        )
+        TextButton(
+            onPressed: () => context.pushNamed(AppRouteConfig.login),
+            child: Text(
+              LocaleKeys.signin.tr(),
+              style: AppTextStyle.subtitle01(color: AppColors.greenColor),
+            ))
       ],
     );
   }

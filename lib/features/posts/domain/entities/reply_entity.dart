@@ -5,12 +5,12 @@ class ReplyEntity {
   final String fullName;
   final String email;
   final String phone;
-  final File cv;
+  final File cvFile;
   ReplyEntity({
     required this.id,
     required this.fullName,
     required this.email,
     required this.phone,
-    required this.cv,
+    required this.cvFile,
   });
 }

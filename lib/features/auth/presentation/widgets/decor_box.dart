@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:two_website/config/theme/text_style.dart';
 
 import '../../../../config/constants/padding_config.dart';
 import '../../../../config/paths/assets_path.dart';
@@ -14,17 +14,25 @@ class DecorBox extends StatelessWidget {
       padding: containerPadding,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: AppColors.blueColor.withOpacity(.5),
+        color: AppColors.fieldColor,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                IconsPath.idea,
-                width: 500,
-              )
-            ],
+          Image.asset(
+            ImagesPath.diagram,
+            width: 350,
+          ),
+          h20,
+          Text(
+            "Organize Your Team Work",
+            style: AppTextStyle.heading03(color: AppColors.fontDarkColor),
+          ),
+          h10,
+          Text(
+            "this website is just for you dude\ndon't thihk about it just use it.",
+            textAlign: TextAlign.center,
+            style: AppTextStyle.subtitle02(color: AppColors.fontLightColor),
           )
         ],
       ),

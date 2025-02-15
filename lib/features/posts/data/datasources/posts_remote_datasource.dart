@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
 import 'package:two_website/core/api/multi_post_api.dart';
 import 'package:two_website/core/api/post_api.dart';
@@ -10,11 +11,13 @@ import 'package:two_website/features/posts/data/models/create_post_response_mode
 import 'package:two_website/features/posts/data/models/delete_post_respones_model.dart';
 import 'package:two_website/features/posts/data/models/reply_to_post_response_model.dart';
 import 'package:two_website/features/posts/data/models/show_post_replies_response_model.dart';
+import 'package:two_website/features/posts/data/models/show_post_response_model.dart';
 
 abstract class PostRemoteDatasource {
   Future<CreatePostResponseModel> createPost(
       String token, String description, File image);
   Future<DeletePostResponesModel> deletePost(String token, int postId);
+  Future<ShowPostResponesModel> showPosts();
   Future<ReplyToPostResponesModel> replyToPost(
       String fullName, String email, String phone, File cv, int postId);
   Future<AcceptReplyResponesModel> acceptReply(String token, int replyId);
@@ -43,6 +46,14 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
         uri: Uri.parse("$baseUri/api/delete/post/$postId"),
         token: token,
         fromJson: deletePostResponesModelFromJson);
+    return await result.callRequest();
+  }
+
+  @override
+  Future<ShowPostResponesModel> showPosts() async {
+    final result = GetApi(
+        uri: Uri.parse("$baseUri/api/show/accepted/post"),
+        fromJson: showPostRepliesResponesModelFromJson);
     return await result.callRequest();
   }
 
