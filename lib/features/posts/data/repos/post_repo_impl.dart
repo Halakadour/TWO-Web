@@ -101,17 +101,45 @@ class PostRepoImpl extends PostRepo {
   }
 
   @override
-  Future<Either<Failure, List<PostEntity>>> showPosts() async {
+  Future<Either<Failure, List<PostEntity>>> showActivePosts() {
     return wrapHandling(
       tryCall: () async {
         if (await networkInfo.isConnected) {
-          final remotePosts = await postRemoteDatasource.showPosts();
-          postsLocalDatasource.cachePosts(remotePosts.data);
+          final remotePosts = await postRemoteDatasource.showActivePosts();
+          postsLocalDatasource.cacheActivePosts(remotePosts.data);
           return Right(remotePosts.data);
         } else {
-          final localPosts = await postsLocalDatasource.getCachedPosts();
+          final localPosts = await postsLocalDatasource.getActiveCachedPosts();
           return Right(localPosts);
         }
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<PostEntity>>> showUnActivePosts() {
+    return wrapHandling(
+      tryCall: () async {
+        if (await networkInfo.isConnected) {
+          final remotePosts = await postRemoteDatasource.showUnActivePosts();
+          postsLocalDatasource.cacheUnActivePosts(remotePosts.data);
+          return Right(remotePosts.data);
+        } else {
+          final localPosts =
+              await postsLocalDatasource.getUnActiveCachedPosts();
+          return Right(localPosts);
+        }
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> unActivePosts(String token, int postId) {
+    return wrapHandling(
+      tryCall: () async {
+        final remotePosts =
+            await postRemoteDatasource.unActivePosts(token, postId);
+        return Right(remotePosts);
       },
     );
   }

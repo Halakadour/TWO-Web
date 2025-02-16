@@ -3,4 +3,5 @@ enum CasualStatus {
   loading,
   success,
   failure,
+  noToken,
 }

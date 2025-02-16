@@ -9,13 +9,14 @@ import 'package:two_website/features/posts/domain/usecases/show_post_replies_use
 import '../../../../core/error/failures.dart';
 
 class ShowPostAcceptedRepliesUsecase extends UseCase<
-    Future<Either<Failure, List<ReplyEntity>>>, PostRepliesOrDeleteParam> {
+    Future<Either<Failure, List<ReplyEntity>>>,
+    PostRepliesOrDeleteOrUnActiveParam> {
   ShowPostAcceptedRepliesUsecase(this.postRepo);
 
   final PostRepo postRepo;
   @override
   Future<Either<Failure, List<ReplyEntity>>> call(
-      PostRepliesOrDeleteParam param) {
-    return postRepo.showPostReplies(param.postId, param.tokrn);
+      PostRepliesOrDeleteOrUnActiveParam param) {
+    return postRepo.showPostReplies(param.postId, param.token);
   }
 }

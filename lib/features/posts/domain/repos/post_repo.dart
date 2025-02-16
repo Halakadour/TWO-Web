@@ -10,7 +10,9 @@ abstract class PostRepo with HandlingExceptionManager {
   Future<Either<Failure, PostEntity>> createPost(
       String token, File image, String body);
   Future<Either<Failure, Unit>> deletePost(String token, int postId);
-  Future<Either<Failure, List<PostEntity>>> showPosts();
+  Future<Either<Failure, List<PostEntity>>> showActivePosts();
+  Future<Either<Failure, List<PostEntity>>> showUnActivePosts();
+  Future<Either<Failure, Unit>> unActivePosts(String token, int postId);
   Future<Either<Failure, ReplyEntity>> replyToPost(
       String fullName, String email, String phone, File cv, int postId);
   Future<Either<Failure, List<ReplyEntity>>> showPostReplies(

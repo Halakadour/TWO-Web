@@ -37,6 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             token: token, email: event.email, password: event.password));
         result.fold((l) => {},
             (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
+      } else {
+        emit(state.copyWith(authModelStatus: CasualStatus.noToken));
       }
     });
     on<LogoutUserEvent>((event, emit) async {
@@ -46,6 +48,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final result = await logoutUsecase.call(token);
         result.fold((l) => {},
             (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
+      } else {
+        emit(state.copyWith(authModelStatus: CasualStatus.noToken));
       }
     });
     on<CheckAuthEvent>((event, emit) async {
@@ -56,7 +60,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (token != null) {
           emit(state.copyWith(authModelStatus: CasualStatus.success));
         } else {
-          emit(state.copyWith(authModelStatus: CasualStatus.failure));
+          emit(state.copyWith(authModelStatus: CasualStatus.noToken));
         }
       } else {
         emit(state.copyWith(authModelStatus: CasualStatus.initial));

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
 import 'package:two_website/core/api/multi_post_api.dart';
@@ -17,7 +18,9 @@ abstract class PostRemoteDatasource {
   Future<CreatePostResponseModel> createPost(
       String token, String description, File image);
   Future<DeletePostResponesModel> deletePost(String token, int postId);
-  Future<ShowPostResponesModel> showPosts();
+  Future<ShowPostResponesModel> showActivePosts();
+  Future<ShowPostResponesModel> showUnActivePosts();
+  Future<Unit> unActivePosts(String token, int postId);
   Future<ReplyToPostResponesModel> replyToPost(
       String fullName, String email, String phone, File cv, int postId);
   Future<AcceptReplyResponesModel> acceptReply(String token, int replyId);
@@ -50,9 +53,26 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   }
 
   @override
-  Future<ShowPostResponesModel> showPosts() async {
+  Future<ShowPostResponesModel> showActivePosts() async {
     final result = GetApi(
-        uri: Uri.parse("$baseUri/api/show/accepted/post"),
+        uri: Uri.parse("$baseUri/api/show/active/posts"),
+        fromJson: showPostRepliesResponesModelFromJson);
+    return await result.callRequest();
+  }
+
+  @override
+  Future<ShowPostResponesModel> showUnActivePosts() async {
+    final result = GetApi(
+        uri: Uri.parse("$baseUri/api/show/not/active/posts"),
+        fromJson: showPostRepliesResponesModelFromJson);
+    return await result.callRequest();
+  }
+
+  @override
+  Future<Unit> unActivePosts(String token, int postId) async {
+    final result = GetWithTokenApi(
+        uri: Uri.parse("$baseUri/api/un/activate/post/$id"),
+        token: token,
         fromJson: showPostRepliesResponesModelFromJson);
     return await result.callRequest();
   }
