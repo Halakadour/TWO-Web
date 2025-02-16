@@ -15,51 +15,49 @@ class TwoDetails extends StatefulWidget {
 }
 
 class _TwoDetailsState extends State<TwoDetails> {
-  bool _isHovered = true;
+  bool _isHovered = false;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          h50,
-          RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(children: [
-                TextSpan(
-                    text: LocaleKeys.homeTitle1.tr(),
-                    style: AppTextStyle.heading00()),
-                TextSpan(
-                    text: LocaleKeys.homeTitle2.tr(),
-                    style: AppTextStyle.heading00(color: AppColors.greenColor))
-              ])),
-          h30,
-          MouseRegion(
-            onEnter: (_) {
-              setState(() {
-                _isHovered = true;
-              });
-            },
-            onExit: (_) {
-              setState(() {
-                _isHovered = false;
-              });
-            },
-            child: CustomCartoonButton(
-              isHovered: _isHovered,
-              title: LocaleKeys.orderProj.tr(),
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        h50,
+        RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(children: [
+              TextSpan(
+                  text: LocaleKeys.homeTitle1.tr(),
+                  style: AppTextStyle.heading00()),
+              TextSpan(
+                  text: LocaleKeys.homeTitle2.tr(),
+                  style: AppTextStyle.heading00(color: AppColors.greenColor))
+            ])),
+        h30,
+        MouseRegion(
+          onEnter: (_) {
+            setState(() {
+              _isHovered = true;
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              _isHovered = false;
+            });
+          },
+          child: CustomCartoonButton(
+            isHovered: _isHovered,
+            title: LocaleKeys.orderProj.tr(),
           ),
-          h30,
-          Text(
-            LocaleKeys.orContactUs.tr(),
-            style: AppTextStyle.subtitle01(),
-          ),
-          h20,
-          const SoialMediaGroup()
-        ],
-      ),
+        ),
+        h30,
+        Text(
+          LocaleKeys.orContactUs.tr(),
+          style: AppTextStyle.subtitle01(),
+        ),
+        h20,
+        const SoialMediaGroup()
+      ],
     );
   }
 }

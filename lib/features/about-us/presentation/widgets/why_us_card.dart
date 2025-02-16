@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:two_website/core/widgets/custom_mouse_Region.dart';
 
 import '../../../../config/constants/padding_config.dart';
 import '../../../../config/theme/color.dart';
@@ -19,8 +18,8 @@ class WhyUsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomMouseRegion(
-      isHovered: isHoverd,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       child: Container(
         margin: marginBottom16,
         padding: containerPadding,

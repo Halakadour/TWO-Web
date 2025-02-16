@@ -42,13 +42,13 @@ class CustomCartoonButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // ignore: deprecated_member_use
-            SvgPicture.asset(IconsPath.arrowLeft, color: AppColors.whiteColor),
-            w10,
             Text(
               title,
               style: AppTextStyle.buttonStyle(color: AppColors.whiteColor),
             ),
+            w10,
+            // ignore: deprecated_member_use
+            SvgPicture.asset(IconsPath.arrowRight, color: AppColors.whiteColor),
           ],
         ));
   }

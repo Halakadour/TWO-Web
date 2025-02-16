@@ -6,6 +6,7 @@ import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 import '../widgets/why_us_card.dart';
@@ -62,20 +63,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
               style: AppTextStyle.heading03(),
             ),
             h20,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  LocaleKeys.checkOurClients.tr(),
-                  style: AppTextStyle.buttonStyle(color: AppColors.greenColor),
-                ),
-                w5,
-                SvgPicture.asset(
-                  IconsPath.arrowLeft,
-                )
-              ],
-            ),
+            CustomLinkedText(title: LocaleKeys.checkOurClients.tr()),
             h20,
             Stack(
               alignment: AlignmentDirectional.topCenter,
@@ -166,17 +154,8 @@ class _AboutUsSectionState extends State<AboutUsSection> {
                       LocaleKeys.whyUs.tr(),
                       style: AppTextStyle.heading02(),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          LocaleKeys.seeAll.tr(),
-                          style: AppTextStyle.buttonStyle(
-                              color: AppColors.greenColor),
-                        ),
-                        SvgPicture.asset(
-                          IconsPath.arrowLeft,
-                        ),
-                      ],
+                    CustomLinkedText(
+                      title: LocaleKeys.seeAll.tr(),
                     ),
                   ],
                 ),
@@ -187,7 +166,17 @@ class _AboutUsSectionState extends State<AboutUsSection> {
                 child: ListView.builder(
                     itemCount: icons.length,
                     itemBuilder: (context, index) => MouseRegion(
-                            child: WhyUsCard(
+                        onEnter: (context) {
+                          setState(() {
+                            isHoved = true;
+                          });
+                        },
+                        onExit: (context) {
+                          setState(() {
+                            isHoved = false;
+                          });
+                        },
+                        child: WhyUsCard(
                           icon: icons[index],
                           text: texts[index],
                           isHoverd: isHoved,
