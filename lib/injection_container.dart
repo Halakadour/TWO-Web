@@ -15,15 +15,26 @@ import 'package:two_website/features/posts/data/repos/post_repo_impl.dart';
 import 'package:two_website/features/posts/domain/repos/post_repo.dart';
 import 'package:two_website/features/posts/domain/usecases/accept_reply_usecase.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
+import 'package:two_website/features/profile/data/datasources/profile_remote_datasourse.dart';
+import 'package:two_website/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:two_website/features/profile/domain/repos/profile_repo.dart';
+import 'package:two_website/features/profile/domain/usecases/update_client_profile_usecase.dart';
+import 'package:two_website/features/profile/domain/usecases/update_employee_profile_usecase.dart';
+import 'package:two_website/features/roles/data/datasources/role_local_datasource.dart';
+import 'package:two_website/features/roles/data/datasources/role_remote_datasource.dart';
+import 'package:two_website/features/roles/data/repos/role_repo_impl.dart';
+import 'package:two_website/features/roles/domain/repos/role_repo.dart';
+import 'package:two_website/features/roles/domain/usecases/show_role_client_usecase.dart';
+import 'package:two_website/features/roles/domain/usecases/show_roles_without_client_usecase.dart';
 
-import '../../features/posts/domain/usecases/create_post_usecase.dart';
-import '../../features/posts/domain/usecases/delete_post_usecase.dart';
-import '../../features/posts/domain/usecases/reply_to_post_usecase.dart';
-import '../../features/posts/domain/usecases/show_active_posts_usecase.dart';
-import '../../features/posts/domain/usecases/show_post_accepted_replies_usecase.dart';
-import '../../features/posts/domain/usecases/show_post_replies_usecase.dart';
-import '../../features/posts/domain/usecases/show_un_active_posts_usecase.dart';
-import '../../features/posts/domain/usecases/un_active_post_usecase.dart';
+import 'features/posts/domain/usecases/create_post_usecase.dart';
+import 'features/posts/domain/usecases/delete_post_usecase.dart';
+import 'features/posts/domain/usecases/reply_to_post_usecase.dart';
+import 'features/posts/domain/usecases/show_active_posts_usecase.dart';
+import 'features/posts/domain/usecases/show_post_accepted_replies_usecase.dart';
+import 'features/posts/domain/usecases/show_post_replies_usecase.dart';
+import 'features/posts/domain/usecases/show_un_active_posts_usecase.dart';
+import 'features/posts/domain/usecases/un_active_post_usecase.dart';
 
 final sl = GetIt.instance;
 
@@ -31,8 +42,14 @@ Future<void> init() async {
   /**  AUTH FEATURE **/
   // Bloc
   sl.registerFactory(
-    () => AuthBloc(
-        registerUsecase: sl(), loginUsecase: sl(), logoutUsecase: sl()),
+    () => AuthRoleProfileBloc(
+        registerUsecase: sl(),
+        loginUsecase: sl(),
+        logoutUsecase: sl(),
+        showRoleClientUsecase: sl(),
+        showRolesWithoutClientUsecase: sl(),
+        updateEmployeeProfileUsecase: sl(),
+        updateClientProfileUsecase: sl()),
   );
   // Usecases
   sl.registerLazySingleton(
@@ -52,6 +69,43 @@ Future<void> init() async {
   // Datasources
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(),
+  );
+
+  /** ROLE FEATURE **/
+  // Usecase
+  sl.registerLazySingleton(
+    () => ShowRoleClientUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => ShowRolesWithoutClientUsecase(sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<RoleRepo>(
+    () => RoleRepoImpl(sl(), sl(), sl()),
+  );
+  // Datasource
+  sl.registerLazySingleton<RoleRemoteDatasource>(
+    () => RoleRemoteDatasourceImpl(),
+  );
+  sl.registerLazySingleton<RoleLocalDatasource>(
+    () => RoleLocalDatasourceImpl(),
+  );
+
+  /** PROFILE FEATURE **/
+  // Usecase
+  sl.registerLazySingleton(
+    () => UpdateEmployeeProfileUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => UpdateClientProfileUsecase(sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<ProfileRepo>(
+    () => ProfileRepoImpl(sl()),
+  );
+  // Datasource
+  sl.registerLazySingleton<ProfileRemoteDatasourse>(
+    () => ProfileRemoteDatasourseImpl(),
   );
 
   /**  POST FEATURE **/
@@ -119,6 +173,7 @@ Future<void> init() async {
   /* External */
 
   final sharedPreferences = await SharedPreferences.getInstance();
+  final internetConnectionChecker = InternetConnectionChecker.createInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton(() => InternetConnectionChecker);
+  sl.registerLazySingleton(() => internetConnectionChecker);
 }

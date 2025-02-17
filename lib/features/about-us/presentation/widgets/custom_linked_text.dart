@@ -22,6 +22,7 @@ class CustomLinkedText extends StatelessWidget {
         w5,
         SvgPicture.asset(
           IconsPath.arrowRight,
+          // ignore: deprecated_member_use
           color: AppColors.greenColor,
         )
       ],

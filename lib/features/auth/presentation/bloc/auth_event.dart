@@ -1,15 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'auth_bloc.dart';
 
-abstract class AuthEvent extends Equatable {
-  const AuthEvent();
-
-  @override
-  List<Object> get props => [];
+abstract class AuthRoleProfileEvent {
+  const AuthRoleProfileEvent();
 }
 
-class CheckAuthEvent extends AuthEvent {}
+// Auth Events //
+class CheckAuthEvent extends AuthRoleProfileEvent {}
 
-class RegisteNewUserEvent extends AuthEvent {
+class RegisteNewUserEvent extends AuthRoleProfileEvent {
   final String name;
   final String email;
   final String password;
@@ -20,7 +19,7 @@ class RegisteNewUserEvent extends AuthEvent {
   });
 }
 
-class LoginUserEvent extends AuthEvent {
+class LoginUserEvent extends AuthRoleProfileEvent {
   final String email;
   final String password;
   const LoginUserEvent({
@@ -29,4 +28,32 @@ class LoginUserEvent extends AuthEvent {
   });
 }
 
-class LogoutUserEvent extends AuthEvent {}
+class LogoutUserEvent extends AuthRoleProfileEvent {}
+
+// Role Events //
+
+class GetRolesWithoutClientEvent extends AuthRoleProfileEvent {}
+
+class GetRolesEvent extends AuthRoleProfileEvent {}
+
+// Profile Events //
+
+class UpdateEmployeeProfileEvent extends AuthRoleProfileEvent {
+  final File image;
+  final File cv;
+  final int roleId;
+  UpdateEmployeeProfileEvent({
+    required this.image,
+    required this.cv,
+    required this.roleId,
+  });
+}
+
+class UpdateClientProfileEvent extends AuthRoleProfileEvent {
+  final File image;
+  final int roleId;
+  UpdateClientProfileEvent({
+    required this.image,
+    required this.roleId,
+  });
+}

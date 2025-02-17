@@ -6,14 +6,14 @@ import 'package:two_website/config/constants/responsive_constant.dart';
 import 'package:two_website/config/routes/app_router.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'core/injection/injection_container.dart' as di;
+import 'injection_container.dart' as di;
 
 import 'config/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
   await di.init();
+  await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
       path: 'assets/lang',
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.sl<AuthBloc>(),
+          create: (context) => di.sl<AuthRoleProfileBloc>(),
         ),
         BlocProvider(
           create: (context) => di.sl<PostBloc>(),

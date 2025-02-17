@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/error/exceptions.dart';
+import 'package:two_website/core/network/enum_status.dart';
 import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/posts/presentation/widgets/post_card.dart';
 
 class PostsSection extends StatefulWidget {
@@ -29,6 +32,12 @@ class _PostsSectionState extends State<PostsSection> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    context.read<PostBloc>().add(GetActivePostsEvent());
+    super.didChangeDependencies();
   }
 
   @override
@@ -59,14 +68,30 @@ class _PostsSectionState extends State<PostsSection> {
               ),
               w30,
               Expanded(
-                child: ListView.builder(
-                  itemCount: 10,
-                  scrollDirection: Axis.horizontal,
-                  controller: _controller,
-                  itemBuilder: (context, index) => const PostCard(
-                      postImagePath: ImagesPath.mobile,
-                      postBody:
-                          "We need a flutter developer for a news app with one year experiance at less ."),
+                child: BlocBuilder<PostBloc, PostState>(
+                  buildWhen: (previous, current) =>
+                      previous.activePostsListStatus !=
+                      current.activePostsListStatus,
+                  builder: (context, state) {
+                    if (state.activePostsListStatus == CasualStatus.loading) {
+                      return const CircularProgressIndicator();
+                    } else if (state.activePostsListStatus ==
+                        CasualStatus.success) {
+                      return ListView.builder(
+                        itemCount: state.activePostsList.length,
+                        scrollDirection: Axis.horizontal,
+                        controller: _controller,
+                        itemBuilder: (context, index) => PostCard(
+                            postImagePath: state.activePostsList[index].image,
+                            postBody: state.activePostsList[index].body),
+                      );
+                    } else if (state.activePostsListStatus ==
+                        CasualStatus.failure) {
+                      return ErrorWidget(ServerException);
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
               ),
               w30,

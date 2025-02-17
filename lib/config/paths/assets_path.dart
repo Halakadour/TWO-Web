@@ -4,6 +4,7 @@ class IconsPath {
   static const _servicesIconsPath = 'assets/icons/services/';
   static const _footerIconPath = 'assets/icons/footer/';
   static const _authrIconPath = 'assets/icons/auth/';
+  static const _roleIconPath = 'assets/icons/role/';
 
   // HOME //
   static const facebook = '${_homeIconsPath}facebook.svg';
@@ -42,6 +43,12 @@ class IconsPath {
   static const bag = '${_authrIconPath}Bag.svg';
   static const decurment = '${_authrIconPath}Decument.svg';
   static const user = '${_authrIconPath}Profile.svg';
+
+  // ROLE //
+  static const decument = '${_roleIconPath}Document.svg';
+  static const editPen = '${_roleIconPath}Edit Square.svg';
+  static const profile = '${_roleIconPath}Profile.svg';
+  static const work = '${_roleIconPath}Work.svg';
 }
 
 class ImagesPath {

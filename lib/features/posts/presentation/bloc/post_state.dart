@@ -2,7 +2,7 @@
 part of 'post_bloc.dart';
 
 // ignore: must_be_immutable
-class PostState extends Equatable {
+class PostState {
   CasualStatus createPostStatus;
   CasualStatus deletePostStatus;
   CasualStatus unActivePostStatus;
@@ -32,23 +32,6 @@ class PostState extends Equatable {
     this.postAcceptedRepliesList = const [],
     this.postsAcceptedRepliesListStatus = CasualStatus.initial,
   });
-
-  @override
-  List<Object> get props => [
-        createPostStatus,
-        deletePostStatus,
-        unActivePostStatus,
-        sendReplyStatus,
-        acceptReplyStatus,
-        activePostsList,
-        activePostsListStatus,
-        unActivePostsList,
-        unActivePostsListStatus,
-        postRepliesList,
-        postsRepliesListStatus,
-        postAcceptedRepliesList,
-        postsAcceptedRepliesListStatus,
-      ];
 
   PostState copyWith({
     CasualStatus? createPostStatus,

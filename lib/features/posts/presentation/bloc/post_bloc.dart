@@ -2,7 +2,6 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
 import 'package:two_website/core/network/enum_status.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';

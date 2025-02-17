@@ -13,14 +13,10 @@ mixin HandlingExceptionManager {
     try {
       final right = await tryCall();
       return right;
-    } on OffLineException catch (e) {
-      return Left(OffLineFailure(message: e.message));
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
-    } on EmptyCacheException catch (e) {
-      return Left(EmptyCacheFailure(message: e.message));
     } catch (e) {
-      return Left(ServerFailure(message: ".message"));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }
