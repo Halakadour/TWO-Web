@@ -21,7 +21,7 @@ class AlreadyHaveCountRow extends StatelessWidget {
           style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
         ),
         TextButton(
-            onPressed: () => context.pushNamed(AppRouteConfig.login),
+            onPressed: () => context.pushReplacementNamed(AppRouteConfig.login),
             child: Text(
               LocaleKeys.signin.tr(),
               style: AppTextStyle.subtitle01(color: AppColors.greenColor),

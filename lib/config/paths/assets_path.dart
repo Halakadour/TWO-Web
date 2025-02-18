@@ -5,6 +5,7 @@ class IconsPath {
   static const _footerIconPath = 'assets/icons/footer/';
   static const _authrIconPath = 'assets/icons/auth/';
   static const _roleIconPath = 'assets/icons/role/';
+  static const _dashboardIconPath = 'assets/icons/dashboard/';
 
   // HOME //
   static const facebook = '${_homeIconsPath}facebook.svg';
@@ -49,6 +50,27 @@ class IconsPath {
   static const editPen = '${_roleIconPath}Edit Square.svg';
   static const profile = '${_roleIconPath}Profile.svg';
   static const work = '${_roleIconPath}Work.svg';
+
+  // DASHBOARD //
+  static const threeUsers = '${_dashboardIconPath}3 User.svg';
+  static const calender = '${_dashboardIconPath}Calendar.svg';
+  static const category = '${_dashboardIconPath}Category.svg';
+  static const delete = '${_dashboardIconPath}Delete.svg';
+  static const document = '${_dashboardIconPath}Document.svg';
+  static const download = '${_dashboardIconPath}Download.svg';
+  static const upload = '${_dashboardIconPath}Upload.svg';
+  static const edit = '${_dashboardIconPath}Edit.svg';
+  static const image = '${_dashboardIconPath}Image.svg';
+  static const logo = '${_dashboardIconPath}Logo.svg';
+  static const logout = '${_dashboardIconPath}Logout.svg';
+  static const sun = '${_dashboardIconPath}sun.svg';
+  static const moon = '${_dashboardIconPath}moon.svg';
+  static const notification = '${_dashboardIconPath}Notification.svg';
+  static const paper = '${_dashboardIconPath}Paper.svg';
+  static const search = '${_dashboardIconPath}Searsh.svg';
+  static const setting = '${_dashboardIconPath}Setting.svg';
+  static const wallet = '${_dashboardIconPath}wallet.svg';
+  static const workOutLine = '${_dashboardIconPath}Work.svg';
 }
 
 class ImagesPath {

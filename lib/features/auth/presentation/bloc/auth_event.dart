@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'auth_bloc.dart';
 
 abstract class AuthRoleProfileEvent {
@@ -39,8 +38,8 @@ class GetRolesEvent extends AuthRoleProfileEvent {}
 // Profile Events //
 
 class UpdateEmployeeProfileEvent extends AuthRoleProfileEvent {
-  final File image;
-  final File cv;
+  final PlatformFile image;
+  final PlatformFile cv;
   final int roleId;
   UpdateEmployeeProfileEvent({
     required this.image,
@@ -50,7 +49,7 @@ class UpdateEmployeeProfileEvent extends AuthRoleProfileEvent {
 }
 
 class UpdateClientProfileEvent extends AuthRoleProfileEvent {
-  final File image;
+  final PlatformFile image;
   final int roleId;
   UpdateClientProfileEvent({
     required this.image,

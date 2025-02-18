@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/usecases/use_case.dart';
 import 'package:two_website/features/profile/data/models/update_client_profile_response_model.dart';
@@ -23,7 +22,7 @@ class UpdateClientProfileUsecase extends UseCase<
 
 class ClientProfileParam {
   final String token;
-  final File image;
+  final PlatformFile image;
   final int roleId;
 
   ClientProfileParam(

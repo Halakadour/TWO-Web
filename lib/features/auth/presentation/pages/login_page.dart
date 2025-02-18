@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +12,6 @@ import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/widgets/centerd_view.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:two_website/lang/locale_keys.g.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/auth/presentation/widgets/decor_box.dart';
 import 'package:two_website/features/auth/presentation/widgets/google_git_row.dart';
@@ -33,16 +31,14 @@ class _SignupPageState extends State<LoginPage> {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
-  late final bool _isSecurePassword;
-  late final bool _isHovered;
+  bool _isSecurePassword = false;
+  bool _isHovered = false;
 
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _isSecurePassword = false;
-    _isHovered = false;
     super.initState();
   }
 
@@ -62,17 +58,29 @@ class _SignupPageState extends State<LoginPage> {
                 child: BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
                   listener: (context, state) async {
                     if (state.authModelStatus == CasualStatus.loading) {
-                      QuickAlert.show(
-                          context: context, type: QuickAlertType.loading);
+                      const CircularProgressIndicator();
                     } else if (state.authModelStatus == CasualStatus.success) {
-                      QuickAlert.show(
-                          context: context, type: QuickAlertType.error);
                       await SharedPreferencesServices.setUserToken(
                           state.authModel!.token);
-                      context.pushReplacementNamed(AppRouteConfig.fillProfile);
+                      QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.confirm,
+                        title: "Choose Your Type",
+                        confirmBtnText: "Employee",
+                        width: 300,
+                        onConfirmBtnTap: () => context.pushReplacementNamed(
+                            AppRouteConfig.fillEmployeeProfile),
+                        cancelBtnText: "Client",
+                        onCancelBtnTap: () => context.pushReplacementNamed(
+                            AppRouteConfig.fillClientProfile),
+                      );
                     } else if (state.authModelStatus == CasualStatus.failure) {
                       QuickAlert.show(
-                          context: context, type: QuickAlertType.error);
+                          context: context,
+                          type: QuickAlertType.error,
+                          width: 300);
+                    } else {
+                      const SizedBox();
                     }
                   },
                   listenWhen: (previous, current) =>
@@ -87,7 +95,7 @@ class _SignupPageState extends State<LoginPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              LocaleKeys.signin.tr(),
+                              "Log in",
                               style: AppTextStyle.heading00(),
                             ),
                             h30,

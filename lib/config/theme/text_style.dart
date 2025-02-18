@@ -167,7 +167,7 @@ class AppTextStyle {
   }
 
   static TextStyle navRailStyle({
-    double fontSize = 12,
+    double fontSize = 14,
     Color color = Colors.black,
     TextDecoration? decoration,
   }) {

@@ -11,7 +11,7 @@ class RoleRemoteDatasourceImpl extends RoleRemoteDatasource {
   @override
   Future<RoleResponesModel> showRoleClient() async {
     final result = GetApi(
-        uri: Uri.parse("$baseUri/api/show/roles"),
+        uri: Uri.parse("$baseUri/api/show/role/client"),
         fromJson: roleResponesModelFromJson);
     return await result.callRequest();
   }
@@ -19,7 +19,7 @@ class RoleRemoteDatasourceImpl extends RoleRemoteDatasource {
   @override
   Future<RoleResponesModel> showRolesWithoutClient() async {
     final result = GetApi(
-        uri: Uri.parse("$baseUri/api/show/role/client"),
+        uri: Uri.parse("$baseUri/api/show/roles"),
         fromJson: roleResponesModelFromJson);
     return await result.callRequest();
   }

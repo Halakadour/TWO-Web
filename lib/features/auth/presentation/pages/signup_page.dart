@@ -35,8 +35,8 @@ class _SignupPageState extends State<SignupPage> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _confirmPasswordController;
-  late final bool _isSecurePassword;
-  late final bool _isHovered;
+  bool _isSecurePassword = false;
+  bool _isHovered = false;
 
   @override
   void initState() {
@@ -45,8 +45,6 @@ class _SignupPageState extends State<SignupPage> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
-    _isSecurePassword = false;
-    _isHovered = false;
     super.initState();
   }
 
@@ -66,17 +64,29 @@ class _SignupPageState extends State<SignupPage> {
                 child: BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
                   listener: (context, state) async {
                     if (state.authModelStatus == CasualStatus.loading) {
-                      QuickAlert.show(
-                          context: context, type: QuickAlertType.loading);
+                      const CircularProgressIndicator();
                     } else if (state.authModelStatus == CasualStatus.success) {
-                      QuickAlert.show(
-                          context: context, type: QuickAlertType.error);
                       await SharedPreferencesServices.setUserToken(
                           state.authModel!.token);
-                      context.pushReplacementNamed(AppRouteConfig.fillProfile);
+                      QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.confirm,
+                        title: "Choose Your Type",
+                        confirmBtnText: "Employee",
+                        width: 300,
+                        onConfirmBtnTap: () => context.pushReplacementNamed(
+                            AppRouteConfig.fillEmployeeProfile),
+                        cancelBtnText: "Client",
+                        onCancelBtnTap: () => context.pushReplacementNamed(
+                            AppRouteConfig.fillClientProfile),
+                      );
                     } else if (state.authModelStatus == CasualStatus.failure) {
                       QuickAlert.show(
-                          context: context, type: QuickAlertType.error);
+                          context: context,
+                          type: QuickAlertType.error,
+                          width: 300);
+                    } else {
+                      const SizedBox();
                     }
                   },
                   listenWhen: (previous, current) =>
@@ -202,7 +212,8 @@ class _SignupPageState extends State<SignupPage> {
                                         QuickAlert.show(
                                             context: context,
                                             type: QuickAlertType.error,
-                                            text: "Password Doesn't match");
+                                            title: "Password does not matching",
+                                            width: 300);
                                       } else {
                                         context.read<AuthRoleProfileBloc>().add(
                                             RegisteNewUserEvent(
