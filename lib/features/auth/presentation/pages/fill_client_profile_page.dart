@@ -1,4 +1,6 @@
-import 'dart:html';
+// ignore_for_file: avoid_print
+
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,8 @@ import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
@@ -29,11 +32,29 @@ class FillClientProfilePage extends StatefulWidget {
 class _FillProfilePageState extends State<FillClientProfilePage> {
   RoleModel? selectedItem;
   File? imageFile;
+  ValueNotifier<bool> isHover = ValueNotifier(false);
 
   @override
   void didChangeDependencies() {
     context.read<AuthRoleProfileBloc>().add(GetRolesEvent());
     super.didChangeDependencies();
+  }
+
+  Future<void> _getImageFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+    if (result != null && result.files.isNotEmpty) {
+      final imagePath = result.files.first.path;
+      if (imagePath != null) {
+        setState(() {
+          imageFile = File(imagePath);
+        });
+      }
+    } else {
+      print("No file selected");
+    }
   }
 
   @override
@@ -65,7 +86,7 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
                             color: AppColors.fieldColor),
                         child: imageFile != null
                             ? Image.network(
-                                imageFile!.name,
+                                imageFile!.path,
                                 fit: BoxFit.cover,
                               )
                             : Padding(
@@ -78,22 +99,7 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
                       ),
                       InkWell(
                         onTap: () async {
-                          FilePickerResult? result =
-                              await FilePicker.platform.pickFiles(
-                            type: FileType.image,
-                            allowMultiple: false,
-                          );
-
-                          if (result != null && result.files.isNotEmpty) {
-                            final filePath = result.files.first.path;
-                            if (filePath != null) {
-                              setState(() {
-                                imageFile = File(filePath.codeUnits, filePath);
-                              });
-                            }
-                          } else {
-                            print("No file selected");
-                          }
+                          _getImageFile();
                         },
                         child: SvgPicture.asset(
                           IconsPath.editPen,
@@ -186,6 +192,7 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
               } else if (state.updateEmployeeProfileStatus ==
                       CasualStatus.failure ||
                   state.updateClientProfileStatus == CasualStatus.failure) {
+                print(state.message);
                 QuickAlert.show(
                     context: context, type: QuickAlertType.error, width: 300);
               }
@@ -197,29 +204,24 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
                       current.updateEmployeeProfileStatus);
             },
             child: CustomCartoonButton(
-              isHovered: true,
+              isHover: isHover,
               title: "Apply",
               onTap: () {
                 print(selectedItem!.id);
                 print(selectedItem!.role);
                 print(imageFile);
-                // if (imageFile == null) {
-                //   QuickAlert.show(
-                //       context: context,
-                //       type: QuickAlertType.warning,
-                //       title: "Please add the image",
-                //       width: 300);
-                // } else if (selectedItem == null) {
-                //   QuickAlert.show(
-                //       context: context,
-                //       type: QuickAlertType.warning,
-                //       title: "Please add the role",
-                //       width: 300);
-                // } else {
-                //   context.read<AuthRoleProfileBloc>().add(
-                //       UpdateClientProfileEvent(
-                //           image: imageFile!, roleId: selectedItem!.id));
-                // }
+                if (imageFile == null) {
+                  CustomQuickAlert().addImageAlert(context);
+                } else if (selectedItem == null) {
+                  CustomQuickAlert().addRoleAlert(context);
+                } else {
+                  print(imageFile);
+                  print(selectedItem!.id);
+                  print(selectedItem!.role);
+                  context.read<AuthRoleProfileBloc>().add(
+                      UpdateClientProfileEvent(
+                          image: imageFile!, roleId: selectedItem!.id));
+                }
               },
             ),
           )

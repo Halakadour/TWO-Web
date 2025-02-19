@@ -6,26 +6,30 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
 class CustomLinkedText extends StatelessWidget {
-  const CustomLinkedText({super.key, required this.title});
+  const CustomLinkedText({super.key, required this.title, this.onTap});
   final String title;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          title,
-          style: AppTextStyle.buttonStyle(color: AppColors.greenColor),
-        ),
-        w5,
-        SvgPicture.asset(
-          IconsPath.arrowRight,
-          // ignore: deprecated_member_use
-          color: AppColors.greenColor,
-        )
-      ],
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: AppTextStyle.buttonStyle(color: AppColors.greenColor),
+          ),
+          w5,
+          SvgPicture.asset(
+            IconsPath.arrowRight,
+            // ignore: deprecated_member_use
+            color: AppColors.greenColor,
+          )
+        ],
+      ),
     );
   }
 }

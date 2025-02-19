@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/core/services/shared_preferences_services.dart';
+import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
@@ -15,7 +18,7 @@ class ContactUsSection extends StatefulWidget {
 }
 
 class _ContactUsSectionState extends State<ContactUsSection> {
-  bool _isHovered = false;
+  ValueNotifier<bool> isHover = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return CenterdView(
@@ -73,21 +76,17 @@ class _ContactUsSectionState extends State<ContactUsSection> {
           ),
         ),
         h20,
-        MouseRegion(
-          onEnter: (_) {
-            setState(() {
-              _isHovered = true;
-            });
+        CustomCartoonButton(
+          title: "Send A Message",
+          isHover: isHover,
+          onTap: () async {
+            if (await SharedPreferencesServices.getUserToken() == null) {
+              QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.error,
+                  title: "You need to sign in");
+            } else {}
           },
-          onExit: (_) {
-            setState(() {
-              _isHovered = false;
-            });
-          },
-          child: CustomCartoonButton(
-            isHovered: _isHovered,
-            title: "Send A Message",
-          ),
         )
       ],
     ));

@@ -49,7 +49,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         final result = await createPostUsecase.call(
             PostParam(token: token, image: event.image, body: event.body));
         result.fold(
-          (l) => emit(state.copyWith(createPostStatus: CasualStatus.failure)),
+          (l) => emit(state.copyWith(
+              createPostStatus: CasualStatus.failure, message: l.message)),
           (r) => emit(state.copyWith(createPostStatus: CasualStatus.success)),
         );
       } else {
@@ -65,7 +66,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
             PostRepliesOrDeleteOrUnActiveParam(
                 postId: event.postId, token: token));
         result.fold(
-          (l) => emit(state.copyWith(deletePostStatus: CasualStatus.failure)),
+          (l) => emit(state.copyWith(
+              deletePostStatus: CasualStatus.failure, message: l.message)),
           (r) => emit(state.copyWith(deletePostStatus: CasualStatus.success)),
         );
       } else {
@@ -81,7 +83,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
             PostRepliesOrDeleteOrUnActiveParam(
                 postId: event.postId, token: token));
         result.fold(
-          (l) => emit(state.copyWith(unActivePostStatus: CasualStatus.failure)),
+          (l) => emit(state.copyWith(
+              unActivePostStatus: CasualStatus.failure, message: l.message)),
           (r) => emit(state.copyWith(unActivePostStatus: CasualStatus.success)),
         );
       } else {
@@ -93,8 +96,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(state.copyWith(activePostsListStatus: CasualStatus.loading));
       final result = await showActivePostsUsecase.call();
       result.fold(
-        (l) =>
-            emit(state.copyWith(activePostsListStatus: CasualStatus.failure)),
+        (l) => emit(state.copyWith(
+            activePostsListStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
             activePostsListStatus: CasualStatus.success, activePostsList: r)),
       );
@@ -104,8 +107,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(state.copyWith(unActivePostsListStatus: CasualStatus.loading));
       final result = await showActivePostsUsecase.call();
       result.fold(
-        (l) =>
-            emit(state.copyWith(unActivePostsListStatus: CasualStatus.failure)),
+        (l) => emit(state.copyWith(
+            unActivePostsListStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
             unActivePostsListStatus: CasualStatus.success,
             unActivePostsList: r)),
@@ -120,8 +123,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
             PostRepliesOrDeleteOrUnActiveParam(
                 postId: event.postId, token: token));
         result.fold(
-          (l) => emit(
-              state.copyWith(postsRepliesListStatus: CasualStatus.failure)),
+          (l) => emit(state.copyWith(
+              postsRepliesListStatus: CasualStatus.failure,
+              message: l.message)),
           (r) => emit(state.copyWith(
               postsRepliesListStatus: CasualStatus.success,
               postRepliesList: r)),
@@ -141,7 +145,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
                 postId: event.postId, token: token));
         result.fold(
           (l) => emit(state.copyWith(
-              postsAcceptedRepliesListStatus: CasualStatus.failure)),
+              postsAcceptedRepliesListStatus: CasualStatus.failure,
+              message: l.message)),
           (r) => emit(state.copyWith(
               postsAcceptedRepliesListStatus: CasualStatus.success,
               postAcceptedRepliesList: r)),
@@ -159,7 +164,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         final result = await acceptReplyUsecase
             .call(AcceptReplyParam(replyId: event.replyId, token: token));
         result.fold(
-          (l) => emit(state.copyWith(acceptReplyStatus: CasualStatus.failure)),
+          (l) => emit(state.copyWith(
+              acceptReplyStatus: CasualStatus.failure, message: l.message)),
           (r) => emit(state.copyWith(
             acceptReplyStatus: CasualStatus.success,
           )),
@@ -178,7 +184,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           cv: event.cv,
           postId: event.postId));
       result.fold(
-        (l) => emit(state.copyWith(sendReplyStatus: CasualStatus.failure)),
+        (l) => emit(state.copyWith(
+            sendReplyStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
           sendReplyStatus: CasualStatus.success,
         )),

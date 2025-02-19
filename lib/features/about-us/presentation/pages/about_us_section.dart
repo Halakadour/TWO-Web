@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/features/about-us/presentation/widgets/black_box.dart';
 import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
+import 'package:two_website/features/about-us/presentation/widgets/why_us_row.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 import '../widgets/why_us_card.dart';
@@ -33,7 +34,6 @@ class _AboutUsSectionState extends State<AboutUsSection> {
     LocaleKeys.extraodinryUser.tr(),
     LocaleKeys.continuousSupport.tr(),
   ];
-  bool isHoved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,77 +65,12 @@ class _AboutUsSectionState extends State<AboutUsSection> {
             h20,
             CustomLinkedText(title: LocaleKeys.checkOurClients.tr()),
             h20,
-            Stack(
-              alignment: AlignmentDirectional.topCenter,
-              children: [
-                SvgPicture.asset(
-                  IconsPath.blackBox,
-                  width: 225,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 10),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Sunday - Thursday",
-                        style: AppTextStyle.buttonStyle(
-                            color: AppColors.whiteColor),
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.access_time,
-                            color: AppColors.whiteColor,
-                          ),
-                          w5,
-                          Text(
-                            "10:00 AM - 03:00 PM",
-                            style: AppTextStyle.buttonStyle(
-                                color: AppColors.whiteColor),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
+            const BlackBox(
+                text1: "Sunday - Thursday", text2: "10:00 AM - 03:00 PM"),
             h20,
-            Stack(
-              alignment: AlignmentDirectional.topCenter,
-              children: [
-                SvgPicture.asset(
-                  IconsPath.blackBox,
-                  width: 225,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 10),
-                  child: Column(
-                    children: [
-                      Text(
-                        LocaleKeys.Adress.tr(),
-                        style: AppTextStyle.buttonStyle(
-                            color: AppColors.whiteColor),
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_on_outlined,
-                            color: AppColors.whiteColor,
-                          ),
-                          w5,
-                          Text(
-                            "Aleppo - Halab Aljadida",
-                            style: AppTextStyle.buttonStyle(
-                                color: AppColors.whiteColor),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
+            BlackBox(
+                text1: LocaleKeys.Adress.tr(),
+                text2: "Aleppo - Halab Aljadida"),
           ],
         ),
         Image.asset(
@@ -146,41 +81,17 @@ class _AboutUsSectionState extends State<AboutUsSection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      LocaleKeys.whyUs.tr(),
-                      style: AppTextStyle.heading02(),
-                    ),
-                    CustomLinkedText(
-                      title: LocaleKeys.seeAll.tr(),
-                    ),
-                  ],
-                ),
-              ),
+              const WhyUsRow(),
               h40,
               SizedBox(
                 height: 500,
                 child: ListView.builder(
                     itemCount: icons.length,
-                    itemBuilder: (context, index) => MouseRegion(
-                        onEnter: (context) {
-                          setState(() {
-                            isHoved = true;
-                          });
-                        },
-                        onExit: (context) {
-                          setState(() {
-                            isHoved = false;
-                          });
-                        },
-                        child: WhyUsCard(
+                    itemBuilder: (context, index) => WhyUsCard(
                           icon: icons[index],
                           text: texts[index],
-                          isHoverd: isHoved,
-                        ))),
+                          isHover: ValueNotifier(false),
+                        )),
               ),
             ],
           ),

@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/usecases/use_case.dart';
 import 'package:two_website/features/profile/data/models/update_employee_profile_response_model.dart';
@@ -22,8 +23,8 @@ class UpdateEmployeeProfileUsecase extends UseCase<
 
 class EmployeeProfileParam {
   final String token;
-  final PlatformFile image;
-  final PlatformFile cv;
+  final File image;
+  final File cv;
   final int roleId;
 
   EmployeeProfileParam(

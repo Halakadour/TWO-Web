@@ -1,21 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/constants/page_hight.dart';
-import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/custom_app_footer.dart';
+import 'package:two_website/core/widgets/appbar/custom_app_bar.dart';
+import 'package:two_website/core/widgets/layouts/footer/custom_app_footer.dart';
 import 'package:two_website/features/contact-us/presentation/pages/contact_us_section.dart';
 import 'package:two_website/features/posts/presentation/pages/posts_section.dart';
-import 'package:two_website/lang/locale_keys.g.dart';
 import 'package:two_website/features/about-us/presentation/pages/about_us_section.dart';
 import 'package:two_website/features/landing/presentation/pages/home_section.dart';
-import 'package:two_website/features/landing/presentation/widgets/navigation_bar/sign_up_button.dart';
 import 'package:two_website/features/services/presentation/pages/services_section.dart';
-
-import '../../../../config/paths/assets_path.dart';
-import '../widgets/navigation_bar/custom_vertical_divider.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -27,130 +17,10 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final ScrollController _scrollController = ScrollController();
 
-  int _currentIndex = 0;
-
-  final List<double> _sectionOffsets = [
-    0,
-    pageHight + 40,
-    pageHight * 2 + 80,
-    pageHight * 3 + 120,
-    pageHight * 4 + 160,
-  ];
-
-  void scrollToSection(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-    _scrollController.animateTo(
-      _sectionOffsets[index],
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  String selectedLanguage = LocaleKeys.arabic.tr();
-
-  void changeLanguage(String languageCode) {
-    if (languageCode == 'ar') {
-      context.setLocale(const Locale('ar'));
-      setState(() {
-        selectedLanguage = LocaleKeys.arabic.tr();
-      });
-    } else {
-      context.setLocale(const Locale('en'));
-      setState(() {
-        selectedLanguage = LocaleKeys.english.tr();
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        scrolledUnderElevation: 0,
-        elevation: 0,
-        title: SizedBox(
-          height: 50,
-          width: 50,
-          child: SvgPicture.asset(ImagesPath.webLogo),
-        ),
-        actions: [
-          ...List.generate(_sectionOffsets.length, (index) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () => scrollToSection(index),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Text(
-                      [
-                        LocaleKeys.home.tr(),
-                        LocaleKeys.aboutUs.tr(),
-                        LocaleKeys.services.tr(),
-                        LocaleKeys.portfolio.tr(),
-                        LocaleKeys.contactUs.tr(),
-                      ][index],
-                      style:
-                          AppTextStyle.buttonStyle(color: AppColors.blackColor),
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 2.5,
-                  width: 60,
-                  color: (_currentIndex == index) ? AppColors.mainColor : null,
-                ),
-              ],
-            );
-          }),
-          w50,
-          Row(
-            children: [
-              const SignUpButton(),
-              const CustomVerticalDivider(),
-              GestureDetector(
-                onTapDown: (details) {
-                  final offset = details.globalPosition;
-                  showMenu(
-                    context: context,
-                    position: RelativeRect.fromLTRB(
-                      offset.dx,
-                      offset.dy,
-                      MediaQuery.of(context).size.width - offset.dx,
-                      MediaQuery.of(context).size.height - offset.dy,
-                    ),
-                    items: [
-                      PopupMenuItem<String>(
-                        value: 'en',
-                        child: Text(LocaleKeys.english.tr()),
-                      ),
-                      PopupMenuItem<String>(
-                        value: 'ar',
-                        child: Text(LocaleKeys.arabic.tr()),
-                      ),
-                    ],
-                  ).then((value) {
-                    if (value != null) {
-                      changeLanguage(value);
-                    }
-                  });
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(selectedLanguage),
-                    const Icon(Icons.arrow_drop_down),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+      appBar: CustomAppBar(scrollController: _scrollController),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: const Column(

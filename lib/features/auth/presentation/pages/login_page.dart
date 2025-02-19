@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:two_website/config/paths/assets_path.dart';
-import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
-import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/auth/presentation/widgets/decor_box.dart';
@@ -32,8 +30,7 @@ class _SignupPageState extends State<LoginPage> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   bool _isSecurePassword = false;
-  bool _isHovered = false;
-
+  ValueNotifier<bool> isHover = ValueNotifier(false);
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
@@ -58,27 +55,15 @@ class _SignupPageState extends State<LoginPage> {
                 child: BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
                   listener: (context, state) async {
                     if (state.authModelStatus == CasualStatus.loading) {
-                      const CircularProgressIndicator();
+                      CustomQuickAlert().loadingAlert(context);
                     } else if (state.authModelStatus == CasualStatus.success) {
                       await SharedPreferencesServices.setUserToken(
                           state.authModel!.token);
-                      QuickAlert.show(
-                        context: context,
-                        type: QuickAlertType.confirm,
-                        title: "Choose Your Type",
-                        confirmBtnText: "Employee",
-                        width: 300,
-                        onConfirmBtnTap: () => context.pushReplacementNamed(
-                            AppRouteConfig.fillEmployeeProfile),
-                        cancelBtnText: "Client",
-                        onCancelBtnTap: () => context.pushReplacementNamed(
-                            AppRouteConfig.fillClientProfile),
-                      );
+                      context.pop();
+                      CustomQuickAlert().userTypeAlert(context);
                     } else if (state.authModelStatus == CasualStatus.failure) {
-                      QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.error,
-                          width: 300);
+                      context.pop();
+                      CustomQuickAlert().failureAlert(context);
                     } else {
                       const SizedBox();
                     }
@@ -151,31 +136,19 @@ class _SignupPageState extends State<LoginPage> {
                                 }),
                                 labelText: "password*"),
                             h40,
-                            MouseRegion(
-                                onEnter: (_) {
-                                  setState(() {
-                                    _isHovered = true;
-                                  });
-                                },
-                                onExit: (_) {
-                                  setState(() {
-                                    _isHovered = false;
-                                  });
-                                },
-                                child: CustomCartoonButton(
-                                  isHovered: _isHovered,
-                                  title: "Log In",
-                                  width: double.infinity,
-                                  onTap: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      context.read<AuthRoleProfileBloc>().add(
-                                          LoginUserEvent(
-                                              email: _emailController.text,
-                                              password:
-                                                  _passwordController.text));
-                                    }
-                                  },
-                                )),
+                            CustomCartoonButton(
+                              isHover: isHover,
+                              title: "Log In",
+                              width: double.infinity,
+                              onTap: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<AuthRoleProfileBloc>().add(
+                                      LoginUserEvent(
+                                          email: _emailController.text,
+                                          password: _passwordController.text));
+                                }
+                              },
+                            ),
                           ],
                         ),
                       ),

@@ -1,3 +1,7 @@
+// ignore_for_file: deprecated_member_use, avoid_print
+
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +14,10 @@ import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:two_website/features/auth/presentation/widgets/profile_conainer.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
 
@@ -26,13 +32,31 @@ class FillEmployeeProfilePage extends StatefulWidget {
 
 class _FillProfilePageState extends State<FillEmployeeProfilePage> {
   RoleModel? selectedItem;
-  PlatformFile? imageFile;
-  PlatformFile? cvFile;
+  File? imageFile;
+  File? cvFile;
+  ValueNotifier<bool> isHover = ValueNotifier(false);
 
   @override
   void didChangeDependencies() {
     context.read<AuthRoleProfileBloc>().add(GetRolesWithoutClientEvent());
     super.didChangeDependencies();
+  }
+
+  Future<void> _getCVFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+      allowMultiple: false,
+    );
+    if (result != null && result.files.isNotEmpty) {
+      final cvPath = result.files.first.path;
+      if (cvPath != null) {
+        setState(() {
+          cvFile = File(cvPath);
+        });
+      }
+    } else {
+      print("No file selected");
+    }
   }
 
   @override
@@ -52,56 +76,8 @@ class _FillProfilePageState extends State<FillEmployeeProfilePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Container(
-                        width: 130,
-                        height: 130,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.fieldColor),
-                        child: imageFile != null
-                            ? Image.network(
-                                imageFile!.name,
-                                fit: BoxFit.cover,
-                              )
-                            : Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: SvgPicture.asset(
-                                  IconsPath.image,
-                                  color: AppColors.fontLightColor,
-                                ),
-                              ),
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          FilePickerResult? result =
-                              await FilePicker.platform.pickFiles(
-                            type: FileType.image,
-                            allowMultiple: false,
-                          );
-
-                          if (result != null && result.files.isNotEmpty) {
-                            final filePath = result.files.first.path;
-                            if (filePath != null) {
-                              setState(() {
-                                imageFile = PlatformFile(
-                                    name: imageFile!.name,
-                                    size: imageFile!.size);
-                              });
-                            }
-                          } else {
-                            print("No file selected");
-                          }
-                        },
-                        child: SvgPicture.asset(
-                          IconsPath.editPen,
-                          width: 40,
-                        ),
-                      )
-                    ],
+                  ProfileConainer(
+                    imageFile: imageFile,
                   ),
                   h50,
                   Container(
@@ -158,7 +134,7 @@ class _FillProfilePageState extends State<FillEmployeeProfilePage> {
                             } else if (state.roleWithoutClientListStatus ==
                                 CasualStatus.failure) {
                               print(state.message);
-                              return const Text("ToT");
+                              return const Text("No Roles");
                             } else {
                               return const SizedBox();
                             }
@@ -194,23 +170,7 @@ class _FillProfilePageState extends State<FillEmployeeProfilePage> {
                         h20,
                         InkWell(
                           onTap: () async {
-                            FilePickerResult? result =
-                                await FilePicker.platform.pickFiles(
-                              type: FileType.any,
-                              allowMultiple: false,
-                            );
-
-                            if (result != null && result.files.isNotEmpty) {
-                              final filePath = result.files.first.path;
-                              if (filePath != null) {
-                                setState(() {
-                                  cvFile = PlatformFile(
-                                      name: cvFile!.name, size: cvFile!.size);
-                                });
-                              }
-                            } else {
-                              print("No file selected");
-                            }
+                            _getCVFile();
                           },
                           child: SvgPicture.asset(
                             IconsPath.upload,
@@ -220,7 +180,7 @@ class _FillProfilePageState extends State<FillEmployeeProfilePage> {
                         ),
                         Text(
                           cvFile != null
-                              ? cvFile!.name
+                              ? cvFile!.path
                               : "select or drop a file",
                           style: AppTextStyle.subtitle03(
                               color: AppColors.greenColor),
@@ -254,27 +214,15 @@ class _FillProfilePageState extends State<FillEmployeeProfilePage> {
                   current.updateEmployeeProfileStatus);
             },
             child: CustomCartoonButton(
-              isHovered: true,
+              isHover: isHover,
               title: "Apply",
               onTap: () {
                 if (imageFile == null) {
-                  QuickAlert.show(
-                      context: context,
-                      type: QuickAlertType.warning,
-                      title: "Please add the image",
-                      width: 300);
+                  CustomQuickAlert().addImageAlert(context);
                 } else if (selectedItem == null) {
-                  QuickAlert.show(
-                      context: context,
-                      type: QuickAlertType.warning,
-                      title: "Please add the role",
-                      width: 300);
+                  CustomQuickAlert().addRoleAlert(context);
                 } else if (cvFile == null) {
-                  QuickAlert.show(
-                      context: context,
-                      type: QuickAlertType.warning,
-                      title: "Please add the cv file",
-                      width: 300);
+                  CustomQuickAlert().addCvAlert(context);
                 } else {
                   context.read<AuthRoleProfileBloc>().add(
                       UpdateEmployeeProfileEvent(

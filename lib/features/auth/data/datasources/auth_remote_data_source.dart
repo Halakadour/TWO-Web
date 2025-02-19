@@ -1,3 +1,4 @@
+import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/features/auth/data/models/login_user_model.dart';
 import 'package:two_website/features/auth/data/models/logout_user_model.dart';
 import 'package:two_website/features/auth/data/models/register_new_user_model.dart';
@@ -12,8 +13,6 @@ abstract class AuthRemoteDataSource {
   Future<LogoutUserModel> logout(String token);
   // Future<Unit> registLoginWithGoogle();
 }
-
-String baseUri = "http://ruhajaghel-001-site1.qtempurl.com";
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override

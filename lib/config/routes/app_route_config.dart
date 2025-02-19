@@ -8,6 +8,7 @@ class AppRouteConfig {
   static const fillClientProfile = 'fillClientProfile';
   // POST //
   static const post = "post";
+  static const replyToPost = "post";
   // MAIN //
   static const main = 'main';
 }

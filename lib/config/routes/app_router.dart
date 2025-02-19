@@ -5,12 +5,13 @@ import 'package:two_website/features/auth/presentation/pages/fill_client_profile
 import 'package:two_website/features/auth/presentation/pages/fill_employee_profile_page.dart';
 import 'package:two_website/features/landing/presentation/pages/landing_page.dart';
 import 'package:two_website/features/main/presentation/pages/main_page.dart';
+import 'package:two_website/features/posts/presentation/pages/reply_to_post_page.dart';
 
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 
 class AppRouter {
-  GoRouter router = GoRouter(initialLocation: '/fillClientProfile', routes: [
+  GoRouter router = GoRouter(initialLocation: '/main', routes: [
     GoRoute(
       name: AppRouteConfig.landing,
       path: '/',
@@ -42,6 +43,15 @@ class AppRouter {
       name: AppRouteConfig.main,
       path: '/main',
       pageBuilder: (context, state) => const MaterialPage(child: MainPage()),
+    ),
+    GoRoute(
+      name: AppRouteConfig.replyToPost,
+      path: '/replyToPost/:id/:image/:body',
+      pageBuilder: (context, state) => MaterialPage(
+          child: ReplyToPostPage(
+              postId: state.pathParameters['id'] ?? '',
+              postPoster: state.pathParameters['image'] ?? '',
+              postbody: state.pathParameters['body'] ?? '')),
     ),
   ]);
 }

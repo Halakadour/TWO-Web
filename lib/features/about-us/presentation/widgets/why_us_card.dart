@@ -5,56 +5,77 @@ import '../../../../config/constants/padding_config.dart';
 import '../../../../config/theme/color.dart';
 import '../../../../config/theme/text_style.dart';
 
-class WhyUsCard extends StatelessWidget {
-  const WhyUsCard(
+// ignore: must_be_immutable
+class WhyUsCard extends StatefulWidget {
+  WhyUsCard(
       {super.key,
       required this.icon,
       required this.text,
-      required this.isHoverd});
+      required this.isHover});
 
   final String icon;
   final String text;
-  final bool isHoverd;
+  ValueNotifier<bool> isHover;
 
   @override
+  State<WhyUsCard> createState() => _WhyUsCardState();
+}
+
+class _WhyUsCardState extends State<WhyUsCard> {
+  @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      child: Container(
-        margin: marginBottom16,
-        padding: containerPadding,
-        decoration: BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: const BorderRadius.all(Radius.circular(7)),
-            boxShadow: isHoverd
-                ? const [
-                    BoxShadow(
-                        blurRadius: 0,
-                        color: AppColors.darkGreenColor,
-                        blurStyle: BlurStyle.normal,
-                        offset: Offset(0, 5),
-                        spreadRadius: 1)
-                  ]
-                : const [
-                    BoxShadow(
-                      color: AppColors.fontLightColor,
-                      offset: Offset(2, 2),
-                    ),
-                    BoxShadow(
-                      color: AppColors.grayColor,
-                      offset: Offset(-2, -2),
-                    ),
-                  ]),
-        child: Row(
-          children: [
-            SvgPicture.asset(icon),
-            w20,
-            Text(
-              text,
-              style: AppTextStyle.buttonStyle(color: AppColors.fontDarkColor),
-            )
-          ],
-        ),
+    return MouseRegion(
+      onEnter: (context) {
+        setState(() {
+          widget.isHover.value = true;
+        });
+      },
+      onExit: (context) {
+        setState(() {
+          widget.isHover.value = false;
+        });
+      },
+      child: ValueListenableBuilder(
+        valueListenable: widget.isHover,
+        builder: (context, value, child) => AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            child: Container(
+              margin: marginBottom16,
+              padding: containerPadding,
+              decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(7)),
+                  boxShadow: value
+                      ? const [
+                          BoxShadow(
+                              blurRadius: 0,
+                              color: AppColors.darkGreenColor,
+                              blurStyle: BlurStyle.normal,
+                              offset: Offset(0, 5),
+                              spreadRadius: 1)
+                        ]
+                      : const [
+                          BoxShadow(
+                            color: AppColors.fontLightColor,
+                            offset: Offset(2, 2),
+                          ),
+                          BoxShadow(
+                            color: AppColors.grayColor,
+                            offset: Offset(-2, -2),
+                          ),
+                        ]),
+              child: Row(
+                children: [
+                  SvgPicture.asset(widget.icon),
+                  w20,
+                  Text(
+                    widget.text,
+                    style: AppTextStyle.buttonStyle(
+                        color: AppColors.fontDarkColor),
+                  )
+                ],
+              ),
+            )),
       ),
     );
   }

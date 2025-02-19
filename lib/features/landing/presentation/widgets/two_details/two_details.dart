@@ -15,7 +15,7 @@ class TwoDetails extends StatefulWidget {
 }
 
 class _TwoDetailsState extends State<TwoDetails> {
-  bool _isHovered = false;
+  ValueNotifier<bool> isHover = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,21 +34,10 @@ class _TwoDetailsState extends State<TwoDetails> {
                   style: AppTextStyle.heading00(color: AppColors.greenColor))
             ])),
         h30,
-        MouseRegion(
-          onEnter: (_) {
-            setState(() {
-              _isHovered = true;
-            });
-          },
-          onExit: (_) {
-            setState(() {
-              _isHovered = false;
-            });
-          },
-          child: CustomCartoonButton(
-            isHovered: _isHovered,
-            title: LocaleKeys.orderProj.tr(),
-          ),
+        CustomCartoonButton(
+          title: LocaleKeys.orderProj.tr(),
+          isHover: isHover,
+          onTap: () {},
         ),
         h30,
         Text(

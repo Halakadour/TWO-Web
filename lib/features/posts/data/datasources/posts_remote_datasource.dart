@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
 import 'package:two_website/core/api/multi_post_api.dart';
 import 'package:two_website/core/api/post_api.dart';
 import 'package:two_website/core/api/put_request.dart';
-import 'package:two_website/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:two_website/features/posts/data/models/accept_reply_response_model.dart';
 import 'package:two_website/features/posts/data/models/create_post_response_model.dart';
 import 'package:two_website/features/posts/data/models/delete_post_respones_model.dart';
@@ -56,7 +56,7 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   Future<ShowPostResponesModel> showActivePosts() async {
     final result = GetApi(
         uri: Uri.parse("$baseUri/api/show/active/posts"),
-        fromJson: showPostRepliesResponesModelFromJson);
+        fromJson: showPostResponesModelFromJson);
     return await result.callRequest();
   }
 
@@ -64,7 +64,7 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   Future<ShowPostResponesModel> showUnActivePosts() async {
     final result = GetApi(
         uri: Uri.parse("$baseUri/api/show/not/active/posts"),
-        fromJson: showPostRepliesResponesModelFromJson);
+        fromJson: showPostResponesModelFromJson);
     return await result.callRequest();
   }
 

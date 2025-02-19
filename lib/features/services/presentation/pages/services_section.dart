@@ -4,7 +4,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/paths/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
 import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/features/services/presentation/widgets/service_card.dart';
 import 'package:two_website/lang/locale_keys.g.dart';

@@ -3,6 +3,7 @@ part of 'post_bloc.dart';
 
 // ignore: must_be_immutable
 class PostState {
+  String message;
   CasualStatus createPostStatus;
   CasualStatus deletePostStatus;
   CasualStatus unActivePostStatus;
@@ -18,6 +19,7 @@ class PostState {
   CasualStatus postsAcceptedRepliesListStatus;
 
   PostState({
+    this.message = "",
     this.createPostStatus = CasualStatus.initial,
     this.deletePostStatus = CasualStatus.initial,
     this.unActivePostStatus = CasualStatus.initial,
@@ -34,6 +36,7 @@ class PostState {
   });
 
   PostState copyWith({
+    String? message,
     CasualStatus? createPostStatus,
     CasualStatus? deletePostStatus,
     CasualStatus? unActivePostStatus,
@@ -49,6 +52,7 @@ class PostState {
     CasualStatus? postsAcceptedRepliesListStatus,
   }) {
     return PostState(
+      message: message ?? this.message,
       createPostStatus: createPostStatus ?? this.createPostStatus,
       deletePostStatus: deletePostStatus ?? this.deletePostStatus,
       unActivePostStatus: unActivePostStatus ?? this.unActivePostStatus,
