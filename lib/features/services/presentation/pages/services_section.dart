@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/features/services/presentation/widgets/service_card.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
@@ -49,7 +49,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                 ),
               ],
             ),
-            h40,
+            PaddingConfig.h40,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -62,7 +62,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                 )
               ],
             ),
-            h40,
+            PaddingConfig.h40,
             SizedBox(
               width: double.infinity,
               height: 300,
@@ -75,7 +75,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                     ),
                     onPressed: _scrollLeft,
                   ),
-                  w30,
+                  PaddingConfig.w30,
                   Expanded(
                     child: ListView.builder(
                       itemCount: 10,
@@ -87,7 +87,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                           serviceTitlel: "Website\nDelevlopment"),
                     ),
                   ),
-                  w30,
+                  PaddingConfig.w30,
                   IconButton(
                     icon: const Icon(
                       Icons.arrow_forward_ios,

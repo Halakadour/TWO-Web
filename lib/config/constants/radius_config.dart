@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
 
-BorderRadius textfieldRadius = BorderRadius.circular(12);
-BorderRadius buttonRadius = BorderRadius.circular(30);
+class RadiusConfig {
+  static BorderRadius textfieldRadius =
+      BorderRadius.circular(SizesConfig.borderRadiusMd);
+  static BorderRadius buttonRadius =
+      BorderRadius.circular(SizesConfig.borderRadiusXl);
+}

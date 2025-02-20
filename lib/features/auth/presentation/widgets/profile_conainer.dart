@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 
 // ignore: must_be_immutable

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/soial_media_group.dart';
@@ -27,7 +27,7 @@ class CustomAppFooter extends StatelessWidget {
                 "Aleppo".toUpperCase(),
                 style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
               ),
-              h10,
+              PaddingConfig.h10,
               Text(
                 "Al Tilal, Hamra street\nfirst intersection",
                 style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
@@ -41,12 +41,12 @@ class CustomAppFooter extends StatelessWidget {
                 "Working".toUpperCase(),
                 style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
               ),
-              h10,
+              PaddingConfig.h10,
               Text(
                 "Sunday-Thursday\n10:00 AM- 03:00 PM",
                 style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
               ),
-              h20,
+              PaddingConfig.h20,
               Text(
                 "towCompany@gmail.com",
                 style: AppTextStyle.subtitle03(
@@ -68,7 +68,7 @@ class CustomAppFooter extends StatelessWidget {
                 "follow us".toUpperCase(),
                 style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
               ),
-              h10,
+              PaddingConfig.h10,
               const SoialMediaGroup()
             ],
           ),

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/features/about-us/presentation/widgets/black_box.dart';
 import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/features/about-us/presentation/widgets/why_us_row.dart';
@@ -48,7 +48,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
               LocaleKeys.aboutUs.tr().toUpperCase(),
               style: AppTextStyle.heading00(),
             ),
-            h20,
+            PaddingConfig.h20,
             RichText(
                 text: TextSpan(children: [
               TextSpan(text: "TWO ", style: AppTextStyle.heading04()),
@@ -57,17 +57,17 @@ class _AboutUsSectionState extends State<AboutUsSection> {
                   style:
                       AppTextStyle.subtitle01(color: AppColors.fontLightColor))
             ])),
-            h40,
+            PaddingConfig.h40,
             Text(
               LocaleKeys.weHaveMore.tr(),
               style: AppTextStyle.heading03(),
             ),
-            h20,
+            PaddingConfig.h20,
             CustomLinkedText(title: LocaleKeys.checkOurClients.tr()),
-            h20,
+            PaddingConfig.h20,
             const BlackBox(
                 text1: "Sunday - Thursday", text2: "10:00 AM - 03:00 PM"),
-            h20,
+            PaddingConfig.h20,
             BlackBox(
                 text1: LocaleKeys.Adress.tr(),
                 text2: "Aleppo - Halab Aljadida"),
@@ -82,7 +82,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const WhyUsRow(),
-              h40,
+              PaddingConfig.h40,
               SizedBox(
                 height: 500,
                 child: ListView.builder(

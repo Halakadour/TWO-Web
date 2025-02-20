@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
@@ -22,7 +22,7 @@ class CustomLinkedText extends StatelessWidget {
             title,
             style: AppTextStyle.buttonStyle(color: AppColors.greenColor),
           ),
-          w5,
+          PaddingConfig.w5,
           SvgPicture.asset(
             IconsPath.arrowRight,
             // ignore: deprecated_member_use

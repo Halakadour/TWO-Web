@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/two_details.dart';
 
-import '../../../../config/paths/assets_path.dart';
+import '../../../../config/strings/assets_path.dart';
 
 class HomeSection extends StatelessWidget {
   const HomeSection({super.key});

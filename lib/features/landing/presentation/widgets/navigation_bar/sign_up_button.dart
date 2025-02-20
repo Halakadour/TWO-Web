@@ -27,7 +27,8 @@ class SignUpButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.mainColor,
-          shape: RoundedRectangleBorder(borderRadius: buttonRadius),
+          shape:
+              RoundedRectangleBorder(borderRadius: RadiusConfig.buttonRadius),
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
         ),

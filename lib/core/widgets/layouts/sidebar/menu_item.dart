@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
@@ -34,10 +35,10 @@ class MenuItem extends StatelessWidget {
           // Hover effect
         },
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 8),
+          margin: const EdgeInsets.symmetric(vertical: SizesConfig.xs),
           decoration: BoxDecoration(
             color: (pageNum == currentPage)
-                ? AppColors.navyColor
+                ? AppColors.greenColor
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(12),
           ),
@@ -45,8 +46,8 @@ class MenuItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 24, right: 16, bottom: 16, top: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: SvgPicture.asset(
                   icon,
                   color: (pageNum == currentPage)

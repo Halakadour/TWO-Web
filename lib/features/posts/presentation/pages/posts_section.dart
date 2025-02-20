@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/network/enum_status.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/posts/presentation/widgets/post_card.dart';
 
@@ -58,7 +58,7 @@ class _PostsSectionState extends State<PostsSection> {
               ),
             ],
           ),
-          h50,
+          PaddingConfig.h50,
           Row(
             children: [
               Container(
@@ -108,7 +108,7 @@ class _PostsSectionState extends State<PostsSection> {
                   ),
                   onPressed: _scrollLeft,
                 ),
-                w30,
+                PaddingConfig.w30,
                 Flexible(
                   child: (postValue == 0)
                       ? BlocBuilder<PostBloc, PostState>(
@@ -169,7 +169,7 @@ class _PostsSectionState extends State<PostsSection> {
                           },
                         ),
                 ),
-                w30,
+                PaddingConfig.w30,
                 IconButton(
                   icon: const Icon(
                     Icons.arrow_forward_ios,

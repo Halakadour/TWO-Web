@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../config/constants/padding_config.dart';
-import '../../../../config/paths/assets_path.dart';
+import '../../../../config/strings/assets_path.dart';
 import '../../../../config/theme/color.dart';
 import '../../../../config/theme/text_style.dart';
 
@@ -16,7 +16,7 @@ class GoogleGitRow extends StatelessWidget {
         Expanded(
             child:
                 OpenAcountButton(iconPath: IconsPath.google, title: "Google")),
-        w10,
+        PaddingConfig.w10,
         Expanded(
             child:
                 OpenAcountButton(iconPath: IconsPath.githup, title: "GitHup")),
@@ -37,7 +37,7 @@ class OpenAcountButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: rectPadding,
+      padding: PaddingConfig.rectPadding,
       width: double.maxFinite,
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.grayColor, width: 1),
@@ -48,7 +48,7 @@ class OpenAcountButton extends StatelessWidget {
             iconPath,
             width: 20,
           ),
-          w5,
+          PaddingConfig.w5,
           Text(
             title,
             style: AppTextStyle.buttonStyle(),

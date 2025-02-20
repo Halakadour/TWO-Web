@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 import 'package:two_website/features/landing/presentation/widgets/navigation_bar/nav_bar_item.dart';
 

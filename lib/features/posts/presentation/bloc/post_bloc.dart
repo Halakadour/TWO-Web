@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 
-import 'package:two_website/core/network/enum_status.dart';
+import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/features/posts/domain/entities/post_entity.dart';
 import 'package:two_website/features/posts/domain/entities/reply_entity.dart';

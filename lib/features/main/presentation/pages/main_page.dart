@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:two_website/core/widgets/layouts/sidebar/sidebar.dart';
+import 'package:two_website/config/theme/color.dart';
+import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
 import 'package:two_website/features/contact-us/presentation/pages/contact_us_page.dart';
 import 'package:two_website/features/main/presentation/pages/dashboard_page.dart';
 import 'package:two_website/features/posts/presentation/pages/posts_page.dart';
@@ -16,42 +17,65 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final ValueNotifier<int> _pageIndex = ValueNotifier(0);
 
-  void _updatePageIndex(int newIndex) {
-    _pageIndex.value = newIndex;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.bgColor,
+      body: ValueListenableBuilder(
+        valueListenable: _pageIndex,
+        builder: (context, value, _) {
+          return CustomSiteTemplate(
+            currentPageIndex: _pageIndex.value,
+            onItemSelected: (newIndex) {
+              _pageIndex.value = newIndex;
+            },
+            desktop: Desktop(
+              index: value,
+            ),
+            tablet: const Tablet(),
+            mobile: const Mobile(),
+          );
+        },
+      ),
+    );
   }
+}
+
+class Desktop extends StatelessWidget {
+  const Desktop({super.key, required this.index});
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: _pageIndex,
-      builder: (context, value, _) {
-        return Scaffold(
-          body: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: CustomSidebar(
-                  currentPageIndex: value,
-                  onItemSelected: _updatePageIndex,
-                ),
-              ),
-              Expanded(
-                flex: 4,
-                child: IndexedStack(
-                  index: value,
-                  children: const [
-                    DashboardPage(),
-                    AccountsPage(),
-                    PostsPage(),
-                    SettingPage(),
-                    ContactUsPage(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+    return Expanded(
+      child: IndexedStack(
+        index: index,
+        children: const [
+          DashboardPage(),
+          AccountsPage(),
+          PostsPage(),
+          ContactUsPage(),
+          SettingPage(),
+        ],
+      ),
     );
+  }
+}
+
+class Tablet extends StatelessWidget {
+  const Tablet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Mobile extends StatelessWidget {
+  const Mobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

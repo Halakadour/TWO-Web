@@ -21,7 +21,7 @@ class ServiceCard extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(imagePath),
-          h10,
+          PaddingConfig.h10,
           Text(
             serviceTitlel,
             textAlign: TextAlign.center,

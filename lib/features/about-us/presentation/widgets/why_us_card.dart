@@ -38,10 +38,10 @@ class _WhyUsCardState extends State<WhyUsCard> {
       child: ValueListenableBuilder(
         valueListenable: widget.isHover,
         builder: (context, value, child) => AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 500),
             child: Container(
-              margin: marginBottom16,
-              padding: containerPadding,
+              margin: PaddingConfig.marginBottom16,
+              padding: PaddingConfig.containerPadding,
               decoration: BoxDecoration(
                   color: AppColors.whiteColor,
                   borderRadius: const BorderRadius.all(Radius.circular(7)),
@@ -49,7 +49,7 @@ class _WhyUsCardState extends State<WhyUsCard> {
                       ? const [
                           BoxShadow(
                               blurRadius: 0,
-                              color: AppColors.darkGreenColor,
+                              color: AppColors.fontLightColor,
                               blurStyle: BlurStyle.normal,
                               offset: Offset(0, 5),
                               spreadRadius: 1)
@@ -67,7 +67,7 @@ class _WhyUsCardState extends State<WhyUsCard> {
               child: Row(
                 children: [
                   SvgPicture.asset(widget.icon),
-                  w20,
+                  PaddingConfig.w20,
                   Text(
                     widget.text,
                     style: AppTextStyle.buttonStyle(

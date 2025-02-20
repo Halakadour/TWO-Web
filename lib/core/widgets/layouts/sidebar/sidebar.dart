@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/layouts/sidebar/menu_item.dart';
@@ -31,12 +32,12 @@ class CustomSidebar extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: SizesConfig.md),
                 child: SvgPicture.asset(IconsPath.logo),
               ),
-              h20,
+              PaddingConfig.h20,
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: SizesConfig.md),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -48,6 +49,7 @@ class CustomSidebar extends StatelessWidget {
                         letterSpacing: 1.2,
                       ),
                     ),
+                    PaddingConfig.h8,
                     MenuItem(
                       icon: IconsPath.category,
                       itemName: "Dashboard",
@@ -76,10 +78,26 @@ class CustomSidebar extends StatelessWidget {
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),
+                    PaddingConfig.h8,
+                    Text(
+                      "OTHER",
+                      style: AppTextStyle.subtitle03(
+                        color: AppColors.fontLightColor,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    PaddingConfig.h8,
                     MenuItem(
                       icon: IconsPath.setting,
                       itemName: "Settings",
                       pageNum: 4,
+                      currentPage: currentPageIndex,
+                      onTap: onItemSelected,
+                    ),
+                    MenuItem(
+                      icon: IconsPath.logout,
+                      itemName: "logout",
+                      pageNum: 5,
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),

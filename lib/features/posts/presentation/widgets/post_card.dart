@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
@@ -38,7 +38,7 @@ class PostCard extends StatelessWidget {
           FadeInImage(
               placeholder: const AssetImage(ImagesPath.mobile),
               image: NetworkImage("$imageUri${postEntity.image}")),
-          h10,
+          PaddingConfig.h10,
           Text(postEntity.body),
           const Spacer(),
           CustomLinkedText(

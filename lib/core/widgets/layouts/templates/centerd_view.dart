@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/constants/page_hight.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
 
 class CenterdView extends StatelessWidget {
   const CenterdView({super.key, this.color, this.image, required this.child});
@@ -13,11 +13,11 @@ class CenterdView extends StatelessWidget {
     return Container(
       clipBehavior: Clip.none,
       decoration: BoxDecoration(image: image, color: color),
-      padding: pagePadding,
+      padding: PaddingConfig.pagePadding,
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
         constraints: const BoxConstraints(
-            maxWidth: double.infinity, maxHeight: pageHight),
+            maxWidth: double.infinity, maxHeight: SizesConfig.pageHight),
         child: child,
       ),
     );

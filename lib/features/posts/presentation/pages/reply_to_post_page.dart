@@ -7,12 +7,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/error/validation.dart';
-import 'package:two_website/core/network/enum_status.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
@@ -76,7 +76,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
           Expanded(
               flex: 1,
               child: Container(
-                padding: containerPadding,
+                padding: PaddingConfig.containerPadding,
                 decoration: const BoxDecoration(
                     color: AppColors.fieldColor,
                     borderRadius: BorderRadius.only(
@@ -85,7 +85,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                 child: Column(
                   children: [
                     Image.network("$imageUri${widget.postPoster}"),
-                    h20,
+                    PaddingConfig.h20,
                     Text(
                       widget.postbody,
                       style: AppTextStyle.subtitle02(),
@@ -126,7 +126,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                               "sent a reply".toUpperCase(),
                               style: AppTextStyle.heading00(),
                             ),
-                            h30,
+                            PaddingConfig.h30,
                             CustomTextFormField(
                                 validator: (fullname) {
                                   if (fullname != null &&
@@ -139,7 +139,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                 controller: _fullnameController,
                                 prefixIconPath: IconsPath.user,
                                 labelText: "full name*"),
-                            h20,
+                            PaddingConfig.h20,
                             CustomTextFormField(
                                 validator: (email) {
                                   if (email != null && email.isValidEmail()) {
@@ -151,7 +151,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                 controller: _emailController,
                                 prefixIconPath: IconsPath.email,
                                 labelText: "email*"),
-                            h20,
+                            PaddingConfig.h20,
                             CustomTextFormField(
                                 validator: (email) {
                                   if (email != null && email.isValidPhone()) {
@@ -163,7 +163,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                 controller: _phoneController,
                                 prefixIconPath: IconsPath.email,
                                 labelText: "phone Number*"),
-                            h20,
+                            PaddingConfig.h20,
                             Container(
                               width: double.maxFinite,
                               decoration: BoxDecoration(
@@ -179,7 +179,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                         IconsPath.decument,
                                         width: 20,
                                       ),
-                                      w20,
+                                      PaddingConfig.w20,
                                       Text(
                                         "CV",
                                         style: AppTextStyle.subtitle03(
@@ -187,7 +187,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                       ),
                                     ],
                                   ),
-                                  h20,
+                                  PaddingConfig.h20,
                                   InkWell(
                                     onTap: () async {
                                       _getCVFile();
@@ -208,7 +208,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                 ],
                               ),
                             ),
-                            h40,
+                            PaddingConfig.h40,
                             CustomCartoonButton(
                               isHover: _isHover,
                               title: "Sign Up",

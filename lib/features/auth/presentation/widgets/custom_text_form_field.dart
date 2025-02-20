@@ -48,7 +48,8 @@ class CustomTextFormField extends StatelessWidget {
             style: AppTextStyle.textfieldStyle(),
           ),
           hintText: hintText,
-          border: UnderlineInputBorder(borderRadius: textfieldRadius)),
+          border:
+              UnderlineInputBorder(borderRadius: RadiusConfig.textfieldRadius)),
     );
   }
 }

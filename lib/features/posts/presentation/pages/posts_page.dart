@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:two_website/config/theme/color.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});
@@ -10,6 +11,9 @@ class PostsPage extends StatefulWidget {
 class _PostsPageState extends State<PostsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      backgroundColor: AppColors.bgColor,
+      body: Text("Posts"),
+    );
   }
 }

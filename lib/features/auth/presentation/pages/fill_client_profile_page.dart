@@ -10,17 +10,17 @@ import 'package:go_router/go_router.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
 
-import '../../../../core/network/enum_status.dart';
+import '../../../../core/network/enums.dart';
 
 class FillClientProfilePage extends StatefulWidget {
   const FillClientProfilePage({super.key});
@@ -108,7 +108,7 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
                       )
                     ],
                   ),
-                  h50,
+                  PaddingConfig.h50,
                   Container(
                     width: double.maxFinite,
                     decoration: BoxDecoration(
@@ -122,7 +122,7 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
                           IconsPath.work,
                           width: 20,
                         ),
-                        w20,
+                        PaddingConfig.w20,
                         BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
                           buildWhen: (previous, current) =>
                               (previous.roleListStatus !=
@@ -171,12 +171,12 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
                       ],
                     ),
                   ),
-                  h20,
+                  PaddingConfig.h20,
                 ],
               ),
             ),
           ),
-          h20,
+          PaddingConfig.h20,
           BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
             listener: (context, state) {
               if (state.updateEmployeeProfileStatus == CasualStatus.loading ||

@@ -6,7 +6,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
@@ -34,7 +34,7 @@ class _ContactUsSectionState extends State<ContactUsSection> {
             ),
           ],
         ),
-        h60,
+        PaddingConfig.h60,
         Row(
           children: [
             SizedBox(
@@ -48,7 +48,7 @@ class _ContactUsSectionState extends State<ContactUsSection> {
                             const BorderSide(color: AppColors.fontDarkColor))),
               ),
             ),
-            w20,
+            PaddingConfig.w20,
             SizedBox(
               width: 500,
               child: TextFormField(
@@ -62,7 +62,7 @@ class _ContactUsSectionState extends State<ContactUsSection> {
             ),
           ],
         ),
-        h10,
+        PaddingConfig.h10,
         SizedBox(
           width: 1020,
           child: TextFormField(
@@ -75,7 +75,7 @@ class _ContactUsSectionState extends State<ContactUsSection> {
                         const BorderSide(color: AppColors.fontDarkColor))),
           ),
         ),
-        h20,
+        PaddingConfig.h20,
         CustomCartoonButton(
           title: "Send A Message",
           isHover: isHover,

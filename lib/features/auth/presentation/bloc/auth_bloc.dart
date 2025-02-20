@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:two_website/core/network/enum_status.dart';
+import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/features/auth/data/models/user_model.dart';
 import 'package:two_website/features/auth/domain/usecases/login_usecase.dart';

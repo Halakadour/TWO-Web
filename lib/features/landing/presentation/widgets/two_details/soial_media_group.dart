@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/theme/color.dart';
 
 import '../../../../../config/constants/padding_config.dart';
-import '../../../../../config/paths/assets_path.dart';
+import '../../../../../config/strings/assets_path.dart';
 
 class SoialMediaGroup extends StatefulWidget {
   const SoialMediaGroup({
@@ -28,17 +28,17 @@ class _SoialMediaGroupState extends State<SoialMediaGroup> {
           // ignore: deprecated_member_use
           color: AppColors.iconColor,
         ),
-        w10,
+        PaddingConfig.w10,
         SvgPicture.asset(
           IconsPath.whatsup,
           width: SoialMediaGroup.iconSize,
         ),
-        w10,
+        PaddingConfig.w10,
         SvgPicture.asset(
           IconsPath.instgram,
           width: SoialMediaGroup.iconSize,
         ),
-        w10,
+        PaddingConfig.w10,
         SvgPicture.asset(
           IconsPath.x,
           width: SoialMediaGroup.iconSize,

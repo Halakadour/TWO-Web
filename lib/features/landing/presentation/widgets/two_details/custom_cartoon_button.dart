@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../config/constants/padding_config.dart';
-import '../../../../../config/paths/assets_path.dart';
+import '../../../../../config/strings/assets_path.dart';
 import '../../../../../config/theme/color.dart';
 import '../../../../../config/theme/text_style.dart';
 
@@ -70,7 +70,7 @@ class _CustomCartoonButtonState extends State<CustomCartoonButton> {
                           style: AppTextStyle.buttonStyle(
                               color: AppColors.whiteColor),
                         ),
-                        w10,
+                        PaddingConfig.w10,
                         // ignore: deprecated_member_use
                         SvgPicture.asset(IconsPath.arrowRight,
                             color: AppColors.whiteColor),

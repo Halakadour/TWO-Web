@@ -2,14 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/padding_config.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/features/landing/presentation/widgets/navigation_bar/custom_vertical_divider.dart';
 import 'package:two_website/features/landing/presentation/widgets/navigation_bar/sign_up_button.dart';
 
-import '../../../config/constants/page_hight.dart';
-import '../../../config/paths/assets_path.dart';
-import '../../../lang/locale_keys.g.dart';
+import '../../../../config/strings/assets_path.dart';
+import '../../../../lang/locale_keys.g.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.scrollController});
@@ -26,10 +26,10 @@ int _currentIndex = 0;
 
 final List<double> _sectionOffsets = [
   0,
-  pageHight + 40,
-  pageHight * 2 + 80,
-  pageHight * 3 + 120,
-  pageHight * 4 + 160,
+  SizesConfig.pageHight + 40,
+  SizesConfig.pageHight * 2 + 80,
+  SizesConfig.pageHight * 3 + 120,
+  SizesConfig.pageHight * 4 + 160,
 ];
 
 class _CustomAppBarState extends State<CustomAppBar> {
@@ -102,7 +102,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             ],
           );
         }),
-        w50,
+        PaddingConfig.w50,
         Row(
           children: [
             const SignUpButton(),

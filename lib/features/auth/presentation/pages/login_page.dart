@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:two_website/config/paths/assets_path.dart';
+import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
-import 'package:two_website/core/widgets/layouts/responsive/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
@@ -16,7 +16,7 @@ import 'package:two_website/features/auth/presentation/widgets/google_git_row.da
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
 
 import '../../../../config/constants/padding_config.dart';
-import '../../../../core/network/enum_status.dart';
+import '../../../../core/network/enums.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -46,7 +46,7 @@ class _SignupPageState extends State<LoginPage> {
           child: Row(
         children: [
           const Expanded(flex: 2, child: DecorBox()),
-          w50,
+          PaddingConfig.w50,
           Expanded(
             flex: 3,
             child: SingleChildScrollView(
@@ -72,7 +72,7 @@ class _SignupPageState extends State<LoginPage> {
                       previous.authModelStatus != current.authModelStatus,
                   child: Column(
                     children: [
-                      h30,
+                      PaddingConfig.h30,
                       SizedBox(
                         width: 400,
                         child: Column(
@@ -83,28 +83,28 @@ class _SignupPageState extends State<LoginPage> {
                               "Log in",
                               style: AppTextStyle.heading00(),
                             ),
-                            h30,
+                            PaddingConfig.h30,
                             Text(
                               "Log in with open account",
                               style: AppTextStyle.subtitle02(
                                   color: AppColors.fontDarkColor),
                             ),
-                            h10,
+                            PaddingConfig.h10,
                             const GoogleGitRow(),
-                            h20,
+                            PaddingConfig.h20,
                             const SizedBox(
                               child: Divider(
                                 color: AppColors.grayColor,
                                 thickness: 1,
                               ),
                             ),
-                            h20,
+                            PaddingConfig.h20,
                             Text(
                               "Or continue with email address",
                               style: AppTextStyle.subtitle02(
                                   color: AppColors.fontDarkColor),
                             ),
-                            h20,
+                            PaddingConfig.h20,
                             CustomTextFormField(
                                 validator: (email) {
                                   if (email != null && email.isValidEmail()) {
@@ -116,7 +116,7 @@ class _SignupPageState extends State<LoginPage> {
                                 controller: _emailController,
                                 prefixIconPath: IconsPath.email,
                                 labelText: "email*"),
-                            h20,
+                            PaddingConfig.h20,
                             CustomTextFormField(
                                 validator: (password) {
                                   if (password != null &&
@@ -135,7 +135,7 @@ class _SignupPageState extends State<LoginPage> {
                                   });
                                 }),
                                 labelText: "password*"),
-                            h40,
+                            PaddingConfig.h40,
                             CustomCartoonButton(
                               isHover: isHover,
                               title: "Log In",

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two_website/core/widgets/appbar/custom_app_bar.dart';
+import 'package:two_website/core/widgets/layouts/appbar/custom_app_bar.dart';
 import 'package:two_website/core/widgets/layouts/footer/custom_app_footer.dart';
 import 'package:two_website/features/contact-us/presentation/pages/contact_us_section.dart';
 import 'package:two_website/features/posts/presentation/pages/posts_section.dart';

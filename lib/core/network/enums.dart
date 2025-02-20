@@ -5,3 +5,5 @@ enum CasualStatus {
   failure,
   noToken,
 }
+
+enum ImageType { asset, network, file, memory }
