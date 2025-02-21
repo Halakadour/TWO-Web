@@ -3,15 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/features/auth/presentation/pages/fill_client_profile_page.dart';
 import 'package:two_website/features/auth/presentation/pages/fill_employee_profile_page.dart';
+import 'package:two_website/features/auth/presentation/pages/login/login_page.dart';
+import 'package:two_website/features/auth/presentation/pages/sign-up/sign_up.dart';
 import 'package:two_website/features/landing/presentation/pages/landing_page.dart';
 import 'package:two_website/features/main/presentation/pages/main_page.dart';
 import 'package:two_website/features/posts/presentation/pages/reply_to_post_page.dart';
 
-import '../../features/auth/presentation/pages/login_page.dart';
-import '../../features/auth/presentation/pages/signup_page.dart';
+// import '../../features/auth/presentation/pages/signup_page.dart';
 
 class AppRouter {
-  GoRouter router = GoRouter(initialLocation: '/main', routes: [
+  GoRouter router = GoRouter(initialLocation: '/signup', routes: [
     GoRoute(
       name: AppRouteConfig.landing,
       path: '/',
@@ -25,7 +26,7 @@ class AppRouter {
     GoRoute(
       name: AppRouteConfig.signup,
       path: '/signup',
-      pageBuilder: (context, state) => const MaterialPage(child: SignupPage()),
+      pageBuilder: (context, state) => const MaterialPage(child: SignUp()),
     ),
     GoRoute(
       name: AppRouteConfig.fillClientProfile,

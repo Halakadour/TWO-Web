@@ -1,14 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 
-import '../../../../config/theme/color.dart';
-import '../../../../config/theme/text_style.dart';
-import '../../../../lang/locale_keys.g.dart';
+import '../../../../../config/theme/color.dart';
+import '../../../../../config/theme/text_style.dart';
 
-class AlreadyHaveCountRow extends StatelessWidget {
-  const AlreadyHaveCountRow({super.key});
+class DontHaveCountRow extends StatelessWidget {
+  const DontHaveCountRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +16,13 @@ class AlreadyHaveCountRow extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Text(
-          "Already Have An Acount?   ",
+          TextStrings.dontHaveAccount,
           style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
         ),
         TextButton(
             onPressed: () => context.pushReplacementNamed(AppRouteConfig.login),
             child: Text(
-              LocaleKeys.signin.tr(),
+              TextStrings.signup,
               style: AppTextStyle.subtitle01(color: AppColors.greenColor),
             ))
       ],

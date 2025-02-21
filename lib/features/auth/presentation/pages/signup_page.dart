@@ -9,11 +9,11 @@ import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
-import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
-import 'package:two_website/features/auth/presentation/widgets/already_have_count_row.dart';
+import 'package:two_website/features/auth/presentation/widgets/login/dont_have_count_row.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/auth/presentation/widgets/decor_box.dart';
 import 'package:two_website/features/auth/presentation/widgets/google_git_row.dart';
@@ -49,7 +49,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CenterdView(
+      body: PageTemplate(
           child: Row(
         children: [
           const Expanded(flex: 2, child: DecorBox()),
@@ -70,7 +70,7 @@ class _SignupPageState extends State<SignupPage> {
                       CustomQuickAlert().userTypeAlert(context);
                     } else if (state.authModelStatus == CasualStatus.failure) {
                       context.pop();
-                      CustomQuickAlert().failureAlert(context);
+                      //CustomQuickAlert().failureAlert(context);
                     } else {
                       const SizedBox();
                     }
@@ -79,7 +79,7 @@ class _SignupPageState extends State<SignupPage> {
                       previous.authModelStatus != current.authModelStatus,
                   child: Column(
                     children: [
-                      const AlreadyHaveCountRow(),
+                      const DontHaveCountRow(),
                       PaddingConfig.h30,
                       SizedBox(
                         width: 400,

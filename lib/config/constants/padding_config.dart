@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
 
 class PaddingConfig {
   // Margin
@@ -13,6 +14,12 @@ class PaddingConfig {
   static const EdgeInsets containerPadding = EdgeInsets.all(15);
   static const EdgeInsets rectPadding =
       EdgeInsets.symmetric(vertical: 10, horizontal: 40);
+  static const EdgeInsets paddingWithAppBarHeight = EdgeInsets.only(
+    top: SizesConfig.appbarHeight,
+    left: SizesConfig.defaultSpace,
+    bottom: SizesConfig.defaultSpace,
+    right: SizesConfig.defaultSpace,
+  );
 
 // Heights
   static const SizedBox h8 = SizedBox(height: 10);

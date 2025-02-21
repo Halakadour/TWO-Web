@@ -14,7 +14,7 @@ import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
@@ -60,7 +60,7 @@ class _FillProfilePageState extends State<FillClientProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CenterdView(
+      body: PageTemplate(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

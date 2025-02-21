@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/two_details.dart';
 
 import '../../../../config/strings/assets_path.dart';
@@ -9,7 +9,7 @@ class HomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CenterdView(
+    return PageTemplate(
         image: const DecorationImage(
             image: AssetImage(
               IconsPath.homeDecor,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 
-class CenterdView extends StatelessWidget {
-  const CenterdView({super.key, this.color, this.image, required this.child});
+class PageTemplate extends StatelessWidget {
+  const PageTemplate({super.key, this.color, this.image, required this.child});
   final Color? color;
   final DecorationImage? image;
   final Widget? child;

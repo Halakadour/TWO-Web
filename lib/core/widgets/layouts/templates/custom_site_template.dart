@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:two_website/config/theme/color.dart';
+import 'package:two_website/core/functions/device_utility.dart';
 import 'package:two_website/core/widgets/responsive/responsive_design.dart';
 import 'package:two_website/core/widgets/responsive/screens/desktop_layout.dart';
 import 'package:two_website/core/widgets/responsive/screens/mobile_layout.dart';
@@ -31,6 +33,9 @@ class CustomSiteTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: DeviceUtility.isMobileScreen(context)
+          ? AppColors.whiteColor
+          : AppColors.bgColor,
       body: CustomResponsiveDesign(
           desktop: useLayout
               ? DesktopLayout(

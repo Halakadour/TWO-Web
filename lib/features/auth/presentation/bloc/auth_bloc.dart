@@ -58,7 +58,8 @@ class AuthRoleProfileBloc
         result.fold((l) => {},
             (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
       } else {
-        emit(state.copyWith(message: "No Token"));
+        emit(state.copyWith(
+            authModelStatus: CasualStatus.noToken, message: "No Token"));
       }
     });
     on<LogoutUserEvent>((event, emit) async {
@@ -69,7 +70,8 @@ class AuthRoleProfileBloc
         result.fold((l) => {},
             (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
       } else {
-        emit(state.copyWith(message: "No Token"));
+        emit(state.copyWith(
+            authModelStatus: CasualStatus.noToken, message: "No Token"));
       }
     });
     on<CheckAuthEvent>((event, emit) async {

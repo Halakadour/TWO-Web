@@ -46,6 +46,10 @@ class SizesConfig {
   // Divider height
   static const double dividerHeight = 1.0;
 
+  // Input feild
+  static const double inputFieldRadius = 12.0;
+  static const double spaceBtwInputFields = 12.0;
+
   // Card sizes
   static const double cardRadiusXs = 6.0;
   static const double cardRadiusSm = 10.0;

@@ -4,7 +4,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
 import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/features/services/presentation/widgets/service_card.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
@@ -37,7 +37,7 @@ class _ServicesSectionState extends State<ServicesSection> {
 
   @override
   Widget build(BuildContext context) {
-    return CenterdView(
+    return PageTemplate(
         color: AppColors.blackColor,
         child: Column(
           children: [

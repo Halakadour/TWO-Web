@@ -12,7 +12,7 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/layouts/templates/centerd_view.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
@@ -70,7 +70,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CenterdView(
+      body: PageTemplate(
           child: Row(
         children: [
           Expanded(
@@ -107,7 +107,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                       CustomQuickAlert().successAlert(context);
                     } else if (state.sendReplyStatus == CasualStatus.failure) {
                       context.pop();
-                      CustomQuickAlert().failureAlert(context);
+                      //CustomQuickAlert().failureAlert(context);
                     } else {
                       const SizedBox();
                     }
