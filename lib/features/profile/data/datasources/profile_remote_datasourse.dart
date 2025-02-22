@@ -1,35 +1,36 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/multi_web_post_api.dart';
+import 'package:two_website/core/api/post_api_with_token.dart';
 import 'package:two_website/features/profile/data/models/update_client_profile_response_model.dart';
 import 'package:two_website/features/profile/data/models/update_employee_profile_response_model.dart';
 
 abstract class ProfileRemoteDatasourse {
   Future<UpdateEmployeeProfileResponesModel> updateEmployeeProfile(
-      String token, File image, File cv, int roleId);
+      String token, Uint8List image, Uint8List cv, int roleId);
   Future<UpdateClientProfileResponesModel> updateClientProfile(
-      String token, File image, int roleId);
+      String token, Uint8List image, int roleId);
 }
 
 class ProfileRemoteDatasourseImpl extends ProfileRemoteDatasourse {
   @override
   Future<UpdateClientProfileResponesModel> updateClientProfile(
-      String token, File image, int roleId) async {
-    final result = MultiWebPostApi(
+      String token, Uint8List image, int roleId) async {
+    final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/update/client/profile"),
-        body: ({'role_id': roleId.toString()}),
-        images: {
-          'image': image,
-        },
+        body: ({
+          'role_id': roleId.toString(),
+          'image': 'data:image/png;base64,$image'
+        }),
         fromJson: updateClientProfileResponesModelFromJson,
         token: token);
-    return await result.callRequest();
+    return await result.call();
   }
 
   @override
   Future<UpdateEmployeeProfileResponesModel> updateEmployeeProfile(
-      String token, File image, File cv, int roleId) async {
+      String token, Uint8List image, Uint8List cv, int roleId) async {
     final result = MultiWebPostApi(
         uri: Uri.parse("$baseUri/api/update/programmer/profile"),
         body: ({'role_id': roleId.toString()}),

@@ -31,6 +31,8 @@ class TextStrings {
   static const String passwordValidation =
       "Plaese password with 8 charaters at least.";
   static const String confirmPasswordValidation = "Passwords does not match.";
+  static const String loggedInSuccessfully = "You have successfully logged in";
+  static const String signUpSuccessfully = "You have successfully Sign up";
 
   // --AUTH Headings
   static const String loginTitle = "Welcome back,";
@@ -41,4 +43,7 @@ class TextStrings {
       "Don't worry sometimes peaple can forget too, enter your email and will sent your password reset.";
   static const String alreadyHaveAccount = "Already Have An Acount? ";
   static const String dontHaveAccount = "Don't Have An Account?";
+  static const String chooseType = "Would you like to get in as :";
+  static const String client = "Client";
+  static const String employee = "Employee";
 }

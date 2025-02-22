@@ -101,7 +101,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   onPressed: () {}, child: const Icon(Iconsax.eye_slash)),
               labelText: TextStrings.confirmPassword,
               hintText: TextStrings.confirmPasswordHint,
-              controller: _passwordController,
+              controller: _confirmPasswordController,
               validator: (password) {
                 if (password != null && password == _passwordController.text) {
                   return null;

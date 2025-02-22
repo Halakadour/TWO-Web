@@ -30,7 +30,7 @@ class DesktopLayout extends StatelessWidget {
                   // HEADER
                   const CustomHeader(),
                   // BODY
-                  body ?? const SizedBox()
+                  Expanded(child: body ?? const SizedBox())
                 ],
               ))
         ],

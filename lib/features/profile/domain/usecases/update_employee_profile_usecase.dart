@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
@@ -23,8 +23,8 @@ class UpdateEmployeeProfileUsecase extends UseCase<
 
 class EmployeeProfileParam {
   final String token;
-  final File image;
-  final File cv;
+  final Uint8List image;
+  final Uint8List cv;
   final int roleId;
 
   EmployeeProfileParam(

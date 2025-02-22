@@ -20,7 +20,8 @@ class DontHaveCountRow extends StatelessWidget {
           style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
         ),
         TextButton(
-            onPressed: () => context.pushReplacementNamed(AppRouteConfig.login),
+            onPressed: () =>
+                context.pushReplacementNamed(AppRouteConfig.signup),
             child: Text(
               TextStrings.signup,
               style: AppTextStyle.subtitle01(color: AppColors.greenColor),

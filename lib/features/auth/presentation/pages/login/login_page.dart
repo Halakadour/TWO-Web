@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
@@ -21,7 +22,7 @@ class LoginPage extends StatelessWidget {
         } else if (state.authModelStatus == CasualStatus.success) {
           await SharedPreferencesServices.setUserToken(state.authModel!.token);
           context.pop();
-          CustomQuickAlert().successAlert(context);
+          context.pushReplacementNamed(AppRouteConfig.chooseUserType);
         } else if (state.authModelStatus == CasualStatus.failure ||
             state.authModelStatus == CasualStatus.noToken) {
           context.pop();

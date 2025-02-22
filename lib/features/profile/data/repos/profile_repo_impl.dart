@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
@@ -13,7 +13,7 @@ class ProfileRepoImpl extends ProfileRepo {
   ProfileRepoImpl(this.profileRemoteDatasourse);
   @override
   Future<Either<Failure, UpdateClientProfileResponesModel>> updateClientProfile(
-      String token, File image, int roleId) {
+      String token, Uint8List image, int roleId) {
     return wrapHandling(
       tryCall: () async {
         final result = await profileRemoteDatasourse.updateClientProfile(
@@ -25,7 +25,8 @@ class ProfileRepoImpl extends ProfileRepo {
 
   @override
   Future<Either<Failure, UpdateEmployeeProfileResponesModel>>
-      updateEmployeeProfile(String token, File image, File cv, int roleId) {
+      updateEmployeeProfile(
+          String token, Uint8List image, Uint8List cv, int roleId) {
     return wrapHandling(
       tryCall: () async {
         final result = await profileRemoteDatasourse.updateEmployeeProfile(

@@ -34,13 +34,12 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<LoginUserModel> login(
       String token, String email, String password) async {
-    final result = PostApiWithToken(
+    final result = PostApi(
       uri: Uri.parse("$baseUri/api/login"),
       body: ({
         'email': email,
         'password': password,
       }),
-      token: token,
       fromJson: loginUserModelFromJson,
     );
     return await result.call();

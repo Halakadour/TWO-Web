@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,16 +51,12 @@ class AuthRoleProfileBloc
     });
     on<LoginUserEvent>((event, emit) async {
       emit(state.copyWith(authModelStatus: CasualStatus.loading));
-      final String? token = await SharedPreferencesServices.getUserToken();
-      if (token != null) {
-        final result = await loginUsecase.call(LoginParams(
-            token: token, email: event.email, password: event.password));
-        result.fold((l) => {},
-            (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
-      } else {
-        emit(state.copyWith(
-            authModelStatus: CasualStatus.noToken, message: "No Token"));
-      }
+      final result = await loginUsecase.call(LoginParams(
+          token: "token", email: event.email, password: event.password));
+      result.fold(
+          (l) => emit(state.copyWith(authModelStatus: CasualStatus.failure)),
+          (r) => emit(state.copyWith(
+              authModelStatus: CasualStatus.success, authModel: r.data)));
     });
     on<LogoutUserEvent>((event, emit) async {
       emit(state.copyWith(authModelStatus: CasualStatus.loading));
@@ -143,6 +139,10 @@ class AuthRoleProfileBloc
           (r) => emit(
               state.copyWith(updateClientProfileStatus: CasualStatus.success)),
         );
+      } else {
+        state.copyWith(
+            updateClientProfileStatus: CasualStatus.failure,
+            message: "no token");
       }
     });
   }

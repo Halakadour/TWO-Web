@@ -19,7 +19,7 @@ class SizesConfig {
 
   //Button sizes
   static const double buttonHeight = 18.0;
-  static const double buttonRadius = 10.0;
+  static const double buttonRadius = 8.0;
   static const double buttonWidth = 130.0;
   static const double buttonElevation = 4.0;
 

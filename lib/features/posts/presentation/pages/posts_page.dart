@@ -13,7 +13,9 @@ class _PostsPageState extends State<PostsPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppColors.bgColor,
-      body: Text("Posts"),
+      body: Column(
+        children: [],
+      ),
     );
   }
 }

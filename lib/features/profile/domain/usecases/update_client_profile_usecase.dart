@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
@@ -23,7 +23,7 @@ class UpdateClientProfileUsecase extends UseCase<
 
 class ClientProfileParam {
   final String token;
-  final File image;
+  final Uint8List image;
   final int roleId;
 
   ClientProfileParam(

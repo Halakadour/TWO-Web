@@ -4,6 +4,7 @@ class AppRouteConfig {
   // AUTH //
   static const login = 'login';
   static const signup = 'signup';
+  static const chooseUserType = 'chooseUserType';
   static const fillEmployeeProfile = 'fillEmplyeepProfile';
   static const fillClientProfile = 'fillClientProfile';
   // POST //
