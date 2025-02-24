@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
+import 'package:two_website/features/about-us-why-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 class WhyUsRow extends StatelessWidget {

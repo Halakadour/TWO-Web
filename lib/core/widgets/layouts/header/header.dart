@@ -28,9 +28,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
         leading: !DeviceUtility.isDesktopScreen(context)
             ? IconButton(
                 onPressed: () {
-                  print("Hello");
                   scaffoldKey?.currentState!.openDrawer();
-                  print("Bay Bay");
                 },
                 icon: const Icon(Iconsax.menu))
             : null,

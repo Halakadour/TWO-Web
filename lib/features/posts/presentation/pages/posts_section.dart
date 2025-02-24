@@ -4,7 +4,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/posts/presentation/widgets/post_card.dart';
 

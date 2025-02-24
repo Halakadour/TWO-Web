@@ -10,6 +10,7 @@ class AppRouteConfig {
   // POST //
   static const post = "post";
   static const replyToPost = "post";
+  static const createPost = "createPost";
   // MAIN //
   static const main = 'main';
 }

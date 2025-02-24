@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
@@ -8,7 +9,7 @@ import 'package:two_website/features/posts/domain/entities/reply_entity.dart';
 
 abstract class PostRepo with HandlingExceptionManager {
   Future<Either<Failure, PostEntity>> createPost(
-      String token, File image, String body);
+      String token, Uint8List image, String body);
   Future<Either<Failure, Unit>> deletePost(String token, int postId);
   Future<Either<Failure, List<PostEntity>>> showActivePosts();
   Future<Either<Failure, List<PostEntity>>> showUnActivePosts();

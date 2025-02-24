@@ -19,7 +19,6 @@ class SignUpButton extends StatelessWidget {
         onPressed: () async {
           final String? token = await SharedPreferencesServices.getUserToken();
           if (token == null) {
-            print("Noo Token Here");
             context.pushNamed(AppRouteConfig.signup);
           } else {
             CustomQuickAlert().userTypeAlert(context);

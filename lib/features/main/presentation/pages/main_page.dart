@@ -32,8 +32,12 @@ class _MainPageState extends State<MainPage> {
             desktop: Desktop(
               index: value,
             ),
-            tablet: const Tablet(),
-            mobile: const Mobile(),
+            tablet: Tablet(
+              index: value,
+            ),
+            mobile: Mobile(
+              index: value,
+            ),
           );
         },
       ),
@@ -63,19 +67,43 @@ class Desktop extends StatelessWidget {
 }
 
 class Tablet extends StatelessWidget {
-  const Tablet({super.key});
+  const Tablet({super.key, required this.index});
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Expanded(
+      child: IndexedStack(
+        index: index,
+        children: const [
+          DashboardPage(),
+          AccountsPage(),
+          PostsPage(),
+          ContactUsPage(),
+          SettingPage(),
+        ],
+      ),
+    );
   }
 }
 
 class Mobile extends StatelessWidget {
-  const Mobile({super.key});
+  const Mobile({super.key, required this.index});
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Expanded(
+      child: IndexedStack(
+        index: index,
+        children: const [
+          DashboardPage(),
+          AccountsPage(),
+          PostsPage(),
+          ContactUsPage(),
+          SettingPage(),
+        ],
+      ),
+    );
   }
 }

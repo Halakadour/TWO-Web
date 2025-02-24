@@ -11,6 +11,9 @@ class TextStrings {
   static const String appName = "Team Work Organizer";
   static const String tcontinue = "Contine";
 
+  // --ERROR Texts
+  static const String noToken = "There is no token!";
+
   // --AUTH Default Texts
   static const String email = "E-mail";
   static const String fullName = "Full Name";
@@ -46,4 +49,5 @@ class TextStrings {
   static const String chooseType = "Would you like to get in as :";
   static const String client = "Client";
   static const String employee = "Employee";
+  static const String fillProfile = "Fill Your Profile";
 }

@@ -73,6 +73,7 @@ class _CustomCartoonButtonState extends State<CustomCartoonButton> {
                         PaddingConfig.w10,
                         // ignore: deprecated_member_use
                         SvgPicture.asset(IconsPath.arrowRight,
+                            // ignore: deprecated_member_use
                             color: AppColors.whiteColor),
                       ],
                     )),

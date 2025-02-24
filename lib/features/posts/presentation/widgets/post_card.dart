@@ -5,7 +5,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/features/about-us/presentation/widgets/custom_linked_text.dart';
+import 'package:two_website/features/about-us-why-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/features/posts/domain/entities/post_entity.dart';
 
 class PostCard extends StatelessWidget {

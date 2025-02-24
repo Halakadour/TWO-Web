@@ -15,7 +15,11 @@ class CustomTextFormField extends StatelessWidget {
       required this.controller,
       required this.validator,
       this.hintText,
-      this.obscureText = false});
+      this.obscureText = false,
+      this.filled = false,
+      this.fillColor = Colors.transparent,
+      this.border});
+
   final String? prefixIconPath;
   final Widget? prefixIconWidget;
   final Widget? postfixIconPath;
@@ -24,6 +28,9 @@ class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final String labelText;
   final bool obscureText;
+  final bool? filled;
+  final Color? fillColor;
+  final InputBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +40,8 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       obscureText: obscureText,
       decoration: InputDecoration(
+          filled: filled,
+          fillColor: fillColor,
           prefixIcon: prefixIconPath == null
               ? prefixIconWidget
               : Padding(
@@ -50,18 +59,24 @@ class CustomTextFormField extends StatelessWidget {
             style: AppTextStyle.textfieldStyle(),
           ),
           hintText: hintText,
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
-              borderSide:
-                  const BorderSide(color: AppColors.grayColor, width: 1)),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
-              borderSide:
-                  const BorderSide(color: AppColors.grayColor, width: 1)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
-              borderSide:
-                  const BorderSide(color: AppColors.grayColor, width: 1))),
+          border: border ??
+              OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(SizesConfig.inputFieldRadius),
+                  borderSide:
+                      const BorderSide(color: AppColors.grayColor, width: 1)),
+          enabledBorder: border ??
+              OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(SizesConfig.inputFieldRadius),
+                  borderSide:
+                      const BorderSide(color: AppColors.grayColor, width: 1)),
+          focusedBorder: border ??
+              OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(SizesConfig.inputFieldRadius),
+                  borderSide:
+                      const BorderSide(color: AppColors.grayColor, width: 1))),
     );
   }
 }

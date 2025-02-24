@@ -6,7 +6,7 @@ class PostEvent {
 }
 
 class CreatePostEvent extends PostEvent {
-  final File image;
+  final Uint8List image;
   final String body;
   const CreatePostEvent({
     required this.image,

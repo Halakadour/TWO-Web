@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
@@ -29,7 +30,7 @@ class PostRepoImpl extends PostRepo {
 
   @override
   Future<Either<Failure, PostEntity>> createPost(
-      String token, File image, String body) {
+      String token, Uint8List image, String body) {
     return wrapHandling(
       tryCall: () async {
         final result =

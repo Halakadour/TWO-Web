@@ -1,11 +1,12 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
-import 'package:two_website/core/api/multi_post_api.dart';
 import 'package:two_website/core/api/post_api.dart';
+import 'package:two_website/core/api/post_api_with_token.dart';
 import 'package:two_website/core/api/put_request.dart';
 import 'package:two_website/features/posts/data/models/accept_reply_response_model.dart';
 import 'package:two_website/features/posts/data/models/create_post_response_model.dart';
@@ -16,7 +17,7 @@ import 'package:two_website/features/posts/data/models/show_post_response_model.
 
 abstract class PostRemoteDatasource {
   Future<CreatePostResponseModel> createPost(
-      String token, String description, File image);
+      String token, String description, Uint8List image);
   Future<DeletePostResponesModel> deletePost(String token, int postId);
   Future<ShowPostResponesModel> showActivePosts();
   Future<ShowPostResponesModel> showUnActivePosts();
@@ -33,14 +34,13 @@ abstract class PostRemoteDatasource {
 class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   @override
   Future<CreatePostResponseModel> createPost(
-      String token, String description, File image) async {
-    final result = MultiPostApi(
+      String token, String description, Uint8List image) async {
+    final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/create/post"),
-        body: ({'description': description}),
-        images: {'image': image},
+        body: ({'description': description, 'image': '$imageBase64$image'}),
         fromJson: createPostResponseModelFromJson,
         token: token);
-    return await result.callRequest();
+    return await result.call();
   }
 
   @override

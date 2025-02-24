@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 
@@ -104,14 +105,13 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
     // GET UN ACTIVE POST //
     on<GetUnActivePostsEvent>((event, emit) async {
-      emit(state.copyWith(unActivePostsListStatus: CasualStatus.loading));
-      final result = await showActivePostsUsecase.call();
+      emit(state.copyWith(activePostsListStatus: CasualStatus.loading));
+      final result = await showUnActivePostsUsecase.call();
       result.fold(
         (l) => emit(state.copyWith(
-            unActivePostsListStatus: CasualStatus.failure, message: l.message)),
+            activePostsListStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
-            unActivePostsListStatus: CasualStatus.success,
-            unActivePostsList: r)),
+            activePostsListStatus: CasualStatus.success, activePostsList: r)),
       );
     });
     // GET POST  REPLIES //

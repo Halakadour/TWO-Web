@@ -12,7 +12,7 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/layouts/templates/page_Template.dart';
+import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
@@ -52,9 +52,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
           _cvFile = File(cvPath);
         });
       }
-    } else {
-      print("No file selected");
-    }
+    } else {}
   }
 
   @override
@@ -195,6 +193,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                     child: SvgPicture.asset(
                                       IconsPath.upload,
                                       width: 20,
+                                      // ignore: deprecated_member_use
                                       color: AppColors.greenColor,
                                     ),
                                   ),

@@ -50,6 +50,7 @@ class MenuItem extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: SvgPicture.asset(
                   icon,
+                  // ignore: deprecated_member_use
                   color: (pageNum == currentPage)
                       ? AppColors.whiteColor
                       : AppColors.fontLightColor,
