@@ -57,7 +57,7 @@ class ReplyToPostEvent extends PostEvent {
   final String fullName;
   final String email;
   final String phone;
-  final File cv;
+  final Uint8List cv;
   final int postId;
   const ReplyToPostEvent({
     required this.fullName,

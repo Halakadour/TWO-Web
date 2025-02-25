@@ -90,14 +90,19 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
                         imageBytes!,
                         fit: BoxFit.cover,
                       )
-                    : const Icon(Iconsax.camera)),
+                    : const Icon(Iconsax.image)),
             IconButton(
-                style: const ButtonStyle(
-                    shape: WidgetStatePropertyAll(CircleBorder())),
+                style: IconButton.styleFrom(
+                    backgroundColor: AppColors.darkGreenColor,
+                    padding: const EdgeInsets.all(10),
+                    shape: const CircleBorder()),
                 onPressed: () {
                   _getImageFile();
                 },
-                icon: const Icon(Iconsax.camera))
+                icon: const Icon(
+                  Iconsax.camera,
+                  color: AppColors.whiteColor,
+                ))
           ],
         ),
         const SizedBox(
@@ -159,50 +164,46 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
                   }
                 },
               ),
+            ],
+          ),
+        ),
+        PaddingConfig.h20,
+        Container(
+          width: double.maxFinite,
+          decoration: BoxDecoration(
+              color: AppColors.fieldColor,
+              borderRadius: BorderRadius.circular(12)),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    IconsPath.decument,
+                    width: 20,
+                  ),
+                  PaddingConfig.w20,
+                  Text(
+                    "CV",
+                    style:
+                        AppTextStyle.subtitle03(color: AppColors.fontDarkColor),
+                  ),
+                ],
+              ),
               PaddingConfig.h20,
-              Container(
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    color: AppColors.fieldColor,
-                    borderRadius: BorderRadius.circular(12)),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          IconsPath.decument,
-                          width: 20,
-                        ),
-                        PaddingConfig.w20,
-                        Text(
-                          "CV",
-                          style: AppTextStyle.subtitle03(
-                              color: AppColors.fontDarkColor),
-                        ),
-                      ],
-                    ),
-                    PaddingConfig.h20,
-                    InkWell(
-                      onTap: () async {
-                        _getCVFile();
-                      },
-                      child: SvgPicture.asset(
-                        IconsPath.upload,
-                        width: 20,
-                        color: AppColors.greenColor,
-                      ),
-                    ),
-                    // Text(
-                    //   cvFile != null
-                    //       ? cvFile!.path
-                    //       : "select or drop a file",
-                    //   style: AppTextStyle.subtitle03(
-                    //       color: AppColors.greenColor),
-                    // ),
-                  ],
+              InkWell(
+                onTap: () async {
+                  _getCVFile();
+                },
+                child: SvgPicture.asset(
+                  IconsPath.upload,
+                  width: 20,
+                  color: AppColors.greenColor,
                 ),
+              ),
+              Text(
+                cvBytes != null ? "Cv Selected" : "select or drop a file",
+                style: AppTextStyle.subtitle03(color: AppColors.greenColor),
               ),
             ],
           ),

@@ -21,7 +21,7 @@ class PostApiWithToken<T> with HandlingExceptionRequest {
     required this.body,
     required this.fromJson,
     this.isLogin = false,
-    this.timeout = const Duration(seconds: 20),
+    this.timeout = const Duration(seconds: 40),
   });
 
   Future<T> call() async {

@@ -26,6 +26,14 @@ import 'package:two_website/features/roles/data/repos/role_repo_impl.dart';
 import 'package:two_website/features/roles/domain/repos/role_repo.dart';
 import 'package:two_website/features/roles/domain/usecases/show_role_client_usecase.dart';
 import 'package:two_website/features/roles/domain/usecases/show_roles_without_client_usecase.dart';
+import 'package:two_website/features/services/data/datasources/service_remote_datasource.dart';
+import 'package:two_website/features/services/data/repos/service_repo_impl.dart';
+import 'package:two_website/features/services/domain/repos/service_repo.dart';
+import 'package:two_website/features/services/domain/usecases/create_service_usecase.dart';
+import 'package:two_website/features/services/domain/usecases/delete_service_usecase.dart';
+import 'package:two_website/features/services/domain/usecases/show_service_usecase.dart';
+import 'package:two_website/features/services/domain/usecases/update_service_usecase.dart';
+import 'package:two_website/features/services/presentation/bloc/service_bloc.dart';
 
 import 'features/posts/domain/usecases/create_post_usecase.dart';
 import 'features/posts/domain/usecases/delete_post_usecase.dart';
@@ -161,6 +169,34 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<PostsLocalDatasource>(
     () => PostsLocalDatasourceImpl(sl()),
+  );
+
+  /** SERVICE FREATURE */
+  //Bloc
+  sl.registerFactory(
+    () => ServiceBloc(sl(), sl(), sl(), sl()),
+  );
+  // usecase
+  sl.registerLazySingleton(
+    () => CreateServiceUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => DeleteServiceUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => ShowServiceUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => UpdateServiceUsecase(sl()),
+  );
+  //Repo
+  sl.registerLazySingleton<ServiceRepo>(
+    () => ServiceRepoImpl(sl()),
+  );
+
+  // Datasource
+  sl.registerLazySingleton<ServiceRemoteDatasource>(
+    () => ServiceRemoteDatasourceImpl(),
   );
 
   /////////////////////////////////////////////////////////////////

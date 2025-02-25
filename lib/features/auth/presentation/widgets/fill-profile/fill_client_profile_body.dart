@@ -78,14 +78,19 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
                         imageFile!.path,
                         fit: BoxFit.cover,
                       )
-                    : const Icon(Iconsax.camera)),
+                    : const Icon(Iconsax.image)),
             IconButton(
-                style: const ButtonStyle(
-                    shape: WidgetStatePropertyAll(CircleBorder())),
+                style: IconButton.styleFrom(
+                    backgroundColor: AppColors.darkGreenColor,
+                    padding: const EdgeInsets.all(10),
+                    shape: const CircleBorder()),
                 onPressed: () {
                   _getImageFile();
                 },
-                icon: const Icon(Iconsax.camera))
+                icon: const Icon(
+                  Iconsax.camera,
+                  color: AppColors.whiteColor,
+                ))
           ],
         ),
         const SizedBox(

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
@@ -15,7 +14,7 @@ abstract class PostRepo with HandlingExceptionManager {
   Future<Either<Failure, List<PostEntity>>> showUnActivePosts();
   Future<Either<Failure, Unit>> unActivePosts(String token, int postId);
   Future<Either<Failure, ReplyEntity>> replyToPost(
-      String fullName, String email, String phone, File cv, int postId);
+      String fullName, String email, String phone, Uint8List cv, int postId);
   Future<Either<Failure, List<ReplyEntity>>> showPostReplies(
       int postId, String token);
   Future<Either<Failure, Unit>> acceptReply(int replyId, String token);

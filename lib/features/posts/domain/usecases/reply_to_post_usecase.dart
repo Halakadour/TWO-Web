@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 
@@ -23,7 +23,7 @@ class ReplyParam {
   final String fullName;
   final String email;
   final String phone;
-  final File cv;
+  final Uint8List cv;
   final int postId;
   ReplyParam({
     required this.fullName,

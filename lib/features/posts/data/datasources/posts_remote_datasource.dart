@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
@@ -23,7 +22,7 @@ abstract class PostRemoteDatasource {
   Future<ShowPostResponesModel> showUnActivePosts();
   Future<Unit> unActivePosts(String token, int postId);
   Future<ReplyToPostResponesModel> replyToPost(
-      String fullName, String email, String phone, File cv, int postId);
+      String fullName, String email, String phone, Uint8List cv, int postId);
   Future<AcceptReplyResponesModel> acceptReply(String token, int replyId);
   Future<ShowPostRepliesResponesModel> showPostReplies(
       String token, int postId);
@@ -78,15 +77,15 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   }
 
   @override
-  Future<ReplyToPostResponesModel> replyToPost(
-      String fullName, String email, String phone, File cv, int postId) async {
+  Future<ReplyToPostResponesModel> replyToPost(String fullName, String email,
+      String phone, Uint8List cv, int postId) async {
     final result = PostApi(
         uri: Uri.parse("$baseUri/api/create/reply"),
         body: ({
           'full_name': fullName,
           'email': email,
           'phone': phone,
-          'cv': cv,
+          'cv': '$pdfBase64$cv',
           'post_id': postId
         }),
         fromJson: replyToPostResponesModelFromJson);

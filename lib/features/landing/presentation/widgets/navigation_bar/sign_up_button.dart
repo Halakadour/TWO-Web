@@ -19,7 +19,7 @@ class SignUpButton extends StatelessWidget {
         onPressed: () async {
           final String? token = await SharedPreferencesServices.getUserToken();
           if (token == null) {
-            context.pushNamed(AppRouteConfig.signup);
+            context.pushNamed(AppRouteConfig.login);
           } else {
             CustomQuickAlert().userTypeAlert(context);
           }
@@ -32,7 +32,7 @@ class SignUpButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
         ),
         child: Text(
-          LocaleKeys.signup.tr(),
+          LocaleKeys.signin.tr(),
           style: AppTextStyle.buttonStyle(color: AppColors.whiteColor),
         ));
   }

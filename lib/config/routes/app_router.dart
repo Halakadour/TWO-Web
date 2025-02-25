@@ -9,10 +9,11 @@ import 'package:two_website/features/auth/presentation/pages/sign-up/sign_up_pag
 import 'package:two_website/features/landing/presentation/pages/landing_page.dart';
 import 'package:two_website/features/main/presentation/pages/main_page.dart';
 import 'package:two_website/features/posts/presentation/pages/create-post/create_post_page.dart';
+import 'package:two_website/features/posts/presentation/pages/post_replies_page.dart';
 import 'package:two_website/features/posts/presentation/pages/reply_to_post_page.dart';
 
 class AppRouter {
-  GoRouter router = GoRouter(initialLocation: '/main', routes: [
+  GoRouter router = GoRouter(initialLocation: '/', routes: [
     GoRoute(
       name: AppRouteConfig.landing,
       path: '/',
@@ -65,6 +66,14 @@ class AppRouter {
               postId: state.pathParameters['id'] ?? '',
               postPoster: state.pathParameters['image'] ?? '',
               postbody: state.pathParameters['body'] ?? '')),
+    ),
+    GoRoute(
+      name: AppRouteConfig.postReplies,
+      path: '/postReplies/:id',
+      pageBuilder: (context, state) => MaterialPage(
+          child: PostRepliesPage(
+        postId: state.pathParameters['id'] ?? '',
+      )),
     ),
   ]);
 }

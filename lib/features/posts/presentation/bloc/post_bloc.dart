@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
@@ -136,8 +135,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
     // GET POST  ACCEPTED REPLIES //
     on<GetPostsAcceptedRepliesEvent>((event, emit) async {
-      emit(
-          state.copyWith(postsAcceptedRepliesListStatus: CasualStatus.loading));
+      emit(state.copyWith(postsRepliesListStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
         final result = await showPostAcceptedRepliesUsecase.call(
@@ -145,15 +143,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
                 postId: event.postId, token: token));
         result.fold(
           (l) => emit(state.copyWith(
-              postsAcceptedRepliesListStatus: CasualStatus.failure,
+              postsRepliesListStatus: CasualStatus.failure,
               message: l.message)),
           (r) => emit(state.copyWith(
-              postsAcceptedRepliesListStatus: CasualStatus.success,
-              postAcceptedRepliesList: r)),
+              postsRepliesListStatus: CasualStatus.success,
+              postRepliesList: r)),
         );
       } else {
-        emit(state.copyWith(
-            postsAcceptedRepliesListStatus: CasualStatus.noToken));
+        emit(state.copyWith(postsRepliesListStatus: CasualStatus.noToken));
       }
     });
     // ACCEPT A REPLY //

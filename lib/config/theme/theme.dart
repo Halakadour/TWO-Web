@@ -13,6 +13,7 @@ class AppTheme {
       ),
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: MaterialColor(
+          // ignore: deprecated_member_use
           AppColors.mainColor.value,
           const {
             50: AppColors.mainColor,

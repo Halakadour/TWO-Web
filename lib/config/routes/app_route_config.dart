@@ -11,6 +11,7 @@ class AppRouteConfig {
   static const post = "post";
   static const replyToPost = "post";
   static const createPost = "createPost";
+  static const postReplies = "postReplies";
   // MAIN //
   static const main = 'main';
 }

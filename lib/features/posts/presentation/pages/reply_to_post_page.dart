@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -37,7 +36,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
   late final TextEditingController _fullnameController;
   late final TextEditingController _emailController;
   late final TextEditingController _phoneController;
-  File? _cvFile;
+  Uint8List? _cvFile;
   final ValueNotifier<bool> _isHover = ValueNotifier(false);
 
   Future<void> _getCVFile() async {
@@ -48,8 +47,8 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
     if (result != null && result.files.isNotEmpty) {
       final cvPath = result.files.first.path;
       if (cvPath != null) {
-        setState(() {
-          _cvFile = File(cvPath);
+        setState(() async {
+          _cvFile = await result.files.first.xFile.readAsBytes();
         });
       }
     } else {}
@@ -199,7 +198,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                   ),
                                   Text(
                                     _cvFile != null
-                                        ? _cvFile!.path
+                                        ? _cvFile!.length.toString()
                                         : "select or drop a file",
                                     style: AppTextStyle.subtitle03(
                                         color: AppColors.greenColor),
@@ -208,25 +207,47 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                               ),
                             ),
                             PaddingConfig.h40,
-                            CustomCartoonButton(
-                              isHover: _isHover,
-                              title: "Sign Up",
-                              width: double.infinity,
-                              onTap: () {
-                                if (_formKey.currentState!.validate()) {
-                                  if (_cvFile == null) {
-                                    CustomQuickAlert().addCvAlert(context);
-                                  } else {
-                                    context.read<PostBloc>().add(
-                                        ReplyToPostEvent(
-                                            fullName: _fullnameController.text,
-                                            email: _emailController.text,
-                                            phone: _phoneController.text,
-                                            cv: _cvFile!,
-                                            postId: int.parse(widget.postId)));
-                                  }
+                            BlocListener<PostBloc, PostState>(
+                              listener: (context, state) {
+                                if (state.sendReplyStatus ==
+                                    CasualStatus.loading) {
+                                  CustomQuickAlert().loadingAlert(context);
+                                } else if (state.sendReplyStatus ==
+                                    CasualStatus.success) {
+                                  context.pop();
+                                  CustomQuickAlert().successAlert(context);
+                                } else if (state.sendReplyStatus ==
+                                    CasualStatus.failure) {
+                                  context.pop();
+                                  CustomQuickAlert()
+                                      .failureAlert(context, state.message);
                                 }
                               },
+                              listenWhen: (previous, current) =>
+                                  previous.sendReplyStatus !=
+                                  current.sendReplyStatus,
+                              child: CustomCartoonButton(
+                                isHover: _isHover,
+                                title: "Sign Up",
+                                width: double.infinity,
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    if (_cvFile == null) {
+                                      CustomQuickAlert().addCvAlert(context);
+                                    } else {
+                                      context.read<PostBloc>().add(
+                                          ReplyToPostEvent(
+                                              fullName:
+                                                  _fullnameController.text,
+                                              email: _emailController.text,
+                                              phone: _phoneController.text,
+                                              cv: _cvFile!,
+                                              postId:
+                                                  int.parse(widget.postId)));
+                                    }
+                                  }
+                                },
+                              ),
                             ),
                           ],
                         ),

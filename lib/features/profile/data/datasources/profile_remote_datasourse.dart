@@ -31,7 +31,7 @@ class ProfileRemoteDatasourseImpl extends ProfileRemoteDatasourse {
         uri: Uri.parse("$baseUri/api/update/programmer/profile"),
         body: ({
           'image': '$imageBase64$image',
-          'cv': '$imageBase64$cv',
+          'cv': '$pdfBase64$cv',
           'role_id': roleId.toString()
         }),
         fromJson: updateEmployeeProfileResponesModelFromJson,

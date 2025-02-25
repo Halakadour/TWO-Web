@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
@@ -52,7 +51,7 @@ class PostRepoImpl extends PostRepo {
 
   @override
   Future<Either<Failure, ReplyEntity>> replyToPost(
-      String fullName, String email, String phone, File cv, int postId) {
+      String fullName, String email, String phone, Uint8List cv, int postId) {
     return wrapHandling(
       tryCall: () async {
         final result = await postRemoteDatasource.replyToPost(
