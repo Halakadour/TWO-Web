@@ -33,6 +33,14 @@ class CustomQuickAlert {
         context: context, type: QuickAlertType.error, text: text, width: 300);
   }
 
+  Future<dynamic> noTokenAlert(BuildContext context) {
+    return QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        text: "you need to have an account first.",
+        width: 300);
+  }
+
   Future<dynamic> loadingAlert(BuildContext context) {
     return QuickAlert.show(
         context: context, type: QuickAlertType.loading, width: 300);

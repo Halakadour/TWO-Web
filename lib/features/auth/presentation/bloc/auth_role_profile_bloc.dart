@@ -15,8 +15,8 @@ import 'package:two_website/features/roles/domain/usecases/show_roles_without_cl
 
 import '../../../roles/data/models/role_response_model.dart';
 
-part 'auth_event.dart';
-part 'auth_state.dart';
+part 'auth_role_profile_event.dart';
+part 'auth_role_profile_state.dart';
 
 class AuthRoleProfileBloc
     extends Bloc<AuthRoleProfileEvent, AuthRoleProfileState> {

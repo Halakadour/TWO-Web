@@ -1,4 +1,4 @@
-part of 'auth_bloc.dart';
+part of 'auth_role_profile_bloc.dart';
 
 // ignore: must_be_immutable
 class AuthRoleProfileState {

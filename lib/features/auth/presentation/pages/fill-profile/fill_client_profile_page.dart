@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
-import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/pages/fill-profile/responsive-pages/fill_client_profile_desktop_tablet.dart';
 
 import '../../../../../core/network/enums.dart';
@@ -22,7 +22,7 @@ class FillClientProfilePage extends StatelessWidget {
           CustomQuickAlert().loadingAlert(context);
         } else if (state.updateClientProfileStatus == CasualStatus.success) {
           context.pop();
-          context.pushReplacementNamed(AppRouteConfig.main);
+          context.pushReplacementNamed(AppRouteConfig.landing);
         } else if (state.updateClientProfileStatus == CasualStatus.failure) {
           context.pop();
           print(state.message);

@@ -142,25 +142,25 @@ class _PostsSectionState extends State<PostsSection> {
                         )
                       : BlocBuilder<PostBloc, PostState>(
                           buildWhen: (previous, current) =>
-                              previous.activePostsListStatus !=
-                              current.activePostsListStatus,
+                              previous.unActivePostsListStatus !=
+                              current.unActivePostsListStatus,
                           builder: (context, state) {
-                            if (state.activePostsListStatus ==
+                            if (state.unActivePostsListStatus ==
                                 CasualStatus.loading) {
                               return const CircularProgressIndicator();
-                            } else if (state.activePostsListStatus ==
+                            } else if (state.unActivePostsListStatus ==
                                 CasualStatus.success) {
-                              return (state.activePostsList.isEmpty)
+                              return (state.unActivePostsList.isEmpty)
                                   ? const Text("No Postes")
                                   : ListView.builder(
-                                      itemCount: state.activePostsList.length,
+                                      itemCount: state.unActivePostsList.length,
                                       scrollDirection: Axis.horizontal,
                                       controller: _controller,
                                       itemBuilder: (context, index) => PostCard(
                                             postEntity:
-                                                state.activePostsList[index],
+                                                state.unActivePostsList[index],
                                           ));
-                            } else if (state.activePostsListStatus ==
+                            } else if (state.unActivePostsListStatus ==
                                 CasualStatus.failure) {
                               return Text(state.message);
                             } else {

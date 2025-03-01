@@ -14,7 +14,7 @@ import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/images/custom_rounded_image.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'package:two_website/features/posts/presentation/widgets/create_post_button.dart';
+import 'package:two_website/features/posts/presentation/widgets/create-post/create_post_button.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});

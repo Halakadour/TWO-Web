@@ -36,7 +36,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                   NavBarItem(title: LocaleKeys.home.tr()),
                   NavBarItem(title: LocaleKeys.aboutUs.tr()),
                   NavBarItem(title: LocaleKeys.services.tr()),
-                  NavBarItem(title: LocaleKeys.portfolio.tr()),
+                  NavBarItem(title: LocaleKeys.posters.tr()),
                 ],
               ),
             ),

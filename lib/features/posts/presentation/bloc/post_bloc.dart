@@ -104,13 +104,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
     // GET UN ACTIVE POST //
     on<GetUnActivePostsEvent>((event, emit) async {
-      emit(state.copyWith(activePostsListStatus: CasualStatus.loading));
+      emit(state.copyWith(unActivePostsListStatus: CasualStatus.loading));
       final result = await showUnActivePostsUsecase.call();
       result.fold(
         (l) => emit(state.copyWith(
-            activePostsListStatus: CasualStatus.failure, message: l.message)),
+            unActivePostsListStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
-            activePostsListStatus: CasualStatus.success, activePostsList: r)),
+            unActivePostsListStatus: CasualStatus.success,
+            unActivePostsList: r)),
       );
     });
     // GET POST  REPLIES //

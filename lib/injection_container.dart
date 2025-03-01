@@ -2,13 +2,35 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_website/core/network/network_connection_checker.dart';
+import 'package:two_website/features/about-us-why-us/data/datasources/about_us_remote_datasource.dart';
+import 'package:two_website/features/about-us-why-us/data/datasources/why_us_remote_datesource.dart';
+import 'package:two_website/features/about-us-why-us/data/repos/about_us_repo_impl.dart';
+import 'package:two_website/features/about-us-why-us/data/repos/why_us_repo_impl.dart';
+import 'package:two_website/features/about-us-why-us/domain/repos/about_us_repo.dart';
+import 'package:two_website/features/about-us-why-us/domain/repos/why_us_repo.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/about-us-usecase/create_about_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/about-us-usecase/show_about_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/about-us-usecase/update_about_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/why-us-usecase/create_why_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/why-us-usecase/delete_why_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/why-us-usecase/show_why_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/domain/usecases/why-us-usecase/update_why_us_usecase.dart';
+import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
 import 'package:two_website/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:two_website/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:two_website/features/auth/domain/repos/auth_repo.dart';
 import 'package:two_website/features/auth/domain/usecases/login_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/register_usecase.dart';
-import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
+import 'package:two_website/features/contact-us/data/datasources/contact_us_remote_datasource.dart';
+import 'package:two_website/features/contact-us/data/repos/contact_us_repo_impl.dart';
+import 'package:two_website/features/contact-us/domain/repos/contact_us_repo.dart';
+import 'package:two_website/features/contact-us/domain/usecases/create_contact_us_usecase.dart';
+import 'package:two_website/features/contact-us/domain/usecases/mark_contact_us_as_approved_uscase.dart';
+import 'package:two_website/features/contact-us/domain/usecases/mark_contact_us_as_seen_usecase.dart';
+import 'package:two_website/features/contact-us/domain/usecases/show_contact_us_with_seen_and_approved_usecase.dart';
+import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
 import 'package:two_website/features/posts/data/datasources/posts_local_datasource.dart';
 import 'package:two_website/features/posts/data/datasources/posts_remote_datasource.dart';
 import 'package:two_website/features/posts/data/repos/post_repo_impl.dart';
@@ -47,7 +69,7 @@ import 'features/posts/domain/usecases/un_active_post_usecase.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  /**  AUTH FEATURE **/
+  /**----------------- AUTH FEATURE -----------------------**/
   // Bloc
   sl.registerFactory(
     () => AuthRoleProfileBloc(
@@ -79,7 +101,7 @@ Future<void> init() async {
     () => AuthRemoteDataSourceImpl(),
   );
 
-  /** ROLE FEATURE **/
+  /**----------------- ROLE FEATURE -----------------------**/
   // Usecase
   sl.registerLazySingleton(
     () => ShowRoleClientUsecase(sl()),
@@ -99,7 +121,7 @@ Future<void> init() async {
     () => RoleLocalDatasourceImpl(),
   );
 
-  /** PROFILE FEATURE **/
+  /**----------------- PROFILE FEATURE -----------------------**/
   // Usecase
   sl.registerLazySingleton(
     () => UpdateEmployeeProfileUsecase(sl()),
@@ -116,7 +138,7 @@ Future<void> init() async {
     () => ProfileRemoteDatasourseImpl(),
   );
 
-  /**  POST FEATURE **/
+  /**----------------- POST FEATURE -----------------------**/
   // Bloc
   sl.registerFactory(
     () => PostBloc(
@@ -171,12 +193,12 @@ Future<void> init() async {
     () => PostsLocalDatasourceImpl(sl()),
   );
 
-  /** SERVICE FREATURE */
-  //Bloc
+  /**----------------- SERVICES FEATURE -----------------------**/
+  // Bloc
   sl.registerFactory(
     () => ServiceBloc(sl(), sl(), sl(), sl()),
   );
-  // usecase
+  // Usecase
   sl.registerLazySingleton(
     () => CreateServiceUsecase(sl()),
   );
@@ -199,7 +221,74 @@ Future<void> init() async {
     () => ServiceRemoteDatasourceImpl(),
   );
 
-  /////////////////////////////////////////////////////////////////
+  /**----------------- ABOUT-US-WHY-US FEATURE -----------------------**/
+  // Bloc
+  sl.registerFactory(
+      () => AboutUsWhyUsBloc(sl(), sl(), sl(), sl(), sl(), sl(), sl()));
+  // About Us Usecase
+  sl.registerLazySingleton(
+    () => CreateAboutUsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => ShowAboutUsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => UpdateAboutUsUsecase(sl()),
+  );
+  // Why Us Usecase
+  sl.registerLazySingleton(
+    () => CreateWhyUsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => DeleteWhyUsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => ShowWhyUsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => UpdateWhyUsUsecase(sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<AboutUsRepo>(
+    () => AboutUsRepoImpl(sl()),
+  );
+  sl.registerLazySingleton<WhyUsRepo>(
+    () => WhyUsRepoImpl(sl()),
+  );
+  // Datasource
+  sl.registerLazySingleton<AboutUsRemoteDatasource>(
+    () => AboutUsRemoteDatasourceImpl(),
+  );
+  sl.registerLazySingleton<WhyUsRemoteDatesource>(
+    () => WhyUsRemoteDatesourceImpl(),
+  );
+
+  /**----------------- CONTACT-US FEATURE -----------------------**/
+  // Bloc
+  sl.registerFactory(() => ContactUsBloc(sl(), sl(), sl(), sl()));
+  // Usecase
+  sl.registerLazySingleton(
+    () => CreateContactUsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => MarkContactUsAsApprovedUscase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => MarkContactUsAsSeenUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => ShowContactUsWithSeenAndApprovedUsecase(sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<ContactUsRepo>(
+    () => ContactUsRepoImpl(sl()),
+  );
+  // Datasource
+  sl.registerLazySingleton<ContactUsRemoteDatasource>(
+    () => ContactUsRemoteDatasourceImpl(),
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////////////
 
   /* CORE */
   sl.registerLazySingleton<NetworkInfo>(

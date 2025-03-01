@@ -4,8 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:two_website/config/constants/responsive_constant.dart';
 import 'package:two_website/config/routes/app_router.dart';
-import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
+import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
+import 'package:two_website/features/services/presentation/bloc/service_bloc.dart';
 import 'injection_container.dart' as di;
 
 import 'config/theme/theme.dart';
@@ -35,6 +38,15 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => di.sl<PostBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ServiceBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<AboutUsWhyUsBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ContactUsBloc>(),
         )
       ],
       child: MaterialApp.router(

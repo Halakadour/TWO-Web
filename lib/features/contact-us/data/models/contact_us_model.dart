@@ -4,8 +4,8 @@ class ContactUsModel {
   final String description;
   final String phone;
   final Client client;
-  final int techApproved;
-  final int seen;
+  final dynamic techApproved;
+  final dynamic seen;
 
   ContactUsModel({
     required this.id,
@@ -44,7 +44,7 @@ class Client {
   final String email;
   final String image;
   final String role;
-  final String cv;
+  final dynamic cv;
 
   Client({
     required this.id,

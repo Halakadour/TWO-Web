@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
 
 class CustomResponsiveDesign extends StatelessWidget {
   const CustomResponsiveDesign(
@@ -19,9 +20,10 @@ class CustomResponsiveDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, constraints) {
-        if (constraints.maxWidth >= 1300) {
+        if (constraints.maxWidth >= SizesConfig.desktopScreenSize) {
           return desktop;
-        } else if (constraints.maxWidth < 1300 && constraints.maxWidth >= 760) {
+        } else if (constraints.maxWidth < SizesConfig.desktopScreenSize &&
+            constraints.maxWidth >= SizesConfig.tabletScreenSize) {
           return tablet;
         } else {
           return mobile;

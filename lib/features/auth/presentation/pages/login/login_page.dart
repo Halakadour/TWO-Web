@@ -6,7 +6,7 @@ import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
-import 'package:two_website/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/pages/login/responsive-pages/login_desktop_tablet.dart';
 import 'package:two_website/features/auth/presentation/pages/login/responsive-pages/login_mobile.dart';
 

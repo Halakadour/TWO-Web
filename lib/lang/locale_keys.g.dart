@@ -6,7 +6,7 @@ abstract class LocaleKeys {
   static const home = 'home';
   static const aboutUs = 'aboutUs';
   static const services = 'services';
-  static const portfolio = 'posters';
+  static const posters = 'posters';
   static const contactUs = 'contactUs';
   static const english = 'english';
   static const arabic = 'arabic';

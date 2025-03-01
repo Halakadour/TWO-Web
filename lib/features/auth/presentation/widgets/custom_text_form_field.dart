@@ -18,7 +18,8 @@ class CustomTextFormField extends StatelessWidget {
       this.obscureText = false,
       this.filled = false,
       this.fillColor = Colors.transparent,
-      this.border});
+      this.border,
+      this.borderColor = AppColors.grayColor});
 
   final String? prefixIconPath;
   final Widget? prefixIconWidget;
@@ -31,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? filled;
   final Color? fillColor;
   final InputBorder? border;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -63,20 +65,20 @@ class CustomTextFormField extends StatelessWidget {
               OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(SizesConfig.inputFieldRadius),
-                  borderSide:
-                      const BorderSide(color: AppColors.grayColor, width: 1)),
+                  borderSide: BorderSide(
+                      color: borderColor ?? AppColors.grayColor, width: 1)),
           enabledBorder: border ??
               OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(SizesConfig.inputFieldRadius),
-                  borderSide:
-                      const BorderSide(color: AppColors.grayColor, width: 1)),
+                  borderSide: BorderSide(
+                      color: borderColor ?? AppColors.grayColor, width: 1)),
           focusedBorder: border ??
               OutlineInputBorder(
                   borderRadius:
                       BorderRadius.circular(SizesConfig.inputFieldRadius),
-                  borderSide:
-                      const BorderSide(color: AppColors.grayColor, width: 1))),
+                  borderSide: BorderSide(
+                      color: borderColor ?? AppColors.grayColor, width: 1))),
     );
   }
 }
