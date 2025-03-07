@@ -104,7 +104,7 @@ class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
             ],
           );
         }),
-        PaddingConfig.w50,
+        PaddingConfig.w48,
         Row(
           children: [
             const SignUpButton(),

@@ -22,7 +22,7 @@ class CustomLinkedText extends StatelessWidget {
             title,
             style: AppTextStyle.buttonStyle(color: AppColors.greenColor),
           ),
-          PaddingConfig.w5,
+          PaddingConfig.w8,
           SvgPicture.asset(
             IconsPath.arrowRight,
             // ignore: deprecated_member_use

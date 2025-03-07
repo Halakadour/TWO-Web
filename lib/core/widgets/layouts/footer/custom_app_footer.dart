@@ -27,7 +27,7 @@ class CustomAppFooter extends StatelessWidget {
                 "Aleppo".toUpperCase(),
                 style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
               ),
-              PaddingConfig.h10,
+              PaddingConfig.h8,
               Text(
                 "Al Tilal, Hamra street\nfirst intersection",
                 style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
@@ -41,12 +41,12 @@ class CustomAppFooter extends StatelessWidget {
                 "Working".toUpperCase(),
                 style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
               ),
-              PaddingConfig.h10,
+              PaddingConfig.h8,
               Text(
                 "Sunday-Thursday\n10:00 AM- 03:00 PM",
                 style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
               ),
-              PaddingConfig.h20,
+              PaddingConfig.h16,
               Text(
                 "towCompany@gmail.com",
                 style: AppTextStyle.subtitle03(
@@ -68,7 +68,7 @@ class CustomAppFooter extends StatelessWidget {
                 "follow us".toUpperCase(),
                 style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
               ),
-              PaddingConfig.h10,
+              PaddingConfig.h8,
               const SoialMediaGroup()
             ],
           ),

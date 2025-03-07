@@ -108,7 +108,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
                 IconsPath.work,
                 width: 20,
               ),
-              PaddingConfig.w20,
+              PaddingConfig.w24,
               BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
                 buildWhen: (previous, current) =>
                     (previous.roleListStatus != current.roleListStatus),

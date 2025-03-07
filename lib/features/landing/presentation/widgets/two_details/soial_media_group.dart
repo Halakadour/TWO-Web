@@ -28,17 +28,17 @@ class _SoialMediaGroupState extends State<SoialMediaGroup> {
           // ignore: deprecated_member_use
           color: AppColors.iconColor,
         ),
-        PaddingConfig.w10,
+        PaddingConfig.w16,
         SvgPicture.asset(
           IconsPath.whatsup,
           width: SoialMediaGroup.iconSize,
         ),
-        PaddingConfig.w10,
+        PaddingConfig.w16,
         SvgPicture.asset(
           IconsPath.instgram,
           width: SoialMediaGroup.iconSize,
         ),
-        PaddingConfig.w10,
+        PaddingConfig.w16,
         SvgPicture.asset(
           IconsPath.x,
           width: SoialMediaGroup.iconSize,

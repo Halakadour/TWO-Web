@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/core/error/validation.dart';
+import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/login/dont_have_count_row.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
@@ -20,7 +21,8 @@ class _LoginFormState extends State<LoginForm> {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
-  // bool _isSecurePassword = false;
+  bool _isSecurePassword = false;
+  bool _rememberMe = true;
   ValueNotifier<bool> isHover = ValueNotifier(false);
   @override
   void initState() {
@@ -58,8 +60,15 @@ class _LoginFormState extends State<LoginForm> {
             // Password
             CustomTextFormField(
               prefixIconWidget: const Icon(Iconsax.password_check),
-              postfixIconPath: TextButton(
-                  onPressed: () {}, child: const Icon(Iconsax.eye_slash)),
+              postfixIconPath: togglePassword(
+                _isSecurePassword,
+                () {
+                  setState(() {
+                    _isSecurePassword = !_isSecurePassword;
+                  });
+                },
+              ),
+              obscureText: !_isSecurePassword,
               labelText: TextStrings.password,
               hintText: TextStrings.passwordHint,
               controller: _passwordController,
@@ -83,8 +92,12 @@ class _LoginFormState extends State<LoginForm> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Checkbox(
-                      value: true,
-                      onChanged: (value) {},
+                      value: _rememberMe,
+                      onChanged: (value) {
+                        setState(() {
+                          _rememberMe = !_rememberMe;
+                        });
+                      },
                     ),
                     const Text(TextStrings.rememberMe)
                   ],

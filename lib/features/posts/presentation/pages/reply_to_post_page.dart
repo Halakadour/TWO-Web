@@ -43,7 +43,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                               "sent a reply".toUpperCase(),
                               style: AppTextStyle.heading00(),
                             ),
-                            PaddingConfig.h30,
+                            PaddingConfig.h24,
                             LoginTemplate(
                                 child: ReplyToPostBody(
                                     postId: widget.postId,

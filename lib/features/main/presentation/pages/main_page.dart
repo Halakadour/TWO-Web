@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
+import 'package:two_website/features/about-us-why-us/presentation/pages/about_us_why_us_page.dart';
 import 'package:two_website/features/contact-us/presentation/pages/contact_us_page.dart';
 import 'package:two_website/features/main/presentation/pages/dashboard_page.dart';
 import 'package:two_website/features/posts/presentation/pages/posts_page.dart';
@@ -57,6 +58,7 @@ class Desktop extends StatelessWidget {
         children: const [
           DashboardPage(),
           AccountsPage(),
+          AboutUsWhyUsPage(),
           PostsPage(),
           ContactUsPage(),
           SettingPage(),
@@ -78,6 +80,7 @@ class Tablet extends StatelessWidget {
         children: const [
           DashboardPage(),
           AccountsPage(),
+          AboutUsWhyUsPage(),
           PostsPage(),
           ContactUsPage(),
           SettingPage(),
@@ -99,6 +102,7 @@ class Mobile extends StatelessWidget {
         children: const [
           DashboardPage(),
           AccountsPage(),
+          AboutUsWhyUsPage(),
           PostsPage(),
           ContactUsPage(),
           SettingPage(),

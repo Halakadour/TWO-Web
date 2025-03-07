@@ -70,7 +70,7 @@ class _CustomCartoonButtonState extends State<CustomCartoonButton> {
                           style: AppTextStyle.buttonStyle(
                               color: AppColors.whiteColor),
                         ),
-                        PaddingConfig.w10,
+                        PaddingConfig.w16,
                         // ignore: deprecated_member_use
                         SvgPicture.asset(IconsPath.arrowRight,
                             // ignore: deprecated_member_use

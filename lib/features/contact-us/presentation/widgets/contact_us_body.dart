@@ -49,7 +49,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                           const BorderSide(color: AppColors.fontDarkColor))),
             ),
           ),
-          PaddingConfig.h20,
+          PaddingConfig.h16,
           SizedBox(
             width: 600,
             child: IntlPhoneField(
@@ -63,7 +63,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                           const BorderSide(color: AppColors.fontDarkColor))),
             ),
           ),
-          PaddingConfig.h10,
+          PaddingConfig.h8,
           AutoSizeWidget(
             initialWidth: 500,
             initialHeight: 100,
@@ -86,7 +86,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
               ),
             ),
           ),
-          PaddingConfig.h30,
+          PaddingConfig.h24,
           BlocListener<ContactUsBloc, ContactUsState>(
             listener: (context, state) {
               if (state.createContcatStatus == CasualStatus.loading) {

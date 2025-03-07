@@ -22,7 +22,7 @@ class _TwoDetailsState extends State<TwoDetails> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        PaddingConfig.h50,
+        PaddingConfig.h48,
         RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
@@ -33,18 +33,18 @@ class _TwoDetailsState extends State<TwoDetails> {
                   text: LocaleKeys.homeTitle2.tr(),
                   style: AppTextStyle.heading00(color: AppColors.greenColor))
             ])),
-        PaddingConfig.h30,
+        PaddingConfig.h24,
         CustomCartoonButton(
           title: LocaleKeys.orderProj.tr(),
           isHover: isHover,
           onTap: () {},
         ),
-        PaddingConfig.h30,
+        PaddingConfig.h24,
         Text(
           LocaleKeys.orContactUs.tr(),
           style: AppTextStyle.subtitle01(),
         ),
-        PaddingConfig.h20,
+        PaddingConfig.h16,
         const SoialMediaGroup()
       ],
     );

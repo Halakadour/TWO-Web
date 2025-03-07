@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/core/error/validation.dart';
+import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
@@ -22,7 +23,8 @@ class _SignUpFormState extends State<SignUpForm> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _confirmPasswordController;
-  //bool _isSecurePassword = false;
+  bool _isSecurePassword1 = false;
+  bool _isSecurePassword2 = false;
   ValueNotifier<bool> isHover = ValueNotifier(false);
   @override
   void initState() {
@@ -78,8 +80,15 @@ class _SignUpFormState extends State<SignUpForm> {
             // Password
             CustomTextFormField(
               prefixIconWidget: const Icon(Iconsax.password_check),
-              postfixIconPath: TextButton(
-                  onPressed: () {}, child: const Icon(Iconsax.eye_slash)),
+              postfixIconPath: togglePassword(
+                _isSecurePassword1,
+                () {
+                  setState(() {
+                    _isSecurePassword1 = !_isSecurePassword1;
+                  });
+                },
+              ),
+              obscureText: !_isSecurePassword1,
               labelText: TextStrings.password,
               hintText: TextStrings.passwordHint,
               controller: _passwordController,
@@ -97,8 +106,15 @@ class _SignUpFormState extends State<SignUpForm> {
             // Confirm Password
             CustomTextFormField(
               prefixIconWidget: const Icon(Iconsax.password_check),
-              postfixIconPath: TextButton(
-                  onPressed: () {}, child: const Icon(Iconsax.eye_slash)),
+              postfixIconPath: togglePassword(
+                _isSecurePassword2,
+                () {
+                  setState(() {
+                    _isSecurePassword2 = !_isSecurePassword2;
+                  });
+                },
+              ),
+              obscureText: !_isSecurePassword2,
               labelText: TextStrings.confirmPassword,
               hintText: TextStrings.confirmPasswordHint,
               controller: _confirmPasswordController,

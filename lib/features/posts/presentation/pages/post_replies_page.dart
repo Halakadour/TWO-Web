@@ -68,7 +68,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                           style: AppTextStyle.subtitle03(
                                               color: AppColors.greenColor),
                                         ),
-                                        PaddingConfig.h30,
+                                        PaddingConfig.h24,
                                         ValueListenableBuilder(
                                           valueListenable: actriveSelected,
                                           builder: (context, value, child) =>
@@ -106,7 +106,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                                   ),
                                                 ),
                                               ),
-                                              PaddingConfig.w10,
+                                              PaddingConfig.w16,
                                               InkWell(
                                                 onTap: () {
                                                   actriveSelected.value = false;
@@ -217,7 +217,10 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                             );
                           } else if (state.postsRepliesListStatus ==
                               CasualStatus.failure) {
-                            return const Text("Failure");
+                            return Text(state.message);
+                          } else if (state.postsRepliesListStatus ==
+                              CasualStatus.noToken) {
+                            return const Text("no token");
                           } else {
                             return const SizedBox();
                           }

@@ -67,7 +67,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
             }
           },
         ),
-        PaddingConfig.h20,
+        PaddingConfig.h16,
         Container(
           width: double.infinity,
           height: 300,
@@ -119,7 +119,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
             },
           ),
         ),
-        PaddingConfig.h20,
+        PaddingConfig.h16,
         TextButton(
             onPressed: () {
               context.pop();

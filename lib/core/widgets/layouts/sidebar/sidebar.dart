@@ -23,7 +23,7 @@ class CustomSidebar extends StatelessWidget {
       shape: const BeveledRectangleBorder(),
       child: Container(
         decoration: const BoxDecoration(
-          color: AppColors.whiteColor,
+          color: AppColors.navyColor,
           border: Border(
             right: BorderSide(color: AppColors.grayColor, width: 1),
           ),
@@ -35,7 +35,7 @@ class CustomSidebar extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: SizesConfig.md),
                 child: SvgPicture.asset(IconsPath.logo),
               ),
-              PaddingConfig.h20,
+              PaddingConfig.h16,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: SizesConfig.md),
                 child: Column(
@@ -45,7 +45,7 @@ class CustomSidebar extends StatelessWidget {
                     Text(
                       "MENU",
                       style: AppTextStyle.subtitle03(
-                        color: AppColors.fontLightColor,
+                        color: AppColors.whiteColor,
                         letterSpacing: 1.2,
                       ),
                     ),
@@ -65,16 +65,23 @@ class CustomSidebar extends StatelessWidget {
                       onTap: onItemSelected,
                     ),
                     MenuItem(
+                      icon: IconsPath.edit,
+                      itemName: "About Us & Why Us",
+                      pageNum: 2,
+                      currentPage: currentPageIndex,
+                      onTap: onItemSelected,
+                    ),
+                    MenuItem(
                       icon: IconsPath.paper,
                       itemName: "Posts",
-                      pageNum: 2,
+                      pageNum: 3,
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),
                     MenuItem(
                       icon: IconsPath.email,
                       itemName: "Contact Us",
-                      pageNum: 3,
+                      pageNum: 4,
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),
@@ -82,7 +89,7 @@ class CustomSidebar extends StatelessWidget {
                     Text(
                       "OTHER",
                       style: AppTextStyle.subtitle03(
-                        color: AppColors.fontLightColor,
+                        color: AppColors.whiteColor,
                         letterSpacing: 1.2,
                       ),
                     ),
@@ -90,14 +97,14 @@ class CustomSidebar extends StatelessWidget {
                     MenuItem(
                       icon: IconsPath.setting,
                       itemName: "Settings",
-                      pageNum: 4,
+                      pageNum: 5,
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),
                     MenuItem(
                       icon: IconsPath.logout,
                       itemName: "logout",
-                      pageNum: 5,
+                      pageNum: 6,
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),

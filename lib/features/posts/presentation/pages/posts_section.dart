@@ -58,7 +58,7 @@ class _PostsSectionState extends State<PostsSection> {
               ),
             ],
           ),
-          PaddingConfig.h50,
+          PaddingConfig.h48,
           Row(
             children: [
               Container(
@@ -108,7 +108,7 @@ class _PostsSectionState extends State<PostsSection> {
                   ),
                   onPressed: _scrollLeft,
                 ),
-                PaddingConfig.w30,
+                PaddingConfig.w32,
                 Flexible(
                   child: (postValue == 0)
                       ? BlocBuilder<PostBloc, PostState>(
@@ -169,7 +169,7 @@ class _PostsSectionState extends State<PostsSection> {
                           },
                         ),
                 ),
-                PaddingConfig.w30,
+                PaddingConfig.w32,
                 IconButton(
                   icon: const Icon(
                     Icons.arrow_forward_ios,

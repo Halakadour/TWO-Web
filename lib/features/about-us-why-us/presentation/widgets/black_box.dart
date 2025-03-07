@@ -33,7 +33,7 @@ class BlackBox extends StatelessWidget {
                     Icons.access_time,
                     color: AppColors.whiteColor,
                   ),
-                  PaddingConfig.w5,
+                  PaddingConfig.w8,
                   Text(
                     text2,
                     style:

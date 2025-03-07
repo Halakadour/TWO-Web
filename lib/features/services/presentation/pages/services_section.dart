@@ -75,7 +75,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                     ),
                     onPressed: _scrollLeft,
                   ),
-                  PaddingConfig.w30,
+                  PaddingConfig.w32,
                   Expanded(
                     child: ListView.builder(
                       itemCount: 10,
@@ -87,7 +87,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                           serviceTitlel: "Website\nDelevlopment"),
                     ),
                   ),
-                  PaddingConfig.w30,
+                  PaddingConfig.w32,
                   IconButton(
                     icon: const Icon(
                       Icons.arrow_forward_ios,

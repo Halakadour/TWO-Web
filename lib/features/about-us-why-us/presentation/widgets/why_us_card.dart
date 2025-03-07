@@ -67,7 +67,7 @@ class _WhyUsCardState extends State<WhyUsCard> {
               child: Row(
                 children: [
                   SvgPicture.asset(widget.icon),
-                  PaddingConfig.w20,
+                  PaddingConfig.w24,
                   Text(
                     widget.text,
                     style: AppTextStyle.buttonStyle(

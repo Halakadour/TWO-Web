@@ -120,7 +120,7 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
                 IconsPath.work,
                 width: 20,
               ),
-              PaddingConfig.w20,
+              PaddingConfig.w24,
               BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
                 buildWhen: (previous, current) =>
                     (previous.roleWithoutClientListStatus !=
@@ -167,7 +167,7 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
             ],
           ),
         ),
-        PaddingConfig.h20,
+        PaddingConfig.h16,
         Container(
           width: double.maxFinite,
           decoration: BoxDecoration(
@@ -182,7 +182,7 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
                     IconsPath.decument,
                     width: 20,
                   ),
-                  PaddingConfig.w20,
+                  PaddingConfig.w24,
                   Text(
                     "CV",
                     style:
@@ -190,7 +190,7 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
                   ),
                 ],
               ),
-              PaddingConfig.h20,
+              PaddingConfig.h16,
               InkWell(
                 onTap: () async {
                   _getCVFile();

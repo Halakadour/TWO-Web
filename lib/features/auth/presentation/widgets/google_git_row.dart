@@ -16,7 +16,7 @@ class GoogleGitRow extends StatelessWidget {
         Expanded(
             child:
                 OpenAcountButton(iconPath: IconsPath.google, title: "Google")),
-        PaddingConfig.w10,
+        PaddingConfig.w16,
         Expanded(
             child:
                 OpenAcountButton(iconPath: IconsPath.githup, title: "GitHup")),
@@ -48,7 +48,7 @@ class OpenAcountButton extends StatelessWidget {
             iconPath,
             width: 20,
           ),
-          PaddingConfig.w5,
+          PaddingConfig.w8,
           Text(
             title,
             style: AppTextStyle.buttonStyle(),

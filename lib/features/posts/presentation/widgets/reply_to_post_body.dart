@@ -81,7 +81,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
               controller: _fullnameController,
               prefixIconPath: IconsPath.user,
               labelText: "Name"),
-          PaddingConfig.h20,
+          PaddingConfig.h16,
           CustomTextFormField(
               borderColor: AppColors.blackColor,
               validator: (email) {
@@ -94,7 +94,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
               controller: _emailController,
               prefixIconPath: IconsPath.email,
               labelText: "Email"),
-          PaddingConfig.h20,
+          PaddingConfig.h16,
           IntlPhoneField(
             initialCountryCode: 'SY',
             controller: _phoneController,
@@ -104,7 +104,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: AppColors.grayColor))),
           ),
-          PaddingConfig.h20,
+          PaddingConfig.h16,
           Container(
             width: double.maxFinite,
             decoration: BoxDecoration(
@@ -117,7 +117,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                 Row(
                   children: [
                     const Icon(Iconsax.document),
-                    PaddingConfig.w20,
+                    PaddingConfig.w24,
                     Text(
                       "CV",
                       style:
@@ -125,7 +125,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                     ),
                   ],
                 ),
-                PaddingConfig.h20,
+                PaddingConfig.h16,
                 InkWell(
                   onTap: () async {
                     _getCVFile();

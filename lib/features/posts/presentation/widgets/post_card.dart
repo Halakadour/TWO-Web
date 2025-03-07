@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
@@ -36,13 +34,17 @@ class PostCard extends StatelessWidget {
           ]),
       child: Column(
         children: [
-          CachedNetworkImage(
-            imageUrl: "$imageUri${postEntity.image}",
-            fadeInCurve: Curves.linear,
-            errorWidget: (context, url, error) => const Icon(Iconsax.image),
-            height: 200,
-          ),
-          PaddingConfig.h10,
+          Image.network("$imageUri${postEntity.image}"),
+          // CachedNetworkImage(
+          //   imageUrl: "$imageUri${postEntity.image}",
+          //   fadeInCurve: Curves.linear,
+          //   errorWidget: (context, url, error) => const Icon(Iconsax.image),
+          //   errorListener: (value) {
+          //     log(value.toString());
+          //   },
+          //   height: 200,
+          // ),
+          PaddingConfig.h8,
           Text(postEntity.body),
           const Spacer(),
           const SizedBox(
@@ -51,7 +53,7 @@ class PostCard extends StatelessWidget {
               color: AppColors.fieldColor,
             ),
           ),
-          PaddingConfig.h10,
+          PaddingConfig.h8,
           CustomLinkedText(
               title: "Add a reply",
               onTap: () => context
