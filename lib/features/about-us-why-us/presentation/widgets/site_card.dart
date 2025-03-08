@@ -14,37 +14,42 @@ class SiteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: 180,
+        height: 130,
         padding: const EdgeInsets.all(SizesConfig.md),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(SizesConfig.borderRadiusMd),
-            color: AppColors.whiteColor),
+            color: AppColors.greenShade1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: [
-                const Icon(Iconsax.location),
-                PaddingConfig.w8,
-                Text(
-                  "Compony woking site",
-                  style:
-                      AppTextStyle.subtitle03(color: AppColors.fontDarkColor),
-                ),
-              ],
-            ),
-            PaddingConfig.h16,
-            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Aleppo"),
+                Text(
+                  "Compony woking site",
+                  style: AppTextStyle.subtitle01(color: AppColors.greenShade3),
+                ),
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(
                     Iconsax.edit,
-                    color: AppColors.greenColor,
+                    color: AppColors.greenShade2,
                   ),
                 )
+              ],
+            ),
+            PaddingConfig.h16,
+            Row(
+              children: [
+                const Icon(
+                  Iconsax.building_3,
+                  color: AppColors.greenShade2,
+                ),
+                PaddingConfig.w8,
+                Text(
+                  "Aleppo",
+                  style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
+                ),
               ],
             ),
           ],

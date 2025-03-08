@@ -25,19 +25,18 @@ class BlackBox extends StatelessWidget {
             children: [
               Text(
                 text1,
-                style: AppTextStyle.buttonStyle(color: AppColors.whiteColor),
+                style: AppTextStyle.buttonStyle(color: AppColors.white),
               ),
               Row(
                 children: [
                   const Icon(
                     Icons.access_time,
-                    color: AppColors.whiteColor,
+                    color: AppColors.white,
                   ),
                   PaddingConfig.w8,
                   Text(
                     text2,
-                    style:
-                        AppTextStyle.buttonStyle(color: AppColors.whiteColor),
+                    style: AppTextStyle.buttonStyle(color: AppColors.white),
                   )
                 ],
               )

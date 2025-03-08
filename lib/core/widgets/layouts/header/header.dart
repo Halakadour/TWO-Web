@@ -18,9 +18,8 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          color: AppColors.whiteColor,
-          border:
-              Border(bottom: BorderSide(color: AppColors.grayColor, width: 1))),
+          color: AppColors.white,
+          border: Border(bottom: BorderSide(color: AppColors.gray, width: 1))),
       padding: const EdgeInsets.symmetric(
           horizontal: SizesConfig.md, vertical: SizesConfig.sm),
       child: AppBar(

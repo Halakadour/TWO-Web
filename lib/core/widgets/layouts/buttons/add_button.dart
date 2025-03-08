@@ -5,30 +5,34 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
-class AddWhyUsButton extends StatelessWidget {
-  const AddWhyUsButton({super.key});
+class AddButton extends StatelessWidget {
+  const AddButton(
+      {super.key, required this.addingType, required this.onPressed});
+  final String addingType;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16),
+      padding: const EdgeInsets.only(right: 16),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.greenColor,
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              backgroundColor: AppColors.greenShade2,
               shape: RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.circular(SizesConfig.buttonRadius))),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Row(
             children: [
               const Icon(
-                Iconsax.add,
-                color: AppColors.whiteColor,
+                Iconsax.add_square,
+                color: AppColors.white,
               ),
               PaddingConfig.w8,
               Text(
-                "Add Why Us",
-                style: AppTextStyle.buttonStyle(color: AppColors.whiteColor),
+                "Add $addingType",
+                style: AppTextStyle.buttonStyle(color: AppColors.white),
               ),
             ],
           )),

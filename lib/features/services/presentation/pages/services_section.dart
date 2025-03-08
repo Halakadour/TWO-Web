@@ -38,14 +38,14 @@ class _ServicesSectionState extends State<ServicesSection> {
   @override
   Widget build(BuildContext context) {
     return PageTemplate(
-        color: AppColors.blackColor,
+        color: AppColors.black,
         child: Column(
           children: [
             Row(
               children: [
                 Text(
                   LocaleKeys.services.tr().toUpperCase(),
-                  style: AppTextStyle.heading00(color: AppColors.whiteColor),
+                  style: AppTextStyle.heading00(color: AppColors.white),
                 ),
               ],
             ),
@@ -55,7 +55,7 @@ class _ServicesSectionState extends State<ServicesSection> {
               children: [
                 Text(
                   "our experts team of programmers and software engineers will help to create your software as you\ndream, whether you order an application ar a website ypu would has a chanse to manage your busniss\nwith the power of software tools. we have an offer to you!",
-                  style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
+                  style: AppTextStyle.subtitle03(color: AppColors.white),
                 ),
                 CustomLinkedText(
                   title: LocaleKeys.seeAll.tr(),
@@ -71,7 +71,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                   IconButton(
                     icon: const Icon(
                       Icons.arrow_back_ios,
-                      color: AppColors.whiteColor,
+                      color: AppColors.white,
                     ),
                     onPressed: _scrollLeft,
                   ),
@@ -91,7 +91,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                   IconButton(
                     icon: const Icon(
                       Icons.arrow_forward_ios,
-                      color: AppColors.whiteColor,
+                      color: AppColors.white,
                     ),
                     onPressed: _scrollRight,
                   ),

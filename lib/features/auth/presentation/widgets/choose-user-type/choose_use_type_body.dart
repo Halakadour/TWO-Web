@@ -17,7 +17,7 @@ class ChooseUseTypeBody extends StatelessWidget {
         // Header
         Text(
           TextStrings.signUpSuccessfully,
-          style: AppTextStyle.subtitle01(color: AppColors.greenColor),
+          style: AppTextStyle.subtitle01(color: AppColors.greenShade2),
         ),
         const SizedBox(
           height: SizesConfig.md,
@@ -35,7 +35,7 @@ class ChooseUseTypeBody extends StatelessWidget {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.navyColor,
+                  backgroundColor: AppColors.navy,
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
                           Radius.circular(SizesConfig.buttonRadius))),
@@ -45,14 +45,14 @@ class ChooseUseTypeBody extends StatelessWidget {
                 context.pushReplacementNamed(AppRouteConfig.fillClientProfile);
               },
               child: Text(TextStrings.client,
-                  style: AppTextStyle.subtitle02(color: AppColors.whiteColor)),
+                  style: AppTextStyle.subtitle02(color: AppColors.white)),
             ),
             const SizedBox(
               width: SizesConfig.md,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.greenColor,
+                  backgroundColor: AppColors.greenShade2,
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
                           Radius.circular(SizesConfig.buttonRadius))),
@@ -63,7 +63,7 @@ class ChooseUseTypeBody extends StatelessWidget {
                     .pushReplacementNamed(AppRouteConfig.fillEmployeeProfile);
               },
               child: Text(TextStrings.employee,
-                  style: AppTextStyle.subtitle02(color: AppColors.whiteColor)),
+                  style: AppTextStyle.subtitle02(color: AppColors.white)),
             ),
           ],
         ),

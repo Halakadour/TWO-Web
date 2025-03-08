@@ -1,11 +1,12 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/features/about-us-why-us/presentation/widgets/add_why_us_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/add_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/delete_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/edit_button.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/site_card.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/working_time_card.dart';
 
@@ -34,7 +35,7 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
             const Row(
               children: [WorkingTimeCard(), PaddingConfig.w24, SiteCard()],
             ),
-            PaddingConfig.h16,
+            PaddingConfig.h24,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -42,7 +43,10 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
                   "Why Us :",
                   style: AppTextStyle.heading03(),
                 ),
-                const AddWhyUsButton()
+                AddButton(
+                  addingType: "Why Us",
+                  onPressed: () {},
+                )
               ],
             ),
             PaddingConfig.h16,
@@ -50,7 +54,7 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
+                    color: AppColors.white,
                     borderRadius:
                         BorderRadius.circular(SizesConfig.borderRadiusLg)),
                 child: DataTable2(
@@ -61,7 +65,7 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
                   headingRowHeight: 56,
                   headingTextStyle: AppTextStyle.subtitle01(),
                   headingRowColor: WidgetStateColor.resolveWith(
-                    (states) => AppColors.grayColor,
+                    (states) => AppColors.gray,
                   ),
                   headingRowDecoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(
@@ -78,18 +82,13 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
                             const DataCell(Text("Documented Success")),
                             DataCell(Row(
                               children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Iconsax.edit,
-                                      color: AppColors.greenColor,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Iconsax.trash,
-                                      color: AppColors.redColor,
-                                    )),
+                                EditButton(
+                                  onTap: () {},
+                                ),
+                                PaddingConfig.w8,
+                                DeleteButton(
+                                  onTap: () {},
+                                )
                               ],
                             )),
                           ])),

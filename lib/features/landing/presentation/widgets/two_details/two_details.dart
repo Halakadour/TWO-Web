@@ -4,7 +4,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
-import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/soial_media_group.dart';
 
 class TwoDetails extends StatefulWidget {
@@ -31,12 +31,11 @@ class _TwoDetailsState extends State<TwoDetails> {
                   style: AppTextStyle.heading00()),
               TextSpan(
                   text: LocaleKeys.homeTitle2.tr(),
-                  style: AppTextStyle.heading00(color: AppColors.greenColor))
+                  style: AppTextStyle.heading00(color: AppColors.greenShade2))
             ])),
         PaddingConfig.h24,
         CustomCartoonButton(
           title: LocaleKeys.orderProj.tr(),
-          isHover: isHover,
           onTap: () {},
         ),
         PaddingConfig.h24,

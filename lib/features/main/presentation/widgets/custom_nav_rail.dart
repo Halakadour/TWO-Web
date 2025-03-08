@@ -16,7 +16,7 @@ class CustomNavRail extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: selectedIndex,
       builder: (context, value, child) => NavigationRail(
-        backgroundColor: AppColors.navyColor,
+        backgroundColor: AppColors.navy,
         onDestinationSelected: (value) {
           selectedIndex.value = value;
         },
@@ -28,17 +28,17 @@ class CustomNavRail extends StatelessWidget {
         selectedIconTheme: const IconThemeData(
           applyTextScaling: true,
           size: 30,
-          color: AppColors.whiteColor,
+          color: AppColors.white,
         ),
         unselectedIconTheme: const IconThemeData(
           applyTextScaling: true,
           size: 30,
-          color: AppColors.whiteColor,
+          color: AppColors.white,
         ),
         selectedLabelTextStyle:
-            AppTextStyle.navRailStyle(color: AppColors.whiteColor),
+            AppTextStyle.navRailStyle(color: AppColors.white),
         unselectedLabelTextStyle:
-            AppTextStyle.navRailStyle(color: AppColors.whiteColor),
+            AppTextStyle.navRailStyle(color: AppColors.white),
         destinations: const [
           NavigationRailDestination(
             icon: Icon(Icons.home_filled),

@@ -24,7 +24,7 @@ class DontHaveCountRow extends StatelessWidget {
                 context.pushReplacementNamed(AppRouteConfig.signup),
             child: Text(
               TextStrings.signup,
-              style: AppTextStyle.subtitle01(color: AppColors.greenColor),
+              style: AppTextStyle.subtitle01(color: AppColors.greenShade2),
             ))
       ],
     );

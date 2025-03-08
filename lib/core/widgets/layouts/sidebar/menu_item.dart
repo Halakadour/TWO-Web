@@ -36,15 +36,17 @@ class MenuItem extends StatelessWidget {
         },
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: SizesConfig.xs),
-          decoration: BoxDecoration(
-            color: (pageNum == currentPage)
-                ? AppColors.greenColor
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
-          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              if (pageNum == currentPage)
+                const SizedBox(
+                  height: 15,
+                  child: VerticalDivider(
+                    color: AppColors.greenShade2,
+                    thickness: 3,
+                  ),
+                ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -52,7 +54,7 @@ class MenuItem extends StatelessWidget {
                   icon,
                   // ignore: deprecated_member_use
                   color: (pageNum == currentPage)
-                      ? AppColors.whiteColor
+                      ? AppColors.greenShade2
                       : AppColors.fontLightColor,
                 ),
               ),
@@ -60,7 +62,7 @@ class MenuItem extends StatelessWidget {
                 itemName,
                 style: AppTextStyle.buttonStyle(
                   color: (pageNum == currentPage)
-                      ? AppColors.whiteColor
+                      ? AppColors.greenShade2
                       : AppColors.fontLightColor,
                 ),
               ),

@@ -72,7 +72,7 @@ class _PostsSectionState extends State<PostsSection> {
                     dividerColor: Colors.transparent,
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: AppColors.greenColor,
+                      color: AppColors.greenShade2,
                     ),
                     onTap: (value) {
                       setState(() {
@@ -81,7 +81,7 @@ class _PostsSectionState extends State<PostsSection> {
                     },
                     indicatorSize: TabBarIndicatorSize.tab,
                     unselectedLabelColor: AppColors.fontLightColor,
-                    labelColor: AppColors.whiteColor,
+                    labelColor: AppColors.white,
                     tabs: const [
                       Padding(
                         padding:

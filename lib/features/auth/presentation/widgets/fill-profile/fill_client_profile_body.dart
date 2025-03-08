@@ -15,7 +15,7 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
 
 class FillClientProfileBody extends StatefulWidget {
@@ -81,7 +81,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
                     : const Icon(Iconsax.image)),
             IconButton(
                 style: IconButton.styleFrom(
-                    backgroundColor: AppColors.darkGreenColor,
+                    backgroundColor: AppColors.greenShade3,
                     padding: const EdgeInsets.all(10),
                     shape: const CircleBorder()),
                 onPressed: () {
@@ -89,7 +89,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
                 },
                 icon: const Icon(
                   Iconsax.camera,
-                  color: AppColors.whiteColor,
+                  color: AppColors.white,
                 ))
           ],
         ),
@@ -135,7 +135,6 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
           width: double.infinity,
           child: CustomCartoonButton(
             title: TextStrings.tcontinue,
-            isHover: ValueNotifier(false),
             onTap: () {
               if (imageBytes == null) {
                 CustomQuickAlert().addImageAlert(context);

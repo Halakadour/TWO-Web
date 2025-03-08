@@ -16,7 +16,7 @@ class LoginTemplate extends StatelessWidget {
           child: Container(
               padding: PaddingConfig.paddingWithAppBarHeight,
               decoration: BoxDecoration(
-                color: AppColors.whiteColor,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(SizesConfig.cardRadiusLg),
               ),
               child: child),

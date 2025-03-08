@@ -8,10 +8,10 @@ Widget togglePassword(bool isSecurePassword, Function() onTap) {
       child: isSecurePassword
           ? const Icon(
               Iconsax.eye,
-              color: AppColors.greenColor,
+              color: AppColors.greenShade2,
             )
           : const Icon(
               Iconsax.eye_slash,
-              color: AppColors.greenColor,
+              color: AppColors.greenShade2,
             ));
 }

@@ -91,8 +91,7 @@ class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
                       LocaleKeys.posters.tr(),
                       LocaleKeys.contactUs.tr(),
                     ][index],
-                    style:
-                        AppTextStyle.buttonStyle(color: AppColors.blackColor),
+                    style: AppTextStyle.buttonStyle(color: AppColors.black),
                   ),
                 ),
               ),

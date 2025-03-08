@@ -25,7 +25,7 @@ class ServiceCard extends StatelessWidget {
           Text(
             serviceTitlel,
             textAlign: TextAlign.center,
-            style: AppTextStyle.subtitle02(color: AppColors.whiteColor),
+            style: AppTextStyle.subtitle02(color: AppColors.white),
           )
         ],
       ),

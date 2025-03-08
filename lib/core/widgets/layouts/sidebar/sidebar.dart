@@ -23,9 +23,9 @@ class CustomSidebar extends StatelessWidget {
       shape: const BeveledRectangleBorder(),
       child: Container(
         decoration: const BoxDecoration(
-          color: AppColors.navyColor,
+          color: AppColors.navy,
           border: Border(
-            right: BorderSide(color: AppColors.grayColor, width: 1),
+            right: BorderSide(color: AppColors.gray, width: 1),
           ),
         ),
         child: SingleChildScrollView(
@@ -45,7 +45,7 @@ class CustomSidebar extends StatelessWidget {
                     Text(
                       "MENU",
                       style: AppTextStyle.subtitle03(
-                        color: AppColors.whiteColor,
+                        color: AppColors.white,
                         letterSpacing: 1.2,
                       ),
                     ),
@@ -89,7 +89,7 @@ class CustomSidebar extends StatelessWidget {
                     Text(
                       "OTHER",
                       style: AppTextStyle.subtitle03(
-                        color: AppColors.whiteColor,
+                        color: AppColors.white,
                         letterSpacing: 1.2,
                       ),
                     ),

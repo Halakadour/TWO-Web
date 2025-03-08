@@ -14,19 +14,27 @@ class AppColors {
       colors: [Color(0xFF69DB43), Color(0xFF63D13E), Color(0xFF48982D)]);
 
 //basic colors
-  static const Color blackColor = Color(0xFF151515);
-  static const Color grayColor = Color(0xFFE4E4E4);
-  static const Color whiteColor = Color(0xFFFFFFFF);
-  static const Color navyColor = Color(0xFF0C0F1A);
-  static const Color rockLightColor = Color(0xFF838A9D);
-  static const Color rockDarkColor = Color(0xFF3F4253);
-  static const Color greenColor = Color(0xFF65D53F);
-  static const Color darkGreenColor = Color(0xFF378B1B);
-  static const Color blueColor = Color(0xFF4B74D6);
-  static const Color redColor = Color(0xFFE6373A);
+  static const Color black = Color(0xFF151515);
+  static const Color gray = Color(0xFFE4E4E4);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color navy = Color(0xFF0C0F1A);
+  static const Color rockshade1 = Color(0xFF838A9D);
+  static const Color rockShade2 = Color(0xFF3F4253);
+  static const Color greenShade1 = Color(0xFFC1F4CF);
+  static const Color greenShade2 = Color(0xFF65D53F);
+  static const Color greenShade3 = Color(0xFF378B1B);
+  static const Color blueShade1 = Color(0xFFC3D8F5);
+  static const Color blueShade2 = Color(0xFF4B74D6);
+  static const Color blueShade3 = Color(0xFF0B2C79);
+  static const Color redShade1 = Color(0xFFFDA1A3);
+  static const Color redShade2 = Color(0xFFE6373A);
+  static const Color redShade3 = Color(0xFFA71214);
+  static const Color yellowShade1 = Color(0xFFFDFBA1);
+  static const Color yellowShade2 = Color(0xFFE6E637);
+  static const Color yellowShade3 = Color(0xFFA7A212);
 
 // theme colors
-  static const Color mainColor = greenColor;
-  static const Color secondaryColor = navyColor;
-  static const Color scaffoldBackgroundColor = whiteColor;
+  static const Color mainColor = greenShade2;
+  static const Color secondaryColor = navy;
+  static const Color scaffoldBackgroundColor = white;
 }

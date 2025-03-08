@@ -4,13 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/layouts/buttons/add_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'package:two_website/features/posts/presentation/widgets/create-post/create_post_button.dart';
 import 'package:two_website/features/posts/presentation/widgets/custom_posts_table.dart';
 
 class PostsPage extends StatefulWidget {
@@ -41,53 +42,90 @@ class _PostsPageState extends State<PostsPage> {
               listenWhen: (previous, current) => (previous.deletePostStatus !=
                       current.deletePostStatus ||
                   previous.unActivePostStatus != current.unActivePostStatus),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius:
-                        BorderRadius.circular(SizesConfig.borderRadiusMd)),
-                padding: const EdgeInsets.all(30),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CreatePostButton(),
-                        IconButton(
-                            onPressed: () {
-                              filterPosts(context);
-                            },
-                            icon: const Icon(Iconsax.filter))
-                      ],
-                    ),
-                    const SizedBox(
-                      height: SizesConfig.spaceBtwSections,
-                    ),
-                    Flexible(
-                      child: BlocBuilder<PostBloc, PostState>(
-                        buildWhen: (previous, current) =>
-                            previous.activePostsListStatus !=
-                            current.activePostsListStatus,
-                        builder: (context, state) {
-                          if (state.activePostsListStatus ==
-                              CasualStatus.loading) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          } else if (state.activePostsListStatus ==
-                              CasualStatus.success) {
-                            return CustomPostsTable(
-                                activePostsList: state.activePostsList);
-                          } else if (state.activePostsListStatus ==
-                              CasualStatus.failure) {
-                            return Text(state.message);
-                          } else {
-                            return const SizedBox();
-                          }
-                        },
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Posts",
+                        style: AppTextStyle.heading03(),
                       ),
+                      Row(
+                        children: [
+                          AddButton(
+                            addingType: "Post",
+                            onPressed: () {
+                              context.pushNamed(AppRouteConfig.createPost);
+                            },
+                          ),
+                          PaddingConfig.w8,
+                          IconButton(
+                              style: IconButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                        color: AppColors.black,
+                                        width: .2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                          SizesConfig.borderRadiusSm))),
+                              onPressed: () {
+                                filterPosts(context);
+                              },
+                              icon: Row(
+                                children: [
+                                  const Icon(
+                                    Iconsax.setting_4,
+                                    size: SizesConfig.iconsSm,
+                                  ),
+                                  PaddingConfig.w8,
+                                  Text(
+                                    "filter",
+                                    style: AppTextStyle.buttonStyle(),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: SizesConfig.spaceBtwSections,
+                  ),
+                  Flexible(
+                    child: BlocBuilder<PostBloc, PostState>(
+                      buildWhen: (previous, current) =>
+                          (previous.activePostsListStatus !=
+                                  current.activePostsListStatus ||
+                              previous.unActivePostsListStatus !=
+                                  current.unActivePostsListStatus),
+                      builder: (context, state) {
+                        if (state.activePostsListStatus ==
+                                CasualStatus.loading ||
+                            state.unActivePostsListStatus ==
+                                CasualStatus.loading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (state.activePostsListStatus ==
+                                CasualStatus.success ||
+                            state.unActivePostsListStatus ==
+                                CasualStatus.success) {
+                          return CustomPostsTable(
+                              activePostsList: actriveSelected.value
+                                  ? state.activePostsList
+                                  : state.unActivePostsList);
+                        } else if (state.activePostsListStatus ==
+                                CasualStatus.failure ||
+                            state.unActivePostsListStatus ==
+                                CasualStatus.failure) {
+                          return Text(state.message);
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             )));
   }
@@ -125,7 +163,7 @@ class _PostsPageState extends State<PostsPage> {
             children: [
               Text(
                 "Activation :",
-                style: AppTextStyle.subtitle03(color: AppColors.greenColor),
+                style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
               ),
               PaddingConfig.h24,
               ValueListenableBuilder(
@@ -136,21 +174,20 @@ class _PostsPageState extends State<PostsPage> {
                       onTap: () {
                         actriveSelected.value = true;
                         context.read<PostBloc>().add(GetActivePostsEvent());
+                        context.pop();
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 9),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: value
-                              ? AppColors.greenColor
-                              : AppColors.grayColor,
+                          color: value ? AppColors.greenShade2 : AppColors.gray,
                         ),
                         child: Text(
                           "Active posts",
                           style: AppTextStyle.subtitle04(
                               color: value
-                                  ? AppColors.whiteColor
+                                  ? AppColors.white
                                   : AppColors.fontDarkColor),
                         ),
                       ),
@@ -160,21 +197,21 @@ class _PostsPageState extends State<PostsPage> {
                       onTap: () {
                         actriveSelected.value = false;
                         context.read<PostBloc>().add(GetUnActivePostsEvent());
+                        context.pop();
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 9),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: !value
-                              ? AppColors.greenColor
-                              : AppColors.grayColor,
+                          color:
+                              !value ? AppColors.greenShade2 : AppColors.gray,
                         ),
                         child: Text(
                           "Un Active posts",
                           style: AppTextStyle.subtitle04(
                               color: !value
-                                  ? AppColors.whiteColor
+                                  ? AppColors.white
                                   : AppColors.fontDarkColor),
                         ),
                       ),

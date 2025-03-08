@@ -129,7 +129,7 @@ class AppTextStyle {
     return TextStyle(
       color: color,
       fontFamily: 'Almarai',
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
       fontSize: fontSize,
       decoration: decoration,

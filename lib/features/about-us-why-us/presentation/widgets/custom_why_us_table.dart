@@ -1,26 +1,19 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
-import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/images/custom_rounded_image.dart';
-import 'package:two_website/features/posts/domain/entities/post_entity.dart';
-import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'package:two_website/core/widgets/layouts/buttons/active_status_container.dart';
-import 'package:two_website/core/widgets/layouts/buttons/browse_button.dart';
-import 'package:two_website/core/widgets/layouts/buttons/deactive_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/edit_button.dart';
+import 'package:two_website/features/about-us-why-us/domain/entities/why_us_entity.dart';
+import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
 import 'package:two_website/core/widgets/layouts/buttons/delete_button.dart';
 
-class CustomPostsTable extends StatelessWidget {
-  const CustomPostsTable({super.key, required this.activePostsList});
-  final List<PostEntity> activePostsList;
+class CustomWhyUsTable extends StatelessWidget {
+  const CustomWhyUsTable({super.key, required this.whyUsList});
+  final List<WhyUsEntity> whyUsList;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +46,21 @@ class CustomPostsTable extends StatelessWidget {
       ),
       columns: const [
         DataColumn2(
+            headingRowAlignment: MainAxisAlignment.center,
             label: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Iconsax.hashtag,
+                  size: SizesConfig.iconsMd,
+                ),
+                PaddingConfig.w8,
+                Text("ID")
+              ],
+            )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Iconsax.archive_1,
@@ -61,42 +68,6 @@ class CustomPostsTable extends StatelessWidget {
             ),
             PaddingConfig.w8,
             Text("Title")
-          ],
-        )),
-        DataColumn2(
-            label: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Iconsax.gallery,
-              size: SizesConfig.iconsMd,
-            ),
-            PaddingConfig.w8,
-            Text("Poster")
-          ],
-        )),
-        DataColumn2(
-            label: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Iconsax.status,
-              size: SizesConfig.iconsMd,
-            ),
-            PaddingConfig.w8,
-            Text("Status")
-          ],
-        )),
-        DataColumn2(
-            label: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Iconsax.message_notif,
-              size: SizesConfig.iconsMd,
-            ),
-            PaddingConfig.w8,
-            Text("Replies")
           ],
         )),
         DataColumn2(
@@ -114,46 +85,33 @@ class CustomPostsTable extends StatelessWidget {
       ],
       fixedColumnsColor: AppColors.greenShade3,
       rows: List<DataRow>.generate(
-          activePostsList.length,
+          whyUsList.length,
           (index) => DataRow(
                   color: WidgetStateColor.resolveWith((states) =>
                       index.isEven ? AppColors.white : AppColors.fieldColor),
                   cells: [
                     DataCell(
-                      Text(activePostsList[index].body),
+                      Text("#$index"),
                     ),
-                    DataCell(Center(
-                      child: CustomRoundedImage(
-                        imageType: ImageType.network,
-                        image: "$imageUri${activePostsList[index].image}",
-                        borderRadius: 2,
-                      ),
-                    )),
-                    const DataCell(Center(child: ActiveStatusContainer())),
-                    DataCell(Center(
-                      child: BrowseButton(
-                        onTap: () {
-                          context.pushNamed(AppRouteConfig.postReplies,
-                              pathParameters: {
-                                'id': activePostsList[index].id.toString(),
-                              });
-                        },
-                      ),
-                    )),
+                    DataCell(
+                      Text(whyUsList[index].whyUsDoc),
+                    ),
                     DataCell(Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DeactivateButton(
+                        EditButton(
                           onTap: () {
-                            context.read<PostBloc>().add(UnActivePostEvent(
-                                postId: activePostsList[index].id));
+                            context.read<AboutUsWhyUsBloc>().add(
+                                UpdateWhyUsEvent(
+                                    whyUsId: "whyUsId", whyUs: "whyUs"));
                           },
                         ),
                         PaddingConfig.w8,
                         DeleteButton(
                           onTap: () {
-                            context.read<PostBloc>().add(DeletePostEvent(
-                                postId: activePostsList[index].id));
+                            context
+                                .read<AboutUsWhyUsBloc>()
+                                .add(DeleteWhyUsEvent(whyUsId: "whyUsId"));
                           },
                         ),
                       ],

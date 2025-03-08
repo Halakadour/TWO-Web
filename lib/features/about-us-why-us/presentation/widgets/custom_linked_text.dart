@@ -20,13 +20,13 @@ class CustomLinkedText extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyle.buttonStyle(color: AppColors.greenColor),
+            style: AppTextStyle.buttonStyle(color: AppColors.greenShade2),
           ),
           PaddingConfig.w8,
           SvgPicture.asset(
             IconsPath.arrowRight,
             // ignore: deprecated_member_use
-            color: AppColors.greenColor,
+            color: AppColors.greenShade2,
           )
         ],
       ),

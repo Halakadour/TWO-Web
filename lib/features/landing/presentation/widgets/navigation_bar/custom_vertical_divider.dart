@@ -13,7 +13,7 @@ class CustomVerticalDivider extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: VerticalDivider(
           width: 3,
-          color: AppColors.grayColor,
+          color: AppColors.gray,
         ),
       ),
     );

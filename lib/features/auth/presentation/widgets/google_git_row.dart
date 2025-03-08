@@ -40,7 +40,7 @@ class OpenAcountButton extends StatelessWidget {
       padding: PaddingConfig.rectPadding,
       width: double.maxFinite,
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.grayColor, width: 1),
+          border: Border.all(color: AppColors.gray, width: 1),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [

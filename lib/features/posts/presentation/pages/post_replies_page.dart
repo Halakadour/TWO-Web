@@ -39,7 +39,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                   (previous.acceptReplyStatus != current.acceptReplyStatus),
               child: Container(
                 decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
+                    color: AppColors.white,
                     borderRadius:
                         BorderRadius.circular(SizesConfig.borderRadiusMd)),
                 padding: const EdgeInsets.all(30),
@@ -66,7 +66,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                         Text(
                                           "Acceptation :",
                                           style: AppTextStyle.subtitle03(
-                                              color: AppColors.greenColor),
+                                              color: AppColors.greenShade2),
                                         ),
                                         PaddingConfig.h24,
                                         ValueListenableBuilder(
@@ -92,15 +92,14 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                                         BorderRadius.circular(
                                                             10),
                                                     color: value
-                                                        ? AppColors.greenColor
-                                                        : AppColors.grayColor,
+                                                        ? AppColors.greenShade2
+                                                        : AppColors.gray,
                                                   ),
                                                   child: Text(
                                                     "Un Accepted replies",
                                                     style: AppTextStyle.subtitle04(
                                                         color: value
-                                                            ? AppColors
-                                                                .whiteColor
+                                                            ? AppColors.white
                                                             : AppColors
                                                                 .fontDarkColor),
                                                   ),
@@ -125,15 +124,14 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                                         BorderRadius.circular(
                                                             10),
                                                     color: !value
-                                                        ? AppColors.greenColor
-                                                        : AppColors.grayColor,
+                                                        ? AppColors.greenShade2
+                                                        : AppColors.gray,
                                                   ),
                                                   child: Text(
                                                     "Accepted replies",
                                                     style: AppTextStyle.subtitle04(
                                                         color: !value
-                                                            ? AppColors
-                                                                .whiteColor
+                                                            ? AppColors.white
                                                             : AppColors
                                                                 .fontDarkColor),
                                                   ),
@@ -174,7 +172,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                               headingRowHeight: 56,
                               headingTextStyle: AppTextStyle.subtitle01(),
                               headingRowColor: WidgetStateColor.resolveWith(
-                                (states) => AppColors.grayColor,
+                                (states) => AppColors.gray,
                               ),
                               headingRowDecoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(
@@ -211,7 +209,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                             },
                                             icon: const Icon(
                                               Iconsax.clipboard_tick,
-                                              color: AppColors.greenColor,
+                                              color: AppColors.greenShade2,
                                             ))),
                                       ])),
                             );

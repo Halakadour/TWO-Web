@@ -43,7 +43,7 @@ class _WhyUsCardState extends State<WhyUsCard> {
               margin: PaddingConfig.marginBottom16,
               padding: PaddingConfig.containerPadding,
               decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
+                  color: AppColors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(7)),
                   boxShadow: value
                       ? const [
@@ -60,7 +60,7 @@ class _WhyUsCardState extends State<WhyUsCard> {
                             offset: Offset(2, 2),
                           ),
                           BoxShadow(
-                            color: AppColors.grayColor,
+                            color: AppColors.gray,
                             offset: Offset(-2, -2),
                           ),
                         ]),

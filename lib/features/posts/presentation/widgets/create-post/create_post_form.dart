@@ -15,7 +15,7 @@ import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/images/custom_rounded_image.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
-import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 
 class CreatePostForm extends StatefulWidget {
@@ -87,13 +87,13 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         IconsPath.upload,
                         width: 20,
                         // ignore: deprecated_member_use
-                        color: AppColors.greenColor,
+                        color: AppColors.greenShade2,
                       ),
                     ),
                     Text(
                       "select or drop an image",
                       style:
-                          AppTextStyle.subtitle03(color: AppColors.greenColor),
+                          AppTextStyle.subtitle03(color: AppColors.greenShade2),
                     ),
                   ],
                 )
@@ -108,7 +108,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
           width: double.infinity,
           child: CustomCartoonButton(
             title: "Create",
-            isHover: ValueNotifier(false),
             onTap: () {
               if (imageBytes == null) {
                 CustomQuickAlert().addImageAlert(context);

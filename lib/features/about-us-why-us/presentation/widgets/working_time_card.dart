@@ -14,23 +14,28 @@ class WorkingTimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: 180,
+        height: 130,
         padding: const EdgeInsets.all(SizesConfig.md),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(SizesConfig.borderRadiusMd),
-            color: AppColors.whiteColor),
+            color: const Color(0xFFC3D8F5)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(Iconsax.clock),
-                PaddingConfig.w8,
                 Text(
                   "Compony woking time",
-                  style:
-                      AppTextStyle.subtitle03(color: AppColors.fontDarkColor),
+                  style: AppTextStyle.subtitle01(color: AppColors.blueShade3),
                 ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Iconsax.edit,
+                    color: AppColors.blueShade2,
+                  ),
+                )
               ],
             ),
             PaddingConfig.h16,
@@ -39,54 +44,26 @@ class WorkingTimeCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      "From :",
-                      style:
-                          AppTextStyle.subtitle03(color: AppColors.blackColor),
+                    const Icon(
+                      Iconsax.calendar,
+                      color: AppColors.blueShade2,
                     ),
                     PaddingConfig.w8,
                     Text(
-                      "10:00 AM",
-                      style: AppTextStyle.subtitle02(
-                          color: AppColors.fontLightColor),
+                      "Sanday - Thursday",
+                      style:
+                          AppTextStyle.subtitle03(color: AppColors.blueShade2),
+                    ),
+                    PaddingConfig.w8,
+                    Text(
+                      "10:00 AM - 03:00 PM",
+                      style:
+                          AppTextStyle.subtitle02(color: AppColors.blueShade2),
                     ),
                   ],
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Iconsax.edit,
-                    color: AppColors.greenColor,
-                  ),
-                )
               ],
             ),
-            PaddingConfig.h8,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Text("To :",
-                        style: AppTextStyle.subtitle03(
-                            color: AppColors.blackColor)),
-                    PaddingConfig.w8,
-                    Text(
-                      "03:00 PM",
-                      style: AppTextStyle.subtitle02(
-                          color: AppColors.fontLightColor),
-                    ),
-                  ],
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Iconsax.edit,
-                    color: AppColors.greenColor,
-                  ),
-                )
-              ],
-            )
           ],
         ),
       ),

@@ -33,7 +33,7 @@ class SignUpButton extends StatelessWidget {
         ),
         child: Text(
           LocaleKeys.signin.tr(),
-          style: AppTextStyle.buttonStyle(color: AppColors.whiteColor),
+          style: AppTextStyle.buttonStyle(color: AppColors.white),
         ));
   }
 }

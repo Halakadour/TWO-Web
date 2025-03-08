@@ -161,7 +161,7 @@ class CustomMenuState extends State<CustomMenu> {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: isButton
             ? BoxDecoration(
-                color: AppColors.greenColor,
+                color: AppColors.greenShade2,
                 borderRadius: BorderRadius.circular(10),
               )
             : null,
@@ -171,8 +171,7 @@ class CustomMenuState extends State<CustomMenu> {
             Text(
               text,
               style: AppTextStyle.buttonStyle(
-                  color:
-                      isButton ? AppColors.whiteColor : AppColors.blackColor),
+                  color: isButton ? AppColors.white : AppColors.black),
             ),
             if (hasArrow) const Icon(Icons.arrow_drop_down_outlined),
           ],

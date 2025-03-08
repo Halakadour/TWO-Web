@@ -15,7 +15,7 @@ import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
-import 'package:two_website/features/landing/presentation/widgets/two_details/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 
 class ReplyToPostBody extends StatefulWidget {
@@ -70,7 +70,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
       child: Column(
         children: [
           CustomTextFormField(
-              borderColor: AppColors.blackColor,
+              borderColor: AppColors.black,
               validator: (fullname) {
                 if (fullname != null && fullname.isNotShortText()) {
                   return null;
@@ -83,7 +83,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
               labelText: "Name"),
           PaddingConfig.h16,
           CustomTextFormField(
-              borderColor: AppColors.blackColor,
+              borderColor: AppColors.black,
               validator: (email) {
                 if (email != null && email.isValidEmail()) {
                   return null;
@@ -102,14 +102,14 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                 labelText: "Phone Number",
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: AppColors.grayColor))),
+                    borderSide: const BorderSide(color: AppColors.gray))),
           ),
           PaddingConfig.h16,
           Container(
             width: double.maxFinite,
             decoration: BoxDecoration(
                 border: Border.all(
-                    color: AppColors.blackColor, style: BorderStyle.solid),
+                    color: AppColors.black, style: BorderStyle.solid),
                 borderRadius: BorderRadius.circular(12)),
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Column(
@@ -120,8 +120,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                     PaddingConfig.w24,
                     Text(
                       "CV",
-                      style:
-                          AppTextStyle.subtitle03(color: AppColors.blackColor),
+                      style: AppTextStyle.subtitle03(color: AppColors.black),
                     ),
                   ],
                 ),
@@ -132,7 +131,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                   },
                   child: const Icon(
                     Iconsax.direct_send,
-                    color: AppColors.greenColor,
+                    color: AppColors.greenShade2,
                   ),
                 ),
                 PaddingConfig.h8,
@@ -140,7 +139,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                   _cvFile != null
                       ? _cvFile!.length.toString()
                       : "select or drop a file",
-                  style: AppTextStyle.subtitle03(color: AppColors.greenColor),
+                  style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
                 ),
               ],
             ),
@@ -162,7 +161,6 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
             listenWhen: (previous, current) =>
                 previous.sendReplyStatus != current.sendReplyStatus,
             child: CustomCartoonButton(
-              isHover: ValueNotifier(false),
               title: "Sent a reply",
               width: double.infinity,
               onTap: () {

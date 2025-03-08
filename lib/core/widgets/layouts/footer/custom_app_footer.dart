@@ -15,7 +15,7 @@ class CustomAppFooter extends StatelessWidget {
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-      color: AppColors.blackColor,
+      color: AppColors.black,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -25,12 +25,12 @@ class CustomAppFooter extends StatelessWidget {
             children: [
               Text(
                 "Aleppo".toUpperCase(),
-                style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
+                style: AppTextStyle.subtitle01(color: AppColors.white),
               ),
               PaddingConfig.h8,
               Text(
                 "Al Tilal, Hamra street\nfirst intersection",
-                style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
+                style: AppTextStyle.subtitle03(color: AppColors.white),
               )
             ],
           ),
@@ -39,24 +39,24 @@ class CustomAppFooter extends StatelessWidget {
             children: [
               Text(
                 "Working".toUpperCase(),
-                style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
+                style: AppTextStyle.subtitle01(color: AppColors.white),
               ),
               PaddingConfig.h8,
               Text(
                 "Sunday-Thursday\n10:00 AM- 03:00 PM",
-                style: AppTextStyle.subtitle03(color: AppColors.whiteColor),
+                style: AppTextStyle.subtitle03(color: AppColors.white),
               ),
               PaddingConfig.h16,
               Text(
                 "towCompany@gmail.com",
                 style: AppTextStyle.subtitle03(
-                    color: AppColors.whiteColor,
+                    color: AppColors.white,
                     decoration: TextDecoration.underline),
               ),
               Text(
                 "+9631234567",
                 style: AppTextStyle.subtitle03(
-                    color: AppColors.whiteColor,
+                    color: AppColors.white,
                     decoration: TextDecoration.underline),
               ),
             ],
@@ -66,7 +66,7 @@ class CustomAppFooter extends StatelessWidget {
             children: [
               Text(
                 "follow us".toUpperCase(),
-                style: AppTextStyle.subtitle01(color: AppColors.whiteColor),
+                style: AppTextStyle.subtitle01(color: AppColors.white),
               ),
               PaddingConfig.h8,
               const SoialMediaGroup()
