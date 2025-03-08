@@ -60,6 +60,9 @@ class SizesConfig {
   // Loading indicator size
   static const double loadingIndicatorSize = 36.0;
 
+  // Animation Duration
+  static const int animationDuration = 200;
+
   // Grid view spacing
   static const double gridViewSpacing = 16.0;
 
