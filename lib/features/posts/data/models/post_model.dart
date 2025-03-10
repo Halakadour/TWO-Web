@@ -9,7 +9,7 @@ class PostModel extends PostEntity {
     required this.id,
     required this.description,
     required this.image,
-  }) : super(id: id, body: description, image: image);
+  }) : super(postId: id, body: description, poster: image);
 
   factory PostModel.fromJson(Map<String, dynamic> json) => PostModel(
         id: json["id"],

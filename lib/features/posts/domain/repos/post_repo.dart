@@ -12,7 +12,7 @@ abstract class PostRepo with HandlingExceptionManager {
   Future<Either<Failure, Unit>> deletePost(String token, int postId);
   Future<Either<Failure, List<PostEntity>>> showActivePosts();
   Future<Either<Failure, List<PostEntity>>> showUnActivePosts();
-  Future<Either<Failure, Unit>> unActivePosts(String token, int postId);
+  Future<Either<Failure, Unit>> unActivePost(String token, int postId);
   Future<Either<Failure, ReplyEntity>> replyToPost(
       String fullName, String email, String phone, Uint8List cv, int postId);
   Future<Either<Failure, List<ReplyEntity>>> showPostReplies(

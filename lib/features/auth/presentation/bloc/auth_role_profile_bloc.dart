@@ -63,7 +63,9 @@ class AuthRoleProfileBloc
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
         final result = await logoutUsecase.call(token);
-        result.fold((l) => {},
+        result.fold(
+            (l) => emit(state.copyWith(
+                authModelStatus: CasualStatus.success, message: l.message)),
             (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
       } else {
         emit(state.copyWith(
@@ -72,16 +74,12 @@ class AuthRoleProfileBloc
     });
     on<CheckAuthEvent>((event, emit) async {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final isFirst = prefs.getBool('firstTime');
-      if (isFirst != null) {
-        final token = prefs.getString('token');
-        if (token != null) {
-          emit(state.copyWith(authModelStatus: CasualStatus.success));
-        } else {
-          emit(state.copyWith(message: "No Token"));
-        }
+      final token = prefs.getString('token');
+      if (token != null) {
+        emit(state.copyWith(authModelStatus: CasualStatus.success));
       } else {
-        emit(state.copyWith(authModelStatus: CasualStatus.initial));
+        emit(state.copyWith(
+            message: "No Token", authModelStatus: CasualStatus.failure));
       }
     });
     // Role Bloc //

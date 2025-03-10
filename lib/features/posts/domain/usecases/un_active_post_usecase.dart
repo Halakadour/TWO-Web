@@ -12,6 +12,6 @@ class UnActivePostUsecase extends UseCase<Future<Either<Failure, Unit>>,
 
   @override
   Future<Either<Failure, Unit>> call(PostRepliesOrDeleteOrUnActiveParam param) {
-    return postRepo.unActivePosts(param.token, param.postId);
+    return postRepo.unActivePost(param.token, param.postId);
   }
 }

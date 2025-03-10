@@ -20,7 +20,7 @@ abstract class PostRemoteDatasource {
   Future<DeletePostResponesModel> deletePost(String token, int postId);
   Future<ShowPostResponesModel> showActivePosts();
   Future<ShowPostResponesModel> showUnActivePosts();
-  Future<Unit> unActivePosts(String token, int postId);
+  Future<Unit> unActivePost(String token, int postId);
   Future<ReplyToPostResponesModel> replyToPost(
       String fullName, String email, String phone, Uint8List cv, int postId);
   Future<AcceptReplyResponesModel> acceptReply(String token, int replyId);
@@ -68,7 +68,7 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   }
 
   @override
-  Future<Unit> unActivePosts(String token, int postId) async {
+  Future<Unit> unActivePost(String token, int postId) async {
     final result = GetWithTokenApi(
         uri: Uri.parse("$baseUri/api/un/activate/post/$id"),
         token: token,

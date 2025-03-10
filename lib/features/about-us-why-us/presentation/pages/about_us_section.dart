@@ -106,7 +106,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
                             itemCount: icons.length,
                             itemBuilder: (context, index) => WhyUsCard(
                                   icon: icons[index],
-                                  text: state.showWhyUsList[index].whyUsDoc,
+                                  text: state.showWhyUsList[index]!.whyUsDoc,
                                   isHover: ValueNotifier(false),
                                 ));
                       } else if (state.showWhyUsStatus ==

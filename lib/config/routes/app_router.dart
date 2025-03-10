@@ -13,7 +13,7 @@ import 'package:two_website/features/posts/presentation/pages/post_replies_page.
 import 'package:two_website/features/posts/presentation/pages/reply_to_post_page.dart';
 
 class AppRouter {
-  GoRouter router = GoRouter(initialLocation: '/main', routes: [
+  GoRouter router = GoRouter(initialLocation: '/', routes: [
     GoRoute(
       name: AppRouteConfig.landing,
       path: '/',

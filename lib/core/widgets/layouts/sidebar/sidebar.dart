@@ -5,6 +5,7 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/widgets/dialog/auth/auth_dialogs.dart';
 import 'package:two_website/core/widgets/layouts/sidebar/menu_item.dart';
 
 class CustomSidebar extends StatelessWidget {
@@ -101,12 +102,32 @@ class CustomSidebar extends StatelessWidget {
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),
-                    MenuItem(
-                      icon: IconsPath.logout,
-                      itemName: "logout",
-                      pageNum: 6,
-                      currentPage: currentPageIndex,
-                      onTap: onItemSelected,
+                    GestureDetector(
+                      onTap: () => AuthDialogs().logoutDialog(context),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: SizesConfig.xs),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: SvgPicture.asset(
+                                IconsPath.logout,
+                                // ignore: deprecated_member_use
+                                color: AppColors.fontLightColor,
+                              ),
+                            ),
+                            Text(
+                              "Logout",
+                              style: AppTextStyle.buttonStyle(
+                                color: AppColors.fontLightColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -5,8 +5,8 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
-class AddButton extends StatelessWidget {
-  const AddButton(
+class CreateButton extends StatelessWidget {
+  const CreateButton(
       {super.key, required this.addingType, required this.onPressed});
   final String addingType;
   final void Function()? onPressed;
@@ -31,7 +31,7 @@ class AddButton extends StatelessWidget {
               ),
               PaddingConfig.w8,
               Text(
-                "Add $addingType",
+                "create $addingType",
                 style: AppTextStyle.buttonStyle(color: AppColors.white),
               ),
             ],

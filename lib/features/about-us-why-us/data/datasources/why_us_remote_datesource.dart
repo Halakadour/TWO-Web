@@ -12,19 +12,19 @@ import 'package:two_website/features/about-us-why-us/domain/usecases/why-us-usec
 
 abstract class WhyUsRemoteDatesource {
   Future<ShowWhyUsResponesModel> showWhyUs();
-  Future<CreateWhyUsResponesModel> createWhyUs(CreateWhyUsParam whyUs);
+  Future<CreateWhyUsResponseModel> createWhyUs(CreateWhyUsParam whyUs);
   Future<UpdateWhyUsResponesModel> updateWhyUs(UpdateWhyUsParam whyUs);
   Future<DeleteWhyUsResponesModel> deleteWhyUs(DeleteWhyUsParam whyUs);
 }
 
 class WhyUsRemoteDatesourceImpl extends WhyUsRemoteDatesource {
   @override
-  Future<CreateWhyUsResponesModel> createWhyUs(CreateWhyUsParam whyUs) async {
+  Future<CreateWhyUsResponseModel> createWhyUs(CreateWhyUsParam whyUs) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/create/whyUS"),
         token: whyUs.token,
         body: ({'why_us': whyUs.whyUs}),
-        fromJson: createWhyUsResponesModelFromJson);
+        fromJson: createWhyUsResponseModelFromJson);
     return await result.call();
   }
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
@@ -10,9 +9,11 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/layouts/buttons/add_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/filter_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/posts/presentation/widgets/custom_posts_table.dart';
+import 'package:two_website/features/posts/presentation/widgets/loading_posts_table.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});
@@ -53,38 +54,18 @@ class _PostsPageState extends State<PostsPage> {
                       ),
                       Row(
                         children: [
-                          AddButton(
+                          CreateButton(
                             addingType: "Post",
                             onPressed: () {
                               context.pushNamed(AppRouteConfig.createPost);
                             },
                           ),
                           PaddingConfig.w8,
-                          IconButton(
-                              style: IconButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        color: AppColors.black,
-                                        width: .2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                          SizesConfig.borderRadiusSm))),
-                              onPressed: () {
-                                filterPosts(context);
-                              },
-                              icon: Row(
-                                children: [
-                                  const Icon(
-                                    Iconsax.setting_4,
-                                    size: SizesConfig.iconsSm,
-                                  ),
-                                  PaddingConfig.w8,
-                                  Text(
-                                    "filter",
-                                    style: AppTextStyle.buttonStyle(),
-                                  ),
-                                ],
-                              )),
+                          FilterButton(
+                            onPressed: () {
+                              filterPosts(context);
+                            },
+                          )
                         ],
                       )
                     ],
@@ -100,34 +81,31 @@ class _PostsPageState extends State<PostsPage> {
                               previous.unActivePostsListStatus !=
                                   current.unActivePostsListStatus),
                       builder: (context, state) {
-                        if (state.activePostsListStatus ==
-                                CasualStatus.loading ||
-                            state.unActivePostsListStatus ==
-                                CasualStatus.loading) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (state.activePostsListStatus ==
-                                CasualStatus.success ||
-                            state.unActivePostsListStatus ==
-                                CasualStatus.success) {
-                          return CustomPostsTable(
-                              activePostsList: actriveSelected.value
-                                  ? state.activePostsList
-                                  : state.unActivePostsList);
-                        } else if (state.activePostsListStatus ==
-                                CasualStatus.failure ||
-                            state.unActivePostsListStatus ==
-                                CasualStatus.failure) {
-                          return Text(state.message);
-                        } else {
-                          return const SizedBox();
-                        }
+                        return manageGetPostsUI(state);
                       },
                     ),
                   ),
                 ],
               ),
             )));
+  }
+
+  Widget manageGetPostsUI(PostState state) {
+    if (state.activePostsListStatus == CasualStatus.loading ||
+        state.unActivePostsListStatus == CasualStatus.loading) {
+      return const LoadingPostsTable();
+    } else if (state.activePostsListStatus == CasualStatus.success ||
+        state.unActivePostsListStatus == CasualStatus.success) {
+      return CustomPostsTable(
+          activePostsList: actriveSelected.value
+              ? state.activePostsList
+              : state.unActivePostsList);
+    } else if (state.activePostsListStatus == CasualStatus.failure ||
+        state.unActivePostsListStatus == CasualStatus.failure) {
+      return Text(state.message);
+    } else {
+      return const SizedBox();
+    }
   }
 
   void managePostState(PostState state, BuildContext context) {

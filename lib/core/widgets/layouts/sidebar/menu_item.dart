@@ -34,7 +34,8 @@ class MenuItem extends StatelessWidget {
         onExit: (_) {
           // Hover effect
         },
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: SizesConfig.animationDuration),
           margin: const EdgeInsets.symmetric(vertical: SizesConfig.xs),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

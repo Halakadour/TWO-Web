@@ -5,8 +5,9 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import '../../../../config/theme/color.dart';
 import '../../../../config/theme/text_style.dart';
 
+// ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
+  CustomTextFormField(
       {super.key,
       this.prefixIconPath,
       this.postfixIconPath,
@@ -15,11 +16,16 @@ class CustomTextFormField extends StatelessWidget {
       required this.controller,
       required this.validator,
       this.hintText,
+      this.hintStyle,
+      this.style,
       this.obscureText = false,
       this.filled = false,
       this.fillColor = Colors.transparent,
       this.border,
-      this.borderColor = AppColors.gray});
+      this.borderColor = AppColors.gray,
+      this.enabled,
+      this.autofocus = false,
+      this.focusNode});
 
   final String? prefixIconPath;
   final Widget? prefixIconWidget;
@@ -27,16 +33,25 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final String? hintText;
+  final TextStyle? hintStyle;
   final String labelText;
   final bool obscureText;
   final bool? filled;
   final Color? fillColor;
   final InputBorder? border;
   final Color? borderColor;
+  final TextStyle? style;
+  bool? enabled;
+  bool autofocus;
+  FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
+      focusNode: focusNode,
+      autofocus: autofocus,
+      style: style,
       autocorrect: true,
       controller: controller,
       validator: validator,
@@ -61,6 +76,7 @@ class CustomTextFormField extends StatelessWidget {
             style: AppTextStyle.textfieldStyle(),
           ),
           hintText: hintText,
+          hintStyle: hintStyle,
           border: border ??
               OutlineInputBorder(
                   borderRadius:

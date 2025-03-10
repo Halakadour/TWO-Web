@@ -9,7 +9,7 @@ class AboutUsWhyUsState {
   CasualStatus createWhyUsStatus;
   CasualStatus deleteWhyUsStatus;
   CasualStatus showWhyUsStatus;
-  List<WhyUsEntity> showWhyUsList;
+  List<WhyUsEntity?> showWhyUsList;
   CasualStatus updateWhyUsStatus;
 
   AboutUsWhyUsState(
@@ -33,7 +33,7 @@ class AboutUsWhyUsState {
     CasualStatus? createWhyUsStatus,
     CasualStatus? deleteWhyUsStatus,
     CasualStatus? showWhyUsStatus,
-    List<WhyUsEntity>? showWhyUsList,
+    List<WhyUsEntity?>? showWhyUsList,
     CasualStatus? updateWhyUsStatus,
   }) {
     return AboutUsWhyUsState(

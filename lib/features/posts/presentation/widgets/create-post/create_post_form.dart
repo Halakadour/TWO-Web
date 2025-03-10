@@ -48,86 +48,106 @@ class _CreatePostFormState extends State<CreatePostForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTextFormField(
-          filled: true,
-          fillColor: AppColors.fieldColor,
-          border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(SizesConfig.cardRadiusMd)),
-          prefixIconWidget: const Icon(Iconsax.direct_right),
-          labelText: 'Post Title',
-          controller: _postNameController,
-          validator: (p0) {
-            if (p0 != null) {
-              return null;
-            } else {
-              return "Please Add Title";
-            }
-          },
-        ),
-        PaddingConfig.h16,
-        Container(
-          width: double.infinity,
-          height: 300,
-          decoration: BoxDecoration(
-              color: AppColors.fieldColor,
-              borderRadius: BorderRadius.circular(12)),
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: imageBytes == null
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        _getImageFile();
-                      },
-                      child: SvgPicture.asset(
-                        IconsPath.upload,
-                        width: 20,
-                        // ignore: deprecated_member_use
-                        color: AppColors.greenShade2,
-                      ),
-                    ),
-                    Text(
-                      "select or drop an image",
-                      style:
-                          AppTextStyle.subtitle03(color: AppColors.greenShade2),
-                    ),
-                  ],
-                )
-              : CustomRoundedImage(
-                  imageType: ImageType.memory,
-                  memoryImage: imageBytes,
-                  borderRadius: 10,
-                ),
-        ),
-        PaddingConfig.h40,
-        SizedBox(
-          width: double.infinity,
-          child: CustomCartoonButton(
-            title: "Create",
-            onTap: () {
-              if (imageBytes == null) {
-                CustomQuickAlert().addImageAlert(context);
+    return BlocListener<PostBloc, PostState>(
+      listener: (context, state) {
+        if (state.createPostStatus == CasualStatus.loading) {
+          CustomQuickAlert().loadingAlert(context);
+        } else if (state.createPostStatus == CasualStatus.success) {
+          context.pop();
+          CustomQuickAlert().successAlert(context);
+          context.read<PostBloc>().add(GetActivePostsEvent());
+          context.pop();
+        } else if (state.createPostStatus == CasualStatus.failure) {
+          context.pop();
+          CustomQuickAlert().failureAlert(context, state.message);
+        } else if (state.createPostStatus == CasualStatus.noToken) {
+          context.pop();
+          CustomQuickAlert().noTokenAlert(context);
+        }
+      },
+      listenWhen: (previous, current) =>
+          previous.createPostStatus != current.createPostStatus,
+      child: Column(
+        children: [
+          CustomTextFormField(
+            filled: true,
+            fillColor: AppColors.fieldColor,
+            border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(SizesConfig.cardRadiusMd)),
+            prefixIconWidget: const Icon(Iconsax.direct_right),
+            labelText: 'Post Title',
+            controller: _postNameController,
+            validator: (p0) {
+              if (p0 != null) {
+                return null;
               } else {
-                context.read<PostBloc>().add(CreatePostEvent(
-                    image: imageBytes!, body: _postNameController.text));
+                return "Please Add Title";
               }
             },
           ),
-        ),
-        PaddingConfig.h16,
-        TextButton(
-            onPressed: () {
-              context.pop();
-            },
-            child: Text(
-              "Cancel",
-              style: AppTextStyle.buttonStyle(),
-            ))
-      ],
+          PaddingConfig.h16,
+          Container(
+            width: double.infinity,
+            height: 300,
+            decoration: BoxDecoration(
+                color: AppColors.fieldColor,
+                borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            child: imageBytes == null
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _getImageFile();
+                        },
+                        child: SvgPicture.asset(
+                          IconsPath.upload,
+                          width: 20,
+                          // ignore: deprecated_member_use
+                          color: AppColors.greenShade2,
+                        ),
+                      ),
+                      Text(
+                        "select or drop an image",
+                        style: AppTextStyle.subtitle03(
+                            color: AppColors.greenShade2),
+                      ),
+                    ],
+                  )
+                : CustomRoundedImage(
+                    imageType: ImageType.memory,
+                    memoryImage: imageBytes,
+                    borderRadius: 10,
+                  ),
+          ),
+          PaddingConfig.h40,
+          SizedBox(
+            width: double.infinity,
+            child: CustomCartoonButton(
+              title: "Create",
+              onTap: () {
+                if (imageBytes == null) {
+                  CustomQuickAlert().addImageAlert(context);
+                } else {
+                  context.read<PostBloc>().add(CreatePostEvent(
+                      image: imageBytes!, body: _postNameController.text));
+                }
+              },
+            ),
+          ),
+          PaddingConfig.h16,
+          TextButton(
+              onPressed: () {
+                context.pop();
+              },
+              child: Text(
+                "Cancel",
+                style: AppTextStyle.buttonStyle(),
+              ))
+        ],
+      ),
     );
   }
 }

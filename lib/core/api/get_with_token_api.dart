@@ -1,4 +1,4 @@
-import 'dart:convert';
+//import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
@@ -30,7 +30,7 @@ class GetWithTokenApi<T> with HandlingExceptionRequest {
         'Authorization': 'Bearer $token',
       };
       var request = http.Request('GET', uri);
-      request.body = jsonEncode(body);
+      //request.body = jsonEncode(body);
       request.headers.addAll(headers);
       http.StreamedResponse streamedResponse =
           await request.send().timeout(const Duration(seconds: 20));

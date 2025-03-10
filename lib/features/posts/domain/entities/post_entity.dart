@@ -1,10 +1,10 @@
 class PostEntity {
-  final int id;
-  final String image;
+  final int postId;
+  final String poster;
   final String body;
   PostEntity({
-    required this.id,
-    required this.image,
+    required this.postId,
+    required this.poster,
     required this.body,
   });
 }

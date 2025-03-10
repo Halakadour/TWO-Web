@@ -10,6 +10,10 @@ class TextStrings {
   static const String submit = "Submit";
   static const String appName = "Team Work Organizer";
   static const String tcontinue = "Contine";
+  static const String save = "Save";
+  static const String cancel = "Cancel";
+  static const String yes = "Yes";
+  static const String no = "No";
 
   // --ERROR Texts
   static const String noToken = "There is no token!";
