@@ -38,7 +38,7 @@ class WhyUsRepoImpl extends WhyUsRepo {
     return wrapHandling(
       tryCall: () async {
         final result = await whyUsRemoteDatesource.showWhyUs();
-        return Right([result.data]);
+        return Right(result.data);
       },
     );
   }

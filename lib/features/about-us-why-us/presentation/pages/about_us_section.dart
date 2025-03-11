@@ -103,7 +103,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
                       } else if (state.showWhyUsStatus ==
                           CasualStatus.success) {
                         return ListView.builder(
-                            itemCount: icons.length,
+                            itemCount: state.showWhyUsList.length,
                             itemBuilder: (context, index) => WhyUsCard(
                                   icon: icons[index],
                                   text: state.showWhyUsList[index]!.whyUsDoc,
