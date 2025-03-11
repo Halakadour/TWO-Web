@@ -39,7 +39,7 @@ class AboutUsWhyUsBloc extends Bloc<AboutUsWhyUsEvent, AboutUsWhyUsState> {
         (l) => emit(state.copyWith(
             showAboutUsStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
-            showAboutUsStatus: CasualStatus.success, showAboutUsList: r)),
+            showAboutUsStatus: CasualStatus.success, showAboutUsEntity: r)),
       );
     });
     on<CreateAboutUsEvent>((event, emit) async {

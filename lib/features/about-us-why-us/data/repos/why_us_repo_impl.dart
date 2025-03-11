@@ -23,7 +23,7 @@ class WhyUsRepoImpl extends WhyUsRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteWhyUs(String token, String whyUsId) {
+  Future<Either<Failure, Unit>> deleteWhyUs(String token, int whyUsId) {
     return wrapHandling(
       tryCall: () async {
         await whyUsRemoteDatesource
@@ -45,7 +45,7 @@ class WhyUsRepoImpl extends WhyUsRepo {
 
   @override
   Future<Either<Failure, Unit>> updateWhyUs(
-      String token, String whyUsId, String whyUs) {
+      String token, int whyUsId, String whyUs) {
     return wrapHandling(
       tryCall: () async {
         await whyUsRemoteDatesource.updateWhyUs(

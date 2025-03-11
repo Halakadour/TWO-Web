@@ -1,12 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
-import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
+import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/custom_linked_text.dart';
 import 'package:two_website/features/posts/domain/entities/post_entity.dart';
 
@@ -20,29 +17,6 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
-  Uint8List? imageBytes;
-
-  Future<void> fetchImage(String filename) async {
-    final response =
-        await http.post(Uri.parse('$baseUri/api/get/image?filename=$filename'));
-
-    if (response.statusCode == 200) {
-      print(response.statusCode);
-      setState(() {
-        imageBytes = response.bodyBytes;
-      });
-    } else {
-      print(response.statusCode);
-      throw Exception('Failed to load image');
-    }
-  }
-
-  @override
-  void didChangeDependencies() {
-    fetchImage(widget.postEntity.poster);
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,18 +40,7 @@ class _PostCardState extends State<PostCard> {
           ]),
       child: Column(
         children: [
-          imageBytes != null
-              ? Image.memory(imageBytes!)
-              : const CircularProgressIndicator(),
-          // CachedNetworkImage(
-          //   imageUrl: "$imageUri${postEntity.image}",
-          //   fadeInCurve: Curves.linear,
-          //   errorWidget: (context, url, error) => const Icon(Iconsax.image),
-          //   errorListener: (value) {
-          //     log(value.toString());
-          //   },
-          //   height: 200,
-          // ),
+          MemoryImageFetch(poster: widget.postEntity.poster),
           PaddingConfig.h8,
           Text(widget.postEntity.body),
           const Spacer(),

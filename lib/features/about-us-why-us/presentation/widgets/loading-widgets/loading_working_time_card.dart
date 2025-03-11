@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
-class WorkingTimeCard extends StatelessWidget {
-  const WorkingTimeCard({
+class LoadingWorkingTimeCard extends StatelessWidget {
+  const LoadingWorkingTimeCard({
     super.key,
-    required this.workingTime,
   });
-  final String workingTime;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +43,13 @@ class WorkingTimeCard extends StatelessWidget {
                       color: AppColors.blueShade2,
                     ),
                     PaddingConfig.w8,
-                    SizedBox(
-                      width: 500,
-                      child: Text(
-                        workingTime,
-                        style: AppTextStyle.subtitle03(
-                            color: AppColors.blueShade2),
+                    Shimmer.fromColors(
+                      baseColor: AppColors.blueShade1,
+                      highlightColor: AppColors.white,
+                      child: Container(
+                        height: 20,
+                        width: 60,
+                        color: Colors.white,
                       ),
                     ),
                   ],

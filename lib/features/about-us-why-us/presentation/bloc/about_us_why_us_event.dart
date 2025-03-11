@@ -34,7 +34,7 @@ class CreateWhyUsEvent extends AboutUsWhyUsEvent {
 }
 
 class UpdateWhyUsEvent extends AboutUsWhyUsEvent {
-  String whyUsId;
+  int whyUsId;
   String whyUs;
   UpdateWhyUsEvent({
     required this.whyUsId,
@@ -43,7 +43,7 @@ class UpdateWhyUsEvent extends AboutUsWhyUsEvent {
 }
 
 class DeleteWhyUsEvent extends AboutUsWhyUsEvent {
-  String whyUsId;
+  int whyUsId;
   DeleteWhyUsEvent({
     required this.whyUsId,
   });

@@ -31,7 +31,7 @@ class WhyUsRemoteDatesourceImpl extends WhyUsRemoteDatesource {
   @override
   Future<DeleteWhyUsResponesModel> deleteWhyUs(DeleteWhyUsParam whyUs) async {
     final result = GetWithTokenApi(
-        uri: Uri.parse("$baseUri/api/update/whyUS"),
+        uri: Uri.parse("$baseUri/api/delete/whyUs/${whyUs.whyUsId}"),
         token: whyUs.token,
         fromJson: deleteWhyUsResponesModelFromJson);
     return await result.callRequest();
@@ -47,11 +47,11 @@ class WhyUsRemoteDatesourceImpl extends WhyUsRemoteDatesource {
 
   @override
   Future<UpdateWhyUsResponesModel> updateWhyUs(UpdateWhyUsParam whyUs) async {
-    final result = GetWithTokenApi(
-        uri: Uri.parse("$baseUri/api/delete/whyUs/${whyUs.whyUsId}"),
+    final result = PostApiWithToken(
+        uri: Uri.parse("$baseUri/api/update/whyUS"),
         token: whyUs.token,
         body: ({'why_us': whyUs.whyUs, 'why_id': whyUs.whyUsId}),
         fromJson: updateWhyUsResponesModelFromJson);
-    return await result.callRequest();
+    return await result.call();
   }
 }

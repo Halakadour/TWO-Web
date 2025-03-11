@@ -1,8 +1,10 @@
 class AboutUsEntity {
-  final int aboutUsId;
-  final String workTime;
-  final String site;
+  final int aboutId;
+  final String aboutWorkTime;
+  final String aboutSite;
 
   AboutUsEntity(
-      {required this.aboutUsId, required this.workTime, required this.site});
+      {required this.aboutId,
+      required this.aboutWorkTime,
+      required this.aboutSite});
 }

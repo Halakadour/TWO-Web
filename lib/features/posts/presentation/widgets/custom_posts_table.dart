@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-// import 'package:two_website/core/network/enums.dart';
-// import 'package:two_website/core/widgets/images/custom_rounded_image.dart';
+import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
 import 'package:two_website/features/posts/domain/entities/post_entity.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/core/widgets/layouts/buttons/active_status_container.dart';
@@ -123,9 +121,8 @@ class CustomPostsTable extends StatelessWidget {
                       Text(activePostsList[index].body),
                     ),
                     DataCell(Center(
-                      child: Image.network(
-                          "$baseUri${activePostsList[index].poster}"),
-                    )),
+                        child: MemoryImageFetch(
+                            poster: activePostsList[index].poster))),
                     const DataCell(Center(child: ActiveStatusContainer())),
                     DataCell(Center(
                       child: BrowseButton(

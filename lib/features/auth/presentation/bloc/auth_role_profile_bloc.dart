@@ -59,17 +59,18 @@ class AuthRoleProfileBloc
               authModelStatus: CasualStatus.success, authModel: r.data)));
     });
     on<LogoutUserEvent>((event, emit) async {
-      emit(state.copyWith(authModelStatus: CasualStatus.loading));
+      emit(state.copyWith(logoutStatusStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
         final result = await logoutUsecase.call(token);
         result.fold(
             (l) => emit(state.copyWith(
-                authModelStatus: CasualStatus.success, message: l.message)),
-            (r) => emit(state.copyWith(authModelStatus: CasualStatus.failure)));
+                logoutStatusStatus: CasualStatus.failure, message: l.message)),
+            (r) =>
+                emit(state.copyWith(logoutStatusStatus: CasualStatus.success)));
       } else {
         emit(state.copyWith(
-            authModelStatus: CasualStatus.noToken, message: "No Token"));
+            logoutStatusStatus: CasualStatus.noToken, message: "No Token"));
       }
     });
     on<CheckAuthEvent>((event, emit) async {

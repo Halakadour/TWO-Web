@@ -7,6 +7,6 @@ abstract class WhyUsRepo with HandlingExceptionManager {
   Future<Either<Failure, List<WhyUsEntity?>>> showWhyUs();
   Future<Either<Failure, WhyUsEntity>> createWhyUs(String token, String whyUs);
   Future<Either<Failure, Unit>> updateWhyUs(
-      String token, String whyUsId, String whyUs);
-  Future<Either<Failure, Unit>> deleteWhyUs(String token, String whyUsId);
+      String token, int whyUsId, String whyUs);
+  Future<Either<Failure, Unit>> deleteWhyUs(String token, int whyUsId);
 }

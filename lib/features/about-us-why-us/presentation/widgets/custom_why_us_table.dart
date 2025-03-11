@@ -7,9 +7,9 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/dialog/global/global_dialogs.dart';
+import 'package:two_website/core/widgets/dialog/why-us-about-us/why_us_about_us_dialogs.dart';
 import 'package:two_website/core/widgets/layouts/buttons/edit_button.dart';
-import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/about-us-why-us/domain/entities/why_us_entity.dart';
 import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
 import 'package:two_website/core/widgets/layouts/buttons/delete_button.dart';
@@ -105,74 +105,33 @@ class CustomWhyUsTable extends StatelessWidget {
                     DataCell(Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BlocListener<AboutUsWhyUsBloc, AboutUsWhyUsState>(
-                          listener: (context, state) {
-                            updateWhyUsStateHandling(state, context);
+                        EditButton(
+                          onTap: () {
+                            AboutUsWhyUsDialogs().updateWhyUsDialog(
+                                context,
+                                TextEditingController(
+                                    text: whyUsList[index]!.whyUsDoc),
+                                whyUsList[index]!.whyUsId);
                           },
-                          listenWhen: (previous, current) =>
-                              previous.updateWhyUsStatus !=
-                              current.updateAboutUsStatus,
-                          child: EditButton(
-                            onTap: () {
-                              context.read<AboutUsWhyUsBloc>().add(
-                                  UpdateWhyUsEvent(
-                                      whyUsId:
-                                          whyUsList[index]!.whyUsId.toString(),
-                                      whyUs: whyUsList[index]!.whyUsDoc));
-                            },
-                          ),
                         ),
                         PaddingConfig.w8,
-                        BlocListener<AboutUsWhyUsBloc, AboutUsWhyUsState>(
-                          listener: (context, state) {
-                            deleteWhyUsStateHandling(state, context);
+                        DeleteButton(
+                          onTap: () {
+                            GlobalDialogs().confirmDeletionDialog(
+                              context,
+                              whyUsList[index]!.whyUsDoc,
+                              () {
+                                context.read<AboutUsWhyUsBloc>().add(
+                                    DeleteWhyUsEvent(
+                                        whyUsId: whyUsList[index]!.whyUsId));
+                                context.pop();
+                              },
+                            );
                           },
-                          listenWhen: (previous, current) =>
-                              previous.deleteWhyUsStatus !=
-                              current.deleteWhyUsStatus,
-                          child: DeleteButton(
-                            onTap: () {
-                              context.read<AboutUsWhyUsBloc>().add(
-                                  DeleteWhyUsEvent(
-                                      whyUsId: whyUsList[index]!
-                                          .whyUsId
-                                          .toString()));
-                            },
-                          ),
                         ),
                       ],
                     )),
                   ])),
     );
-  }
-
-  void updateWhyUsStateHandling(AboutUsWhyUsState state, BuildContext context) {
-    if (state.updateWhyUsStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
-    } else if (state.updateWhyUsStatus == CasualStatus.failure) {
-      context.pop();
-      CustomQuickAlert().successAlert(context);
-    } else if (state.updateWhyUsStatus == CasualStatus.success) {
-      context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
-    } else if (state.updateWhyUsStatus == CasualStatus.noToken) {
-      context.pop();
-      CustomQuickAlert().noTokenAlert(context);
-    }
-  }
-
-  void deleteWhyUsStateHandling(AboutUsWhyUsState state, BuildContext context) {
-    if (state.deleteWhyUsStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
-    } else if (state.deleteWhyUsStatus == CasualStatus.failure) {
-      context.pop();
-      CustomQuickAlert().successAlert(context);
-    } else if (state.deleteWhyUsStatus == CasualStatus.success) {
-      context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
-    } else if (state.deleteWhyUsStatus == CasualStatus.noToken) {
-      context.pop();
-      CustomQuickAlert().noTokenAlert(context);
-    }
   }
 }

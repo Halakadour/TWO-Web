@@ -23,11 +23,11 @@ class AboutUsRepoImpl extends AboutUsRepo {
   }
 
   @override
-  Future<Either<Failure, List<AboutUsEntity>>> showAboutUs() {
+  Future<Either<Failure, AboutUsEntity>> showAboutUs() {
     return wrapHandling(
       tryCall: () async {
         final result = await aboutUsRemoteDatasource.showAboutUs();
-        return Right([result.data]);
+        return Right(result.data);
       },
     );
   }
@@ -38,7 +38,7 @@ class AboutUsRepoImpl extends AboutUsRepo {
     return wrapHandling(
       tryCall: () async {
         await aboutUsRemoteDatasource
-            .updateAbout(UpdateAboutUsParam(token: token, aboutUs: aboutUs));
+            .updateAboutUs(UpdateAboutUsParam(token: token, aboutUs: aboutUs));
         return const Right(unit);
       },
     );

@@ -8,13 +8,15 @@ import 'package:two_website/config/theme/text_style.dart';
 class SiteCard extends StatelessWidget {
   const SiteCard({
     super.key,
+    required this.site,
   });
+  final String site;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: 130,
+        height: SizesConfig.cardHeight,
         padding: const EdgeInsets.all(SizesConfig.md),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(SizesConfig.borderRadiusMd),
@@ -23,19 +25,12 @@ class SiteCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   "Compony woking site",
                   style: AppTextStyle.subtitle01(color: AppColors.greenShade3),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Iconsax.edit,
-                    color: AppColors.greenShade2,
-                  ),
-                )
               ],
             ),
             PaddingConfig.h16,
@@ -47,7 +42,7 @@ class SiteCard extends StatelessWidget {
                 ),
                 PaddingConfig.w8,
                 Text(
-                  "Aleppo",
+                  site,
                   style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
                 ),
               ],

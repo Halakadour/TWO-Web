@@ -17,7 +17,7 @@ class DeleteWhyUsUsecase
 
 class DeleteWhyUsParam {
   final String token;
-  final String whyUsId;
+  final int whyUsId;
 
   DeleteWhyUsParam({required this.token, required this.whyUsId});
 }

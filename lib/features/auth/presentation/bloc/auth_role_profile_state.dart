@@ -6,6 +6,7 @@ class AuthRoleProfileState {
   //Auth States //
   CasualStatus authModelStatus;
   UserModel? authModel;
+  CasualStatus logoutStatusStatus;
   //Role States //
   List<RoleModel> roleWithoutClientList;
   CasualStatus roleWithoutClientListStatus;
@@ -19,6 +20,7 @@ class AuthRoleProfileState {
     this.message = "",
     this.authModelStatus = CasualStatus.initial,
     this.authModel,
+    this.logoutStatusStatus = CasualStatus.initial,
     this.roleWithoutClientList = const [],
     this.roleWithoutClientListStatus = CasualStatus.initial,
     this.roleList = const [],
@@ -31,6 +33,7 @@ class AuthRoleProfileState {
     String? message,
     CasualStatus? authModelStatus,
     UserModel? authModel,
+    CasualStatus? logoutStatusStatus,
     List<RoleModel>? roleWithoutClientList,
     CasualStatus? roleWithoutClientListStatus,
     List<RoleModel>? roleList,
@@ -41,6 +44,7 @@ class AuthRoleProfileState {
     return AuthRoleProfileState(
       message: message ?? this.message,
       authModelStatus: authModelStatus ?? this.authModelStatus,
+      logoutStatusStatus: logoutStatusStatus ?? this.logoutStatusStatus,
       authModel: authModel ?? this.authModel,
       roleWithoutClientList:
           roleWithoutClientList ?? this.roleWithoutClientList,

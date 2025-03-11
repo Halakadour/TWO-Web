@@ -17,7 +17,7 @@ class UpdateWhyUsUsecase
 
 class UpdateWhyUsParam {
   final String token;
-  final String whyUsId;
+  final int whyUsId;
   final String whyUs;
 
   UpdateWhyUsParam(

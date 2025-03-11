@@ -5,13 +5,13 @@ import 'package:two_website/features/about-us-why-us/domain/entities/about_us_en
 import 'package:two_website/features/about-us-why-us/domain/repos/about_us_repo.dart';
 
 class ShowAboutUsUsecase
-    extends NoParamUseCase<Future<Either<Failure, List<AboutUsEntity>>>> {
+    extends NoParamUseCase<Future<Either<Failure, AboutUsEntity>>> {
   final AboutUsRepo aboutUsRepo;
 
   ShowAboutUsUsecase(this.aboutUsRepo);
 
   @override
-  Future<Either<Failure, List<AboutUsEntity>>> call() {
+  Future<Either<Failure, AboutUsEntity>> call() {
     return aboutUsRepo.showAboutUs();
   }
 }

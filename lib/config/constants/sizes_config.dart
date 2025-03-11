@@ -56,6 +56,7 @@ class SizesConfig {
   static const double cardRadiusMd = 12.0;
   static const double cardRadiusLg = 16.0;
   static const double cardElevation = 2.0;
+  static const double cardHeight = 150;
 
   // Loading indicator size
   static const double loadingIndicatorSize = 36.0;

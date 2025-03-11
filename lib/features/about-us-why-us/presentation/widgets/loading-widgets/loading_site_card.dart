@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
-class WorkingTimeCard extends StatelessWidget {
-  const WorkingTimeCard({
+class LoadingSiteCard extends StatelessWidget {
+  const LoadingSiteCard({
     super.key,
-    required this.workingTime,
   });
-  final String workingTime;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class WorkingTimeCard extends StatelessWidget {
         padding: const EdgeInsets.all(SizesConfig.md),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(SizesConfig.borderRadiusMd),
-            color: const Color(0xFFC3D8F5)),
+            color: AppColors.greenShade1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,32 +27,28 @@ class WorkingTimeCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "Compony woking time",
-                  style: AppTextStyle.subtitle01(color: AppColors.blueShade3),
+                  "Compony woking site",
+                  style: AppTextStyle.subtitle01(color: AppColors.greenShade3),
                 ),
               ],
             ),
             PaddingConfig.h16,
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Iconsax.calendar,
-                      color: AppColors.blueShade2,
-                    ),
-                    PaddingConfig.w8,
-                    SizedBox(
-                      width: 500,
-                      child: Text(
-                        workingTime,
-                        style: AppTextStyle.subtitle03(
-                            color: AppColors.blueShade2),
-                      ),
-                    ),
-                  ],
+                const Icon(
+                  Iconsax.building_3,
+                  color: AppColors.greenShade2,
                 ),
+                PaddingConfig.w8,
+                Shimmer.fromColors(
+                  baseColor: AppColors.greenShade1,
+                  highlightColor: AppColors.white,
+                  child: Container(
+                    height: 20,
+                    width: 50,
+                    color: Colors.white,
+                  ),
+                )
               ],
             ),
           ],

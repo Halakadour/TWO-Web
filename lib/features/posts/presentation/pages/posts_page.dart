@@ -8,7 +8,7 @@ import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/layouts/buttons/add_button.dart';
+import 'package:two_website/core/widgets/layouts/buttons/create_button.dart';
 import 'package:two_website/core/widgets/layouts/buttons/filter_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';

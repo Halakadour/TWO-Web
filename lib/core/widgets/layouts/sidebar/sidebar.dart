@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/widgets/dialog/auth/auth_dialogs.dart';
 import 'package:two_website/core/widgets/layouts/sidebar/menu_item.dart';
+import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 
 class CustomSidebar extends StatelessWidget {
   const CustomSidebar({
@@ -56,7 +63,7 @@ class CustomSidebar extends StatelessWidget {
                       itemName: "Dashboard",
                       pageNum: 0,
                       currentPage: currentPageIndex,
-                      onTap: onItemSelected, // Pass callback
+                      onTap: onItemSelected,
                     ),
                     MenuItem(
                       icon: IconsPath.threeUsers,
@@ -102,31 +109,16 @@ class CustomSidebar extends StatelessWidget {
                       currentPage: currentPageIndex,
                       onTap: onItemSelected,
                     ),
-                    GestureDetector(
-                      onTap: () => AuthDialogs().logoutDialog(context),
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: SizesConfig.xs),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              child: SvgPicture.asset(
-                                IconsPath.logout,
-                                // ignore: deprecated_member_use
-                                color: AppColors.fontLightColor,
-                              ),
-                            ),
-                            Text(
-                              "Logout",
-                              style: AppTextStyle.buttonStyle(
-                                color: AppColors.fontLightColor,
-                              ),
-                            ),
-                          ],
-                        ),
+                    BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
+                      listener: (context, state) {
+                        logoutStateHandling(state, context);
+                      },
+                      listenWhen: (previous, current) =>
+                          previous.logoutStatusStatus !=
+                          current.logoutStatusStatus,
+                      child: GestureDetector(
+                        onTap: () => AuthDialogs().logoutDialog(context),
+                        child: const LogoutWidget(),
                       ),
                     ),
                   ],
@@ -135,6 +127,56 @@ class CustomSidebar extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void logoutStateHandling(
+      AuthRoleProfileState state, BuildContext context) async {
+    if (state.logoutStatusStatus == CasualStatus.loading) {
+      CustomQuickAlert().loadingAlert(context);
+    } else if (state.logoutStatusStatus == CasualStatus.success) {
+      context.pop();
+      await SharedPreferencesServices.deleteUserToken();
+      CustomQuickAlert().successAlert(context);
+      context.pushReplacementNamed(AppRouteConfig.landing);
+    } else if (state.authModelStatus == CasualStatus.failure) {
+      context.pop();
+      CustomQuickAlert().failureAlert(context, state.message);
+    } else if (state.authModelStatus == CasualStatus.noToken) {
+      context.pop();
+      CustomQuickAlert().noTokenAlert(context);
+    }
+  }
+}
+
+class LogoutWidget extends StatelessWidget {
+  const LogoutWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: SizesConfig.xs),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: SvgPicture.asset(
+              IconsPath.logout,
+              // ignore: deprecated_member_use
+              color: AppColors.fontLightColor,
+            ),
+          ),
+          Text(
+            "Logout",
+            style: AppTextStyle.buttonStyle(
+              color: AppColors.fontLightColor,
+            ),
+          ),
+        ],
       ),
     );
   }

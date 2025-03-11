@@ -4,7 +4,7 @@ class AboutUsWhyUsState {
   String message;
   CasualStatus createAboutUsStatus;
   CasualStatus showAboutUsStatus;
-  List<AboutUsEntity> showAboutUsList;
+  AboutUsEntity? showAboutUsEntity;
   CasualStatus updateAboutUsStatus;
   CasualStatus createWhyUsStatus;
   CasualStatus deleteWhyUsStatus;
@@ -16,7 +16,7 @@ class AboutUsWhyUsState {
       {this.message = "",
       this.createAboutUsStatus = CasualStatus.initial,
       this.showAboutUsStatus = CasualStatus.initial,
-      this.showAboutUsList = const [],
+      this.showAboutUsEntity,
       this.updateAboutUsStatus = CasualStatus.initial,
       this.createWhyUsStatus = CasualStatus.initial,
       this.deleteWhyUsStatus = CasualStatus.initial,
@@ -28,7 +28,7 @@ class AboutUsWhyUsState {
     String? message,
     CasualStatus? createAboutUsStatus,
     CasualStatus? showAboutUsStatus,
-    List<AboutUsEntity>? showAboutUsList,
+    AboutUsEntity? showAboutUsEntity,
     CasualStatus? updateAboutUsStatus,
     CasualStatus? createWhyUsStatus,
     CasualStatus? deleteWhyUsStatus,
@@ -40,7 +40,7 @@ class AboutUsWhyUsState {
       message: message ?? this.message,
       createAboutUsStatus: createAboutUsStatus ?? this.createAboutUsStatus,
       showAboutUsStatus: showAboutUsStatus ?? this.showAboutUsStatus,
-      showAboutUsList: showAboutUsList ?? this.showAboutUsList,
+      showAboutUsEntity: showAboutUsEntity ?? this.showAboutUsEntity,
       updateAboutUsStatus: updateAboutUsStatus ?? this.updateAboutUsStatus,
       createWhyUsStatus: createWhyUsStatus ?? this.createWhyUsStatus,
       deleteWhyUsStatus: deleteWhyUsStatus ?? this.deleteWhyUsStatus,
