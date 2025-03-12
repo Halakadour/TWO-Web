@@ -16,7 +16,7 @@ class FilterButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 side: const BorderSide(
                   color: AppColors.black,
-                  width: .2,
+                  width: .3,
                 ),
                 borderRadius:
                     BorderRadius.circular(SizesConfig.borderRadiusSm))),
@@ -24,7 +24,7 @@ class FilterButton extends StatelessWidget {
         icon: Row(
           children: [
             const Icon(
-              Iconsax.setting_4,
+              Iconsax.filter,
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,

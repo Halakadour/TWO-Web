@@ -5,7 +5,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/features/posts/presentation/widgets/loading_posts_table.dart';
+import 'package:two_website/core/widgets/shimmers/shimmer_table_item.dart';
 
 class LoadingWhyUsTable extends StatelessWidget {
   const LoadingWhyUsTable({super.key});

@@ -9,10 +9,10 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/dialog/global/global_dialogs.dart';
 import 'package:two_website/core/widgets/dialog/why-us-about-us/why_us_about_us_dialogs.dart';
-import 'package:two_website/core/widgets/layouts/buttons/edit_button.dart';
+import 'package:two_website/core/widgets/buttons/edit_button.dart';
 import 'package:two_website/features/about-us-why-us/domain/entities/why_us_entity.dart';
 import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
-import 'package:two_website/core/widgets/layouts/buttons/delete_button.dart';
+import 'package:two_website/core/widgets/buttons/delete_button.dart';
 
 class CustomWhyUsTable extends StatelessWidget {
   const CustomWhyUsTable({super.key, required this.whyUsList});

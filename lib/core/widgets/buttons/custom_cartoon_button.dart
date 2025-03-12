@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 
-import '../../../../config/constants/padding_config.dart';
-import '../../../../config/strings/assets_path.dart';
-import '../../../../config/theme/color.dart';
-import '../../../../config/theme/text_style.dart';
+import '../../../config/constants/padding_config.dart';
+import '../../../config/strings/assets_path.dart';
+import '../../../config/theme/color.dart';
+import '../../../config/theme/text_style.dart';
 
 // ignore: must_be_immutable
 class CustomCartoonButton extends StatelessWidget {

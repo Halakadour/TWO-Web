@@ -16,7 +16,7 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
 
 class FillEmployeeProfileBody extends StatefulWidget {

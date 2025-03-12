@@ -1,11 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/widgets/shimmers/shimmer_table_item.dart';
 
 class LoadingPostsTable extends StatelessWidget {
   const LoadingPostsTable({super.key});
@@ -112,25 +112,6 @@ class LoadingPostsTable extends StatelessWidget {
                     DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),
                   ])),
-    );
-  }
-}
-
-class ShimmerTableItem extends StatelessWidget {
-  const ShimmerTableItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      child: Container(
-        height: 20,
-        width: 60,
-        color: Colors.white,
-      ),
     );
   }
 }

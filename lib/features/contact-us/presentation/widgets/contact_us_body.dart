@@ -8,7 +8,7 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
-import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 
 class ContactUsBody extends StatefulWidget {
   const ContactUsBody({super.key});

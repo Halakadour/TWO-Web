@@ -11,10 +11,10 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
 import 'package:two_website/features/posts/domain/entities/post_entity.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'package:two_website/core/widgets/layouts/buttons/active_status_container.dart';
-import 'package:two_website/core/widgets/layouts/buttons/browse_button.dart';
-import 'package:two_website/core/widgets/layouts/buttons/deactive_button.dart';
-import 'package:two_website/core/widgets/layouts/buttons/delete_button.dart';
+import 'package:two_website/core/widgets/buttons/active_status_container.dart';
+import 'package:two_website/core/widgets/buttons/browse_button.dart';
+import 'package:two_website/core/widgets/buttons/deactive_button.dart';
+import 'package:two_website/core/widgets/buttons/delete_button.dart';
 
 class CustomPostsTable extends StatelessWidget {
   const CustomPostsTable({super.key, required this.activePostsList});

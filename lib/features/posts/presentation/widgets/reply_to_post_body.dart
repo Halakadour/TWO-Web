@@ -15,7 +15,7 @@ import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
-import 'package:two_website/core/widgets/layouts/buttons/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 
 class ReplyToPostBody extends StatefulWidget {
