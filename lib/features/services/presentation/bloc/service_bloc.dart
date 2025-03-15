@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bloc/bloc.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 
@@ -47,8 +49,8 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       emit(state.copyWith(deleteServiceStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
-        final result =
-            await deleteServiceUsecase.call(event.deleteServiceParam);
+        final result = await deleteServiceUsecase
+            .call(DeleteServiceParam(token: token, serviceId: event.serviceId));
         result.fold(
           (l) => emit(state.copyWith(
               deleteServiceStatus: CasualStatus.failure, message: l.message)),
@@ -77,8 +79,12 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       emit(state.copyWith(updateServiceStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
-        final result =
-            await updateServiceUsecase.call(event.updateServiceParam);
+        final result = await updateServiceUsecase.call(UpdateServiceParam(
+            token: token,
+            serviceId: event.serviceId,
+            title: event.title,
+            description: event.description,
+            image: event.image));
         result.fold(
           (l) => emit(state.copyWith(
               updateServiceStatus: CasualStatus.failure, message: l.message)),

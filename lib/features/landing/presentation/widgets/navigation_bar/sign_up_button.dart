@@ -48,7 +48,7 @@ class _SignUpButtonState extends State<SignUpButton> {
     if (isVisiter) {
       context.pushNamed(AppRouteConfig.login);
     } else {
-      context.pushNamed(AppRouteConfig.main);
+      context.pushNamed(AppRouteConfig.dashboard);
     }
   }
 }

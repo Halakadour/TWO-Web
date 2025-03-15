@@ -12,15 +12,21 @@ class CreateServiceEvent extends ServiceEvent {
 class ShowServicesEvent extends ServiceEvent {}
 
 class DeleteServiceEvent extends ServiceEvent {
-  DeleteServiceParam deleteServiceParam;
+  final String serviceId;
   DeleteServiceEvent({
-    required this.deleteServiceParam,
+    required this.serviceId,
   });
 }
 
 class UpdateServiceEvent extends ServiceEvent {
-  UpdateServiceParam updateServiceParam;
-  UpdateServiceEvent({
-    required this.updateServiceParam,
-  });
+  final String serviceId;
+  final String title;
+  final String description;
+  final Uint8List image;
+
+  UpdateServiceEvent(
+      {required this.serviceId,
+      required this.title,
+      required this.description,
+      required this.image});
 }

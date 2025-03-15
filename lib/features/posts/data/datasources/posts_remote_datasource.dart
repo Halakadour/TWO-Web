@@ -107,7 +107,7 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   Future<ShowPostRepliesResponesModel> showPostAcceptedReplies(
       String token, int postId) async {
     final result = GetWithTokenApi(
-        uri: Uri.parse("$baseUri/api/show/post/replies/$postId"),
+        uri: Uri.parse("$baseUri/api/show/accepted/post/replies/$postId"),
         token: token,
         fromJson: showPostRepliesResponesModelFromJson);
     return await result.callRequest();
@@ -117,7 +117,7 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   Future<ShowPostRepliesResponesModel> showPostReplies(
       String token, int postId) async {
     final result = GetWithTokenApi(
-        uri: Uri.parse("$baseUri/api/show/accepted/post/replies/$postId"),
+        uri: Uri.parse("$baseUri/api/show/post/replies/$postId"),
         token: token,
         fromJson: showPostRepliesResponesModelFromJson);
     return await result.callRequest();

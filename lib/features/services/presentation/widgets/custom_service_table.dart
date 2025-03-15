@@ -1,29 +1,36 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
-import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
+import 'package:two_website/core/widgets/buttons/edit_button.dart';
 import 'package:two_website/core/widgets/data-tables/custom_data_table.dart';
 import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
-import 'package:two_website/features/posts/domain/entities/post_entity.dart';
-import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'package:two_website/core/widgets/buttons/active_status_container.dart';
-import 'package:two_website/core/widgets/buttons/browse_button.dart';
-import 'package:two_website/core/widgets/buttons/deactive_button.dart';
 import 'package:two_website/core/widgets/buttons/delete_button.dart';
+import 'package:two_website/features/services/domain/entities/service_entity.dart';
+import 'package:two_website/features/services/presentation/bloc/service_bloc.dart';
 
-class CustomPostsTable extends StatelessWidget {
-  const CustomPostsTable({super.key, required this.activePostsList});
-  final List<PostEntity> activePostsList;
+class CustomServiceTable extends StatelessWidget {
+  const CustomServiceTable({super.key, required this.serviceList});
+  final List<ServiceEntity> serviceList;
 
   @override
   Widget build(BuildContext context) {
     return CustomDataTable(
       columns: const [
+        DataColumn2(
+            label: Row(
+          children: [
+            Icon(
+              Iconsax.hashtag,
+              size: SizesConfig.iconsMd,
+            ),
+            PaddingConfig.w8,
+            Text("ID")
+          ],
+        )),
         DataColumn2(
             label: Row(
           children: [
@@ -37,6 +44,17 @@ class CustomPostsTable extends StatelessWidget {
         )),
         DataColumn2(
             label: Row(
+          children: [
+            Icon(
+              Iconsax.archive_1,
+              size: SizesConfig.iconsMd,
+            ),
+            PaddingConfig.w8,
+            Text("Description")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
@@ -44,31 +62,7 @@ class CustomPostsTable extends StatelessWidget {
               size: SizesConfig.iconsMd,
             ),
             PaddingConfig.w8,
-            Text("Poster")
-          ],
-        )),
-        DataColumn2(
-            label: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Iconsax.status,
-              size: SizesConfig.iconsMd,
-            ),
-            PaddingConfig.w8,
-            Text("Status")
-          ],
-        )),
-        DataColumn2(
-            label: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Iconsax.message_notif,
-              size: SizesConfig.iconsMd,
-            ),
-            PaddingConfig.w8,
-            Text("Replies")
+            Text("Image")
           ],
         )),
         DataColumn2(
@@ -85,44 +79,37 @@ class CustomPostsTable extends StatelessWidget {
         )),
       ],
       rows: List<DataRow>.generate(
-          activePostsList.length,
+          serviceList.length,
           (index) => DataRow(
                   color: WidgetStateColor.resolveWith((states) =>
                       index.isEven ? AppColors.white : AppColors.fieldColor),
                   cells: [
                     DataCell(
-                      Text(activePostsList[index].body),
+                      Text("${serviceList[index].idE}"),
+                    ),
+                    DataCell(
+                      Text(serviceList[index].titleE),
+                    ),
+                    DataCell(
+                      Text(serviceList[index].descriptionE),
                     ),
                     DataCell(Center(
                         child: MemoryImageFetch(
-                            poster: activePostsList[index].poster))),
-                    const DataCell(Center(child: ActiveStatusContainer())),
-                    DataCell(Center(
-                      child: BrowseButton(
-                        onTap: () {
-                          context.pushNamed(AppRouteConfig.postReplies,
-                              pathParameters: {
-                                'id': activePostsList[index].postId.toString(),
-                              });
-                        },
-                      ),
-                    )),
+                            poster: serviceList[index].imageE))),
                     DataCell(Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DeactivateButton(
-                          onTap: () {
-                            context.read<PostBloc>().add(UnActivePostEvent(
-                                postId: activePostsList[index].postId));
-                            context.read<PostBloc>().add(GetActivePostsEvent());
-                          },
+                        EditButton(
+                          onTap: () {},
                         ),
                         PaddingConfig.w8,
                         DeleteButton(
                           onTap: () {
-                            context.read<PostBloc>().add(DeletePostEvent(
-                                postId: activePostsList[index].postId));
-                            context.read<PostBloc>().add(GetActivePostsEvent());
+                            context.read<ServiceBloc>().add(DeleteServiceEvent(
+                                serviceId: serviceList[index].idE.toString()));
+                            context
+                                .read<ServiceBloc>()
+                                .add(ShowServicesEvent());
                           },
                         ),
                       ],
