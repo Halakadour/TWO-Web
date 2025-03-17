@@ -12,22 +12,21 @@ class CustomDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable2(
+        isVerticalScrollBarVisible: true,
+        isHorizontalScrollBarVisible: true,
         border: TableBorder.all(
             color: AppColors.rockShade2,
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(SizesConfig.borderRadiusSm),
                 topRight: Radius.circular(SizesConfig.borderRadiusSm)),
             width: .4),
-        showCheckboxColumn: true,
-        showHeadingCheckBox: true,
-        showBottomBorder: false,
-        columnSpacing: 12,
-        dataRowHeight: 60,
+        columnSpacing: 8,
+        dataRowHeight: 50,
         minWidth: 500,
         dividerThickness: .2,
-        horizontalMargin: 20,
-        headingRowHeight: 56,
-        headingTextStyle: AppTextStyle.subtitle01(),
+        horizontalMargin: 16,
+        headingRowHeight: 50,
+        headingTextStyle: AppTextStyle.subtitle02(),
         headingRowColor: WidgetStateColor.resolveWith(
           (states) => AppColors.blueShade1,
         ),

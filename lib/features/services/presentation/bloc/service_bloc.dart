@@ -30,8 +30,11 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       emit(state.copyWith(createServiceStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
-        final result =
-            await createServiceUsecase.call(event.createServiceParam);
+        final result = await createServiceUsecase.call(CreateServiceParam(
+            token: token,
+            title: event.title,
+            description: event.description,
+            image: event.image));
         result.fold(
           (l) => emit(state.copyWith(
               createServiceStatus: CasualStatus.failure, message: l.message)),

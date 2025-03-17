@@ -28,7 +28,7 @@ class CustomWhyUsTable extends StatelessWidget {
               children: [
                 Icon(
                   Iconsax.hashtag,
-                  size: SizesConfig.iconsMd,
+                  size: SizesConfig.iconsSm,
                 ),
                 PaddingConfig.w8,
                 Text("ID")
@@ -40,7 +40,7 @@ class CustomWhyUsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.archive_1,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Title")
@@ -52,7 +52,7 @@ class CustomWhyUsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.chart_3,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Actions")

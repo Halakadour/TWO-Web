@@ -11,6 +11,7 @@ class SizesConfig {
   static const double iconsSm = 16.0;
   static const double iconsMd = 24.0;
   static const double iconsLg = 32.0;
+  static const double iconsXl = 50.0;
 
   // Font sizes
   static const double fontSizeSm = 12.0;

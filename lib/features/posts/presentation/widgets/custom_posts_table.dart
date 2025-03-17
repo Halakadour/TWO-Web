@@ -11,7 +11,7 @@ import 'package:two_website/core/widgets/data-tables/custom_data_table.dart';
 import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
 import 'package:two_website/features/posts/domain/entities/post_entity.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
-import 'package:two_website/core/widgets/buttons/active_status_container.dart';
+import 'package:two_website/core/widgets/status-boxes/active_status_container.dart';
 import 'package:two_website/core/widgets/buttons/browse_button.dart';
 import 'package:two_website/core/widgets/buttons/deactive_button.dart';
 import 'package:two_website/core/widgets/buttons/delete_button.dart';
@@ -29,7 +29,7 @@ class CustomPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.archive_1,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Title")
@@ -41,7 +41,7 @@ class CustomPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.gallery,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Poster")
@@ -53,7 +53,7 @@ class CustomPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.status,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Status")
@@ -65,7 +65,7 @@ class CustomPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.message_notif,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Replies")
@@ -77,7 +77,7 @@ class CustomPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.chart_3,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Actions")

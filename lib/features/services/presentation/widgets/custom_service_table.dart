@@ -25,7 +25,7 @@ class CustomServiceTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.hashtag,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("ID")
@@ -36,7 +36,7 @@ class CustomServiceTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.archive_1,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Title")
@@ -47,7 +47,7 @@ class CustomServiceTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.archive_1,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Description")
@@ -59,7 +59,7 @@ class CustomServiceTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.gallery,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Image")
@@ -71,7 +71,7 @@ class CustomServiceTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.chart_3,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Actions")

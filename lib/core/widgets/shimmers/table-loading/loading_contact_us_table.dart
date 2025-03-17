@@ -7,8 +7,8 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/widgets/data-tables/custom_data_table.dart';
 import 'package:two_website/core/widgets/shimmers/shimmer_table_item.dart';
 
-class LoadingServiceTable extends StatelessWidget {
-  const LoadingServiceTable({super.key});
+class LoadingContactUsTable extends StatelessWidget {
+  const LoadingContactUsTable({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +18,67 @@ class LoadingServiceTable extends StatelessWidget {
             label: Row(
           children: [
             Icon(
-              Iconsax.hashtag,
+              Iconsax.gallery,
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("ID")
+            Text("Profile")
           ],
         )),
         DataColumn2(
             label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Iconsax.archive_1,
+              Iconsax.frame_1,
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("Title")
+            Text("Name")
           ],
         )),
         DataColumn2(
             label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.message,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Email")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.call,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Phone")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Iconsax.document,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Subject")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.edit,
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
@@ -52,11 +90,11 @@ class LoadingServiceTable extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Iconsax.gallery,
+              Iconsax.activity,
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("Image")
+            Text("Status")
           ],
         )),
         DataColumn2(
@@ -73,11 +111,14 @@ class LoadingServiceTable extends StatelessWidget {
         )),
       ],
       rows: List<DataRow>.generate(
-          4,
+          8,
           (index) => DataRow(
                   color: WidgetStateColor.resolveWith((states) =>
                       index.isEven ? AppColors.white : AppColors.fieldColor),
                   cells: const [
+                    DataCell(Center(child: ShimmerTableItem())),
+                    DataCell(Center(child: ShimmerTableItem())),
+                    DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),

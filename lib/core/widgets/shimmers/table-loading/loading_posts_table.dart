@@ -18,7 +18,7 @@ class LoadingPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.archive_1,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Title")
@@ -30,7 +30,7 @@ class LoadingPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.gallery,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Poster")
@@ -42,7 +42,7 @@ class LoadingPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.status,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Status")
@@ -54,7 +54,7 @@ class LoadingPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.message_notif,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Replies")
@@ -66,7 +66,7 @@ class LoadingPostsTable extends StatelessWidget {
           children: [
             Icon(
               Iconsax.chart_3,
-              size: SizesConfig.iconsMd,
+              size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
             Text("Actions")

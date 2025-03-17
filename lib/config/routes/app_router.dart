@@ -16,6 +16,7 @@ import 'package:two_website/features/posts/presentation/pages/posts_page.dart';
 import 'package:two_website/features/posts/presentation/pages/reply_to_post_page.dart';
 import 'package:two_website/features/profile/presentation/pages/accounts_page.dart';
 import 'package:two_website/features/profile/presentation/pages/setting_page.dart';
+import 'package:two_website/features/services/presentation/pages/create-service.dart/create_service_page.dart';
 import 'package:two_website/features/services/presentation/pages/services_page.dart';
 import 'package:two_website/features/services/presentation/pages/update_service_page.dart';
 
@@ -94,7 +95,7 @@ class AppRouter {
             GoRoute(
               name: AppRouteConfig.createService,
               path: '/services/createService',
-              builder: (context, state) => const CreatePostPage(),
+              builder: (context, state) => const CreateServicePage(),
             ),
             // update service page
             GoRoute(

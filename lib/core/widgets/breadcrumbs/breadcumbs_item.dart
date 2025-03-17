@@ -24,7 +24,7 @@ class Breadcrumbs extends StatelessWidget {
               child: Text(pages[index],
                   style: AppTextStyle.subtitle03(
                       color: isLast
-                          ? AppColors.greenShade3
+                          ? AppColors.greenShade2
                           : AppColors.fontLightColor)),
             ),
           ],

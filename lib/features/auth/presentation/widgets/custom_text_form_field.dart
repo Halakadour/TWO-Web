@@ -25,7 +25,8 @@ class CustomTextFormField extends StatelessWidget {
       this.borderColor = AppColors.gray,
       this.enabled,
       this.autofocus = false,
-      this.focusNode});
+      this.focusNode,
+      this.maxLines = 1});
 
   final String? prefixIconPath;
   final Widget? prefixIconWidget;
@@ -44,10 +45,12 @@ class CustomTextFormField extends StatelessWidget {
   bool? enabled;
   bool autofocus;
   FocusNode? focusNode;
+  int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       enabled: enabled,
       focusNode: focusNode,
       autofocus: autofocus,
@@ -59,6 +62,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
           filled: filled,
           fillColor: fillColor,
+          alignLabelWithHint: true,
           prefixIcon: prefixIconPath == null
               ? prefixIconWidget
               : Padding(
