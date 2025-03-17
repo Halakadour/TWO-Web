@@ -91,3 +91,9 @@ class ImagesPath {
   static const diagram = '${_pngImagesPath}Diagram.png';
   static const message = '${_pngImagesPath}Message.png';
 }
+
+class JsonPath {
+  static const _animationImagesPath = 'assets/animation/';
+  // ANIMATIONs //
+  static const success = '${_animationImagesPath}success.json';
+}

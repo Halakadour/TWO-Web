@@ -32,12 +32,10 @@ class TextStrings {
   static const String craeteAccount = "Create Account";
   static const String orSignInWith = "Or sign in with";
   static const String orSignUpWith = "Or sign up with";
-  static const String nameValidation =
-      "Plaese enter a valid name has 3 letteres at least.";
-  static const String emailValidation = "Plaese enter a valid email.";
-  static const String passwordValidation =
-      "Plaese password with 8 charaters at least.";
-  static const String confirmPasswordValidation = "Passwords does not match.";
+  static const String fieldValidation = "This field is required";
+  static const String emailValidation = "This field is required";
+  static const String passwordValidation = "Add 8 charaters at least";
+  static const String confirmPasswordValidation = "Passwords does not match";
   static const String loggedInSuccessfully = "You have successfully logged in";
   static const String signUpSuccessfully = "You have successfully Sign up";
 
@@ -50,8 +48,13 @@ class TextStrings {
       "Don't worry sometimes peaple can forget too, enter your email and will sent your password reset.";
   static const String alreadyHaveAccount = "Already Have An Acount? ";
   static const String dontHaveAccount = "Don't Have An Account?";
-  static const String chooseType = "Would you like to get in as :";
+  static const String chooseType = "Please Choose Your Type";
+  static const String jobTitle = "Job Title :";
   static const String client = "Client";
   static const String employee = "Employee";
+  static const String freelance = "Freelance";
+  static const String geust = "Geust";
+  static const String other = "Other";
   static const String fillProfile = "Fill Your Profile";
+  static const String fillForm = "Fill The Form";
 }

@@ -3,19 +3,19 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
-import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdown_loading.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
+import 'package:two_website/features/contact-us/presentation/widgets/contact_us_body.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
 
 class FillClientProfileBody extends StatefulWidget {
@@ -56,7 +56,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
     return Column(
       children: [
         Text(
-          TextStrings.fillProfile,
+          TextStrings.fillForm,
           style: AppTextStyle.subtitle01(),
         ),
         const SizedBox(
@@ -98,36 +98,25 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
         ),
         Container(
           width: double.maxFinite,
+          height: 50,
           decoration: BoxDecoration(
               color: AppColors.fieldColor,
-              borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(SizesConfig.borderRadiusMd)),
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Row(
             children: [
-              SvgPicture.asset(
-                IconsPath.work,
-                width: 20,
-              ),
-              PaddingConfig.w24,
               BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
                 buildWhen: (previous, current) =>
                     (previous.roleListStatus != current.roleListStatus),
                 builder: (context, state) {
-                  if (state.roleListStatus == CasualStatus.success) {
-                    selectedItem = state.roleList[0];
-                    return Text(state.roleList[0].role);
-                  } else if (state.roleListStatus == CasualStatus.loading) {
-                    return const CircularProgressIndicator();
-                  } else if (state.roleListStatus == CasualStatus.failure) {
-                    return Text(state.message);
-                  } else {
-                    return const SizedBox();
-                  }
+                  return clientRoleStataHandling(state);
                 },
-              )
+              ),
             ],
           ),
         ),
+        PaddingConfig.h16,
+        const ContactUsBody(),
         const SizedBox(
           height: SizesConfig.spaceBtwItems,
         ),
@@ -151,5 +140,24 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
         ),
       ],
     );
+  }
+
+  Widget clientRoleStataHandling(AuthRoleProfileState state) {
+    if (state.roleListStatus == CasualStatus.success) {
+      selectedItem = state.roleList[0];
+      return Text(
+        state.roleList[0].role,
+        style: AppTextStyle.subtitle02(color: AppColors.fontLightColor),
+      );
+    } else if (state.roleListStatus == CasualStatus.loading) {
+      return const CustomDropdownLoading();
+    } else if (state.roleListStatus == CasualStatus.failure) {
+      return Text(
+        state.message,
+        style: AppTextStyle.subtitle02(color: AppColors.fontLightColor),
+      );
+    } else {
+      return const SizedBox();
+    }
   }
 }

@@ -30,8 +30,8 @@ final List<double> _sectionOffsets = [
   SizesConfig.pageHight + 40,
   SizesConfig.pageHight * 2 + 80,
   SizesConfig.pageHight * 3 + 120,
-  SizesConfig.pageHight * 4 + 160,
 ];
+// SizesConfig.pageHight * 4 + 160,
 
 class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
   void scrollToSection(int index) {
@@ -89,7 +89,6 @@ class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
                       LocaleKeys.aboutUs.tr(),
                       LocaleKeys.services.tr(),
                       LocaleKeys.posters.tr(),
-                      LocaleKeys.contactUs.tr(),
                     ][index],
                     style: AppTextStyle.buttonStyle(color: AppColors.black),
                   ),

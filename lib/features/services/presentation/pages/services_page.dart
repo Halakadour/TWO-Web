@@ -9,7 +9,7 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/buttons/create_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
-import 'package:two_website/features/posts/presentation/widgets/loading_posts_table.dart';
+import 'package:two_website/core/widgets/shimmers/table-loading/loading_service_table.dart';
 import 'package:two_website/features/services/presentation/bloc/service_bloc.dart';
 import 'package:two_website/features/services/presentation/widgets/custom_service_table.dart';
 
@@ -83,7 +83,7 @@ class _ShowPostsPageState extends State<ServicesPage> {
 
   Widget manageGetServicesUI(ServiceState state) {
     if (state.serviceListStatus == CasualStatus.loading) {
-      return const LoadingPostsTable();
+      return const LoadingServiceTable();
     } else if (state.serviceListStatus == CasualStatus.success) {
       return CustomServiceTable(serviceList: state.serviceList);
     } else if (state.serviceListStatus == CasualStatus.failure) {

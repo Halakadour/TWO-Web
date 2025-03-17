@@ -80,7 +80,7 @@ class CustomSidebar extends StatelessWidget {
                       onTap: onItemSelected,
                     ),
                     MenuItem(
-                      icon: IconsPath.handShake,
+                      icon: IconsPath.bag,
                       itemName: "Services",
                       pageNum: 3,
                       currentPage: currentPageIndex,

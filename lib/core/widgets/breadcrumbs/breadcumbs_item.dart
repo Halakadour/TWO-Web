@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:two_website/config/theme/color.dart';
+import 'package:two_website/config/theme/text_style.dart';
 
 class Breadcrumbs extends StatelessWidget {
   final List<String> paths;
+  final List<String> pages;
 
-  const Breadcrumbs({super.key, required this.paths});
+  const Breadcrumbs({super.key, required this.paths, required this.pages});
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +16,16 @@ class Breadcrumbs extends StatelessWidget {
         final isLast = index == paths.length - 1;
         return Row(
           children: [
-            if (index > 0) const Text(' > '),
+            if (index > 0) const Text(' / '),
             GestureDetector(
               onTap: () {
-                context.go('/${paths.sublist(0, index + 1).join('/')}');
+                context.pushNamed(paths[index]);
               },
-              child: Text(
-                paths[index],
-                style: TextStyle(
-                  fontWeight: isLast ? FontWeight.bold : FontWeight.normal,
-                  color: isLast ? Colors.black : Colors.blue,
-                ),
-              ),
+              child: Text(pages[index],
+                  style: AppTextStyle.subtitle03(
+                      color: isLast
+                          ? AppColors.greenShade3
+                          : AppColors.fontLightColor)),
             ),
           ],
         );

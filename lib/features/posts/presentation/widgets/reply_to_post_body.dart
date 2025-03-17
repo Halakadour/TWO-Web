@@ -75,7 +75,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                 if (fullname != null && fullname.isNotShortText()) {
                   return null;
                 } else {
-                  return TextStrings.nameValidation;
+                  return TextStrings.fieldValidation;
                 }
               },
               controller: _fullnameController,

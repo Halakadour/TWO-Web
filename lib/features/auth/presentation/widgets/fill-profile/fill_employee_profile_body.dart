@@ -14,7 +14,9 @@ import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/dropdown/custom_dropdown_list_for_role_model.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdown_loading.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/roles/data/models/role_response_model.dart';
@@ -28,7 +30,7 @@ class FillEmployeeProfileBody extends StatefulWidget {
 }
 
 class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
-  RoleModel? selectedItem;
+  RoleModel? role;
   Uint8List? imageBytes;
   Uint8List? cvBytes;
   ValueNotifier<bool> isHover = ValueNotifier(false);
@@ -108,106 +110,52 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
         const SizedBox(
           height: SizesConfig.spaceBtwItems,
         ),
-        Container(
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-              color: AppColors.fieldColor,
-              borderRadius: BorderRadius.circular(12)),
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                IconsPath.work,
-                width: 20,
-              ),
-              PaddingConfig.w24,
-              BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
-                buildWhen: (previous, current) =>
-                    (previous.roleWithoutClientListStatus !=
-                        current.roleWithoutClientListStatus),
-                builder: (context, state) {
-                  if (state.roleWithoutClientListStatus ==
-                      CasualStatus.success) {
-                    return DropdownButton<RoleModel>(
-                      value: selectedItem,
-                      underline: const SizedBox(),
-                      focusColor: AppColors.fieldColor,
-                      elevation: 0,
-                      hint: Text(
-                        "select your role",
-                        style: AppTextStyle.subtitle03(
-                            color: AppColors.fontDarkColor),
-                      ),
-                      dropdownColor: AppColors.fieldColor,
-                      items: state.roleWithoutClientList.map(
-                        (role) {
-                          return DropdownMenuItem(
-                            value: role,
-                            child: Text(role.role),
-                          );
-                        },
-                      ).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedItem = value;
-                        });
-                      },
-                    );
-                  } else if (state.roleWithoutClientListStatus ==
-                      CasualStatus.loading) {
-                    return const CircularProgressIndicator();
-                  } else if (state.roleWithoutClientListStatus ==
-                      CasualStatus.failure) {
-                    return const Text("No Roles");
-                  } else {
-                    return const SizedBox();
-                  }
-                },
-              ),
-            ],
-          ),
+        BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
+          buildWhen: (previous, current) =>
+              (previous.roleWithoutClientListStatus !=
+                  current.roleWithoutClientListStatus),
+          builder: (context, state) {
+            return rolesListStateHandling(state);
+          },
         ),
         PaddingConfig.h16,
-        Container(
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-              color: AppColors.fieldColor,
-              borderRadius: BorderRadius.circular(12)),
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    IconsPath.decument,
-                    width: 20,
-                  ),
-                  PaddingConfig.w24,
-                  Text(
-                    "CV",
-                    style:
-                        AppTextStyle.subtitle03(color: AppColors.fontDarkColor),
-                  ),
-                ],
-              ),
-              PaddingConfig.h16,
-              InkWell(
-                onTap: () async {
-                  _getCVFile();
-                },
-                child: SvgPicture.asset(
-                  IconsPath.upload,
-                  width: 20,
-                  color: AppColors.greenShade2,
+        if (!(role != null &&
+            (role!.role.contains("freelancer") || role!.role.contains("user"))))
+          Container(
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+                color: AppColors.fieldColor,
+                borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "CV File",
+                      style: AppTextStyle.subtitle03(
+                          color: AppColors.fontLightColor),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                cvBytes != null ? "Cv Selected" : "select or drop a file",
-                style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
-              ),
-            ],
+                PaddingConfig.h16,
+                InkWell(
+                  onTap: () async {
+                    _getCVFile();
+                  },
+                  child: SvgPicture.asset(
+                    IconsPath.upload,
+                    width: 20,
+                    color: AppColors.greenShade2,
+                  ),
+                ),
+                Text(
+                  cvBytes != null ? "Cv Selected" : "select or drop a file",
+                  style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
+                ),
+              ],
+            ),
           ),
-        ),
         const SizedBox(
           height: SizesConfig.spaceBtwItems,
         ),
@@ -220,14 +168,12 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
                 CustomQuickAlert().addImageAlert(context);
               } else if (cvBytes == null) {
                 CustomQuickAlert().addCvAlert(context);
-              } else if (selectedItem == null) {
+              } else if (role == null) {
                 CustomQuickAlert().addRoleAlert(context);
               } else {
                 context.read<AuthRoleProfileBloc>().add(
                     UpdateEmployeeProfileEvent(
-                        image: imageBytes!,
-                        cv: cvBytes!,
-                        roleId: selectedItem!.id));
+                        image: imageBytes!, cv: cvBytes!, roleId: role!.id));
               }
             },
           ),
@@ -237,5 +183,32 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
         ),
       ],
     );
+  }
+
+  Widget rolesListStateHandling(AuthRoleProfileState state) {
+    if (state.roleWithoutClientListStatus == CasualStatus.success) {
+      return CustomDropdownListForRoleModel(
+          selectYour: "job",
+          value: role,
+          items: state.roleWithoutClientList.map(
+            (role) {
+              return DropdownMenuItem(
+                value: role,
+                child: Text(role.role),
+              );
+            },
+          ).toList(),
+          onChanged: (value) {
+            setState(() {
+              role = value;
+            });
+          });
+    } else if (state.roleWithoutClientListStatus == CasualStatus.loading) {
+      return const CustomDropdownLoading();
+    } else if (state.roleWithoutClientListStatus == CasualStatus.failure) {
+      return const Text("No Roles");
+    } else {
+      return const SizedBox();
+    }
   }
 }

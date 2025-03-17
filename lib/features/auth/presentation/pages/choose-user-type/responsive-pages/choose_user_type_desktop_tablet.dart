@@ -8,6 +8,7 @@ class ChooseUserTypeDesktopTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LoginTemplate(
+      width: 800,
       child: Column(
         children: [
           // Body

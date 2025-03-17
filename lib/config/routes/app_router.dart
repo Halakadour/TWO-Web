@@ -21,7 +21,7 @@ import 'package:two_website/features/services/presentation/pages/update_service_
 
 class AppRouter {
   GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/dashboard',
     routes: [
       GoRoute(
         name: AppRouteConfig.landing,

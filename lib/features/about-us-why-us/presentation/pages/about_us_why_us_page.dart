@@ -13,9 +13,9 @@ import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/about-us-why-us/domain/entities/about_us_entity.dart';
 import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/custom_why_us_table.dart';
-import 'package:two_website/features/about-us-why-us/presentation/widgets/loading-widgets/loading_site_card.dart';
-import 'package:two_website/features/about-us-why-us/presentation/widgets/loading-widgets/loading_why_us_table.dart';
-import 'package:two_website/features/about-us-why-us/presentation/widgets/loading-widgets/loading_working_time_card.dart';
+import 'package:two_website/core/widgets/shimmers/card-loading/loading_site_card.dart';
+import 'package:two_website/core/widgets/shimmers/table-loading/loading_why_us_table.dart';
+import 'package:two_website/core/widgets/shimmers/card-loading/loading_working_time_card.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/site_card.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/working_time_card.dart';
 

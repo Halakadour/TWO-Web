@@ -31,6 +31,7 @@ dependencies:
   auto_size_widget: ^0.0.4
   intl_phone_field: ^3.2.0
   shimmer: ^3.0.0
+  lottie: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -75,3 +76,4 @@ flutter:
    - assets/icons/dashboard/
    - assets/images/png/
    - assets/images/svg/
+   - assets/animation/

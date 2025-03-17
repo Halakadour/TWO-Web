@@ -11,9 +11,9 @@ import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/buttons/create_button.dart';
 import 'package:two_website/core/widgets/buttons/filter_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/core/widgets/shimmers/table-loading/loading_posts_table.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/posts/presentation/widgets/custom_posts_table.dart';
-import 'package:two_website/features/posts/presentation/widgets/loading_posts_table.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});

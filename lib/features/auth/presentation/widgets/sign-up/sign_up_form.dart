@@ -54,7 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 if (fullname != null && fullname.isNotShortText()) {
                   return null;
                 } else {
-                  return TextStrings.nameValidation;
+                  return TextStrings.fieldValidation;
                 }
               },
             ),
