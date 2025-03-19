@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
@@ -11,17 +9,17 @@ import 'package:two_website/features/services/data/models/update_service_respons
 
 abstract class ServiceRemoteDatasource {
   Future<CreateServiceResponesModel> createService(
-      String token, String title, String description, Uint8List image);
+      String token, String title, String description, String image);
   Future<DeleteServiceResponesModel> deleteService(String token, int serviceId);
   Future<ShowServiceResponesModel> showServices();
   Future<UpdateServiceResponesModel> updateService(String token, int serviceId,
-      String title, String description, Uint8List image);
+      String title, String description, String image);
 }
 
 class ServiceRemoteDatasourceImpl extends ServiceRemoteDatasource {
   @override
   Future<CreateServiceResponesModel> createService(
-      String token, String title, String description, Uint8List image) async {
+      String token, String title, String description, String image) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/create/service"),
         token: token,
@@ -54,7 +52,7 @@ class ServiceRemoteDatasourceImpl extends ServiceRemoteDatasource {
 
   @override
   Future<UpdateServiceResponesModel> updateService(String token, int serviceId,
-      String title, String description, Uint8List image) async {
+      String title, String description, String image) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/update/service"),
         token: token,

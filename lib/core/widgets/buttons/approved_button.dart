@@ -30,8 +30,8 @@ class ApprovedButton extends StatelessWidget {
                   const Duration(milliseconds: SizesConfig.animationDuration),
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                  color: value ? AppColors.blueShade2 : Colors.transparent,
-                  border: Border.all(color: AppColors.blueShade2, width: 1.1),
+                  color: value ? AppColors.greenShade2 : Colors.transparent,
+                  border: Border.all(color: AppColors.greenShade2, width: 1.1),
                   borderRadius:
                       BorderRadius.circular(SizesConfig.borderRadiusSm)),
               child: Row(
@@ -42,13 +42,13 @@ class ApprovedButton extends StatelessWidget {
                       child: Icon(
                         Iconsax.like,
                         size: SizesConfig.iconsSm,
-                        color: value ? AppColors.white : AppColors.blueShade2,
+                        color: value ? AppColors.white : AppColors.greenShade2,
                       )),
                   PaddingConfig.w8,
                   Text(
                     "Approved",
                     style: AppTextStyle.subtitle04(
-                        color: value ? AppColors.white : AppColors.blueShade2),
+                        color: value ? AppColors.white : AppColors.greenShade2),
                   )
                 ],
               ),

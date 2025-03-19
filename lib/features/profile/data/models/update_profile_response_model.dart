@@ -1,27 +1,24 @@
 import 'dart:convert';
 
-UpdateClientProfileResponesModel updateClientProfileResponesModelFromJson(
-        String str) =>
-    UpdateClientProfileResponesModel.fromJson(json.decode(str));
+UpdateProfileResponesModel updateProfileResponesModelFromJson(String str) =>
+    UpdateProfileResponesModel.fromJson(json.decode(str));
 
-String updateClientProfileResponesModelToJson(
-        UpdateClientProfileResponesModel data) =>
+String updateProfileResponesModelToJson(UpdateProfileResponesModel data) =>
     json.encode(data.toJson());
 
-class UpdateClientProfileResponesModel {
+class UpdateProfileResponesModel {
   final int status;
   final String msg;
   final List<dynamic> data;
 
-  UpdateClientProfileResponesModel({
+  UpdateProfileResponesModel({
     required this.status,
     required this.msg,
     required this.data,
   });
 
-  factory UpdateClientProfileResponesModel.fromJson(
-          Map<String, dynamic> json) =>
-      UpdateClientProfileResponesModel(
+  factory UpdateProfileResponesModel.fromJson(Map<String, dynamic> json) =>
+      UpdateProfileResponesModel(
         status: json["status"],
         msg: json["msg"],
         data: List<dynamic>.from(json["data"].map((x) => x)),

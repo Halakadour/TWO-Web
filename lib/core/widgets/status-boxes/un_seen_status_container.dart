@@ -21,15 +21,15 @@ class UnSeenStatusContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
-            width: 10,
+            width: 8,
             child: CircleAvatar(
               backgroundColor: AppColors.yellowShade2,
             ),
           ),
           PaddingConfig.w8,
           Text(
-            "Active",
-            style: AppTextStyle.subtitle03(color: AppColors.yellowShade2),
+            "Un Seen",
+            style: AppTextStyle.subtitle04(color: AppColors.yellowShade2),
           )
         ],
       ),

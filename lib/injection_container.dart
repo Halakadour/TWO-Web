@@ -42,6 +42,8 @@ import 'package:two_website/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:two_website/features/profile/domain/repos/profile_repo.dart';
 import 'package:two_website/features/profile/domain/usecases/update_client_profile_usecase.dart';
 import 'package:two_website/features/profile/domain/usecases/update_employee_profile_usecase.dart';
+import 'package:two_website/features/profile/domain/usecases/update_freelance_profile_usecase.dart';
+import 'package:two_website/features/profile/domain/usecases/update_guest_profile_usecase.dart';
 import 'package:two_website/features/roles/data/datasources/role_local_datasource.dart';
 import 'package:two_website/features/roles/data/datasources/role_remote_datasource.dart';
 import 'package:two_website/features/roles/data/repos/role_repo_impl.dart';
@@ -79,7 +81,9 @@ Future<void> init() async {
         showRoleClientUsecase: sl(),
         showRolesWithoutClientUsecase: sl(),
         updateEmployeeProfileUsecase: sl(),
-        updateClientProfileUsecase: sl()),
+        updateClientProfileUsecase: sl(),
+        updateFreelanceProfileUsecase: sl(),
+        updateGuestProfileUsecase: sl()),
   );
   // Usecases
   sl.registerLazySingleton(
@@ -128,6 +132,12 @@ Future<void> init() async {
   );
   sl.registerLazySingleton(
     () => UpdateClientProfileUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => UpdateFreelanceProfileUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => UpdateGuestProfileUsecase(sl()),
   );
   // Repo
   sl.registerLazySingleton<ProfileRepo>(

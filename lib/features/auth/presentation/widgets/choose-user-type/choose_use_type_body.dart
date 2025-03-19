@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
-import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/widgets/animation/success_status_animation.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/core/widgets/dropdown/custom_dropdown_list.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
@@ -42,8 +41,7 @@ class _ChooseUseTypeBodyState extends State<ChooseUseTypeBody> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Header
-        SizedBox(
-            width: 200, height: 200, child: Lottie.asset(JsonPath.success)),
+        const SuccessStatusAnimation(),
         PaddingConfig.h8,
         Text(
           TextStrings.signUpSuccessfully,

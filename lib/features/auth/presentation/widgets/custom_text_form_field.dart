@@ -77,7 +77,7 @@ class CustomTextFormField extends StatelessWidget {
                   padding: const EdgeInsets.all(10), child: postfixIconPath),
           label: Text(
             labelText,
-            style: AppTextStyle.textfieldStyle(),
+            style: AppTextStyle.textfieldStyle(color: AppColors.fontLightColor),
           ),
           hintText: hintText,
           hintStyle: hintStyle,

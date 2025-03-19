@@ -49,6 +49,7 @@ class CustomRoundedImage extends StatelessWidget {
       decoration: BoxDecoration(
         border: border,
         color: backgroundColor,
+        shape: shape,
       ),
       child: _buildImageWidget(),
     );

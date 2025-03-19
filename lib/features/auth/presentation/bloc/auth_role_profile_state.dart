@@ -15,6 +15,8 @@ class AuthRoleProfileState {
   //Profile States //
   CasualStatus updateEmployeeProfileStatus;
   CasualStatus updateClientProfileStatus;
+  CasualStatus updateFreeLancerProfileStatus;
+  CasualStatus updateGuestProfileStatus;
 
   AuthRoleProfileState({
     this.message = "",
@@ -27,6 +29,8 @@ class AuthRoleProfileState {
     this.roleListStatus = CasualStatus.initial,
     this.updateEmployeeProfileStatus = CasualStatus.initial,
     this.updateClientProfileStatus = CasualStatus.initial,
+    this.updateFreeLancerProfileStatus = CasualStatus.initial,
+    this.updateGuestProfileStatus = CasualStatus.initial,
   });
 
   AuthRoleProfileState copyWith({
@@ -40,6 +44,8 @@ class AuthRoleProfileState {
     CasualStatus? roleListStatus,
     CasualStatus? updateEmployeeProfileStatus,
     CasualStatus? updateClientProfileStatus,
+    CasualStatus? updateFreeLancerProfileStatus,
+    CasualStatus? updateGuestProfileStatus,
   }) {
     return AuthRoleProfileState(
       message: message ?? this.message,
@@ -56,6 +62,10 @@ class AuthRoleProfileState {
           updateEmployeeProfileStatus ?? this.updateEmployeeProfileStatus,
       updateClientProfileStatus:
           updateClientProfileStatus ?? this.updateClientProfileStatus,
+      updateFreeLancerProfileStatus:
+          updateFreeLancerProfileStatus ?? this.updateFreeLancerProfileStatus,
+      updateGuestProfileStatus:
+          updateGuestProfileStatus ?? this.updateGuestProfileStatus,
     );
   }
 }

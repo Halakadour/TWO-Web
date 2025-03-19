@@ -5,7 +5,7 @@ class ServiceEvent {}
 class CreateServiceEvent extends ServiceEvent {
   final String title;
   final String description;
-  final Uint8List image;
+  final String image;
 
   CreateServiceEvent(
       {required this.title, required this.description, required this.image});
@@ -24,7 +24,7 @@ class UpdateServiceEvent extends ServiceEvent {
   final String serviceId;
   final String title;
   final String description;
-  final Uint8List image;
+  final String image;
 
   UpdateServiceEvent(
       {required this.serviceId,

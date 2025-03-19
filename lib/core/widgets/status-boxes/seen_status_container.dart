@@ -21,7 +21,7 @@ class SeenStatusContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
-            width: 10,
+            width: 8,
             child: CircleAvatar(
               backgroundColor: AppColors.blueShade2,
             ),
@@ -29,7 +29,7 @@ class SeenStatusContainer extends StatelessWidget {
           PaddingConfig.w8,
           Text(
             "Seen",
-            style: AppTextStyle.subtitle03(color: AppColors.blueShade2),
+            style: AppTextStyle.subtitle04(color: AppColors.blueShade2),
           )
         ],
       ),

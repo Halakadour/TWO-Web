@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/usecases/use_case.dart';
@@ -23,7 +21,7 @@ class UpdateServiceParam {
   final String serviceId;
   final String title;
   final String description;
-  final Uint8List image;
+  final String image;
 
   UpdateServiceParam(
       {required this.token,

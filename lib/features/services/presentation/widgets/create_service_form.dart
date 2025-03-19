@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -31,8 +29,8 @@ class _CreateServiceFormState extends State<CreateServiceForm> {
   late final GlobalKey<FormState> _formkey;
   late final TextEditingController _serviceTitleController;
   late final TextEditingController _serviceDescController;
-  Uint8List? imageBytes;
-  void updateImageBytes(Uint8List? bytes) {
+  String? imageBytes;
+  void updateImageBytes(String? bytes) {
     setState(() {
       imageBytes = bytes;
     });
@@ -163,7 +161,7 @@ class _CreateServiceFormState extends State<CreateServiceForm> {
                             ),
                             PaddingConfig.h16,
                             FetchImageBox(
-                              imageBytes: imageBytes,
+                              imageB64: imageBytes,
                               onUpdate: updateImageBytes,
                             ),
                             PaddingConfig.h16,

@@ -38,8 +38,8 @@ class GetRolesEvent extends AuthRoleProfileEvent {}
 // Profile Events //
 
 class UpdateEmployeeProfileEvent extends AuthRoleProfileEvent {
-  final Uint8List image;
-  final Uint8List cv;
+  final String image;
+  final String cv;
   final int roleId;
   UpdateEmployeeProfileEvent({
     required this.image,
@@ -49,10 +49,30 @@ class UpdateEmployeeProfileEvent extends AuthRoleProfileEvent {
 }
 
 class UpdateClientProfileEvent extends AuthRoleProfileEvent {
-  final Uint8List image;
+  final String image;
   final int roleId;
-  UpdateClientProfileEvent({
-    required this.image,
-    required this.roleId,
-  });
+  final String subject;
+  final String description;
+  final String phone;
+
+  UpdateClientProfileEvent(
+      {required this.image,
+      required this.roleId,
+      required this.subject,
+      required this.description,
+      required this.phone});
+}
+
+class UpdateFreelancerProfileEvent extends AuthRoleProfileEvent {
+  final String image;
+  final int roleId;
+
+  UpdateFreelancerProfileEvent({required this.image, required this.roleId});
+}
+
+class UpdateGuestProfileEvent extends AuthRoleProfileEvent {
+  final String image;
+  final int roleId;
+
+  UpdateGuestProfileEvent({required this.image, required this.roleId});
 }

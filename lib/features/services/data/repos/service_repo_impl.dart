@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/features/services/data/datasources/service_remote_datasource.dart';
@@ -12,7 +10,7 @@ class ServiceRepoImpl extends ServiceRepo {
   ServiceRepoImpl(this.serviceRemoteDatasource);
   @override
   Future<Either<Failure, ServiceEntity>> createService(
-      String token, String title, String description, Uint8List image) {
+      String token, String title, String description, String image) {
     return wrapHandling(
       tryCall: () async {
         final result = await serviceRemoteDatasource.createService(
@@ -45,7 +43,7 @@ class ServiceRepoImpl extends ServiceRepo {
 
   @override
   Future<Either<Failure, Unit>> updateService(String token, String serviceId,
-      String title, String description, Uint8List image) {
+      String title, String description, String image) {
     return wrapHandling(
       tryCall: () async {
         await serviceRemoteDatasource.deleteService(

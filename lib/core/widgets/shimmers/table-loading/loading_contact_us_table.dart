@@ -94,7 +94,19 @@ class LoadingContactUsTable extends StatelessWidget {
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("Status")
+            Text("Status1")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.activity,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Status2")
           ],
         )),
         DataColumn2(
@@ -106,7 +118,19 @@ class LoadingContactUsTable extends StatelessWidget {
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("Actions")
+            Text("Action1")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.chart_3,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Action2")
           ],
         )),
       ],
@@ -116,6 +140,8 @@ class LoadingContactUsTable extends StatelessWidget {
                   color: WidgetStateColor.resolveWith((states) =>
                       index.isEven ? AppColors.white : AppColors.fieldColor),
                   cells: const [
+                    DataCell(Center(child: ShimmerTableItem())),
+                    DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),
                     DataCell(Center(child: ShimmerTableItem())),

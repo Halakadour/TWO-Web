@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
 
 import 'package:two_website/core/usecases/use_case.dart';
@@ -23,7 +21,7 @@ class ReplyParam {
   final String fullName;
   final String email;
   final String phone;
-  final Uint8List cv;
+  final String cv;
   final int postId;
   ReplyParam({
     required this.fullName,

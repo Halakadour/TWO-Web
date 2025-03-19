@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/network/network_connection_checker.dart';
@@ -29,7 +27,7 @@ class PostRepoImpl extends PostRepo {
 
   @override
   Future<Either<Failure, PostEntity>> createPost(
-      String token, Uint8List image, String body) {
+      String token, String image, String body) {
     return wrapHandling(
       tryCall: () async {
         final result =
@@ -51,7 +49,7 @@ class PostRepoImpl extends PostRepo {
 
   @override
   Future<Either<Failure, ReplyEntity>> replyToPost(
-      String fullName, String email, String phone, Uint8List cv, int postId) {
+      String fullName, String email, String phone, String cv, int postId) {
     return wrapHandling(
       tryCall: () async {
         final result = await postRemoteDatasource.replyToPost(

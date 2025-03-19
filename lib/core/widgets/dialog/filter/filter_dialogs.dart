@@ -26,7 +26,7 @@ class FilterDialogs {
                 "Seen :",
                 style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
               ),
-              PaddingConfig.h24,
+              PaddingConfig.h8,
               ValueListenableBuilder(
                 valueListenable: actriveSelected,
                 builder: (context, value, child) => Row(
@@ -92,7 +92,7 @@ class FilterDialogs {
                 "Approvment :",
                 style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
               ),
-              PaddingConfig.h24,
+              PaddingConfig.h8,
               ValueListenableBuilder(
                 valueListenable: actriveSelected,
                 builder: (context, value, child) => Row(

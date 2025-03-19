@@ -104,7 +104,19 @@ class CustomContactUsTable extends StatelessWidget {
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("Status")
+            Text("Status1")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.activity,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Status2")
           ],
         )),
         DataColumn2(
@@ -116,7 +128,19 @@ class CustomContactUsTable extends StatelessWidget {
               size: SizesConfig.iconsSm,
             ),
             PaddingConfig.w8,
-            Text("Actions")
+            Text("Action1")
+          ],
+        )),
+        DataColumn2(
+            label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Iconsax.chart_3,
+              size: SizesConfig.iconsSm,
+            ),
+            PaddingConfig.w8,
+            Text("Action2")
           ],
         )),
       ],
@@ -142,46 +166,49 @@ class CustomContactUsTable extends StatelessWidget {
                       Center(child: Text(contactUsList[index].subject)),
                     ),
                     DataCell(
-                      Center(child: Text(contactUsList[index].description)),
+                      Center(
+                          child: SizedBox(
+                        width: 110,
+                        child: Text(
+                          contactUsList[index].description,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      )),
                     ),
-                    DataCell(Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        (contactUsList[index].seen == 1)
-                            ? const SeenStatusContainer()
-                            : const UnSeenStatusContainer(),
-                        PaddingConfig.w8,
-                        (contactUsList[index].techApproved == 1)
-                            ? const ApprovedStatusContainer()
-                            : const RejectedStatusContainer()
-                      ],
+                    DataCell(Center(
+                      child: (contactUsList[index].seen == 1)
+                          ? const SeenStatusContainer()
+                          : const UnSeenStatusContainer(),
                     )),
-                    DataCell(Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SeenButton(
-                          onTap: () {
-                            context.read<ContactUsBloc>().add(
-                                MarkContactUsAsSeenEvent(
-                                    contactUsId: contactUsList[index].id));
-                            context
-                                .read<ContactUsBloc>()
-                                .add(GetContactUsWithSeenAndApprovedEvent());
-                          },
-                        ),
-                        PaddingConfig.w8,
-                        ApprovedButton(
-                          onTap: () {
-                            context.read<ContactUsBloc>().add(
-                                MarkContactUsAsApprovedEvent(
-                                    contactUsId: contactUsList[index].id));
-                            context
-                                .read<ContactUsBloc>()
-                                .add(GetContactUsWithSeenAndApprovedEvent());
-                          },
-                        ),
-                      ],
+                    DataCell(Center(
+                      child: (contactUsList[index].techApproved == 1)
+                          ? const ApprovedStatusContainer()
+                          : const RejectedStatusContainer(),
                     )),
+                    DataCell(Center(
+                      child: SeenButton(
+                        onTap: () {
+                          context.read<ContactUsBloc>().add(
+                              MarkContactUsAsSeenEvent(
+                                  contactUsId: contactUsList[index].id));
+                          context
+                              .read<ContactUsBloc>()
+                              .add(GetContactUsWithSeenAndApprovedEvent());
+                        },
+                      ),
+                    )),
+                    DataCell(Center(
+                      child: ApprovedButton(
+                        onTap: () {
+                          context.read<ContactUsBloc>().add(
+                              MarkContactUsAsApprovedEvent(
+                                  contactUsId: contactUsList[index].id));
+                          context
+                              .read<ContactUsBloc>()
+                              .add(GetContactUsWithSeenAndApprovedEvent());
+                        },
+                      ),
+                    ))
                   ])),
     );
   }

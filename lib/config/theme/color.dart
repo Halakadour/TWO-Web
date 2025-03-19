@@ -29,9 +29,9 @@ class AppColors {
   static const Color redShade1 = Color(0xFFFDA1A3);
   static const Color redShade2 = Color(0xFFE6373A);
   static const Color redShade3 = Color(0xFFA71214);
-  static const Color yellowShade1 = Color(0xFFFDFBA1);
-  static const Color yellowShade2 = Color(0xFFE6E637);
-  static const Color yellowShade3 = Color(0xFFA7A212);
+  static const Color yellowShade1 = Color(0xFFFFFEBA);
+  static const Color yellowShade2 = Color(0xFFDCDC00);
+  static const Color yellowShade3 = Color(0xFFC3BC00);
 
 // theme colors
   static const Color mainColor = greenShade2;

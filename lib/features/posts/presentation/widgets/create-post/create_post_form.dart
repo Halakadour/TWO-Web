@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -29,8 +27,8 @@ class CreatePostForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreatePostForm> {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _postTitleController;
-  Uint8List? imageBytes;
-  void updateImageBytes(Uint8List? bytes) {
+  String? imageBytes;
+  void updateImageBytes(String? bytes) {
     setState(() {
       imageBytes = bytes;
     });
@@ -110,7 +108,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       ),
                       PaddingConfig.h16,
                       FetchImageBox(
-                        imageBytes: imageBytes,
+                        imageB64: imageBytes,
                         onUpdate: updateImageBytes,
                       ),
                       PaddingConfig.h16,

@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
@@ -24,7 +23,7 @@ class CreateServiceParam {
   final String token;
   final String title;
   final String description;
-  final Uint8List image;
+  final String image;
   CreateServiceParam({
     required this.token,
     required this.title,

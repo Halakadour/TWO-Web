@@ -6,7 +6,7 @@ class PostEvent {
 }
 
 class CreatePostEvent extends PostEvent {
-  final Uint8List image;
+  final String image;
   final String body;
   const CreatePostEvent({
     required this.image,
@@ -57,7 +57,7 @@ class ReplyToPostEvent extends PostEvent {
   final String fullName;
   final String email;
   final String phone;
-  final Uint8List cv;
+  final String cv;
   final int postId;
   const ReplyToPostEvent({
     required this.fullName,

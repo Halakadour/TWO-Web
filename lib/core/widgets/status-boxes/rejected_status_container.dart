@@ -21,7 +21,7 @@ class RejectedStatusContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
-            width: 10,
+            width: 8,
             child: CircleAvatar(
               backgroundColor: AppColors.redShade2,
             ),
@@ -29,7 +29,7 @@ class RejectedStatusContainer extends StatelessWidget {
           PaddingConfig.w8,
           Text(
             "Rejected",
-            style: AppTextStyle.subtitle03(color: AppColors.redShade2),
+            style: AppTextStyle.subtitle04(color: AppColors.redShade2),
           )
         ],
       ),

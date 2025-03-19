@@ -1,10 +1,16 @@
 import 'package:auto_size_widget/auto_size_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
 
 class ContactUsBody extends StatefulWidget {
   const ContactUsBody({super.key});
@@ -96,37 +102,39 @@ class _ContactUsBodyState extends State<ContactUsBody> {
               ),
             ),
           ),
-          PaddingConfig.h24,
-          // BlocListener<ContactUsBloc, ContactUsState>(
-          //   listener: (context, state) {
-          //     if (state.createContcatStatus == CasualStatus.loading) {
-          //       CustomQuickAlert().loadingAlert(context);
-          //     } else if (state.createContcatStatus == CasualStatus.success) {
-          //       context.pop();
-          //       CustomQuickAlert().successAlert(context);
-          //     } else if (state.createContcatStatus == CasualStatus.failure) {
-          //       context.pop();
-          //       CustomQuickAlert().failureAlert(context, state.message);
-          //     } else if (state.createContcatStatus == CasualStatus.noToken) {
-          //       context.pop();
-          //       CustomQuickAlert().noTokenAlert(context);
-          //     }
-          //   },
-          //   listenWhen: (previous, current) =>
-          //       previous.createContcatStatus != current.createContcatStatus,
-          //   child: CustomCartoonButton(
-          //     title: "Send A Message",
-          //     width: double.infinity,
-          //     onTap: () {
-          //       if (_formKey.currentState!.validate()) {
-          //         context.read<ContactUsBloc>().add(CreateContactUsEvent(
-          //             subject: _subjectController.text,
-          //             description: _messageController.text,
-          //             phone: _phoneController.text));
-          //       }
-          //     },
-          //   ),
-          // )
+          const SizedBox(
+            height: SizesConfig.spaceBtwItems,
+          ),
+          BlocListener<ContactUsBloc, ContactUsState>(
+            listener: (context, state) {
+              if (state.createContcatStatus == CasualStatus.loading) {
+                CustomQuickAlert().loadingAlert(context);
+              } else if (state.createContcatStatus == CasualStatus.success) {
+                context.pop();
+                CustomQuickAlert().successAlert(context);
+              } else if (state.createContcatStatus == CasualStatus.failure) {
+                context.pop();
+                CustomQuickAlert().failureAlert(context, state.message);
+              } else if (state.createContcatStatus == CasualStatus.noToken) {
+                context.pop();
+                CustomQuickAlert().noTokenAlert(context);
+              }
+            },
+            listenWhen: (previous, current) =>
+                previous.createContcatStatus != current.createContcatStatus,
+            child: CustomCartoonButton(
+              title: "Send A Message",
+              width: double.infinity,
+              onTap: () {
+                if (_formKey.currentState!.validate()) {
+                  context.read<ContactUsBloc>().add(CreateContactUsEvent(
+                      subject: _subjectController.text,
+                      description: _messageController.text,
+                      phone: _phoneController.text));
+                }
+              },
+            ),
+          )
         ],
       ),
     );

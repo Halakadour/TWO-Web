@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/widgets/animation/empty_status_animation.dart';
 
 class CustomDataTable extends StatelessWidget {
   const CustomDataTable({super.key, required this.columns, required this.rows});
@@ -12,6 +13,8 @@ class CustomDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable2(
+        clipBehavior: Clip.hardEdge,
+        empty: const EmptyStatusAnimation(),
         isVerticalScrollBarVisible: true,
         isHorizontalScrollBarVisible: true,
         border: TableBorder.all(
@@ -20,11 +23,11 @@ class CustomDataTable extends StatelessWidget {
                 topLeft: Radius.circular(SizesConfig.borderRadiusSm),
                 topRight: Radius.circular(SizesConfig.borderRadiusSm)),
             width: .4),
-        columnSpacing: 8,
+        horizontalMargin: 10,
+        columnSpacing: 10,
         dataRowHeight: 50,
         minWidth: 500,
         dividerThickness: .2,
-        horizontalMargin: 16,
         headingRowHeight: 50,
         headingTextStyle: AppTextStyle.subtitle02(),
         headingRowColor: WidgetStateColor.resolveWith(

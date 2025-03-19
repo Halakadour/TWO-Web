@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_website/core/network/enums.dart';
@@ -10,6 +8,8 @@ import 'package:two_website/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/register_usecase.dart';
 import 'package:two_website/features/profile/domain/usecases/update_client_profile_usecase.dart';
 import 'package:two_website/features/profile/domain/usecases/update_employee_profile_usecase.dart';
+import 'package:two_website/features/profile/domain/usecases/update_freelance_profile_usecase.dart';
+import 'package:two_website/features/profile/domain/usecases/update_guest_profile_usecase.dart';
 import 'package:two_website/features/roles/domain/usecases/show_role_client_usecase.dart';
 import 'package:two_website/features/roles/domain/usecases/show_roles_without_client_usecase.dart';
 
@@ -30,6 +30,8 @@ class AuthRoleProfileBloc
   // Profile Usecases //
   final UpdateEmployeeProfileUsecase updateEmployeeProfileUsecase;
   final UpdateClientProfileUsecase updateClientProfileUsecase;
+  final UpdateFreelanceProfileUsecase updateFreelanceProfileUsecase;
+  final UpdateGuestProfileUsecase updateGuestProfileUsecase;
   AuthRoleProfileBloc(
       {required this.registerUsecase,
       required this.loginUsecase,
@@ -37,7 +39,9 @@ class AuthRoleProfileBloc
       required this.showRolesWithoutClientUsecase,
       required this.showRoleClientUsecase,
       required this.updateEmployeeProfileUsecase,
-      required this.updateClientProfileUsecase})
+      required this.updateClientProfileUsecase,
+      required this.updateFreelanceProfileUsecase,
+      required this.updateGuestProfileUsecase})
       : super(AuthRoleProfileState()) {
     // Auth Bloc //
     on<RegisteNewUserEvent>((event, emit) async {
@@ -130,7 +134,12 @@ class AuthRoleProfileBloc
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
         final result = await updateClientProfileUsecase.call(ClientProfileParam(
-            token: token, image: event.image, roleId: event.roleId));
+            token: token,
+            image: event.image,
+            roleId: event.roleId,
+            subject: event.subject,
+            description: event.description,
+            phone: event.phone));
         result.fold(
           (l) => emit(state.copyWith(
               updateClientProfileStatus: CasualStatus.failure,
@@ -142,6 +151,38 @@ class AuthRoleProfileBloc
         state.copyWith(
             updateClientProfileStatus: CasualStatus.failure,
             message: "no token");
+      }
+    });
+    on<UpdateFreelancerProfileEvent>((event, emit) async {
+      emit(state.copyWith(updateFreeLancerProfileStatus: CasualStatus.loading));
+      final String? token = await SharedPreferencesServices.getUserToken();
+      if (token != null) {
+        final result = await updateFreelanceProfileUsecase.call(
+            FreeLanceAndGesutProfileParam(
+                token: token, image: event.image, roleId: event.roleId));
+        result.fold(
+          (l) => emit(state.copyWith(
+              updateFreeLancerProfileStatus: CasualStatus.failure,
+              message: l.message)),
+          (r) => emit(state.copyWith(
+              updateFreeLancerProfileStatus: CasualStatus.success)),
+        );
+      }
+    });
+    on<UpdateGuestProfileEvent>((event, emit) async {
+      emit(state.copyWith(updateGuestProfileStatus: CasualStatus.loading));
+      final String? token = await SharedPreferencesServices.getUserToken();
+      if (token != null) {
+        final result = await updateGuestProfileUsecase.call(
+            FreeLanceAndGesutProfileParam(
+                token: token, image: event.image, roleId: event.roleId));
+        result.fold(
+          (l) => emit(state.copyWith(
+              updateFreeLancerProfileStatus: CasualStatus.failure,
+              message: l.message)),
+          (r) => emit(state.copyWith(
+              updateFreeLancerProfileStatus: CasualStatus.success)),
+        );
       }
     });
   }

@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
@@ -16,13 +14,13 @@ import 'package:two_website/features/posts/data/models/show_post_response_model.
 
 abstract class PostRemoteDatasource {
   Future<CreatePostResponseModel> createPost(
-      String token, String description, Uint8List image);
+      String token, String description, String image);
   Future<DeletePostResponesModel> deletePost(String token, int postId);
   Future<ShowPostResponesModel> showActivePosts();
   Future<ShowPostResponesModel> showUnActivePosts();
   Future<Unit> unActivePost(String token, int postId);
   Future<ReplyToPostResponesModel> replyToPost(
-      String fullName, String email, String phone, Uint8List cv, int postId);
+      String fullName, String email, String phone, String cv, int postId);
   Future<AcceptReplyResponesModel> acceptReply(String token, int replyId);
   Future<ShowPostRepliesResponesModel> showPostReplies(
       String token, int postId);
@@ -33,7 +31,7 @@ abstract class PostRemoteDatasource {
 class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
   @override
   Future<CreatePostResponseModel> createPost(
-      String token, String description, Uint8List image) async {
+      String token, String description, String image) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/create/post"),
         body: ({'description': description, 'image': '$imageBase64$image'}),
@@ -78,7 +76,7 @@ class PostsRemoteDatasourceImpl implements PostRemoteDatasource {
 
   @override
   Future<ReplyToPostResponesModel> replyToPost(String fullName, String email,
-      String phone, Uint8List cv, int postId) async {
+      String phone, String cv, int postId) async {
     final result = PostApi(
         uri: Uri.parse("$baseUri/api/create/reply"),
         body: ({

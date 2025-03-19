@@ -21,7 +21,7 @@ class ActiveStatusContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
-            width: 10,
+            width: 8,
             child: CircleAvatar(
               backgroundColor: AppColors.greenShade2,
             ),
@@ -29,7 +29,7 @@ class ActiveStatusContainer extends StatelessWidget {
           PaddingConfig.w8,
           Text(
             "Active",
-            style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
+            style: AppTextStyle.subtitle04(color: AppColors.greenShade2),
           )
         ],
       ),

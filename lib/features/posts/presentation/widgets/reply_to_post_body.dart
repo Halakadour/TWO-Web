@@ -1,21 +1,17 @@
-import 'dart:typed_data';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
+import 'package:two_website/features/auth/presentation/widgets/fill-profile/fetch_cv_box.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 
 class ReplyToPostBody extends StatefulWidget {
@@ -37,21 +33,11 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
   late final TextEditingController _fullnameController;
   late final TextEditingController _emailController;
   late final TextEditingController _phoneController;
-  Uint8List? _cvFile;
-
-  Future<void> _getCVFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-      allowMultiple: false,
-    );
-    if (result != null && result.files.isNotEmpty) {
-      final cvPath = result.files.first.path;
-      if (cvPath != null) {
-        setState(() async {
-          _cvFile = await result.files.first.xFile.readAsBytes();
-        });
-      }
-    } else {}
+  String? _cvFile;
+  void updateCVFile(String? base64) {
+    setState(() {
+      _cvFile = base64;
+    });
   }
 
   @override
@@ -105,45 +91,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                     borderSide: const BorderSide(color: AppColors.gray))),
           ),
           PaddingConfig.h16,
-          Container(
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: AppColors.black, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(12)),
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    const Icon(Iconsax.document),
-                    PaddingConfig.w24,
-                    Text(
-                      "CV",
-                      style: AppTextStyle.subtitle03(color: AppColors.black),
-                    ),
-                  ],
-                ),
-                PaddingConfig.h16,
-                InkWell(
-                  onTap: () async {
-                    _getCVFile();
-                  },
-                  child: const Icon(
-                    Iconsax.direct_send,
-                    color: AppColors.greenShade2,
-                  ),
-                ),
-                PaddingConfig.h8,
-                Text(
-                  _cvFile != null
-                      ? _cvFile!.length.toString()
-                      : "select or drop a file",
-                  style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
-                ),
-              ],
-            ),
-          ),
+          FetchCvBox(fileB64: _cvFile, onUpdate: updateCVFile),
           PaddingConfig.h40,
           BlocListener<PostBloc, PostState>(
             listener: (context, state) {

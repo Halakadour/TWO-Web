@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -12,21 +13,26 @@ import 'package:two_website/core/widgets/images/custom_rounded_image.dart';
 
 // ignore: must_be_immutable
 class FetchImageBox extends StatefulWidget {
-  FetchImageBox({super.key, required this.imageBytes, required this.onUpdate});
-  Uint8List? imageBytes;
-  final Function(Uint8List?) onUpdate;
+  FetchImageBox({super.key, required this.imageB64, required this.onUpdate});
+  String? imageB64;
+  final Function(String?) onUpdate;
 
   @override
   State<FetchImageBox> createState() => _FetchImageBoxState();
 }
 
 class _FetchImageBoxState extends State<FetchImageBox> {
+  Uint8List? imageBytes;
+
   Future<void> _getImageFile() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       final bytes = await pickedFile.readAsBytes();
-      widget.onUpdate(bytes); // Call the callback to update parent state
+      imageBytes = bytes;
+      widget.imageB64 = base64Encode(bytes);
+      print(widget.imageB64);
+      widget.onUpdate(widget.imageB64);
     }
   }
 
@@ -41,14 +47,14 @@ class _FetchImageBoxState extends State<FetchImageBox> {
               border: Border.all(color: AppColors.gray, width: .7),
               borderRadius: BorderRadius.circular(SizesConfig.borderRadiusMd)),
           padding: const EdgeInsets.all(8.0),
-          child: widget.imageBytes == null
+          child: imageBytes == null
               ? const Icon(
                   Iconsax.gallery,
                   size: SizesConfig.iconsXl,
                 )
               : CustomRoundedImage(
                   imageType: ImageType.memory,
-                  memoryImage: widget.imageBytes,
+                  memoryImage: imageBytes,
                   borderRadius: 10,
                 ),
         ),
@@ -66,7 +72,7 @@ class _FetchImageBoxState extends State<FetchImageBox> {
                         BorderRadius.circular(SizesConfig.borderRadiusSm),
                     border: Border.all(color: AppColors.gray, width: .7)),
                 child: Text(
-                  "Add An Image",
+                  "Upload Image",
                   style: AppTextStyle.subtitle03(),
                 ),
               ),
