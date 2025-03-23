@@ -18,9 +18,8 @@ class AuthService {
       customUriScheme: "$baseUri/",
     ),
     grantType: OAuth2Helper.authorizationCode,
-    clientId:
-        "464070922557-l1rb5b94p56m2hl7jv6r2n0jpekkl9k8.apps.googleusercontent.com",
-    clientSecret: "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",
+    clientId: gci,
+    clientSecret: gscr,
     scopes: ["email", "profile", "openid"],
   );
 
@@ -31,8 +30,8 @@ class AuthService {
       customUriScheme: "$baseUri/",
     ),
     grantType: OAuth2Helper.authorizationCode,
-    clientId: "Ov23lim8swDSxiUrcs0z",
-    clientSecret: "7e0c02ca265023af4a8aeef58f26ba61fc280f22",
+    clientId: ghci,
+    clientSecret: ghscr,
     scopes: ["user"],
   );
 
