@@ -9,6 +9,7 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/breadcrumbs/breadcumbs_item.dart';
+import 'package:two_website/core/widgets/buttons/back_button.dart';
 import 'package:two_website/core/widgets/buttons/desmiss_elevated_buttom.dart';
 import 'package:two_website/core/widgets/buttons/save_elevated_button.dart';
 import 'package:two_website/core/widgets/images/fetch_image_box.dart';
@@ -55,20 +56,13 @@ class _CreatePostFormState extends State<CreatePostForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Breadcrumbs(
-                paths: [
-                  AppRouteConfig.dashboard,
-                  AppRouteConfig.post,
-                  AppRouteConfig.createPost
-                ],
-                pages: ["Dashboard", "Posts", "Create Post"],
+                paths: [AppRouteConfig.post, AppRouteConfig.createPost],
+                pages: ["Posts", "Create Post"],
               ),
               PaddingConfig.h16,
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.arrow_back),
-                  ),
+                  const CustomBackButton(),
                   PaddingConfig.w8,
                   Text(
                     "Create Post",

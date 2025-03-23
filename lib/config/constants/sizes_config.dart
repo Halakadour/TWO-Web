@@ -59,6 +59,9 @@ class SizesConfig {
   static const double cardElevation = 2.0;
   static const double cardHeight = 150;
 
+  // box dimensions
+  static const double boxSm = 60;
+
   // Loading indicator size
   static const double loadingIndicatorSize = 36.0;
 

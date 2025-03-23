@@ -4,9 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/breadcrumbs/breadcumbs_item.dart';
+import 'package:two_website/core/widgets/buttons/back_button.dart';
+import 'package:two_website/core/widgets/buttons/filter_button.dart';
+import 'package:two_website/core/widgets/data-tables/custom_data_table.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 
 class PostRepliesPage extends StatefulWidget {
@@ -45,108 +50,28 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                 padding: const EdgeInsets.all(30),
                 child: Column(
                   children: [
+                    const Breadcrumbs(
+                      paths: [AppRouteConfig.post, AppRouteConfig.createPost],
+                      pages: ["Posts", "Post Replies"],
+                    ),
+                    PaddingConfig.h16,
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Post Replies"),
-                        IconButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text(
-                                    "Filter By :",
-                                    style: AppTextStyle.subtitle01(),
-                                  ),
-                                  actions: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Acceptation :",
-                                          style: AppTextStyle.subtitle03(
-                                              color: AppColors.greenShade2),
-                                        ),
-                                        PaddingConfig.h24,
-                                        ValueListenableBuilder(
-                                          valueListenable: actriveSelected,
-                                          builder: (context, value, child) =>
-                                              Row(
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  actriveSelected.value = true;
-                                                  context.read<PostBloc>().add(
-                                                      GetPostsRepliesEvent(
-                                                          postId: int.parse(
-                                                              widget.postId)));
-                                                },
-                                                child: Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 15,
-                                                      vertical: 9),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    color: value
-                                                        ? AppColors.greenShade2
-                                                        : AppColors.gray,
-                                                  ),
-                                                  child: Text(
-                                                    "Un Accepted replies",
-                                                    style: AppTextStyle.subtitle04(
-                                                        color: value
-                                                            ? AppColors.white
-                                                            : AppColors
-                                                                .fontDarkColor),
-                                                  ),
-                                                ),
-                                              ),
-                                              PaddingConfig.w16,
-                                              InkWell(
-                                                onTap: () {
-                                                  actriveSelected.value = false;
-                                                  context.read<PostBloc>().add(
-                                                      GetPostsAcceptedRepliesEvent(
-                                                          postId: int.parse(
-                                                              widget.postId)));
-                                                },
-                                                child: Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 15,
-                                                      vertical: 9),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    color: !value
-                                                        ? AppColors.greenShade2
-                                                        : AppColors.gray,
-                                                  ),
-                                                  child: Text(
-                                                    "Accepted replies",
-                                                    style: AppTextStyle.subtitle04(
-                                                        color: !value
-                                                            ? AppColors.white
-                                                            : AppColors
-                                                                .fontDarkColor),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
-                            icon: const Icon(Iconsax.filter))
+                        const CustomBackButton(),
+                        PaddingConfig.w8,
+                        Text(
+                          "Post Replies",
+                          style: AppTextStyle.heading04(),
+                        )
+                      ],
+                    ),
+                    PaddingConfig.h24,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FilterButton(
+                          onPressed: () => postRepliesFilter(context),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -164,20 +89,7 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                                 child: CircularProgressIndicator());
                           } else if (state.postsRepliesListStatus ==
                               CasualStatus.success) {
-                            return DataTable2(
-                              columnSpacing: 12,
-                              minWidth: 500,
-                              dividerThickness: 0,
-                              horizontalMargin: 20,
-                              headingRowHeight: 56,
-                              headingTextStyle: AppTextStyle.subtitle01(),
-                              headingRowColor: WidgetStateColor.resolveWith(
-                                (states) => AppColors.gray,
-                              ),
-                              headingRowDecoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                          SizesConfig.borderRadiusMd))),
+                            return CustomDataTable(
                               columns: const [
                                 DataColumn2(label: Text("Name")),
                                 DataColumn2(label: Text("Email")),
@@ -229,5 +141,83 @@ class _PostRepliesPageState extends State<PostRepliesPage> {
                 ),
               ),
             )));
+  }
+
+  Future<dynamic> postRepliesFilter(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          "Filter By :",
+          style: AppTextStyle.subtitle01(),
+        ),
+        actions: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Acceptation :",
+                style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
+              ),
+              PaddingConfig.h24,
+              ValueListenableBuilder(
+                valueListenable: actriveSelected,
+                builder: (context, value, child) => Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        actriveSelected.value = true;
+                        context.read<PostBloc>().add(GetPostsRepliesEvent(
+                            postId: int.parse(widget.postId)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 9),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: value ? AppColors.greenShade2 : AppColors.gray,
+                        ),
+                        child: Text(
+                          "Un Accepted replies",
+                          style: AppTextStyle.subtitle04(
+                              color: value
+                                  ? AppColors.white
+                                  : AppColors.fontDarkColor),
+                        ),
+                      ),
+                    ),
+                    PaddingConfig.w16,
+                    InkWell(
+                      onTap: () {
+                        actriveSelected.value = false;
+                        context.read<PostBloc>().add(
+                            GetPostsAcceptedRepliesEvent(
+                                postId: int.parse(widget.postId)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 9),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color:
+                              !value ? AppColors.greenShade2 : AppColors.gray,
+                        ),
+                        child: Text(
+                          "Accepted replies",
+                          style: AppTextStyle.subtitle04(
+                              color: !value
+                                  ? AppColors.white
+                                  : AppColors.fontDarkColor),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

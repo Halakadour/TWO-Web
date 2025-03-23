@@ -1,4 +1,3 @@
-import 'package:auto_size_widget/auto_size_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +9,7 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
 
 class ContactUsBody extends StatefulWidget {
@@ -76,31 +76,18 @@ class _ContactUsBodyState extends State<ContactUsBody> {
             ),
           ),
           PaddingConfig.h8,
-          AutoSizeWidget(
-            initialWidth: 500,
-            initialHeight: 100,
-            maxWidth: 500,
-            maxHeight: 250,
-            boxDecoration: BoxDecoration(
-                color: AppColors.fieldColor,
+          CustomTextFormField(
+            filled: true,
+            fillColor: AppColors.fieldColor,
+            border: OutlineInputBorder(
                 borderRadius:
                     BorderRadius.circular(SizesConfig.borderRadiusMd)),
-            showIcon: true,
-            child: TextField(
-              controller: _messageController,
-              keyboardType: TextInputType.multiline,
-              maxLines: 3 * 120,
-              textAlign: TextAlign.start,
-              decoration: InputDecoration(
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 11, horizontal: 15),
-                hintText: "Message",
-                hintStyle:
-                    AppTextStyle.subtitle02(color: AppColors.fontLightColor),
-              ),
-            ),
+            maxLines: 5,
+            labelText: "Message",
+            controller: _messageController,
+            validator: (p0) {
+              return null;
+            },
           ),
           const SizedBox(
             height: SizesConfig.spaceBtwItems,

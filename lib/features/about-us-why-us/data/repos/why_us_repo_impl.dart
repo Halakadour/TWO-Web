@@ -34,7 +34,7 @@ class WhyUsRepoImpl extends WhyUsRepo {
   }
 
   @override
-  Future<Either<Failure, List<WhyUsEntity?>>> showWhyUs() {
+  Future<Either<Failure, List<WhyUsEntity>>> showWhyUs() {
     return wrapHandling(
       tryCall: () async {
         final result = await whyUsRemoteDatesource.showWhyUs();
