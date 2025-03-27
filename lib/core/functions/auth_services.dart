@@ -14,8 +14,8 @@ class AuthService {
   // Google OAuth Config
   final OAuth2Helper _googleAuth = OAuth2Helper(
     GoogleOAuth2Client(
-      redirectUri: "$baseUri/auth/google/callback",
-      customUriScheme: "$baseUri/",
+      redirectUri: '$baseUri/auth/google/callback',
+      customUriScheme: 'http',
     ),
     grantType: OAuth2Helper.authorizationCode,
     clientId: gci,
@@ -27,7 +27,7 @@ class AuthService {
   final OAuth2Helper _githubAuth = OAuth2Helper(
     GitHubOAuth2Client(
       redirectUri: "$baseUri/auth/github/callback",
-      customUriScheme: "$baseUri/",
+      customUriScheme: "http",
     ),
     grantType: OAuth2Helper.authorizationCode,
     clientId: ghci,

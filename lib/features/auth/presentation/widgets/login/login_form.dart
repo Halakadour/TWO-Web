@@ -9,6 +9,7 @@ import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/auth_services.dart';
+import 'package:two_website/core/functions/google_sign.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/core/widgets/divider/divider_with_text.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
@@ -165,7 +166,7 @@ class _LoginFormState extends State<LoginForm> {
                 PaddingConfig.w16,
                 InkWell(
                   onTap: () {
-                    AuthService().signInWithGitHub();
+                    GoogleAuthService().signInWithGoogle();
                   },
                   child: Container(
                     height: SizesConfig.boxSm,
