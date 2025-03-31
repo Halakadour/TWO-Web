@@ -31,6 +31,17 @@ import 'package:two_website/features/contact-us/domain/usecases/mark_contact_us_
 import 'package:two_website/features/contact-us/domain/usecases/mark_contact_us_as_seen_usecase.dart';
 import 'package:two_website/features/contact-us/domain/usecases/show_contact_us_with_seen_and_approved_usecase.dart';
 import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
+import 'package:two_website/features/contracts/data/datasource/contract_datasource.dart';
+import 'package:two_website/features/contracts/data/repos/contract_repo_impl.dart';
+import 'package:two_website/features/contracts/domain/repos/contract_repo.dart';
+import 'package:two_website/features/contracts/domain/usecases/contract-usecase/add_contract_usecase.dart';
+import 'package:two_website/features/contracts/domain/usecases/contract-usecase/add_sign_usecase.dart';
+import 'package:two_website/features/contracts/domain/usecases/contract-usecase/get_client_contract_usecase.dart';
+import 'package:two_website/features/contracts/domain/usecases/contract-usecase/get_contracts_usecase.dart';
+import 'package:two_website/features/contracts/domain/usecases/draft-usecase/create_draft_usecase.dart';
+import 'package:two_website/features/contracts/domain/usecases/draft-usecase/delete_draft_usecase.dart';
+import 'package:two_website/features/contracts/domain/usecases/draft-usecase/get_draft_usecase.dart';
+import 'package:two_website/features/contracts/presentation/bloc/contract_bloc.dart';
 import 'package:two_website/features/posts/data/datasources/posts_local_datasource.dart';
 import 'package:two_website/features/posts/data/datasources/posts_remote_datasource.dart';
 import 'package:two_website/features/posts/data/repos/post_repo_impl.dart';
@@ -296,6 +307,41 @@ Future<void> init() async {
   // Datasource
   sl.registerLazySingleton<ContactUsRemoteDatasource>(
     () => ContactUsRemoteDatasourceImpl(),
+  );
+
+  /**----------------- CONTRACTS-DRAFTS FEATURE -----------------------**/
+  sl.registerFactory(
+    () => ContractBloc(sl(), sl(), sl(), sl(), sl(), sl(), sl()),
+  );
+  // Usecase
+  sl.registerLazySingleton(
+    () => AddContractUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => AddSignUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => GetClientContractUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => GetContractsUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => CreateDraftUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => DeleteDraftUsecase(sl()),
+  );
+  sl.registerLazySingleton(
+    () => GetDraftUsecase(sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<ContractRepo>(
+    () => ContractRepoImpl(sl()),
+  );
+  // Datasource
+  sl.registerLazySingleton<ContractDatasource>(
+    () => ContractDatasourceImpl(),
   );
 
   ///////////////////////////////////////////////////////////////////////////////////////

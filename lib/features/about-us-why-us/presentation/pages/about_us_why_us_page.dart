@@ -4,12 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/dialog/why-us-about-us/why_us_about_us_dialogs.dart';
 import 'package:two_website/core/widgets/buttons/create_button.dart';
 import 'package:two_website/core/widgets/buttons/update_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/core/widgets/texts/page_title.dart';
 import 'package:two_website/features/about-us-why-us/domain/entities/about_us_entity.dart';
 import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
 import 'package:two_website/features/about-us-why-us/presentation/widgets/custom_why_us_table.dart';
@@ -51,10 +51,7 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "About Us :",
-                  style: AppTextStyle.heading03(),
-                ),
+                const PageTitle(pageTitle: "About Us"),
                 Row(
                   children: [
                     // Create About Us
@@ -114,10 +111,7 @@ class _AboutUsWhyUsPageState extends State<AboutUsWhyUsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Why Us :",
-                  style: AppTextStyle.heading03(),
-                ),
+                const PageTitle(pageTitle: "Why Us"),
                 // Create Why Us
                 BlocListener<AboutUsWhyUsBloc, AboutUsWhyUsState>(
                   listener: (context, state) {

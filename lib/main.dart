@@ -7,6 +7,7 @@ import 'package:two_website/config/routes/app_router.dart';
 import 'package:two_website/features/about-us-why-us/presentation/bloc/about_us_why_us_bloc.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
+import 'package:two_website/features/contracts/presentation/bloc/contract_bloc.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/services/presentation/bloc/service_bloc.dart';
 import 'injection_container.dart' as di;
@@ -47,6 +48,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => di.sl<ContactUsBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ContractBloc>(),
         )
       ],
       child: MaterialApp.router(

@@ -6,12 +6,13 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/buttons/create_button.dart';
 import 'package:two_website/core/widgets/buttons/filter_button.dart';
+import 'package:two_website/core/widgets/dialog/posts/posts_dialogs.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/table-loading/loading_posts_table.dart';
+import 'package:two_website/core/widgets/texts/page_title.dart';
 import 'package:two_website/features/posts/presentation/bloc/post_bloc.dart';
 import 'package:two_website/features/posts/presentation/widgets/custom_posts_table.dart';
 
@@ -45,15 +46,7 @@ class _ShowPostsPageState extends State<PostsPage> {
                   previous.unActivePostStatus != current.unActivePostStatus),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Posts",
-                    style: AppTextStyle.heading03(),
-                  ),
-                ],
-              ),
+              const PageTitle(pageTitle: "Posts"),
               const SizedBox(
                 height: SizesConfig.spaceBtwSections,
               ),
@@ -69,7 +62,7 @@ class _ShowPostsPageState extends State<PostsPage> {
                   PaddingConfig.w8,
                   FilterButton(
                     onPressed: () {
-                      filterPosts(context);
+                      PostsDialogs().filterPosts(context, actriveSelected);
                     },
                   )
                 ],
@@ -131,82 +124,5 @@ class _ShowPostsPageState extends State<PostsPage> {
       context.pop();
       CustomQuickAlert().failureAlert(context, TextStrings.noToken);
     }
-  }
-
-  void filterPosts(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          "Filter By :",
-          style: AppTextStyle.subtitle01(),
-        ),
-        actions: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Activation :",
-                style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
-              ),
-              PaddingConfig.h24,
-              ValueListenableBuilder(
-                valueListenable: actriveSelected,
-                builder: (context, value, child) => Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        actriveSelected.value = true;
-                        context.read<PostBloc>().add(GetActivePostsEvent());
-                        context.pop();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 9),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: value ? AppColors.greenShade2 : AppColors.gray,
-                        ),
-                        child: Text(
-                          "Active posts",
-                          style: AppTextStyle.subtitle04(
-                              color: value
-                                  ? AppColors.white
-                                  : AppColors.fontDarkColor),
-                        ),
-                      ),
-                    ),
-                    PaddingConfig.w16,
-                    InkWell(
-                      onTap: () {
-                        actriveSelected.value = false;
-                        context.read<PostBloc>().add(GetUnActivePostsEvent());
-                        context.pop();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 9),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color:
-                              !value ? AppColors.greenShade2 : AppColors.gray,
-                        ),
-                        child: Text(
-                          "Un Active posts",
-                          style: AppTextStyle.subtitle04(
-                              color: !value
-                                  ? AppColors.white
-                                  : AppColors.fontDarkColor),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
   }
 }

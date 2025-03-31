@@ -5,12 +5,12 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/buttons/filter_button.dart';
 import 'package:two_website/core/widgets/dialog/filter/filter_dialogs.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/table-loading/loading_contact_us_table.dart';
+import 'package:two_website/core/widgets/texts/page_title.dart';
 import 'package:two_website/features/contact-us/presentation/bloc/contact_us_bloc.dart';
 import 'package:two_website/features/contact-us/presentation/widgets/custom_contact_us_table.dart';
 
@@ -43,15 +43,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   previous.seenMarkerStatus != current.seenMarkerStatus),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Contact Us",
-                    style: AppTextStyle.heading03(),
-                  ),
-                ],
-              ),
+              const PageTitle(pageTitle: "Contact Us"),
               const SizedBox(
                 height: SizesConfig.spaceBtwSections,
               ),

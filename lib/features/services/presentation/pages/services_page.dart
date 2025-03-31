@@ -5,11 +5,11 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/buttons/create_button.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/table-loading/loading_service_table.dart';
+import 'package:two_website/core/widgets/texts/page_title.dart';
 import 'package:two_website/features/services/presentation/bloc/service_bloc.dart';
 import 'package:two_website/features/services/presentation/widgets/custom_service_table.dart';
 
@@ -41,15 +41,7 @@ class _ShowPostsPageState extends State<ServicesPage> {
               (previous.deleteServiceStatus != current.deleteServiceStatus),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Services",
-                    style: AppTextStyle.heading03(),
-                  ),
-                ],
-              ),
+              const PageTitle(pageTitle: "Services"),
               const SizedBox(
                 height: SizesConfig.spaceBtwSections,
               ),
