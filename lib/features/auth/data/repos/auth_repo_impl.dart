@@ -37,4 +37,24 @@ class AuthRepoImpl extends AuthRepo {
       return Right(result);
     });
   }
+
+  @override
+  Future<Either<Failure, RegisterNewUserModel>> registLoginWithGithup() {
+    return wrapHandling(
+      tryCall: () async {
+        final result = await authRemoteDataSource.registLoginWithGithup();
+        return Right(result);
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, RegisterNewUserModel>> registLoginWithGoogle() {
+    return wrapHandling(
+      tryCall: () async {
+        final result = await authRemoteDataSource.registLoginWithGoogle();
+        return Right(result);
+      },
+    );
+  }
 }

@@ -1,60 +1,86 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../../config/constants/padding_config.dart';
-import '../../../../config/strings/assets_path.dart';
-import '../../../../config/theme/color.dart';
-import '../../../../config/theme/text_style.dart';
+import 'package:two_website/config/constants/padding_config.dart';
+import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/strings/assets_path.dart';
+import 'package:two_website/config/theme/color.dart';
+import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/functions/auth_services.dart';
+import 'package:two_website/core/widgets/divider/divider_with_text.dart';
 
 class GoogleGitRow extends StatelessWidget {
   const GoogleGitRow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Column(
       children: [
-        Expanded(
-            child:
-                OpenAcountButton(iconPath: IconsPath.google, title: "Google")),
-        PaddingConfig.w16,
-        Expanded(
-            child:
-                OpenAcountButton(iconPath: IconsPath.githup, title: "GitHup")),
+        const DividerWithText(text: "Or Containe With"),
+        const SizedBox(
+          height: SizesConfig.spaceBtwItems,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                AuthService().signInWithGoogle();
+              },
+              child: Expanded(
+                child: Container(
+                  height: SizesConfig.boxSm,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.gray, width: .9),
+                      borderRadius:
+                          BorderRadius.circular(SizesConfig.borderRadiusSm)),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        IconsPath.google,
+                        width: SizesConfig.iconsMd,
+                      ),
+                      PaddingConfig.w8,
+                      Text(
+                        "Google",
+                        style: AppTextStyle.buttonStyle(),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            PaddingConfig.w16,
+            InkWell(
+              onTap: () {
+                AuthService().signInWithGitHub();
+              },
+              child: Expanded(
+                child: Container(
+                  height: SizesConfig.boxSm,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.gray, width: .9),
+                      borderRadius:
+                          BorderRadius.circular(SizesConfig.borderRadiusSm)),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(IconsPath.githup),
+                      PaddingConfig.w8,
+                      Text(
+                        "Githup",
+                        style: AppTextStyle.buttonStyle(),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
-    );
-  }
-}
-
-class OpenAcountButton extends StatelessWidget {
-  const OpenAcountButton({
-    super.key,
-    required this.iconPath,
-    required this.title,
-  });
-  final String iconPath;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: PaddingConfig.rectPadding,
-      width: double.maxFinite,
-      decoration: BoxDecoration(
-          border: Border.all(color: AppColors.gray, width: 1),
-          borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        children: [
-          SvgPicture.asset(
-            iconPath,
-            width: 20,
-          ),
-          PaddingConfig.w8,
-          Text(
-            title,
-            style: AppTextStyle.buttonStyle(),
-          ),
-        ],
-      ),
     );
   }
 }

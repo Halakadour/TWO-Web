@@ -11,7 +11,7 @@ import 'package:two_website/core/widgets/animation/success_status_animation.dart
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/core/widgets/dropdown/custom_dropdown_list.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/features/roles/data/models/role_response_model.dart';
+import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class ChooseUseTypeBody extends StatefulWidget {
   const ChooseUseTypeBody({super.key});

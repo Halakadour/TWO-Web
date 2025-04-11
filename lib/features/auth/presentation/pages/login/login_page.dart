@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
         } else if (state.authModelStatus == CasualStatus.success) {
           await SharedPreferencesServices.setUserToken(state.authModel!.token);
           context.pop();
-          context.pushReplacementNamed(AppRouteConfig.main);
+          context.pushReplacementNamed(AppRouteConfig.landing);
         } else if (state.authModelStatus == CasualStatus.failure ||
             state.authModelStatus == CasualStatus.noToken) {
           context.pop();

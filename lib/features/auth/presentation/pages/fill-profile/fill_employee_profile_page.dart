@@ -27,7 +27,7 @@ class _FillProfilePageState extends State<FillEmployeeProfilePage> {
           CustomQuickAlert().loadingAlert(context);
         } else if (state.updateEmployeeProfileStatus == CasualStatus.success) {
           context.pop();
-          context.pushReplacementNamed(AppRouteConfig.main);
+          context.pushReplacementNamed(AppRouteConfig.landing);
         } else if (state.updateEmployeeProfileStatus == CasualStatus.failure) {
           context.pop();
 

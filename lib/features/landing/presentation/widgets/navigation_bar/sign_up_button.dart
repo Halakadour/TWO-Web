@@ -47,8 +47,6 @@ class _SignUpButtonState extends State<SignUpButton> {
     bool isVisiter = await SharedPreferencesServices.checkIsVisitor();
     if (isVisiter) {
       context.pushNamed(AppRouteConfig.login);
-    } else {
-      context.pushNamed(AppRouteConfig.dashboard);
-    }
+    } else {}
   }
 }

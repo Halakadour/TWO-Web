@@ -6,14 +6,13 @@ import 'package:two_website/features/auth/data/models/user_model.dart';
 import 'package:two_website/features/auth/domain/usecases/login_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/register_usecase.dart';
-import 'package:two_website/features/profile/domain/usecases/update_client_profile_usecase.dart';
-import 'package:two_website/features/profile/domain/usecases/update_employee_profile_usecase.dart';
-import 'package:two_website/features/profile/domain/usecases/update_freelance_profile_usecase.dart';
-import 'package:two_website/features/profile/domain/usecases/update_guest_profile_usecase.dart';
-import 'package:two_website/features/roles/domain/usecases/show_role_client_usecase.dart';
-import 'package:two_website/features/roles/domain/usecases/show_roles_without_client_usecase.dart';
+import 'package:two_website/features/landing/domain/usecases/update_client_profile_usecase.dart';
+import 'package:two_website/features/landing/domain/usecases/update_freelance_profile_usecase.dart';
+import 'package:two_website/features/landing/domain/usecases/update_guest_profile_usecase.dart';
+import 'package:two_website/features/landing/domain/usecases/show_role_client_usecase.dart';
+import 'package:two_website/features/landing/domain/usecases/show_roles_without_client_usecase.dart';
 
-import '../../../roles/data/models/role_response_model.dart';
+import '../../../landing/data/models/role_response_model.dart';
 
 part 'auth_role_profile_event.dart';
 part 'auth_role_profile_state.dart';
@@ -28,7 +27,6 @@ class AuthRoleProfileBloc
   final ShowRolesWithoutClientUsecase showRolesWithoutClientUsecase;
   final ShowRoleClientUsecase showRoleClientUsecase;
   // Profile Usecases //
-  final UpdateEmployeeProfileUsecase updateEmployeeProfileUsecase;
   final UpdateClientProfileUsecase updateClientProfileUsecase;
   final UpdateFreelanceProfileUsecase updateFreelanceProfileUsecase;
   final UpdateGuestProfileUsecase updateGuestProfileUsecase;
@@ -38,7 +36,6 @@ class AuthRoleProfileBloc
       required this.logoutUsecase,
       required this.showRolesWithoutClientUsecase,
       required this.showRoleClientUsecase,
-      required this.updateEmployeeProfileUsecase,
       required this.updateClientProfileUsecase,
       required this.updateFreelanceProfileUsecase,
       required this.updateGuestProfileUsecase})
@@ -110,25 +107,6 @@ class AuthRoleProfileBloc
       );
     });
     // Profile Bloc //
-    on<UpdateEmployeeProfileEvent>((event, emit) async {
-      emit(state.copyWith(updateEmployeeProfileStatus: CasualStatus.loading));
-      final String? token = await SharedPreferencesServices.getUserToken();
-      if (token != null) {
-        final result = await updateEmployeeProfileUsecase.call(
-            EmployeeProfileParam(
-                token: token,
-                image: event.image,
-                cv: event.cv,
-                roleId: event.roleId));
-        result.fold(
-          (l) => emit(state.copyWith(
-              updateEmployeeProfileStatus: CasualStatus.failure,
-              message: l.message)),
-          (r) => emit(state.copyWith(
-              updateEmployeeProfileStatus: CasualStatus.success)),
-        );
-      }
-    });
     on<UpdateClientProfileEvent>((event, emit) async {
       emit(state.copyWith(updateClientProfileStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();

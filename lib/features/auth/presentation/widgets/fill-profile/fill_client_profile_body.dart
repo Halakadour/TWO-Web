@@ -13,7 +13,7 @@ import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdown_loading.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
-import 'package:two_website/features/roles/data/models/role_response_model.dart';
+import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class FillClientProfileBody extends StatefulWidget {
   const FillClientProfileBody({super.key});

@@ -14,7 +14,7 @@ import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdo
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/fetch_cv_box.dart';
-import 'package:two_website/features/roles/data/models/role_response_model.dart';
+import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class FillEmployeeProfileBody extends StatefulWidget {
   const FillEmployeeProfileBody({super.key});

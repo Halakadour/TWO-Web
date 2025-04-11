@@ -20,7 +20,11 @@ class AuthService {
     grantType: OAuth2Helper.authorizationCode,
     clientId: gci,
     clientSecret: gscr,
-    scopes: ["email", "profile", "openid"],
+    scopes: [
+      "email",
+      "profile",
+      "openid",
+    ],
   );
 
   // GitHub OAuth Config

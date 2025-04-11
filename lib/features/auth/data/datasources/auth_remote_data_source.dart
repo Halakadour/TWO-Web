@@ -1,4 +1,5 @@
 import 'package:two_website/config/constants/base_uri.dart';
+import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/features/auth/data/models/login_user_model.dart';
 import 'package:two_website/features/auth/data/models/logout_user_model.dart';
 import 'package:two_website/features/auth/data/models/register_new_user_model.dart';
@@ -11,7 +12,8 @@ abstract class AuthRemoteDataSource {
       String name, String email, String password, String confirmPassword);
   Future<LoginUserModel> login(String token, String email, String password);
   Future<LogoutUserModel> logout(String token);
-  // Future<Unit> registLoginWithGoogle();
+  Future<RegisterNewUserModel> registLoginWithGoogle();
+  Future<RegisterNewUserModel> registLoginWithGithup();
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -53,5 +55,21 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
         body: ({}),
         fromJson: logoutUserModelFromJson);
     return await result.call();
+  }
+
+  @override
+  Future<RegisterNewUserModel> registLoginWithGithup() async {
+    final result = GetApi(
+        uri: Uri.parse("$baseUri/auth/github/callback"),
+        fromJson: registerNewUserModelFromJson);
+    return await result.callRequest();
+  }
+
+  @override
+  Future<RegisterNewUserModel> registLoginWithGoogle() async {
+    final result = GetApi(
+        uri: Uri.parse("$baseUri/auth/google/callback"),
+        fromJson: registerNewUserModelFromJson);
+    return await result.callRequest();
   }
 }

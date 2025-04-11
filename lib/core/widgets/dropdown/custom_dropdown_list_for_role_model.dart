@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/features/roles/data/models/role_response_model.dart';
+import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class CustomDropdownListForRoleModel extends StatelessWidget {
   const CustomDropdownListForRoleModel(
