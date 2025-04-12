@@ -40,7 +40,7 @@ class _PostCardState extends State<PostCard> {
           ]),
       child: Column(
         children: [
-          MemoryImageFetch(poster: widget.postEntity.poster),
+          FetchNetworkImage(imagePath: widget.postEntity.poster),
           PaddingConfig.h8,
           Text(widget.postEntity.body),
           const Spacer(),

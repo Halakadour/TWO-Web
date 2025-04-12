@@ -6,15 +6,15 @@ import 'package:shimmer/shimmer.dart';
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 
-class MemoryImageFetch extends StatefulWidget {
-  const MemoryImageFetch({super.key, required this.poster});
-  final String poster;
+class FetchNetworkImage extends StatefulWidget {
+  const FetchNetworkImage({super.key, required this.imagePath});
+  final String imagePath;
 
   @override
-  State<MemoryImageFetch> createState() => _MemoryImageFetchState();
+  State<FetchNetworkImage> createState() => _FetchNetworkImageState();
 }
 
-class _MemoryImageFetchState extends State<MemoryImageFetch> {
+class _FetchNetworkImageState extends State<FetchNetworkImage> {
   Uint8List? imageBytes;
 
   Future<void> fetchImage(String filename) async {
@@ -30,7 +30,7 @@ class _MemoryImageFetchState extends State<MemoryImageFetch> {
 
   @override
   void initState() {
-    fetchImage(widget.poster);
+    fetchImage(widget.imagePath);
     super.initState();
   }
 

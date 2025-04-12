@@ -36,18 +36,6 @@ class GetRolesWithoutClientEvent extends AuthRoleProfileEvent {}
 class GetRolesEvent extends AuthRoleProfileEvent {}
 
 // Profile Events //
-
-class UpdateEmployeeProfileEvent extends AuthRoleProfileEvent {
-  final String image;
-  final String cv;
-  final int roleId;
-  UpdateEmployeeProfileEvent({
-    required this.image,
-    required this.cv,
-    required this.roleId,
-  });
-}
-
 class UpdateClientProfileEvent extends AuthRoleProfileEvent {
   final String image;
   final int roleId;

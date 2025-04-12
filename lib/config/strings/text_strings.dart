@@ -17,6 +17,7 @@ class TextStrings {
 
   // --ERROR Texts
   static const String noToken = "There is no token!";
+  static const String fialure = "Something went wrong! please try later.";
 
   // --AUTH Default Texts
   static const String email = "E-mail";

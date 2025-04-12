@@ -13,7 +13,6 @@ import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdown_loading.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
-import 'package:two_website/features/auth/presentation/widgets/fill-profile/fetch_cv_box.dart';
 import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class FillEmployeeProfileBody extends StatefulWidget {
@@ -78,18 +77,6 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
             return rolesListStateHandling(state);
           },
         ),
-        PaddingConfig.h16,
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            "CV File",
-            style: AppTextStyle.subtitle03(),
-          ),
-        ),
-        PaddingConfig.h8,
-        if (!(role != null &&
-            (role!.role.contains("freelancer") || role!.role.contains("user"))))
-          FetchCvBox(fileB64: cvB64, onUpdate: updateCVBytes),
         const SizedBox(
           height: SizesConfig.spaceBtwItems,
         ),
@@ -109,14 +96,6 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
               } else if (role!.role.contains("user")) {
                 context.read<AuthRoleProfileBloc>().add(UpdateGuestProfileEvent(
                     image: imageB64!, roleId: role!.id));
-              } else {
-                if (cvB64 == null) {
-                  CustomQuickAlert().addImageAlert(context);
-                } else {
-                  context.read<AuthRoleProfileBloc>().add(
-                      UpdateEmployeeProfileEvent(
-                          image: imageB64!, cv: cvB64!, roleId: role!.id));
-                }
               }
             },
           ),
@@ -130,22 +109,28 @@ class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
 
   Widget rolesListStateHandling(AuthRoleProfileState state) {
     if (state.roleWithoutClientListStatus == CasualStatus.success) {
+      // تصفية الأدوار لتشمل فقط "user" و "Freelance"
+      final filteredRoles = state.roleWithoutClientList.where((role) {
+        return role.role == "user" || role.role == "freelancer";
+      }).toList();
+
       return CustomDropdownListForRoleModel(
-          selectYour: "job",
-          value: role,
-          items: state.roleWithoutClientList.map(
-            (role) {
-              return DropdownMenuItem(
-                value: role,
-                child: Text(role.role),
-              );
-            },
-          ).toList(),
-          onChanged: (value) {
-            setState(() {
-              role = value;
-            });
+        selectYour: "job",
+        value: role,
+        items: filteredRoles.map(
+          (role) {
+            return DropdownMenuItem(
+              value: role,
+              child: Text(role.role),
+            );
+          },
+        ).toList(),
+        onChanged: (value) {
+          setState(() {
+            role = value;
           });
+        },
+      );
     } else if (state.roleWithoutClientListStatus == CasualStatus.loading) {
       return const CustomDropdownLoading();
     } else if (state.roleWithoutClientListStatus == CasualStatus.failure) {

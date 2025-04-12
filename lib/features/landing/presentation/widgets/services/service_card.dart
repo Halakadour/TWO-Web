@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
+import 'package:two_website/features/landing/domain/entities/service_entity.dart';
 
 class ServiceCard extends StatelessWidget {
-  const ServiceCard(
-      {super.key, required this.imagePath, required this.serviceTitlel});
-  final String imagePath;
-  final String serviceTitlel;
+  const ServiceCard({
+    super.key,
+    required this.serviceEntity,
+  });
+  final ServiceEntity serviceEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +23,19 @@ class ServiceCard extends StatelessWidget {
       )),
       child: Column(
         children: [
-          Image.asset(imagePath),
+          FetchNetworkImage(imagePath: serviceEntity.imageE),
           PaddingConfig.h8,
           Text(
-            serviceTitlel,
+            serviceEntity.titleE,
             textAlign: TextAlign.center,
             style: AppTextStyle.subtitle02(color: AppColors.white),
-          )
+          ),
+          PaddingConfig.h8,
+          Text(
+            serviceEntity.descriptionE,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.subtitle03(color: AppColors.white),
+          ),
         ],
       ),
     );

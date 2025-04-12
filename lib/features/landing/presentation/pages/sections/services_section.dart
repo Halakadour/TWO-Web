@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
+import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/custom_linked_text.dart';
 import 'package:two_website/features/landing/presentation/widgets/services/service_card.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
@@ -33,6 +35,12 @@ class _ServicesSectionState extends State<ServicesSection> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    context.read<LandingBloc>().add(ShowServicesEvent());
+    super.didChangeDependencies();
   }
 
   @override
@@ -77,14 +85,13 @@ class _ServicesSectionState extends State<ServicesSection> {
                   ),
                   PaddingConfig.w32,
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      controller: _controller,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => const ServiceCard(
-                          imagePath: ImagesPath.web,
-                          serviceTitlel: "Website\nDelevlopment"),
+                    child: BlocBuilder<LandingBloc, LandingState>(
+                      buildWhen: (previous, current) =>
+                          previous.serviceListStatus !=
+                          current.serviceListStatus,
+                      builder: (context, state) {
+                        return servicesListStateHandling(state);
+                      },
                     ),
                   ),
                   PaddingConfig.w32,
@@ -100,5 +107,30 @@ class _ServicesSectionState extends State<ServicesSection> {
             )
           ],
         ));
+  }
+
+  Widget servicesListStateHandling(LandingState state) {
+    if (state.serviceListStatus == CasualStatus.loading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (state.serviceListStatus == CasualStatus.success) {
+      return ListView.builder(
+        itemCount: state.serviceList.length,
+        scrollDirection: Axis.horizontal,
+        controller: _controller,
+        physics: const AlwaysScrollableScrollPhysics(),
+        itemBuilder: (context, index) => ServiceCard(
+          serviceEntity: state.serviceList[index],
+        ),
+      );
+    } else if (state.serviceListStatus == CasualStatus.failure) {
+      return Text(
+        state.message,
+        style: AppTextStyle.buttonStyle(color: AppColors.white),
+      );
+    } else {
+      return const SizedBox();
+    }
   }
 }
