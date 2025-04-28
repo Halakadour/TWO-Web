@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
+import 'package:two_website/core/network/network_connection_checker.dart';
+import 'package:two_website/features/landing/data/datasources/landing_locale_datasource.dart';
 import 'package:two_website/features/landing/data/datasources/landing_remote_datasource.dart';
 import 'package:two_website/features/landing/data/models/contact_us_model.dart';
 import 'package:two_website/features/landing/data/models/role_response_model.dart';
@@ -12,9 +14,12 @@ import 'package:two_website/features/landing/domain/entities/why_us_entity.dart'
 import 'package:two_website/features/landing/domain/repos/landing_repo.dart';
 
 class LandingRepoImpl extends LandingRepo {
-  LandingRepoImpl(this.landingRemoteDatasource);
+  LandingRepoImpl(this.landingRemoteDatasource, this.landingLocaleDatasource,
+      this.networkInfo);
 
   final LandingRemoteDatasource landingRemoteDatasource;
+  final LandingLocaleDatasource landingLocaleDatasource;
+  final NetworkInfoImpl networkInfo;
 
   @override
   Future<Either<Failure, ContactUsModel>> createContactUs(
@@ -44,8 +49,14 @@ class LandingRepoImpl extends LandingRepo {
   Future<Either<Failure, AboutUsEntity>> showAboutUs() {
     return wrapHandling(
       tryCall: () async {
-        final result = await landingRemoteDatasource.showAboutUs();
-        return Right(result.data);
+        if (await networkInfo.isConnected) {
+          final remoteAboutUs = await landingRemoteDatasource.showAboutUs();
+          landingLocaleDatasource.cacheAboutUs(remoteAboutUs.data);
+          return Right(remoteAboutUs.data);
+        } else {
+          final localAboutUs = await landingLocaleDatasource.getCachedAboutUs();
+          return Right(localAboutUs);
+        }
       },
     );
   }
@@ -54,16 +65,15 @@ class LandingRepoImpl extends LandingRepo {
   Future<Either<Failure, List<PostEntity>>> showActivePosts() {
     return wrapHandling(
       tryCall: () async {
-        final result = await landingRemoteDatasource.showActivePosts();
-        return Right(result.data);
-        // if (await networkInfo.isConnected) {
-        //   final remotePosts = await postRemoteDatasource.showActivePosts();
-        //   postsLocalDatasource.cacheActivePosts(remotePosts.data);
-        //   return Right(remotePosts.data);
-        // } else {
-        //   final localPosts = await postsLocalDatasource.getActiveCachedPosts();
-        //   return Right(localPosts);
-        // }
+        if (await networkInfo.isConnected) {
+          final remotePosts = await landingRemoteDatasource.showActivePosts();
+          landingLocaleDatasource.cacheActivePosts(remotePosts.data);
+          return Right(remotePosts.data);
+        } else {
+          final localPosts =
+              await landingLocaleDatasource.getCachedActivePosts();
+          return Right(localPosts);
+        }
       },
     );
   }
@@ -72,48 +82,47 @@ class LandingRepoImpl extends LandingRepo {
   Future<Either<Failure, List<PostEntity>>> showUnActivePosts() {
     return wrapHandling(
       tryCall: () async {
-        final result = await landingRemoteDatasource.showUnActivePosts();
-        return Right(result.data);
-        // if (await networkInfo.isConnected) {
-        //   final remotePosts = await postRemoteDatasource.showUnActivePosts();
-        //   postsLocalDatasource.cacheUnActivePosts(remotePosts.data);
-        //   return Right(remotePosts.data);
-        // } else {
-        //   final localPosts =
-        //       await postsLocalDatasource.getUnActiveCachedPosts();
-        //   return Right(localPosts);
-        // }
+        if (await networkInfo.isConnected) {
+          final remotePosts = await landingRemoteDatasource.showUnActivePosts();
+          landingLocaleDatasource.cacheUnActivePosts(remotePosts.data);
+          return Right(remotePosts.data);
+        } else {
+          final localPosts =
+              await landingLocaleDatasource.getCachedUnActivePosts();
+          return Right(localPosts);
+        }
       },
     );
   }
 
   @override
-  Future<Either<Failure, RoleResponesModel>> showRoleClient() {
+  Future<Either<Failure, List<RoleModel>>> showRoleClient() {
     return wrapHandling(
       tryCall: () async {
-        final remoteRoles = await landingRemoteDatasource.showRoleClient();
-        return Right(remoteRoles);
+        if (await networkInfo.isConnected) {
+          final remoteRoles = await landingRemoteDatasource.showRoleClient();
+          landingLocaleDatasource.cacheRoles(remoteRoles.data);
+          return Right(remoteRoles.data);
+        } else {
+          final localRoles = await landingLocaleDatasource.getCachedRoles();
+          return Right(localRoles);
+        }
       },
     );
   }
 
   @override
-  Future<Either<Failure, RoleResponesModel>> showRolesWithoutClient() {
+  Future<Either<Failure, List<RoleModel>>> showRolesWithoutClient() {
     return wrapHandling(
       tryCall: () async {
-        final remoteRoles =
-            await landingRemoteDatasource.showRolesWithoutClient();
-        return Right(remoteRoles);
-        // if (await networkInfo.isConnected) {
-        //   final remoteRoles =
-        //       await roleRemoteDatasource.showRolesWithoutClient();
-        //   roleLocalDatasource.cacheRoles(remoteRoles.data);
-        //   return Right(remoteRoles);
-        // } else {
-        //   final localReplies = await roleLocalDatasource.getCachedRoles();
-        //   return Right(
-        //       RoleResponesModel(status: 200, msg: "Local", data: localReplies));
-        // }
+        if (await networkInfo.isConnected) {
+          final remoteRoles = await landingRemoteDatasource.showRoleClient();
+          landingLocaleDatasource.cacheRoles(remoteRoles.data);
+          return Right(remoteRoles.data);
+        } else {
+          final localRoles = await landingLocaleDatasource.getCachedRoles();
+          return Right(localRoles);
+        }
       },
     );
   }
@@ -122,8 +131,15 @@ class LandingRepoImpl extends LandingRepo {
   Future<Either<Failure, List<ServiceEntity>>> showService() {
     return wrapHandling(
       tryCall: () async {
-        final result = await landingRemoteDatasource.showServices();
-        return Right(result.data);
+        if (await networkInfo.isConnected) {
+          final remoteServices = await landingRemoteDatasource.showServices();
+          landingLocaleDatasource.cacheServices(remoteServices.data);
+          return Right(remoteServices.data);
+        } else {
+          final localServices =
+              await landingLocaleDatasource.getCachedServices();
+          return Right(localServices);
+        }
       },
     );
   }
@@ -132,8 +148,14 @@ class LandingRepoImpl extends LandingRepo {
   Future<Either<Failure, List<WhyUsEntity>>> showWhyUs() {
     return wrapHandling(
       tryCall: () async {
-        final result = await landingRemoteDatasource.showWhyUs();
-        return Right(result.data);
+        if (await networkInfo.isConnected) {
+          final remoteWhys = await landingRemoteDatasource.showWhyUs();
+          landingLocaleDatasource.cacheWhyUs(remoteWhys.data);
+          return Right(remoteWhys.data);
+        } else {
+          final localWhys = await landingLocaleDatasource.getCachedWhyUs();
+          return Right(localWhys);
+        }
       },
     );
   }

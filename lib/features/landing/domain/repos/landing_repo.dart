@@ -34,8 +34,8 @@ abstract class LandingRepo with HandlingExceptionManager {
       String subject,
       String description,
       String phone);
-  Future<Either<Failure, RoleResponesModel>> showRolesWithoutClient();
-  Future<Either<Failure, RoleResponesModel>> showRoleClient();
+  Future<Either<Failure, List<RoleModel>>> showRolesWithoutClient();
+  Future<Either<Failure, List<RoleModel>>> showRoleClient();
   // Service
   Future<Either<Failure, List<ServiceEntity>>> showService();
 }

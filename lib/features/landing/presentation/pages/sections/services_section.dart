@@ -13,7 +13,6 @@ import 'package:two_website/lang/locale_keys.g.dart';
 
 class ServicesSection extends StatefulWidget {
   const ServicesSection({super.key});
-
   @override
   State<ServicesSection> createState() => _ServicesSectionState();
 }

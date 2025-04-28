@@ -5,13 +5,13 @@ import 'package:two_website/features/landing/domain/repos/landing_repo.dart';
 import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class ShowRolesWithoutClientUsecase
-    extends NoParamUseCase<Future<Either<Failure, RoleResponesModel>>> {
+    extends NoParamUseCase<Future<Either<Failure, List<RoleModel>>>> {
   final LandingRepo roleRepo;
 
   ShowRolesWithoutClientUsecase(this.roleRepo);
 
   @override
-  Future<Either<Failure, RoleResponesModel>> call() {
+  Future<Either<Failure, List<RoleModel>>> call() {
     return roleRepo.showRolesWithoutClient();
   }
 }

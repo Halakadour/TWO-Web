@@ -93,7 +93,7 @@ class AuthRoleProfileBloc
             state.copyWith(roleWithoutClientListStatus: CasualStatus.failure)),
         (r) => emit(state.copyWith(
             roleWithoutClientListStatus: CasualStatus.success,
-            roleWithoutClientList: r.data)),
+            roleWithoutClientList: r)),
       );
     });
     on<GetRolesEvent>((event, emit) async {
@@ -102,8 +102,8 @@ class AuthRoleProfileBloc
       result.fold(
         (l) => emit(state.copyWith(
             roleListStatus: CasualStatus.failure, message: l.message)),
-        (r) => emit(state.copyWith(
-            roleListStatus: CasualStatus.success, roleList: r.data)),
+        (r) => emit(
+            state.copyWith(roleListStatus: CasualStatus.success, roleList: r)),
       );
     });
     // Profile Bloc //

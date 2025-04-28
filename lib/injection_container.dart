@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_website/core/network/network_connection_checker.dart';
+import 'package:two_website/features/landing/data/datasources/landing_locale_datasource.dart';
 import 'package:two_website/features/landing/data/datasources/landing_remote_datasource.dart';
 import 'package:two_website/features/landing/data/repos/landing_repo_impl.dart';
 import 'package:two_website/features/landing/domain/repos/landing_repo.dart';
@@ -77,12 +78,15 @@ Future<void> init() async {
   );
   // Repos
   sl.registerLazySingleton<LandingRepo>(
-    () => LandingRepoImpl(sl()),
+    () => LandingRepoImpl(sl(), sl(), sl()),
   );
 
   // Datasources
   sl.registerLazySingleton<LandingRemoteDatasource>(
     () => LandingRemoteDatasourceImpl(),
+  );
+  sl.registerLazySingleton<LandingLocaleDatasource>(
+    () => LandingLocaleDatasourceImpl(sl()),
   );
 
   /**----------------- ROLE FEATURE -----------------------**/
@@ -145,6 +149,8 @@ Future<void> init() async {
 
   final sharedPreferences = await SharedPreferences.getInstance();
   final internetConnectionChecker = InternetConnectionChecker.createInstance();
+  final networkInfo = NetworkInfoImpl(internetConnectionChecker);
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => internetConnectionChecker);
+  sl.registerLazySingleton(() => networkInfo);
 }
