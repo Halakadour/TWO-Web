@@ -44,7 +44,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                               style: AppTextStyle.heading00(),
                             ),
                             PaddingConfig.h24,
-                            LoginTemplate(
+                            ScrollTemplate(
                                 child: ReplyToPostBody(
                                     postId: widget.postId,
                                     postPoster: widget.postPoster,

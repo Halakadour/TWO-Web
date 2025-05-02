@@ -10,8 +10,6 @@ class LandingState {
   CasualStatus createContcatStatus;
   List<PostEntity> activePostsList;
   CasualStatus activePostsListStatus;
-  List<PostEntity> unActivePostsList;
-  CasualStatus unActivePostsListStatus;
   CasualStatus sendReplyStatus;
   CasualStatus serviceListStatus;
   List<ServiceEntity> serviceList;
@@ -24,8 +22,6 @@ class LandingState {
     this.createContcatStatus = CasualStatus.initial,
     this.activePostsList = const [],
     this.activePostsListStatus = CasualStatus.initial,
-    this.unActivePostsList = const [],
-    this.unActivePostsListStatus = CasualStatus.initial,
     this.sendReplyStatus = CasualStatus.initial,
     this.serviceListStatus = CasualStatus.initial,
     this.serviceList = const [],
@@ -40,8 +36,6 @@ class LandingState {
     CasualStatus? createContcatStatus,
     List<PostEntity>? activePostsList,
     CasualStatus? activePostsListStatus,
-    List<PostEntity>? unActivePostsList,
-    CasualStatus? unActivePostsListStatus,
     CasualStatus? sendReplyStatus,
     CasualStatus? serviceListStatus,
     List<ServiceEntity>? serviceList,
@@ -56,9 +50,6 @@ class LandingState {
       activePostsList: activePostsList ?? this.activePostsList,
       activePostsListStatus:
           activePostsListStatus ?? this.activePostsListStatus,
-      unActivePostsList: unActivePostsList ?? this.unActivePostsList,
-      unActivePostsListStatus:
-          unActivePostsListStatus ?? this.unActivePostsListStatus,
       sendReplyStatus: sendReplyStatus ?? this.sendReplyStatus,
       serviceListStatus: serviceListStatus ?? this.serviceListStatus,
       serviceList: serviceList ?? this.serviceList,

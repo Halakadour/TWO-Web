@@ -19,8 +19,6 @@ class CreateContactUsEvent extends LandingEvent {
 
 class GetActivePostsEvent extends LandingEvent {}
 
-class GetUnActivePostsEvent extends LandingEvent {}
-
 class ReplyToPostEvent extends LandingEvent {
   final String fullName;
   final String email;

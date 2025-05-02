@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 
 class CustomResponsiveDesign extends StatelessWidget {
-  const CustomResponsiveDesign(
-      {super.key,
-      required this.desktop,
-      required this.tablet,
-      required this.mobile});
+  const CustomResponsiveDesign({
+    super.key,
+    required this.desktop,
+    required this.tablet,
+    required this.mobile,
+  });
   // Widget for desktop layout
   final Widget desktop;
 

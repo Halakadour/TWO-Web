@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/core/widgets/layouts/templates/login_template.dart';
-import 'package:two_website/features/auth/presentation/widgets/fill-profile/fill_employee_profile_body.dart';
+import 'package:two_website/features/auth/presentation/widgets/fill-profile/fill_freelancer_profile_body.dart';
 
 class FillEmployeeProfileDesktopTablet extends StatefulWidget {
   const FillEmployeeProfileDesktopTablet({super.key});
@@ -14,11 +14,11 @@ class _FillEmployeeProfileDesktopTabletState
     extends State<FillEmployeeProfileDesktopTablet> {
   @override
   Widget build(BuildContext context) {
-    return const LoginTemplate(
+    return const ScrollTemplate(
         child: Column(
       children: [
         // Body
-        FillEmployeeProfileBody()
+        FillFreelancerProfileBody()
       ],
     ));
   }

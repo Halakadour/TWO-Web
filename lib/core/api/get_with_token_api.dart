@@ -33,7 +33,7 @@ class GetWithTokenApi<T> with HandlingExceptionRequest {
       //request.body = jsonEncode(body);
       request.headers.addAll(headers);
       http.StreamedResponse streamedResponse =
-          await request.send().timeout(const Duration(seconds: 20));
+          await request.send().timeout(const Duration(seconds: 40));
       http.Response response = await http.Response.fromStream(streamedResponse);
       if (response.statusCode == 200) {
         return fromJson(response.body);

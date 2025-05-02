@@ -7,8 +7,10 @@ import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 
 class FetchNetworkImage extends StatefulWidget {
-  const FetchNetworkImage({super.key, required this.imagePath});
+  const FetchNetworkImage(
+      {super.key, required this.imagePath, this.shape = BoxShape.rectangle});
   final String imagePath;
+  final BoxShape shape;
 
   @override
   State<FetchNetworkImage> createState() => _FetchNetworkImageState();
@@ -40,6 +42,7 @@ class _FetchNetworkImageState extends State<FetchNetworkImage> {
         ? Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
+                shape: widget.shape,
                 borderRadius:
                     BorderRadius.circular(SizesConfig.borderRadiusSm)),
             child: Image.memory(imageBytes!))

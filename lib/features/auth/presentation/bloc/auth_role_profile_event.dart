@@ -64,3 +64,5 @@ class UpdateGuestProfileEvent extends AuthRoleProfileEvent {
 
   UpdateGuestProfileEvent({required this.image, required this.roleId});
 }
+
+class GetUserProfileEvent extends AuthRoleProfileEvent {}

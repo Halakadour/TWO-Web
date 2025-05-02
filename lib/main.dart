@@ -32,7 +32,8 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.sl<AuthRoleProfileBloc>(),
+          create: (context) =>
+              di.sl<AuthRoleProfileBloc>()..add(CheckAuthEvent()),
         ),
         BlocProvider(
           create: (context) => di.sl<LandingBloc>(),

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/functions/device_utility.dart';
 import 'package:two_website/core/widgets/responsive/responsive_design.dart';
-import 'package:two_website/core/widgets/responsive/screens/desktop_layout.dart';
-import 'package:two_website/core/widgets/responsive/screens/mobile_layout.dart';
-import 'package:two_website/core/widgets/responsive/screens/tablet_layout.dart';
 
 // ignore: must_be_immutable
 class CustomSiteTemplate extends StatelessWidget {
@@ -13,7 +10,6 @@ class CustomSiteTemplate extends StatelessWidget {
       this.desktop,
       this.tablet,
       this.mobile,
-      this.useLayout = true,
       required this.currentPageIndex,
       required this.onItemSelected});
   // Widget for desktop layout
@@ -26,7 +22,6 @@ class CustomSiteTemplate extends StatelessWidget {
   final Widget? mobile;
 
   // Flag to determine whether to use the layout
-  final bool useLayout;
   int currentPageIndex;
   dynamic Function(int) onItemSelected;
 
@@ -37,27 +32,9 @@ class CustomSiteTemplate extends StatelessWidget {
           ? AppColors.white
           : AppColors.bgColor,
       body: CustomResponsiveDesign(
-          desktop: useLayout
-              ? DesktopLayout(
-                  body: desktop,
-                  currentPageIndex: currentPageIndex,
-                  onItemSelected: onItemSelected,
-                )
-              : desktop ?? Container(),
-          tablet: useLayout
-              ? TabletLayout(
-                  body: tablet ?? desktop,
-                  currentPageIndex: currentPageIndex,
-                  onItemSelected: onItemSelected,
-                )
-              : desktop ?? Container(),
-          mobile: useLayout
-              ? MobileLayout(
-                  body: mobile ?? desktop,
-                  currentPageIndex: currentPageIndex,
-                  onItemSelected: onItemSelected,
-                )
-              : desktop ?? Container()),
+          desktop: desktop ?? Container(),
+          tablet: desktop ?? Container(),
+          mobile: desktop ?? Container()),
     );
   }
 }

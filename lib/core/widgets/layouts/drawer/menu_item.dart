@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
@@ -15,7 +14,7 @@ class MenuItem extends StatelessWidget {
     required this.onTap,
   });
 
-  final String icon;
+  final IconData icon;
   final String itemName;
   final int pageNum;
   final int currentPage;
@@ -50,7 +49,7 @@ class MenuItem extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: SvgPicture.asset(
+                child: Icon(
                   icon,
                   // ignore: deprecated_member_use
                   color: (pageNum == currentPage)

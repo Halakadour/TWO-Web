@@ -15,70 +15,67 @@ class GoogleGitRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const DividerWithText(text: "Or Containe With"),
+        const DividerWithText(text: " Or "),
         const SizedBox(
           height: SizesConfig.spaceBtwItems,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: () {
-                AuthService().signInWithGoogle();
-              },
-              child: Expanded(
-                child: Container(
-                  height: SizesConfig.boxSm,
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 16.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.gray, width: .9),
-                      borderRadius:
-                          BorderRadius.circular(SizesConfig.borderRadiusSm)),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        IconsPath.google,
-                        width: SizesConfig.iconsMd,
-                      ),
-                      PaddingConfig.w8,
-                      Text(
-                        "Google",
-                        style: AppTextStyle.buttonStyle(),
-                      )
-                    ],
+        InkWell(
+          onTap: () {
+            AuthService().signInWithGoogle();
+          },
+          child: Expanded(
+            child: Container(
+              height: SizesConfig.boxSm,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.gray, width: .9),
+                  borderRadius:
+                      BorderRadius.circular(SizesConfig.borderRadiusSm)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    IconsPath.google,
+                    width: SizesConfig.iconsMd,
                   ),
-                ),
+                  PaddingConfig.w8,
+                  Text(
+                    "Containe With Google",
+                    style: AppTextStyle.buttonStyle(),
+                  )
+                ],
               ),
             ),
-            PaddingConfig.w16,
-            InkWell(
-              onTap: () {
-                AuthService().signInWithGitHub();
-              },
-              child: Expanded(
-                child: Container(
-                  height: SizesConfig.boxSm,
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 16.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.gray, width: .9),
-                      borderRadius:
-                          BorderRadius.circular(SizesConfig.borderRadiusSm)),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(IconsPath.githup),
-                      PaddingConfig.w8,
-                      Text(
-                        "Githup",
-                        style: AppTextStyle.buttonStyle(),
-                      )
-                    ],
-                  ),
-                ),
+          ),
+        ),
+        PaddingConfig.h16,
+        InkWell(
+          onTap: () {
+            AuthService().signInWithGitHub();
+          },
+          child: Expanded(
+            child: Container(
+              height: SizesConfig.boxSm,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.gray, width: .9),
+                  borderRadius:
+                      BorderRadius.circular(SizesConfig.borderRadiusSm)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(IconsPath.githup),
+                  PaddingConfig.w8,
+                  Text(
+                    "Containe With Githup",
+                    style: AppTextStyle.buttonStyle(),
+                  )
+                ],
               ),
             ),
-          ],
+          ),
         )
       ],
     );

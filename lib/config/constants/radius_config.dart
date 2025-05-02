@@ -5,5 +5,5 @@ class RadiusConfig {
   static BorderRadius textfieldRadius =
       BorderRadius.circular(SizesConfig.borderRadiusMd);
   static BorderRadius buttonRadius =
-      BorderRadius.circular(SizesConfig.borderRadiusXl);
+      BorderRadius.circular(SizesConfig.borderRadiusSm);
 }

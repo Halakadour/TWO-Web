@@ -4,6 +4,8 @@ class TextStrings {
   static const String adminPassword = "admin";
 
   // --GLOBAL Texts
+  static const String signUp = "Sign Up";
+  static const String login = "Log In";
   static const String and = "and";
   static const String skip = "Skip";
   static const String done = "Done";

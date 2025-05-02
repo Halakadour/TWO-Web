@@ -7,7 +7,7 @@ class ChooseUserTypeDesktopTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LoginTemplate(
+    return const ScrollTemplate(
       width: 800,
       child: Column(
         children: [

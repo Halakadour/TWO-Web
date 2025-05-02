@@ -14,7 +14,6 @@ class ChooseUserTypePage extends StatelessWidget {
       desktop: const ChooseUserTypeDesktopTablet(),
       tablet: const ChooseUserTypeDesktopTablet(),
       mobile: const ChooseUserTypeMobile(),
-      useLayout: false,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:two_website/core/functions/device_utility.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/landing/presentation/widgets/two_details/two_details.dart';
@@ -20,7 +21,7 @@ class HomeSection extends StatelessWidget {
           children: [
             const Expanded(child: TwoDetails()),
             if (DeviceUtility.isDesktopScreen(context))
-              Expanded(child: Image.asset(ImagesPath.office)),
+              Expanded(child: Lottie.asset(JsonPath.home1)),
           ],
         ));
   }

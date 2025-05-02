@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:two_website/config/constants/for_scrolling.dart';
 import 'package:two_website/config/constants/padding_config.dart';
-import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/functions/bloc-state-handling/auth_state_handling.dart';
+import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/layouts/drawer/sign_row.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/landing/presentation/widgets/navigation_bar/custom_vertical_divider.dart';
-import 'package:two_website/features/landing/presentation/widgets/navigation_bar/sign_up_button.dart';
 
 import '../../../../config/strings/assets_path.dart';
 import '../../../../lang/locale_keys.g.dart';
@@ -25,24 +29,12 @@ class DesktopTabletAppBar extends StatefulWidget
 
 int _currentIndex = 0;
 
-final List<double> _sectionOffsets = [
-  0,
-  SizesConfig.pageHight + 40,
-  SizesConfig.pageHight * 2 + 80,
-  SizesConfig.pageHight * 3 + 120,
-];
-// SizesConfig.pageHight * 4 + 160,
-
 class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
   void scrollToSection(int index) {
     setState(() {
       _currentIndex = index;
     });
-    widget.scrollController.animateTo(
-      _sectionOffsets[index],
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
+    ForScrolling().scrollToSection(index, widget.scrollController);
   }
 
   String selectedLanguage = LocaleKeys.arabic.tr();
@@ -74,7 +66,7 @@ class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
         child: SvgPicture.asset(ImagesPath.webLogo),
       ),
       actions: [
-        ...List.generate(_sectionOffsets.length, (index) {
+        ...List.generate(ForScrolling().sectionOffsets.length, (index) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -105,7 +97,17 @@ class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
         PaddingConfig.w48,
         Row(
           children: [
-            const SignUpButton(),
+            if (context.read<AuthRoleProfileBloc>().state.authorizedStatus ==
+                CasualStatus.authorized)
+              BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
+                buildWhen: (previous, current) =>
+                    previous.profileEntityStatus != current.profileEntityStatus,
+                builder: (context, state) =>
+                    AuthStateHandling().getUserProfileImage(state, context),
+              ),
+            if (context.read<AuthRoleProfileBloc>().state.authorizedStatus !=
+                CasualStatus.authorized)
+              const SignRow(),
             const CustomVerticalDivider(),
             GestureDetector(
               onTapDown: (details) {

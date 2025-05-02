@@ -3,7 +3,8 @@ enum CasualStatus {
   loading,
   success,
   failure,
-  noToken,
+  authorized,
+  notAuthorized,
 }
 
 enum ImageType { asset, network, file, memory }

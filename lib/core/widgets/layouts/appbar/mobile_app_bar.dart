@@ -1,13 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
-import 'package:two_website/core/widgets/layouts/appbar/custom_menu.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const MobileAppBar({super.key, required this.scrollController});
+  const MobileAppBar(
+      {super.key, required this.scaffoldKey, required this.scrollController});
+  final GlobalKey<ScaffoldState> scaffoldKey;
   final ScrollController scrollController;
 
   @override
@@ -18,21 +19,6 @@ class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _MobileAppBarState extends State<MobileAppBar> {
-  final List<double> _sectionOffsets = [
-    0,
-    SizesConfig.pageHight + 40,
-    SizesConfig.pageHight * 2 + 80,
-    SizesConfig.pageHight * 3 + 120,
-  ];
-
-  void scrollToSection(int index) {
-    widget.scrollController.animateTo(
-      _sectionOffsets[index],
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
-
   String selectedLanguage = LocaleKeys.arabic.tr();
 
   void changeLanguage(String languageCode) {
@@ -55,15 +41,34 @@ class _MobileAppBarState extends State<MobileAppBar> {
       backgroundColor: Colors.transparent,
       scrolledUnderElevation: 0,
       elevation: 0,
-      title: SizedBox(
-        height: 50,
-        width: 50,
-        child: SvgPicture.asset(ImagesPath.webLogo),
-      ),
       actions: [
-        CustomMenu(
-          scrollController: widget.scrollController,
-        )
+        SizedBox(
+          height: 50,
+          width: 50,
+          child: SvgPicture.asset(ImagesPath.webLogo),
+        ),
+        PaddingConfig.w16
+        // User Data
+        // BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
+        //   buildWhen: (previous, current) =>
+        //       previous.authorizedStatus != current.authorizedStatus,
+        //   builder: (context, state) {
+        //     if (state.authorizedStatus == CasualStatus.authorized) {
+        //       return BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
+        //         buildWhen: (previous, current) =>
+        //             previous.profileEntityStatus != current.profileEntityStatus,
+        //         builder: (context, state) {
+        //           return AuthStateHandling().getUserProfileHeader(
+        //             state,
+        //             context,
+        //           );
+        //         },
+        //       );
+        //     } else {
+        //       return const SignUpButton();
+        //     }
+        //   },
+        // ),
       ],
     );
   }

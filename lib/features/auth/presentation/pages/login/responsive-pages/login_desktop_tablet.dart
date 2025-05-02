@@ -8,7 +8,7 @@ class LoginDesktopTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LoginTemplate(
+    return const ScrollTemplate(
       child: Column(
         children: [
           // Header

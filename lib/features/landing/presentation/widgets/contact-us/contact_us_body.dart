@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
-import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 
@@ -94,18 +92,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
           ),
           BlocListener<LandingBloc, LandingState>(
             listener: (context, state) {
-              if (state.createContcatStatus == CasualStatus.loading) {
-                CustomQuickAlert().loadingAlert(context);
-              } else if (state.createContcatStatus == CasualStatus.success) {
-                context.pop();
-                CustomQuickAlert().successAlert(context);
-              } else if (state.createContcatStatus == CasualStatus.failure) {
-                context.pop();
-                CustomQuickAlert().failureAlert(context, state.message);
-              } else if (state.createContcatStatus == CasualStatus.noToken) {
-                context.pop();
-                CustomQuickAlert().noTokenAlert(context);
-              }
+              LandingStateHandling().contactUsListener(state, context);
             },
             listenWhen: (previous, current) =>
                 previous.createContcatStatus != current.createContcatStatus,

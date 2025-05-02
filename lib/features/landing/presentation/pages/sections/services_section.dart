@@ -4,11 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/custom_linked_text.dart';
-import 'package:two_website/features/landing/presentation/widgets/services/service_card.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 class ServicesSection extends StatefulWidget {
@@ -89,7 +88,8 @@ class _ServicesSectionState extends State<ServicesSection> {
                           previous.serviceListStatus !=
                           current.serviceListStatus,
                       builder: (context, state) {
-                        return servicesListStateHandling(state);
+                        return LandingStateHandling()
+                            .showServicesList(state, _controller);
                       },
                     ),
                   ),
@@ -106,30 +106,5 @@ class _ServicesSectionState extends State<ServicesSection> {
             )
           ],
         ));
-  }
-
-  Widget servicesListStateHandling(LandingState state) {
-    if (state.serviceListStatus == CasualStatus.loading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (state.serviceListStatus == CasualStatus.success) {
-      return ListView.builder(
-        itemCount: state.serviceList.length,
-        scrollDirection: Axis.horizontal,
-        controller: _controller,
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemBuilder: (context, index) => ServiceCard(
-          serviceEntity: state.serviceList[index],
-        ),
-      );
-    } else if (state.serviceListStatus == CasualStatus.failure) {
-      return Text(
-        state.message,
-        style: AppTextStyle.buttonStyle(color: AppColors.white),
-      );
-    } else {
-      return const SizedBox();
-    }
   }
 }

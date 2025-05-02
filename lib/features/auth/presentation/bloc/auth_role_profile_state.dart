@@ -4,53 +4,60 @@ part of 'auth_role_profile_bloc.dart';
 class AuthRoleProfileState {
   String message;
   //Auth States //
+  CasualStatus authorizedStatus;
   CasualStatus authModelStatus;
   UserModel? authModel;
-  CasualStatus logoutStatusStatus;
+  CasualStatus logoutStatus;
   //Role States //
   List<RoleModel> roleWithoutClientList;
   CasualStatus roleWithoutClientListStatus;
   List<RoleModel> roleList;
   CasualStatus roleListStatus;
   //Profile States //
-  CasualStatus updateEmployeeProfileStatus;
   CasualStatus updateClientProfileStatus;
   CasualStatus updateFreeLancerProfileStatus;
   CasualStatus updateGuestProfileStatus;
+  CasualStatus profileEntityStatus;
+  ProfileEntity? profileEntity;
 
   AuthRoleProfileState({
     this.message = "",
+    this.authorizedStatus = CasualStatus.initial,
     this.authModelStatus = CasualStatus.initial,
     this.authModel,
-    this.logoutStatusStatus = CasualStatus.initial,
+    this.logoutStatus = CasualStatus.initial,
     this.roleWithoutClientList = const [],
     this.roleWithoutClientListStatus = CasualStatus.initial,
     this.roleList = const [],
     this.roleListStatus = CasualStatus.initial,
-    this.updateEmployeeProfileStatus = CasualStatus.initial,
     this.updateClientProfileStatus = CasualStatus.initial,
     this.updateFreeLancerProfileStatus = CasualStatus.initial,
     this.updateGuestProfileStatus = CasualStatus.initial,
+    this.profileEntityStatus = CasualStatus.initial,
+    this.profileEntity,
   });
 
   AuthRoleProfileState copyWith({
     String? message,
+    CasualStatus? authorizedStatus,
     CasualStatus? authModelStatus,
     UserModel? authModel,
-    CasualStatus? logoutStatusStatus,
+    CasualStatus? logoutStatus,
     List<RoleModel>? roleWithoutClientList,
     CasualStatus? roleWithoutClientListStatus,
     List<RoleModel>? roleList,
     CasualStatus? roleListStatus,
-    CasualStatus? updateEmployeeProfileStatus,
     CasualStatus? updateClientProfileStatus,
     CasualStatus? updateFreeLancerProfileStatus,
     CasualStatus? updateGuestProfileStatus,
+    CasualStatus? profileEntityStatus,
+    ProfileEntity? profileEntity,
   }) {
     return AuthRoleProfileState(
       message: message ?? this.message,
+      authorizedStatus: authorizedStatus ?? this.authorizedStatus,
       authModelStatus: authModelStatus ?? this.authModelStatus,
-      logoutStatusStatus: logoutStatusStatus ?? this.logoutStatusStatus,
+      logoutStatus: logoutStatus ?? this.logoutStatus,
       authModel: authModel ?? this.authModel,
       roleWithoutClientList:
           roleWithoutClientList ?? this.roleWithoutClientList,
@@ -58,14 +65,14 @@ class AuthRoleProfileState {
           roleWithoutClientListStatus ?? this.roleWithoutClientListStatus,
       roleList: roleList ?? this.roleList,
       roleListStatus: roleListStatus ?? this.roleListStatus,
-      updateEmployeeProfileStatus:
-          updateEmployeeProfileStatus ?? this.updateEmployeeProfileStatus,
       updateClientProfileStatus:
           updateClientProfileStatus ?? this.updateClientProfileStatus,
       updateFreeLancerProfileStatus:
           updateFreeLancerProfileStatus ?? this.updateFreeLancerProfileStatus,
       updateGuestProfileStatus:
           updateGuestProfileStatus ?? this.updateGuestProfileStatus,
+      profileEntityStatus: profileEntityStatus ?? this.profileEntityStatus,
+      profileEntity: profileEntity ?? this.profileEntity,
     );
   }
 }

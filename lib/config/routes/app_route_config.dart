@@ -5,7 +5,7 @@ class AppRouteConfig {
   static const login = 'login';
   static const signup = 'signup';
   static const chooseUserType = 'chooseUserType';
-  static const fillEmployeeProfile = 'fillEmplyeepProfile';
+  static const fillFreelancerProfile = 'fillFreelancerProfile';
   static const fillClientProfile = 'fillClientProfile';
   // Others //
   static const contactUs = 'contactUs';

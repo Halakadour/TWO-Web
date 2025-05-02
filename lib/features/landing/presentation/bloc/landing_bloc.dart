@@ -12,7 +12,6 @@ import 'package:two_website/features/landing/domain/usecases/reply_to_post_useca
 import 'package:two_website/features/landing/domain/usecases/show_about_us_usecase.dart';
 import 'package:two_website/features/landing/domain/usecases/show_active_posts_usecase.dart';
 import 'package:two_website/features/landing/domain/usecases/show_service_usecase.dart';
-import 'package:two_website/features/landing/domain/usecases/show_un_active_posts_usecase.dart';
 import 'package:two_website/features/landing/domain/usecases/show_why_us_usecase.dart';
 
 part 'landing_event.dart';
@@ -24,7 +23,6 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
   final CreateContactUsUsecase createContactUsUsecase;
   final ReplyToPostUsecase replyToPostUsecase;
   final ShowActivePostsUsecase showActivePostsUsecase;
-  final ShowUnActivePostsUsecase showUnActivePostsUsecase;
   final ShowServiceUsecase showServiceUsecase;
 
   LandingBloc(
@@ -32,7 +30,6 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
       required this.showWhyUsUsecase,
       required this.createContactUsUsecase,
       required this.showActivePostsUsecase,
-      required this.showUnActivePostsUsecase,
       required this.replyToPostUsecase,
       required this.showServiceUsecase})
       : super(LandingState()) {
@@ -76,7 +73,8 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
         );
       } else {
         emit(state.copyWith(
-            createContcatStatus: CasualStatus.noToken, message: "No Token"));
+            createContcatStatus: CasualStatus.notAuthorized,
+            message: "No Token"));
       }
     });
     // GET ACTIVE POSTS //
@@ -88,18 +86,6 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
             activePostsListStatus: CasualStatus.failure, message: l.message)),
         (r) => emit(state.copyWith(
             activePostsListStatus: CasualStatus.success, activePostsList: r)),
-      );
-    });
-    // GET UN ACTIVE POST //
-    on<GetUnActivePostsEvent>((event, emit) async {
-      emit(state.copyWith(unActivePostsListStatus: CasualStatus.loading));
-      final result = await showUnActivePostsUsecase.call();
-      result.fold(
-        (l) => emit(state.copyWith(
-            unActivePostsListStatus: CasualStatus.failure, message: l.message)),
-        (r) => emit(state.copyWith(
-            unActivePostsListStatus: CasualStatus.success,
-            unActivePostsList: r)),
       );
     });
     // REPLY TO POST //

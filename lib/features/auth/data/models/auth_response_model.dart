@@ -2,23 +2,25 @@ import 'dart:convert';
 
 import 'package:two_website/features/auth/data/models/user_model.dart';
 
-LoginUserModel loginUserModelFromJson(String str) =>
-    LoginUserModel.fromJson(json.decode(str));
+AuthResponseModel authResponseModelFromJson(String str) =>
+    AuthResponseModel.fromJson(json.decode(str));
 
-String loginUserModelToJson(LoginUserModel data) => json.encode(data.toJson());
+String authResponseModelToJson(AuthResponseModel data) =>
+    json.encode(data.toJson());
 
-class LoginUserModel {
+class AuthResponseModel {
   final int status;
   final String msg;
   final UserModel data;
 
-  LoginUserModel({
+  AuthResponseModel({
     required this.status,
     required this.msg,
     required this.data,
   });
 
-  factory LoginUserModel.fromJson(Map<String, dynamic> json) => LoginUserModel(
+  factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
+      AuthResponseModel(
         status: json["status"],
         msg: json["msg"],
         data: UserModel.fromJson(json["data"]),

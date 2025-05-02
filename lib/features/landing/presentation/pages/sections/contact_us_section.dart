@@ -34,7 +34,7 @@ class _ContactUsSectionState extends State<ContactUsSection> {
               ],
             ),
             PaddingConfig.h40,
-            const LoginTemplate(child: ContactUsBody())
+            const ScrollTemplate(child: ContactUsBody())
           ],
         ));
   }

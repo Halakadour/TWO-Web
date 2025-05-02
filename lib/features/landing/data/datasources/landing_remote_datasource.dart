@@ -17,7 +17,6 @@ abstract class LandingRemoteDatasource {
   Future<CreateContactUsResponseModel> createContactUs(
       String token, String subject, String description, String phone);
   Future<ShowPostResponesModel> showActivePosts();
-  Future<ShowPostResponesModel> showUnActivePosts();
   Future<ReplyToPostResponesModel> replyToPost(
       String fullName, String email, String phone, String cv, int postId);
   Future<UpdateProfileResponesModel> updateFreeLanceProfile(
@@ -31,7 +30,6 @@ abstract class LandingRemoteDatasource {
       String subject,
       String description,
       String phone);
-  Future<RoleResponesModel> showRolesWithoutClient();
   Future<RoleResponesModel> showRoleClient();
   Future<ShowServiceResponesModel> showServices();
 }
@@ -93,14 +91,6 @@ class LandingRemoteDatasourceImpl extends LandingRemoteDatasource {
   }
 
   @override
-  Future<ShowPostResponesModel> showUnActivePosts() async {
-    final result = GetApi(
-        uri: Uri.parse("$baseUri/api/show/not/active/posts"),
-        fromJson: showPostResponesModelFromJson);
-    return await result.callRequest();
-  }
-
-  @override
   Future<UpdateProfileResponesModel> updateClientProfile(
       String token,
       String image,
@@ -154,14 +144,6 @@ class LandingRemoteDatasourceImpl extends LandingRemoteDatasource {
   Future<RoleResponesModel> showRoleClient() async {
     final result = GetApi(
         uri: Uri.parse("$baseUri/api/show/role/client"),
-        fromJson: roleResponesModelFromJson);
-    return await result.callRequest();
-  }
-
-  @override
-  Future<RoleResponesModel> showRolesWithoutClient() async {
-    final result = GetApi(
-        uri: Uri.parse("$baseUri/api/show/roles"),
         fromJson: roleResponesModelFromJson);
     return await result.callRequest();
   }

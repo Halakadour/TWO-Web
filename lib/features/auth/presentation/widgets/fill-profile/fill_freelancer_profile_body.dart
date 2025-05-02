@@ -15,15 +15,15 @@ import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bl
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
-class FillEmployeeProfileBody extends StatefulWidget {
-  const FillEmployeeProfileBody({super.key});
+class FillFreelancerProfileBody extends StatefulWidget {
+  const FillFreelancerProfileBody({super.key});
 
   @override
-  State<FillEmployeeProfileBody> createState() =>
-      _FillEmployeeProfileBodyState();
+  State<FillFreelancerProfileBody> createState() =>
+      _FillFreelancerProfileBodyState();
 }
 
-class _FillEmployeeProfileBodyState extends State<FillEmployeeProfileBody> {
+class _FillFreelancerProfileBodyState extends State<FillFreelancerProfileBody> {
   RoleModel? role;
   String? imageB64;
   String? cvB64;

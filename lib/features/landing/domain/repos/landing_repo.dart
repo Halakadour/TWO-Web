@@ -19,7 +19,6 @@ abstract class LandingRepo with HandlingExceptionManager {
       String token, String subject, String description, String phone);
   // Posts
   Future<Either<Failure, List<PostEntity>>> showActivePosts();
-  Future<Either<Failure, List<PostEntity>>> showUnActivePosts();
   Future<Either<Failure, ReplyEntity>> replyToPost(
       String fullName, String email, String phone, String cv, int postId);
   // Profile
@@ -34,8 +33,7 @@ abstract class LandingRepo with HandlingExceptionManager {
       String subject,
       String description,
       String phone);
-  Future<Either<Failure, List<RoleModel>>> showRolesWithoutClient();
-  Future<Either<Failure, List<RoleModel>>> showRoleClient();
+  Future<Either<Failure, List<RoleModel>>> showRoles();
   // Service
   Future<Either<Failure, List<ServiceEntity>>> showService();
 }

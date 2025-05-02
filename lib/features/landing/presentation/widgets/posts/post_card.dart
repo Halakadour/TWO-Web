@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
-import 'package:two_website/core/widgets/images/memory_image_fetch.dart';
+import 'package:two_website/core/widgets/images/fetch_network_image.dart';
 import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/custom_linked_text.dart';
 import 'package:two_website/features/landing/domain/entities/post_entity.dart';
 

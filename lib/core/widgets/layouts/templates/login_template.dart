@@ -3,8 +3,8 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 
-class LoginTemplate extends StatelessWidget {
-  const LoginTemplate({super.key, required this.child, this.width});
+class ScrollTemplate extends StatelessWidget {
+  const ScrollTemplate({super.key, required this.child, this.width});
   final Widget child;
   final double? width;
 

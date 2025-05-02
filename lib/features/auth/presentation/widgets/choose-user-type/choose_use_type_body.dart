@@ -24,14 +24,14 @@ class _ChooseUseTypeBodyState extends State<ChooseUseTypeBody> {
   String? userType;
   List<String> userTypeList = [
     TextStrings.client,
-    TextStrings.other,
+    TextStrings.freelance,
   ];
   RoleModel? role;
   List<RoleModel> rolesList = [];
 
   @override
   void didChangeDependencies() {
-    context.read<AuthRoleProfileBloc>().add(GetRolesWithoutClientEvent());
+    context.read<AuthRoleProfileBloc>().add(GetRolesEvent());
     super.didChangeDependencies();
   }
 
@@ -85,7 +85,7 @@ class _ChooseUseTypeBodyState extends State<ChooseUseTypeBody> {
             if (userType == TextStrings.client) {
               context.pushNamed(AppRouteConfig.fillClientProfile);
             } else {
-              context.pushNamed(AppRouteConfig.fillEmployeeProfile);
+              context.pushNamed(AppRouteConfig.fillFreelancerProfile);
             }
           },
         )

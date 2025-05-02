@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/error/validation.dart';
-import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
@@ -95,16 +94,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
           PaddingConfig.h40,
           BlocListener<LandingBloc, LandingState>(
             listener: (context, state) {
-              if (state.sendReplyStatus == CasualStatus.loading) {
-                CustomQuickAlert().loadingAlert(context);
-              } else if (state.sendReplyStatus == CasualStatus.success) {
-                context.pop();
-                CustomQuickAlert().successAlert(context);
-                context.pop();
-              } else if (state.sendReplyStatus == CasualStatus.failure) {
-                context.pop();
-                CustomQuickAlert().failureAlert(context, state.message);
-              }
+              LandingStateHandling().sendReplyListener(state, context);
             },
             listenWhen: (previous, current) =>
                 previous.sendReplyStatus != current.sendReplyStatus,

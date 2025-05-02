@@ -79,40 +79,7 @@ class LandingRepoImpl extends LandingRepo {
   }
 
   @override
-  Future<Either<Failure, List<PostEntity>>> showUnActivePosts() {
-    return wrapHandling(
-      tryCall: () async {
-        if (await networkInfo.isConnected) {
-          final remotePosts = await landingRemoteDatasource.showUnActivePosts();
-          landingLocaleDatasource.cacheUnActivePosts(remotePosts.data);
-          return Right(remotePosts.data);
-        } else {
-          final localPosts =
-              await landingLocaleDatasource.getCachedUnActivePosts();
-          return Right(localPosts);
-        }
-      },
-    );
-  }
-
-  @override
-  Future<Either<Failure, List<RoleModel>>> showRoleClient() {
-    return wrapHandling(
-      tryCall: () async {
-        if (await networkInfo.isConnected) {
-          final remoteRoles = await landingRemoteDatasource.showRoleClient();
-          landingLocaleDatasource.cacheRoles(remoteRoles.data);
-          return Right(remoteRoles.data);
-        } else {
-          final localRoles = await landingLocaleDatasource.getCachedRoles();
-          return Right(localRoles);
-        }
-      },
-    );
-  }
-
-  @override
-  Future<Either<Failure, List<RoleModel>>> showRolesWithoutClient() {
+  Future<Either<Failure, List<RoleModel>>> showRoles() {
     return wrapHandling(
       tryCall: () async {
         if (await networkInfo.isConnected) {

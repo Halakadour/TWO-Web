@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
-import 'package:two_website/features/auth/presentation/widgets/fill-profile/fill_employee_profile_body.dart';
+import 'package:two_website/features/auth/presentation/widgets/fill-profile/fill_freelancer_profile_body.dart';
 
 class FillEmployeeProfileMobile extends StatelessWidget {
   const FillEmployeeProfileMobile({super.key});
@@ -14,7 +14,7 @@ class FillEmployeeProfileMobile extends StatelessWidget {
           child: Column(
             children: [
               //Body
-              FillEmployeeProfileBody()
+              FillFreelancerProfileBody()
             ],
           ),
         ),

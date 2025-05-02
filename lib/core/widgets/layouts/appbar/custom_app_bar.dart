@@ -4,7 +4,9 @@ import 'package:two_website/core/widgets/layouts/appbar/mobile_app_bar.dart';
 import 'package:two_website/core/widgets/responsive/responsive_design.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, required this.scrollController});
+  const CustomAppBar(
+      {super.key, required this.scaffoldKey, required this.scrollController});
+  final GlobalKey<ScaffoldState> scaffoldKey;
   final ScrollController scrollController;
 
   @override
@@ -13,6 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         desktop: DesktopTabletAppBar(scrollController: scrollController),
         tablet: DesktopTabletAppBar(scrollController: scrollController),
         mobile: MobileAppBar(
+          scaffoldKey: scaffoldKey,
           scrollController: scrollController,
         ));
   }
