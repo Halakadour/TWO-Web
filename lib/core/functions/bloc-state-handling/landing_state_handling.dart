@@ -6,6 +6,7 @@ import 'package:two_website/config/strings/assets_path.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
+import 'package:two_website/core/widgets/animation/empty_status_animation.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/service-post-loading/loading_cards.dart';
 import 'package:two_website/core/widgets/shimmers/why-us-loading/loading_why_us_list.dart';
@@ -38,13 +39,17 @@ class LandingStateHandling {
     if (state.showWhyUsStatus == CasualStatus.loading) {
       return const LoadingWhyUsList();
     } else if (state.showWhyUsStatus == CasualStatus.success) {
-      return ListView.builder(
-          itemCount: state.showWhyUsList.length,
-          itemBuilder: (context, index) => WhyUsCard(
-                icon: IconsPath.wourd,
-                text: state.showWhyUsList[index]!.whyUsDoc,
-                isHover: ValueNotifier(false),
-              ));
+      if (state.showWhyUsList.isEmpty) {
+        return const EmptyStatusAnimation();
+      } else {
+        return ListView.builder(
+            itemCount: state.showWhyUsList.length,
+            itemBuilder: (context, index) => WhyUsCard(
+                  icon: IconsPath.wourd,
+                  text: state.showWhyUsList[index]!.whyUsDoc,
+                  isHover: ValueNotifier(false),
+                ));
+      }
     } else if (state.showWhyUsStatus == CasualStatus.failure) {
       return Text(state.message);
     } else {
@@ -58,7 +63,7 @@ class LandingStateHandling {
       return const LoadingCards();
     } else if (state.activePostsListStatus == CasualStatus.success) {
       return (state.activePostsList.isEmpty)
-          ? const Text("No Postes")
+          ? const EmptyStatusAnimation()
           : ListView.builder(
               itemCount: state.activePostsList.length,
               scrollDirection: Axis.horizontal,
@@ -94,15 +99,19 @@ class LandingStateHandling {
         child: LoadingCards(),
       );
     } else if (state.serviceListStatus == CasualStatus.success) {
-      return ListView.builder(
-        itemCount: state.serviceList.length,
-        scrollDirection: Axis.horizontal,
-        controller: controller,
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemBuilder: (context, index) => ServiceCard(
-          serviceEntity: state.serviceList[index],
-        ),
-      );
+      if (state.serviceList.isEmpty) {
+        return const EmptyStatusAnimation();
+      } else {
+        return ListView.builder(
+          itemCount: state.serviceList.length,
+          scrollDirection: Axis.horizontal,
+          controller: controller,
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemBuilder: (context, index) => ServiceCard(
+            serviceEntity: state.serviceList[index],
+          ),
+        );
+      }
     } else if (state.serviceListStatus == CasualStatus.failure) {
       return Text(
         state.message,

@@ -17,12 +17,10 @@ class LoginPage extends StatelessWidget {
       },
       listenWhen: (previous, current) =>
           previous.authModelStatus != current.authModelStatus,
-      child: CustomSiteTemplate(
-        currentPageIndex: 0,
-        onItemSelected: (p0) {},
-        desktop: const LoginDesktopTablet(),
-        tablet: const LoginDesktopTablet(),
-        mobile: const LoginMobile(),
+      child: const CustomSiteTemplate(
+        desktop: LoginDesktopTablet(),
+        tablet: LoginDesktopTablet(),
+        mobile: LoginMobile(),
       ),
     );
   }

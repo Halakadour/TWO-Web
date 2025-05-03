@@ -65,7 +65,7 @@ class _PostsSectionState extends State<PostsSection> {
                 onPressed: _scrollLeft,
               ),
               PaddingConfig.w32,
-              Flexible(
+              Expanded(
                   child: BlocBuilder<LandingBloc, LandingState>(
                 buildWhen: (previous, current) =>
                     previous.activePostsListStatus !=

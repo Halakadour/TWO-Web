@@ -9,8 +9,6 @@ class AuthRoleProfileState {
   UserModel? authModel;
   CasualStatus logoutStatus;
   //Role States //
-  List<RoleModel> roleWithoutClientList;
-  CasualStatus roleWithoutClientListStatus;
   List<RoleModel> roleList;
   CasualStatus roleListStatus;
   //Profile States //
@@ -26,8 +24,6 @@ class AuthRoleProfileState {
     this.authModelStatus = CasualStatus.initial,
     this.authModel,
     this.logoutStatus = CasualStatus.initial,
-    this.roleWithoutClientList = const [],
-    this.roleWithoutClientListStatus = CasualStatus.initial,
     this.roleList = const [],
     this.roleListStatus = CasualStatus.initial,
     this.updateClientProfileStatus = CasualStatus.initial,
@@ -43,8 +39,6 @@ class AuthRoleProfileState {
     CasualStatus? authModelStatus,
     UserModel? authModel,
     CasualStatus? logoutStatus,
-    List<RoleModel>? roleWithoutClientList,
-    CasualStatus? roleWithoutClientListStatus,
     List<RoleModel>? roleList,
     CasualStatus? roleListStatus,
     CasualStatus? updateClientProfileStatus,
@@ -59,10 +53,6 @@ class AuthRoleProfileState {
       authModelStatus: authModelStatus ?? this.authModelStatus,
       logoutStatus: logoutStatus ?? this.logoutStatus,
       authModel: authModel ?? this.authModel,
-      roleWithoutClientList:
-          roleWithoutClientList ?? this.roleWithoutClientList,
-      roleWithoutClientListStatus:
-          roleWithoutClientListStatus ?? this.roleWithoutClientListStatus,
       roleList: roleList ?? this.roleList,
       roleListStatus: roleListStatus ?? this.roleListStatus,
       updateClientProfileStatus:

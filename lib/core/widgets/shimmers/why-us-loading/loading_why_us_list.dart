@@ -9,7 +9,7 @@ class LoadingWhyUsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          itemCount: 5,
+          itemCount: 3,
           itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Shimmer.fromColors(

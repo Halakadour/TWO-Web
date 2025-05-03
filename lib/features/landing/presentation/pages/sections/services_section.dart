@@ -7,7 +7,6 @@ import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
-import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/custom_linked_text.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 class ServicesSection extends StatefulWidget {
@@ -46,6 +45,7 @@ class _ServicesSectionState extends State<ServicesSection> {
     return PageTemplate(
         color: AppColors.black,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -56,17 +56,13 @@ class _ServicesSectionState extends State<ServicesSection> {
               ],
             ),
             PaddingConfig.h40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "our experts team of programmers and software engineers will help to create your software as you\ndream, whether you order an application ar a website ypu would has a chanse to manage your busniss\nwith the power of software tools. we have an offer to you!",
-                  style: AppTextStyle.subtitle03(color: AppColors.white),
-                ),
-                CustomLinkedText(
-                  title: LocaleKeys.seeAll.tr(),
-                )
-              ],
+            Expanded(
+              child: Text(
+                "our experts team of programmers and software engineers will help to create your software as you dream, whether you order an application ar a website ypu would has a chanse to manage your busniss with the power of software tools. we have an offer to you!",
+                style: AppTextStyle.subtitle03(color: AppColors.white),
+                maxLines: 3,
+                overflow: TextOverflow.fade,
+              ),
             ),
             PaddingConfig.h40,
             SizedBox(

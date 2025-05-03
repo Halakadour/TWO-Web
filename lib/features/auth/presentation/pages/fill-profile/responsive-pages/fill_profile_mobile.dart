@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
-import 'package:two_website/features/auth/presentation/widgets/fill-profile/fill_client_profile_body.dart';
+import 'package:two_website/features/auth/presentation/widgets/fill-profile/fill_profile_body.dart';
 
-class FillCleintProfileMobile extends StatelessWidget {
-  const FillCleintProfileMobile({super.key});
+class FillProfileMobile extends StatelessWidget {
+  const FillProfileMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class FillCleintProfileMobile extends StatelessWidget {
           child: Column(
             children: [
               // Body
-              FillClientProfileBody()
+              FillProfileBody()
             ],
           ),
         ),

@@ -17,7 +17,9 @@ class PageTemplate extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
         constraints: const BoxConstraints(
-            maxWidth: double.infinity, maxHeight: SizesConfig.pageHight),
+          maxWidth: double.infinity,
+          maxHeight: SizesConfig.pageHight,
+        ),
         child: child,
       ),
     );

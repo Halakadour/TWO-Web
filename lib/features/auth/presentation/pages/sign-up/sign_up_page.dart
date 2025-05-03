@@ -17,12 +17,10 @@ class SignUpPage extends StatelessWidget {
       },
       listenWhen: (previous, current) =>
           previous.authModelStatus != current.authModelStatus,
-      child: CustomSiteTemplate(
-        currentPageIndex: 0,
-        onItemSelected: (p0) {},
-        desktop: const SignUpDesktopTablet(),
-        tablet: const SignUpDesktopTablet(),
-        mobile: const SignUpMobile(),
+      child: const CustomSiteTemplate(
+        desktop: SignUpDesktopTablet(),
+        tablet: SignUpDesktopTablet(),
+        mobile: SignUpMobile(),
       ),
     );
   }

@@ -8,14 +8,14 @@ import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/landing/presentation/widgets/contact-us/contact_us_body.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
-class ContactUsSection extends StatefulWidget {
-  const ContactUsSection({super.key});
+class ContactUsPage extends StatefulWidget {
+  const ContactUsPage({super.key});
 
   @override
-  State<ContactUsSection> createState() => _ContactUsSectionState();
+  State<ContactUsPage> createState() => _ContactUsPageState();
 }
 
-class _ContactUsSectionState extends State<ContactUsSection> {
+class _ContactUsPageState extends State<ContactUsPage> {
   ValueNotifier<bool> isHover = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {

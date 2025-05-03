@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
@@ -9,9 +8,6 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/animation/success_status_animation.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
-import 'package:two_website/core/widgets/dropdown/custom_dropdown_list.dart';
-import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class ChooseUseTypeBody extends StatefulWidget {
   const ChooseUseTypeBody({super.key});
@@ -21,20 +17,6 @@ class ChooseUseTypeBody extends StatefulWidget {
 }
 
 class _ChooseUseTypeBodyState extends State<ChooseUseTypeBody> {
-  String? userType;
-  List<String> userTypeList = [
-    TextStrings.client,
-    TextStrings.freelance,
-  ];
-  RoleModel? role;
-  List<RoleModel> rolesList = [];
-
-  @override
-  void didChangeDependencies() {
-    context.read<AuthRoleProfileBloc>().add(GetRolesEvent());
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,43 +32,16 @@ class _ChooseUseTypeBodyState extends State<ChooseUseTypeBody> {
         const SizedBox(
           height: SizesConfig.md,
         ),
-        Text(TextStrings.chooseType,
+        Text(TextStrings.continueYourProfile,
             style: AppTextStyle.subtitle02(color: AppColors.fontLightColor)),
         const SizedBox(
           height: SizesConfig.spaceBtwSections,
-        ),
-        // Type buttons
-        CustomDropdownList(
-            selectYour: "Type",
-            value: userType,
-            items: userTypeList.map(
-              (type) {
-                return DropdownMenuItem(
-                  value: type,
-                  child: Text(type),
-                );
-              },
-            ).toList(),
-            onChanged: (value) {
-              setState(() {
-                userType = value;
-              });
-            }),
-        const SizedBox(
-          height: SizesConfig.lg,
-        ),
-        const SizedBox(
-          height: SizesConfig.lg,
         ),
         CustomCartoonButton(
           title: "Next",
           width: double.infinity,
           onTap: () {
-            if (userType == TextStrings.client) {
-              context.pushNamed(AppRouteConfig.fillClientProfile);
-            } else {
-              context.pushNamed(AppRouteConfig.fillFreelancerProfile);
-            }
+            context.pushNamed(AppRouteConfig.fillProfile);
           },
         )
       ],

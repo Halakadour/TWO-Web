@@ -20,7 +20,9 @@ class CustomLinkedText extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyle.buttonStyle(color: AppColors.greenShade2),
+            style: AppTextStyle.buttonStyle(
+                color: AppColors.greenShade2,
+                decoration: TextDecoration.underline),
           ),
           PaddingConfig.w8,
           SvgPicture.asset(

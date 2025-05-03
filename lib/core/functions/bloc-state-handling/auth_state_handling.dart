@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/core/network/enums.dart';
@@ -34,6 +35,7 @@ class AuthStateHandling {
       CustomQuickAlert().loadingAlert(context);
     } else if (state.authModelStatus == CasualStatus.success) {
       await SharedPreferencesServices.setUserToken(state.authModel!.token);
+      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
       context.pop();
       context.pushReplacementNamed(AppRouteConfig.landing);
     } else if (state.authModelStatus == CasualStatus.failure ||
@@ -67,6 +69,7 @@ class AuthStateHandling {
     if (state.updateClientProfileStatus == CasualStatus.loading) {
       CustomQuickAlert().loadingAlert(context);
     } else if (state.updateClientProfileStatus == CasualStatus.success) {
+      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
       context.pop();
       context.pushReplacementNamed(AppRouteConfig.landing);
     } else if (state.updateClientProfileStatus == CasualStatus.failure) {
@@ -81,11 +84,11 @@ class AuthStateHandling {
     if (state.updateFreeLancerProfileStatus == CasualStatus.loading) {
       CustomQuickAlert().loadingAlert(context);
     } else if (state.updateFreeLancerProfileStatus == CasualStatus.success) {
+      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
       context.pop();
       context.pushReplacementNamed(AppRouteConfig.landing);
     } else if (state.updateFreeLancerProfileStatus == CasualStatus.failure) {
       context.pop();
-
       CustomQuickAlert().failureAlert(context, state.message);
     }
   }

@@ -51,7 +51,7 @@ class TextStrings {
       "Don't worry sometimes peaple can forget too, enter your email and will sent your password reset.";
   static const String alreadyHaveAccount = "Already Have An Acount? ";
   static const String dontHaveAccount = "Don't Have An Account?";
-  static const String chooseType = "Please Choose Your Type";
+  static const String continueYourProfile = "Continue Filling Your Profile";
   static const String jobTitle = "Job Title :";
   static const String client = "Client";
   static const String employee = "Employee";
