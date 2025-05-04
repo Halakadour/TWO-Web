@@ -34,9 +34,9 @@ class AuthStateHandling {
     if (state.authModelStatus == CasualStatus.loading) {
       CustomQuickAlert().loadingAlert(context);
     } else if (state.authModelStatus == CasualStatus.success) {
+      context.pop();
       await SharedPreferencesServices.setUserToken(state.authModel!.token);
       context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
-      context.pop();
       context.pushReplacementNamed(AppRouteConfig.landing);
     } else if (state.authModelStatus == CasualStatus.failure ||
         state.authModelStatus == CasualStatus.notAuthorized) {
@@ -69,8 +69,8 @@ class AuthStateHandling {
     if (state.updateClientProfileStatus == CasualStatus.loading) {
       CustomQuickAlert().loadingAlert(context);
     } else if (state.updateClientProfileStatus == CasualStatus.success) {
-      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
       context.pop();
+      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
       context.pushReplacementNamed(AppRouteConfig.landing);
     } else if (state.updateClientProfileStatus == CasualStatus.failure) {
       context.pop();

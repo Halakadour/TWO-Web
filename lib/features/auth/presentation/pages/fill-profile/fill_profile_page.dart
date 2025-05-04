@@ -16,10 +16,13 @@ class FillProfilePage extends StatelessWidget {
     return BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
       listener: (context, state) {
         AuthStateHandling().fillClientProfileListener(state, context);
+        AuthStateHandling().fillFreelancerProfileListener(state, context);
       },
       listenWhen: (previous, current) {
         return (previous.updateClientProfileStatus !=
-            current.updateClientProfileStatus);
+                current.updateClientProfileStatus ||
+            previous.updateFreeLancerProfileStatus !=
+                current.updateFreeLancerProfileStatus);
       },
       child: const CustomSiteTemplate(
         desktop: FillProfileDesktopTablet(),

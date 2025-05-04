@@ -15,26 +15,31 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
+      width: MediaQuery.of(context).size.width * .25,
       margin: const EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
           border: Border.all(
         color: AppColors.fieldColor,
       )),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FetchNetworkImage(imagePath: serviceEntity.imageE),
+          FetchNetworkImage(
+            imagePath: serviceEntity.imageE,
+            height: MediaQuery.of(context).size.width * .2,
+            weight: double.maxFinite,
+          ),
           PaddingConfig.h8,
           Text(
             serviceEntity.titleE,
-            textAlign: TextAlign.center,
-            style: AppTextStyle.subtitle02(color: AppColors.white),
+            style: AppTextStyle.subtitle01(color: AppColors.white),
           ),
           PaddingConfig.h8,
           Text(
             serviceEntity.descriptionE,
-            textAlign: TextAlign.center,
             style: AppTextStyle.subtitle03(color: AppColors.white),
+            overflow: TextOverflow.fade,
           ),
         ],
       ),

@@ -22,6 +22,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
   @override
   void didChangeDependencies() {
     context.read<LandingBloc>().add(ShowWhyUsEvent());
+    context.read<LandingBloc>().add(ShowAboutUsEvent());
     super.didChangeDependencies();
   }
 

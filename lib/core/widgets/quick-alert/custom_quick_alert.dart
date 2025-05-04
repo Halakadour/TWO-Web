@@ -5,7 +5,10 @@ import 'package:quickalert/widgets/quickalert_dialog.dart';
 class CustomQuickAlert {
   Future<dynamic> successAlert(BuildContext context) {
     return QuickAlert.show(
-        context: context, type: QuickAlertType.success, width: 300);
+      context: context,
+      type: QuickAlertType.success,
+      width: 300,
+    );
   }
 
   Future<dynamic> failureAlert(BuildContext context, String? text) {

@@ -64,7 +64,7 @@ class _PostsSectionState extends State<PostsSection> {
                 ),
                 onPressed: _scrollLeft,
               ),
-              PaddingConfig.w32,
+              PaddingConfig.w16,
               Expanded(
                   child: BlocBuilder<LandingBloc, LandingState>(
                 buildWhen: (previous, current) =>
@@ -75,7 +75,7 @@ class _PostsSectionState extends State<PostsSection> {
                       .showActivePosts(state, _controller);
                 },
               )),
-              PaddingConfig.w32,
+              PaddingConfig.w16,
               IconButton(
                 icon: const Icon(
                   Icons.arrow_forward_ios,

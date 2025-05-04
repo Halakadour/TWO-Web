@@ -5,6 +5,7 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
+import 'package:two_website/core/functions/device_utility.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
@@ -56,7 +57,7 @@ class _ServicesSectionState extends State<ServicesSection> {
               ],
             ),
             PaddingConfig.h40,
-            Expanded(
+            Flexible(
               child: Text(
                 "our experts team of programmers and software engineers will help to create your software as you dream, whether you order an application ar a website ypu would has a chanse to manage your busniss with the power of software tools. we have an offer to you!",
                 style: AppTextStyle.subtitle03(color: AppColors.white),
@@ -67,7 +68,11 @@ class _ServicesSectionState extends State<ServicesSection> {
             PaddingConfig.h40,
             SizedBox(
               width: double.infinity,
-              height: 300,
+              height: DeviceUtility.isDesktopScreen(context)
+                  ? MediaQuery.of(context).size.width * 0.3
+                  : DeviceUtility.isDesktopScreen(context)
+                      ? MediaQuery.of(context).size.width * 0.3
+                      : MediaQuery.of(context).size.width * 0.44,
               child: Row(
                 children: [
                   IconButton(
@@ -85,7 +90,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                           current.serviceListStatus,
                       builder: (context, state) {
                         return LandingStateHandling()
-                            .showServicesList(state, _controller);
+                            .showServicesList(context, state, _controller);
                       },
                     ),
                   ),

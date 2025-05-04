@@ -22,17 +22,15 @@ class FetchImageCircle extends StatefulWidget {
 class _FetchImageCircleState extends State<FetchImageCircle> {
   Uint8List? imageBytes;
   Future<void> _getImageFile() async {
-    ImagePicker().pickImage(source: ImageSource.gallery).then(
-      (value) async {
-        if (value != null) {
-          final bytes = await value.readAsBytes();
-          imageBytes = bytes;
-          widget.imageB64 = base64Encode(bytes);
-          print(widget.imageB64);
-          widget.onUpdate(widget.imageB64);
-        }
-      },
-    );
+    ImagePicker().pickImage(source: ImageSource.gallery).then((value) async {
+      if (value != null) {
+        final bytes = await value.readAsBytes();
+        imageBytes = bytes;
+        widget.imageB64 = base64Encode(bytes);
+        print(widget.imageB64);
+        widget.onUpdate(widget.imageB64);
+      }
+    });
   }
 
   @override
@@ -49,29 +47,26 @@ class _FetchImageCircleState extends State<FetchImageCircle> {
             color: AppColors.fieldColor,
           ),
           child: imageBytes == null
-              ? const Icon(
-                  Iconsax.image,
-                  size: SizesConfig.iconsMd,
-                )
+              ? const Icon(Iconsax.image, size: SizesConfig.iconsMd)
               : CustomRoundedImage(
+                  padding: 0,
                   shape: BoxShape.circle,
                   imageType: ImageType.memory,
                   memoryImage: imageBytes,
-                  fit: BoxFit.cover,
+                  applyImageradius: false,
                 ),
         ),
         IconButton(
-            style: IconButton.styleFrom(
-                backgroundColor: AppColors.greenShade3,
-                padding: const EdgeInsets.all(10),
-                shape: const CircleBorder()),
-            onPressed: () {
-              _getImageFile();
-            },
-            icon: const Icon(
-              Iconsax.camera,
-              color: AppColors.white,
-            ))
+          style: IconButton.styleFrom(
+            backgroundColor: AppColors.greenShade3,
+            padding: const EdgeInsets.all(10),
+            shape: const CircleBorder(),
+          ),
+          onPressed: () {
+            _getImageFile();
+          },
+          icon: const Icon(Iconsax.camera, color: AppColors.white),
+        ),
       ],
     );
   }

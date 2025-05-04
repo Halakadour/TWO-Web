@@ -93,7 +93,8 @@ class LandingStateHandling {
   }
 
   // Service Section
-  Widget showServicesList(LandingState state, ScrollController? controller) {
+  Widget showServicesList(
+      BuildContext context, LandingState state, ScrollController? controller) {
     if (state.serviceListStatus == CasualStatus.loading) {
       return const Center(
         child: LoadingCards(),
@@ -102,6 +103,15 @@ class LandingStateHandling {
       if (state.serviceList.isEmpty) {
         return const EmptyStatusAnimation();
       } else {
+        // return GridView.builder(
+        //   scrollDirection: Axis.horizontal,
+        //   itemCount: state.serviceList.length,
+        //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //       crossAxisCount:
+        //           (MediaQuery.of(context).size.width ~/ 400).toInt()),
+        //   itemBuilder: (context, index) =>
+        //       ServiceCard(serviceEntity: state.serviceList[index]),
+        // );
         return ListView.builder(
           itemCount: state.serviceList.length,
           scrollDirection: Axis.horizontal,

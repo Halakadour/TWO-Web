@@ -8,9 +8,15 @@ import 'package:two_website/config/constants/sizes_config.dart';
 
 class FetchNetworkImage extends StatefulWidget {
   const FetchNetworkImage(
-      {super.key, required this.imagePath, this.shape = BoxShape.rectangle});
+      {super.key,
+      required this.imagePath,
+      this.shape = BoxShape.rectangle,
+      this.height,
+      this.weight});
   final String imagePath;
   final BoxShape shape;
+  final double? height;
+  final double? weight;
 
   @override
   State<FetchNetworkImage> createState() => _FetchNetworkImageState();
@@ -40,18 +46,24 @@ class _FetchNetworkImageState extends State<FetchNetworkImage> {
   Widget build(BuildContext context) {
     return imageBytes != null
         ? Container(
+            height: widget.height,
+            width: widget.weight,
+            clipBehavior: Clip.hardEdge,
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
                 shape: widget.shape,
                 borderRadius:
-                    BorderRadius.circular(SizesConfig.borderRadiusSm)),
-            child: Image.memory(imageBytes!))
+                    BorderRadius.circular(SizesConfig.borderRadiusMd)),
+            child: Image.memory(
+              imageBytes!,
+              fit: BoxFit.cover,
+            ))
         : Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
             highlightColor: Colors.grey[100]!,
             child: Container(
-              height: 30,
-              width: 30,
+              height: widget.height,
+              width: widget.weight,
               color: Colors.white,
             ),
           );

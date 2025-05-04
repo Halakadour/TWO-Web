@@ -16,6 +16,8 @@ class WhyUsColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               LocaleKeys.whyUs.tr(),
@@ -24,15 +26,14 @@ class WhyUsColumn extends StatelessWidget {
           ],
         ),
         PaddingConfig.h16,
-        SizedBox(
-            height: 350,
+        Expanded(
             child: BlocBuilder<LandingBloc, LandingState>(
-              buildWhen: (previous, current) =>
-                  previous.showWhyUsStatus != current.showWhyUsStatus,
-              builder: (context, state) {
-                return LandingStateHandling().showWhyUsList(state);
-              },
-            )),
+          buildWhen: (previous, current) =>
+              previous.showWhyUsStatus != current.showWhyUsStatus,
+          builder: (context, state) {
+            return LandingStateHandling().showWhyUsList(state);
+          },
+        )),
       ],
     );
   }
