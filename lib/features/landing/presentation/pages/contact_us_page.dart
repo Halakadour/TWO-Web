@@ -29,7 +29,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
               children: [
                 Text(
                   LocaleKeys.contactUs.tr().toUpperCase(),
-                  style: AppTextStyle.heading00(),
+                  style: AppTextStyle.headerLg(),
                 ),
               ],
             ),

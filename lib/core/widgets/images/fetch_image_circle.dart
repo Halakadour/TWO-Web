@@ -20,12 +20,12 @@ class FetchImageCircle extends StatefulWidget {
 }
 
 class _FetchImageCircleState extends State<FetchImageCircle> {
-  Uint8List? imageBytes;
+  ValueNotifier<Uint8List?> imageBytes = ValueNotifier(null);
   Future<void> _getImageFile() async {
     ImagePicker().pickImage(source: ImageSource.gallery).then((value) async {
       if (value != null) {
         final bytes = await value.readAsBytes();
-        imageBytes = bytes;
+        imageBytes.value = bytes;
         widget.imageB64 = base64Encode(bytes);
         print(widget.imageB64);
         widget.onUpdate(widget.imageB64);
@@ -38,23 +38,26 @@ class _FetchImageCircleState extends State<FetchImageCircle> {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        Container(
-          width: 130,
-          height: 130,
-          clipBehavior: Clip.hardEdge,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppColors.fieldColor,
+        ValueListenableBuilder(
+          valueListenable: imageBytes,
+          builder: (context, image, child) => Container(
+            width: 130,
+            height: 130,
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.fieldColor,
+            ),
+            child: image == null
+                ? const Icon(Iconsax.image, size: SizesConfig.iconsMd)
+                : CustomRoundedImage(
+                    padding: 0,
+                    shape: BoxShape.circle,
+                    imageType: ImageType.memory,
+                    memoryImage: image,
+                    applyImageradius: false,
+                  ),
           ),
-          child: imageBytes == null
-              ? const Icon(Iconsax.image, size: SizesConfig.iconsMd)
-              : CustomRoundedImage(
-                  padding: 0,
-                  shape: BoxShape.circle,
-                  imageType: ImageType.memory,
-                  memoryImage: imageBytes,
-                  applyImageradius: false,
-                ),
         ),
         IconButton(
           style: IconButton.styleFrom(

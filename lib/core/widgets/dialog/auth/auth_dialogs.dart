@@ -19,7 +19,7 @@ class AuthDialogs {
       builder: (context) => AlertDialog(
         title: Text(
           "Want to logout ? ",
-          style: AppTextStyle.subtitle01(),
+          style: AppTextStyle.bodyMd(),
         ),
         actions: [
           const CancelTextButton(),
@@ -53,12 +53,11 @@ class AuthDialogs {
               ),
               Text(
                 TextStrings.dontHaveAccount,
-                style: AppTextStyle.subtitle02(),
+                style: AppTextStyle.bodyMd(),
               ),
               Text(TextStrings.plaeseMakeAccount,
                   textAlign: TextAlign.center,
-                  style:
-                      AppTextStyle.subtitle03(color: AppColors.fontLightColor)),
+                  style: AppTextStyle.bodySm(color: AppColors.fontLightColor)),
               const SizedBox(width: double.infinity, child: SignUpButton()),
               const CancelTextButton()
             ],

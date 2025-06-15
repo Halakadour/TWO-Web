@@ -12,7 +12,7 @@ class GlobalDialogs {
       builder: (context) => AlertDialog(
         title: Text(
           "Are you sure you want to delete $deleteItemName ?",
-          style: AppTextStyle.subtitle01(color: AppColors.redShade2),
+          style: AppTextStyle.bodyMd(color: AppColors.redShade2),
         ),
         actions: [
           const CancelTextButton(),

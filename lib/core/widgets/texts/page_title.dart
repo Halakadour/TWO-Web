@@ -12,7 +12,7 @@ class PageTitle extends StatelessWidget {
       children: [
         Text(
           pageTitle,
-          style: AppTextStyle.heading03(),
+          style: AppTextStyle.headerLg(),
         ),
       ],
     );

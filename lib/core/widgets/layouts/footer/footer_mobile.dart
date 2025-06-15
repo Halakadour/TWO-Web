@@ -27,11 +27,11 @@ class FooterMobile extends StatelessWidget {
             children: [
               Text(
                 "Aleppo".toUpperCase(),
-                style: AppTextStyle.subtitle02(color: AppColors.white),
+                style: AppTextStyle.bodyMd(color: AppColors.white),
               ),
               Text(
                 "Al Tilal, Hamra street\nfirst intersection",
-                style: AppTextStyle.subtitle04(color: AppColors.white),
+                style: AppTextStyle.bodyXs(color: AppColors.white),
               )
             ],
           ),
@@ -41,22 +41,22 @@ class FooterMobile extends StatelessWidget {
             children: [
               Text(
                 "Working".toUpperCase(),
-                style: AppTextStyle.subtitle02(color: AppColors.white),
+                style: AppTextStyle.bodyMd(color: AppColors.white),
               ),
               Text(
                 "Sunday-Thursday\n10:00 AM- 03:00 PM",
-                style: AppTextStyle.subtitle04(color: AppColors.white),
+                style: AppTextStyle.bodyXs(color: AppColors.white),
               ),
               PaddingConfig.h16,
               Text(
                 "towCompany@gmail.com",
-                style: AppTextStyle.subtitle04(
+                style: AppTextStyle.bodyXs(
                     color: AppColors.white,
                     decoration: TextDecoration.underline),
               ),
               Text(
                 "+9631234567",
-                style: AppTextStyle.subtitle04(
+                style: AppTextStyle.bodyXs(
                     color: AppColors.white,
                     decoration: TextDecoration.underline),
               ),
@@ -68,7 +68,7 @@ class FooterMobile extends StatelessWidget {
             children: [
               Text(
                 "follow us".toUpperCase(),
-                style: AppTextStyle.subtitle04(color: AppColors.white),
+                style: AppTextStyle.bodyXs(color: AppColors.white),
               ),
               PaddingConfig.h8,
               const Row(

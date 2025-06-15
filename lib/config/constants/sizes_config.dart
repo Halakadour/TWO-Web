@@ -19,8 +19,8 @@ class SizesConfig {
   static const double fontSizeLg = 18.0;
 
   //Button sizes
-  static const double buttonHeight = 18.0;
-  static const double buttonRadius = 8.0;
+  static const double buttonHeight = 20.0;
+  static const double buttonRadius = 16.0;
   static const double buttonWidth = 130.0;
   static const double buttonElevation = 4.0;
 
@@ -39,6 +39,7 @@ class SizesConfig {
   static const double spaceBtwSections = 32.0;
 
   // Border radius
+  static const double borderRadiusXs = 4.0;
   static const double borderRadiusSm = 8.0;
   static const double borderRadiusMd = 12.0;
   static const double borderRadiusLg = 16.0;
@@ -46,6 +47,15 @@ class SizesConfig {
 
   // Divider height
   static const double dividerHeight = 1.0;
+
+  // Dialogs height & width
+  static const double dialogWidthSm = 150.0;
+  static const double dialogWidthMd = 250.0;
+  static const double dialogWidthLg = 350.0;
+  static const double dialogWidthXl = 450.0;
+
+  static const double dialogHightXs = 140.0;
+  static const double dialogHightXl = 500.0;
 
   // Input feild
   static const double inputFieldRadius = 12.0;

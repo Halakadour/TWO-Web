@@ -1,5 +1,5 @@
-String baseUri = "http://ruhaend-001-site1.jtempurl.com";
-String imageUri = "http://ruhaend-001-site1.jtempurl.com/public/";
+String baseUri = "http://ruhaend3-001-site1.qtempurl.com";
+String imageUri = "$baseUri/public/";
 String imageBase64 = "data:image/png;base64,";
 String pdfBase64 = "data:pdf/pdf;base64,";
 String documentBase64 =

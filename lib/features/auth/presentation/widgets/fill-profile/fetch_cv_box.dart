@@ -9,50 +9,58 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
 // ignore: must_be_immutable
-class FetchCvBox extends StatefulWidget {
-  FetchCvBox({super.key, required this.fileB64, required this.onUpdate});
+class FetchCvBox extends StatelessWidget {
+  FetchCvBox(
+      {super.key,
+      required this.fileB64,
+      required this.onUpdate,
+      this.hasBorder = false});
   String? fileB64;
   final Function(String?) onUpdate;
-
-  @override
-  State<FetchCvBox> createState() => _FetchCvBoxState();
-}
-
-class _FetchCvBoxState extends State<FetchCvBox> {
-  Future<void> _getCVFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-      allowMultiple: false,
-    );
-    if (result != null && result.files.isNotEmpty) {
-      final bytes = await result.files.first.xFile.readAsBytes();
-      widget.fileB64 = base64Encode(bytes);
-      widget.onUpdate(widget.fileB64);
-    }
-  }
+  final bool hasBorder;
 
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<String?> fileName = ValueNotifier(null);
+    Future<void> getCVFile() async {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result != null && result.files.isNotEmpty) {
+        final bytes = await result.files.first.xFile.readAsBytes();
+        fileName.value = result.files.first.name;
+        fileB64 = base64Encode(bytes);
+        onUpdate(fileB64);
+      }
+    }
+
     return Container(
       width: double.maxFinite,
       decoration: BoxDecoration(
-          color: AppColors.fieldColor, borderRadius: BorderRadius.circular(12)),
+        color: hasBorder ? Colors.transparent : AppColors.fieldColor,
+        borderRadius: BorderRadius.circular(12),
+        border: hasBorder ? Border.all(color: AppColors.gray, width: 1) : null,
+      ),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: Column(
         children: [
           InkWell(
               onTap: () async {
-                _getCVFile();
+                getCVFile();
               },
               child: const Icon(
-                Iconsax.direct_inbox,
+                Iconsax.cloud_plus,
                 size: SizesConfig.iconsMd,
                 color: AppColors.greenShade2,
               )),
           PaddingConfig.h8,
-          Text(
-            widget.fileB64 != null ? "Cv Selected" : "select or drop a file",
-            style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
+          ValueListenableBuilder(
+            valueListenable: fileName,
+            builder: (context, value, child) => Text(
+              value ?? "select or drop a file",
+              style: AppTextStyle.bodySm(color: AppColors.greenShade2),
+            ),
           ),
         ],
       ),

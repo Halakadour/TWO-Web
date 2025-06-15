@@ -16,8 +16,7 @@ class SaveElevatedButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             backgroundColor: AppColors.greenShade2,
             shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(SizesConfig.borderRadiusMd))),
+                borderRadius: BorderRadius.circular(SizesConfig.buttonRadius))),
         onPressed: onPressed,
         child: Text(
           "Save",

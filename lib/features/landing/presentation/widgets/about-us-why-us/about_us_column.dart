@@ -21,7 +21,7 @@ class AboutUsColumn extends StatelessWidget {
           width: 400,
           child: Text(
             LocaleKeys.isACompane.tr(),
-            style: AppTextStyle.subtitle01(color: AppColors.fontLightColor),
+            style: AppTextStyle.bodyLg(color: AppColors.fontLightColor),
             overflow: TextOverflow.fade,
             maxLines: 4,
           ),
@@ -29,7 +29,7 @@ class AboutUsColumn extends StatelessWidget {
         PaddingConfig.h40,
         Text(
           LocaleKeys.weHaveMore.tr(),
-          style: AppTextStyle.heading03(),
+          style: AppTextStyle.headerMd(),
         ),
         PaddingConfig.h16,
         Row(

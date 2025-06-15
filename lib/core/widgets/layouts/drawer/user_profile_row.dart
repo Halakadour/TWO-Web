@@ -32,13 +32,13 @@ class UserProfileRow extends StatelessWidget {
           children: [
             Text(
               profileEntity.pName,
-              style: AppTextStyle.subtitle02(
+              style: AppTextStyle.bodyMd(
                 color: AppColors.fontDarkColor,
               ),
             ),
             Text(
               profileEntity.pRole,
-              style: AppTextStyle.subtitle03(
+              style: AppTextStyle.bodyMd(
                 color: AppColors.fontLightColor,
               ),
             ),

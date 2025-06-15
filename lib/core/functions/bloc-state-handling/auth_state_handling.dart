@@ -4,14 +4,19 @@ import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
+import 'package:two_website/core/widgets/buttons/radio_button.dart';
+import 'package:two_website/core/widgets/dropdown/custom_dropdown_list_for_role_model.dart';
 import 'package:two_website/core/widgets/images/fetch_network_image.dart';
 import 'package:two_website/core/widgets/layouts/drawer/user_profile_row.dart';
 import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdown_loading.dart';
 import 'package:two_website/core/widgets/shimmers/profile-loading/loading_user_image.dart';
 import 'package:two_website/core/widgets/shimmers/profile-loading/loading_user_profile.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
+import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
 class AuthStateHandling {
+  // auth
   Future<void> signUpListener(
       AuthRoleProfileState state, BuildContext context) async {
     if (state.authModelStatus == CasualStatus.loading) {
@@ -64,6 +69,7 @@ class AuthStateHandling {
     }
   }
 
+// Profile
   void fillClientProfileListener(
       AuthRoleProfileState state, BuildContext context) {
     if (state.updateClientProfileStatus == CasualStatus.loading) {
@@ -116,6 +122,71 @@ class AuthStateHandling {
       return const LoadingUserImage();
     } else if (state.profileEntityStatus == CasualStatus.success) {
       return FetchNetworkImage(imagePath: state.profileEntity!.pImage!);
+    } else {
+      return const SizedBox();
+    }
+  }
+
+// Roles
+  Widget getDropDowmRolesList({
+    required AuthRoleProfileState state,
+    required ValueNotifier<RoleModel?> selectedRole,
+    required void Function(RoleModel?) onChanged,
+  }) {
+    if (state.roleListStatus == CasualStatus.success) {
+      if (state.roleList.isNotEmpty) {
+        return ValueListenableBuilder<RoleModel?>(
+          valueListenable: selectedRole,
+          builder: (context, roleValue, _) {
+            return CustomDropdownListForRoleModel(
+              value: roleValue,
+              items: state.roleList.map((role) {
+                return DropdownMenuItem(value: role, child: Text(role.role));
+              }).toList(),
+              onChanged: onChanged,
+            );
+          },
+        );
+      } else {
+        return const Text("No Roles");
+      }
+    } else if (state.roleListStatus == CasualStatus.loading) {
+      return const CustomDropdownLoading();
+    } else if (state.roleListStatus == CasualStatus.failure) {
+      return Text(state.message);
+    } else {
+      return const SizedBox();
+    }
+  }
+
+  Widget getUserTypeRole({
+    required AuthRoleProfileState state,
+    required ValueNotifier<RoleModel?> selectedRole,
+    required void Function(RoleModel?) onChanged0,
+    required void Function(RoleModel?) onChanged1,
+  }) {
+    if (state.roleListStatus == CasualStatus.loading) {
+      return const CircularProgressIndicator();
+    } else if (state.roleListStatus == CasualStatus.success) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomRadioButton(
+              role: ValueNotifier(state.roleList[0]),
+              selcetedRole: selectedRole,
+              label: state.roleList[0].role,
+              onChanged: onChanged0),
+          const SizedBox(width: 24),
+          CustomRadioButton(
+              role: ValueNotifier(state.roleList[1]),
+              selcetedRole: selectedRole,
+              label: state.roleList[1].role,
+              onChanged: onChanged1),
+        ],
+      );
+    } else if (state.roleListStatus == CasualStatus.failure) {
+      return Text(state.message);
     } else {
       return const SizedBox();
     }

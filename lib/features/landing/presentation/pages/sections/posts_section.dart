@@ -48,7 +48,7 @@ class _PostsSectionState extends State<PostsSection> {
           children: [
             Text(
               "posts".toUpperCase(),
-              style: AppTextStyle.heading00(),
+              style: AppTextStyle.headerLg(),
             ),
           ],
         ),

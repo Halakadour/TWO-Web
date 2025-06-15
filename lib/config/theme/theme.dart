@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:two_website/config/constants/sizes_config.dart';
 import 'color.dart';
+import 'text_style.dart'; // لو تستخدم TextStyle مخصصة من هنا
 
 class AppTheme {
   static ThemeData getTheme() {
@@ -8,12 +9,20 @@ class AppTheme {
       fontFamily: 'Almarai',
       primaryColor: AppColors.mainColor,
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-      floatingActionButtonTheme: const FloatingActionButtonThemeData().copyWith(
-        backgroundColor: AppColors.mainColor,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          fixedSize:
+              const Size(SizesConfig.buttonWidth, SizesConfig.buttonHeight),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          backgroundColor: AppColors.greenShade2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(SizesConfig.buttonRadius),
+          ),
+          textStyle: AppTextStyle.buttonStyle(),
+        ),
       ),
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: MaterialColor(
-          // ignore: deprecated_member_use
           AppColors.mainColor.value,
           const {
             50: AppColors.mainColor,

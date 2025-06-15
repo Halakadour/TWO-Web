@@ -44,7 +44,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
               decoration: InputDecoration(
                   labelText: "subject",
                   labelStyle:
-                      AppTextStyle.subtitle02(color: AppColors.fontLightColor),
+                      AppTextStyle.bodyMd(color: AppColors.fontLightColor),
                   filled: true,
                   fillColor: AppColors.fieldColor,
                   border: OutlineInputBorder(
@@ -59,14 +59,14 @@ class _ContactUsBodyState extends State<ContactUsBody> {
             child: IntlPhoneField(
               controller: _phoneController,
               dropdownTextStyle:
-                  AppTextStyle.subtitle02(color: AppColors.fontLightColor),
+                  AppTextStyle.bodyMd(color: AppColors.fontLightColor),
               initialCountryCode: 'SY',
               decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColors.fieldColor,
                   labelText: "Phone Number",
                   labelStyle:
-                      AppTextStyle.subtitle02(color: AppColors.fontLightColor),
+                      AppTextStyle.bodyMd(color: AppColors.fontLightColor),
                   border: OutlineInputBorder(
                       borderRadius:
                           BorderRadius.circular(SizesConfig.borderRadiusMd),

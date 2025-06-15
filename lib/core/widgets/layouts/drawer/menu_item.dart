@@ -59,7 +59,7 @@ class MenuItem extends StatelessWidget {
               ),
               Text(
                 itemName,
-                style: AppTextStyle.navRailStyle(
+                style: AppTextStyle.bodySm(
                   color: (pageNum == currentPage)
                       ? AppColors.greenShade2
                       : AppColors.fontLightColor,

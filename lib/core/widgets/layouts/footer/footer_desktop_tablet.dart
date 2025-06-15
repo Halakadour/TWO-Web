@@ -25,12 +25,12 @@ class FooterDesktopTablet extends StatelessWidget {
             children: [
               Text(
                 "Aleppo".toUpperCase(),
-                style: AppTextStyle.subtitle01(color: AppColors.white),
+                style: AppTextStyle.bodyMd(color: AppColors.white),
               ),
               PaddingConfig.h8,
               Text(
                 "Al Tilal, Hamra street\nfirst intersection",
-                style: AppTextStyle.subtitle03(color: AppColors.white),
+                style: AppTextStyle.bodySm(color: AppColors.white),
               )
             ],
           ),
@@ -39,23 +39,23 @@ class FooterDesktopTablet extends StatelessWidget {
             children: [
               Text(
                 "Working".toUpperCase(),
-                style: AppTextStyle.subtitle01(color: AppColors.white),
+                style: AppTextStyle.bodyMd(color: AppColors.white),
               ),
               PaddingConfig.h8,
               Text(
                 "Sunday-Thursday\n10:00 AM- 03:00 PM",
-                style: AppTextStyle.subtitle03(color: AppColors.white),
+                style: AppTextStyle.bodySm(color: AppColors.white),
               ),
               PaddingConfig.h16,
               Text(
                 "towCompany@gmail.com",
-                style: AppTextStyle.subtitle03(
+                style: AppTextStyle.bodySm(
                     color: AppColors.white,
                     decoration: TextDecoration.underline),
               ),
               Text(
                 "+9631234567",
-                style: AppTextStyle.subtitle03(
+                style: AppTextStyle.bodySm(
                     color: AppColors.white,
                     decoration: TextDecoration.underline),
               ),
@@ -66,7 +66,7 @@ class FooterDesktopTablet extends StatelessWidget {
             children: [
               Text(
                 "follow us".toUpperCase(),
-                style: AppTextStyle.subtitle01(color: AppColors.white),
+                style: AppTextStyle.bodyMd(color: AppColors.white),
               ),
               PaddingConfig.h8,
               const SoialMediaGroup()

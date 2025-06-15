@@ -25,7 +25,7 @@ class SignUpHeader extends StatelessWidget {
           ),
           Text(
             TextStrings.signupTitle,
-            style: AppTextStyle.heading04(),
+            style: AppTextStyle.headerSm(),
           ),
         ],
       ),

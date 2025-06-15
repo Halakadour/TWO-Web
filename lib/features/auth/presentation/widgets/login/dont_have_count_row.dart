@@ -17,14 +17,14 @@ class DontHaveCountRow extends StatelessWidget {
       children: [
         Text(
           TextStrings.dontHaveAccount,
-          style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
+          style: AppTextStyle.bodySm(color: AppColors.fontLightColor),
         ),
         TextButton(
             onPressed: () =>
                 context.pushReplacementNamed(AppRouteConfig.signup),
             child: Text(
               TextStrings.signup,
-              style: AppTextStyle.subtitle01(color: AppColors.greenShade2),
+              style: AppTextStyle.bodyLg(color: AppColors.greenShade2),
             ))
       ],
     );

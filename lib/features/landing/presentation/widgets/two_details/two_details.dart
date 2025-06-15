@@ -34,10 +34,10 @@ class _TwoDetailsState extends State<TwoDetails> {
             text: TextSpan(children: [
               TextSpan(
                   text: LocaleKeys.homeTitle1.tr(),
-                  style: AppTextStyle.heading00()),
+                  style: AppTextStyle.headerLg()),
               TextSpan(
                   text: LocaleKeys.homeTitle2.tr(),
-                  style: AppTextStyle.heading00(color: AppColors.greenShade2))
+                  style: AppTextStyle.headerLg(color: AppColors.greenShade2))
             ])),
         PaddingConfig.h24,
         CustomCartoonButton(
@@ -54,7 +54,7 @@ class _TwoDetailsState extends State<TwoDetails> {
         PaddingConfig.h24,
         Text(
           LocaleKeys.orContactUs.tr(),
-          style: AppTextStyle.subtitle01(),
+          style: AppTextStyle.bodyLg(),
         ),
         PaddingConfig.h16,
         const SoialMediaGroup()

@@ -54,14 +54,14 @@ class CustomTextFormField extends StatelessWidget {
       enabled: enabled,
       focusNode: focusNode,
       autofocus: autofocus,
-      style: style,
+      style: style ?? AppTextStyle.bodyMd(color: AppColors.fontLightColor),
       autocorrect: true,
       controller: controller,
       validator: validator,
       obscureText: obscureText,
       decoration: InputDecoration(
           filled: filled,
-          fillColor: fillColor,
+          fillColor: fillColor ?? AppColors.fieldColor,
           alignLabelWithHint: true,
           prefixIcon: prefixIconPath == null
               ? prefixIconWidget

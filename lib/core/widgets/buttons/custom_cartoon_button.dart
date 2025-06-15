@@ -42,7 +42,8 @@ class CustomCartoonButton extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                         color: AppColors.greenShade2,
-                        borderRadius: BorderRadius.circular(7),
+                        borderRadius:
+                            BorderRadius.circular(SizesConfig.buttonRadius),
                         boxShadow: value
                             ? const [
                                 BoxShadow(

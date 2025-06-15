@@ -52,7 +52,7 @@ class _ServicesSectionState extends State<ServicesSection> {
               children: [
                 Text(
                   LocaleKeys.services.tr().toUpperCase(),
-                  style: AppTextStyle.heading00(color: AppColors.white),
+                  style: AppTextStyle.headerLg(color: AppColors.white),
                 ),
               ],
             ),
@@ -60,7 +60,7 @@ class _ServicesSectionState extends State<ServicesSection> {
             Flexible(
               child: Text(
                 "our experts team of programmers and software engineers will help to create your software as you dream, whether you order an application ar a website ypu would has a chanse to manage your busniss with the power of software tools. we have an offer to you!",
-                style: AppTextStyle.subtitle03(color: AppColors.white),
+                style: AppTextStyle.bodySm(color: AppColors.white),
                 maxLines: 3,
                 overflow: TextOverflow.fade,
               ),

@@ -1,6 +1,6 @@
 name: two_website
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -37,41 +37,61 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
-  fonts: 
-   - family: Outfit
-     fonts:
-      - asset: assets/fonts/outfit/Outfit-Thin.ttf
-        weight: 100
-      - asset: assets/fonts/outfit/Outfit-ExtraLight.ttf
-        weight: 200  
-      - asset: assets/fonts/outfit/Outfit-Light.ttf
-        weight: 300  
-      - asset: assets/fonts/outfit/Outfit-Regular.ttf
-        weight: 400  
-      - asset: assets/fonts/outfit/Outfit-Medium.ttf
-        weight: 500 
-      - asset: assets/fonts/outfit/Outfit-SemiBold.ttf
-        weight: 600 
-      - asset: assets/fonts/outfit/Outfit-Bold.ttf
-        weight: 700 
-      - asset: assets/fonts/outfit/Outfit-ExtraBold.ttf
-        weight: 800   
-   - family: Almarai
-     fonts:
-      - asset: assets/fonts/almarai/Almarai-Light.ttf
-      - asset: assets/fonts/almarai/Almarai-Regular.ttf
-      - asset: assets/fonts/almarai/Almarai-Bold.ttf
-      - asset: assets/fonts/almarai/Almarai-ExtraBold.ttf
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/poppins/poppins-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/poppins/poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/poppins/poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/poppins/poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/poppins/poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/poppins/poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/poppins/poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/poppins/Poppins-Black.ttf
+          weight: 900
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/outfit/Outfit-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/outfit/Outfit-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/outfit/Outfit-Light.ttf
+          weight: 300
+        - asset: assets/fonts/outfit/Outfit-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/outfit/Outfit-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/outfit/Outfit-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/outfit/Outfit-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/outfit/Outfit-ExtraBold.ttf
+          weight: 800
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/almarai/Almarai-Light.ttf
+        - asset: assets/fonts/almarai/Almarai-Regular.ttf
+        - asset: assets/fonts/almarai/Almarai-Bold.ttf
+        - asset: assets/fonts/almarai/Almarai-ExtraBold.ttf
   uses-material-design: true
-  assets :
-   - assets/lang/
-   - assets/icons/home/
-   - assets/icons/about-us/
-   - assets/icons/services/
-   - assets/icons/footer/
-   - assets/icons/auth/
-   - assets/icons/role/
-   - assets/icons/dashboard/
-   - assets/images/png/
-   - assets/images/svg/
-   - assets/animation/
+  assets:
+    - assets/lang/
+    - assets/icons/home/
+    - assets/icons/about-us/
+    - assets/icons/services/
+    - assets/icons/footer/
+    - assets/icons/auth/
+    - assets/icons/role/
+    - assets/icons/dashboard/
+    - assets/images/png/
+    - assets/images/svg/
+    - assets/animation/

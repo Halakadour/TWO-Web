@@ -25,11 +25,11 @@ class LoginHeader extends StatelessWidget {
           ),
           Text(
             TextStrings.loginTitle,
-            style: AppTextStyle.heading04(),
+            style: AppTextStyle.headerSm(),
           ),
           Text(
             TextStrings.loginSubTitle,
-            style: AppTextStyle.subtitle03(),
+            style: AppTextStyle.bodySm(),
           ),
         ],
       ),

@@ -41,7 +41,7 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                           children: [
                             Text(
                               "sent a reply".toUpperCase(),
-                              style: AppTextStyle.heading00(),
+                              style: AppTextStyle.headerLg(),
                             ),
                             PaddingConfig.h24,
                             ScrollTemplate(

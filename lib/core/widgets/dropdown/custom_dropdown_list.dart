@@ -34,9 +34,9 @@ class CustomDropdownList extends StatelessWidget {
         elevation: 0,
         hint: Text(
           "select your $selectYour",
-          style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
+          style: AppTextStyle.bodySm(color: AppColors.fontLightColor),
         ),
-        style: AppTextStyle.subtitle03(color: AppColors.fontLightColor),
+        style: AppTextStyle.bodySm(color: AppColors.fontLightColor),
         dropdownColor: AppColors.fieldColor,
         items: items,
         onChanged: onChanged,

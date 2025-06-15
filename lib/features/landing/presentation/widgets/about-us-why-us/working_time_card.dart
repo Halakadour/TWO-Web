@@ -29,7 +29,7 @@ class WorkingTimeCard extends StatelessWidget {
               children: [
                 Text(
                   "Compony woking time",
-                  style: AppTextStyle.subtitle01(color: AppColors.blueShade3),
+                  style: AppTextStyle.bodyLg(color: AppColors.blueShade3),
                 ),
               ],
             ),
@@ -48,8 +48,7 @@ class WorkingTimeCard extends StatelessWidget {
                       width: 500,
                       child: Text(
                         workingTime,
-                        style: AppTextStyle.subtitle03(
-                            color: AppColors.blueShade2),
+                        style: AppTextStyle.bodySm(color: AppColors.blueShade2),
                       ),
                     ),
                   ],

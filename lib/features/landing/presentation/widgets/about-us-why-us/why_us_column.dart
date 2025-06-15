@@ -21,7 +21,7 @@ class WhyUsColumn extends StatelessWidget {
           children: [
             Text(
               LocaleKeys.whyUs.tr(),
-              style: AppTextStyle.heading02(),
+              style: AppTextStyle.headerLg(),
             ),
           ],
         ),

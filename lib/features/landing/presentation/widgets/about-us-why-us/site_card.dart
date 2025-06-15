@@ -29,7 +29,7 @@ class SiteCard extends StatelessWidget {
               children: [
                 Text(
                   "Compony woking site",
-                  style: AppTextStyle.subtitle01(color: AppColors.greenShade3),
+                  style: AppTextStyle.bodyLg(color: AppColors.greenShade3),
                 ),
               ],
             ),
@@ -43,7 +43,7 @@ class SiteCard extends StatelessWidget {
                 PaddingConfig.w8,
                 Text(
                   site,
-                  style: AppTextStyle.subtitle03(color: AppColors.greenShade2),
+                  style: AppTextStyle.bodySm(color: AppColors.greenShade2),
                 ),
               ],
             ),

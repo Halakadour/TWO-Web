@@ -34,7 +34,7 @@ class _AboutUsSectionState extends State<AboutUsSection> {
         children: [
           Text(
             LocaleKeys.aboutUs.tr().toUpperCase(),
-            style: AppTextStyle.heading00(),
+            style: AppTextStyle.headerLg(),
           ),
           PaddingConfig.h16,
           const Expanded(
