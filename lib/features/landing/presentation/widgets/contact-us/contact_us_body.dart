@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
-import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 
 class ContactUsBody extends StatefulWidget {
@@ -42,7 +43,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
             child: TextFormField(
               controller: _subjectController,
               decoration: InputDecoration(
-                  labelText: "subject",
+                  labelText: TextStrings.subject,
                   labelStyle:
                       AppTextStyle.bodyMd(color: AppColors.fontLightColor),
                   filled: true,
@@ -64,7 +65,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
               decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColors.fieldColor,
-                  labelText: "Phone Number",
+                  labelText: TextStrings.phoneNumber,
                   labelStyle:
                       AppTextStyle.bodyMd(color: AppColors.fontLightColor),
                   border: OutlineInputBorder(
@@ -81,7 +82,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                 borderRadius:
                     BorderRadius.circular(SizesConfig.borderRadiusMd)),
             maxLines: 5,
-            labelText: "Message",
+            labelText: TextStrings.message,
             controller: _messageController,
             validator: (p0) {
               return null;
@@ -97,7 +98,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
             listenWhen: (previous, current) =>
                 previous.createContcatStatus != current.createContcatStatus,
             child: CustomCartoonButton(
-              title: "Send A Message",
+              title: TextStrings.sentMessage,
               width: double.infinity,
               onTap: () {
                 if (_formKey.currentState!.validate()) {

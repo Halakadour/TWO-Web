@@ -3,14 +3,14 @@ import 'package:two_website/config/theme/color.dart';
 
 class AppTextStyle {
   static TextStyle headerLg({
-    double fontSize = 28,
+    double fontSize = 48,
     Color color = Colors.black,
     TextDecoration? decoration,
   }) {
     return TextStyle(
       color: color,
       fontFamily: 'Poppins',
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
       fontSize: fontSize,
       decoration: decoration,
@@ -55,7 +55,7 @@ class AppTextStyle {
     return TextStyle(
       color: color,
       fontFamily: 'Poppins',
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
       fontSize: fontSize,
       decoration: decoration,

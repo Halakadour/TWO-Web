@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/widgets/buttons/radio_button.dart';
+import 'package:two_website/core/widgets/dialog/auth/not_authorized_dialog.dart';
+import 'package:two_website/core/widgets/dialog/state/error_dialog.dart';
+import 'package:two_website/core/widgets/dialog/state/loading_dialog.dart';
+import 'package:two_website/core/widgets/dialog/state/success_dialog.dart';
 import 'package:two_website/core/widgets/dropdown/custom_dropdown_list_for_role_model.dart';
 import 'package:two_website/core/widgets/images/fetch_network_image.dart';
 import 'package:two_website/core/widgets/layouts/drawer/user_profile_row.dart';
-import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
 import 'package:two_website/core/widgets/shimmers/dropdown-loading/custom_dropdown_loading.dart';
 import 'package:two_website/core/widgets/shimmers/profile-loading/loading_user_image.dart';
 import 'package:two_website/core/widgets/shimmers/profile-loading/loading_user_profile.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/features/landing/data/models/role_response_model.dart';
+import 'package:two_website/features/auth/data/models/role_response_model.dart';
 
 class AuthStateHandling {
   // auth
   Future<void> signUpListener(
       AuthRoleProfileState state, BuildContext context) async {
     if (state.authModelStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.authModelStatus == CasualStatus.success) {
       await SharedPreferencesServices.setUserToken(state.authModel!.token);
       context.pop();
@@ -28,7 +30,7 @@ class AuthStateHandling {
     } else if (state.authModelStatus == CasualStatus.failure ||
         state.authModelStatus == CasualStatus.notAuthorized) {
       context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     } else {
       const SizedBox();
     }
@@ -37,16 +39,16 @@ class AuthStateHandling {
   Future<void> loginListener(
       AuthRoleProfileState state, BuildContext context) async {
     if (state.authModelStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.authModelStatus == CasualStatus.success) {
       context.pop();
       await SharedPreferencesServices.setUserToken(state.authModel!.token);
-      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
-      context.pushReplacementNamed(AppRouteConfig.landing);
+      //context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
+      context.pushReplacementNamed(AppRouteConfig.chooseUserType);
     } else if (state.authModelStatus == CasualStatus.failure ||
         state.authModelStatus == CasualStatus.notAuthorized) {
       context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     } else {
       const SizedBox();
     }
@@ -54,18 +56,23 @@ class AuthStateHandling {
 
   void logoutListener(AuthRoleProfileState state, BuildContext context) async {
     if (state.logoutStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.logoutStatus == CasualStatus.success) {
       context.pop();
       await SharedPreferencesServices.deleteUserToken();
-      CustomQuickAlert().successAlert(context);
-      context.pushReplacementNamed(AppRouteConfig.landing);
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
+          context.pushReplacementNamed(AppRouteConfig.landing);
+        },
+      );
     } else if (state.authModelStatus == CasualStatus.failure) {
       context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     } else if (state.authModelStatus == CasualStatus.notAuthorized) {
       context.pop();
-      CustomQuickAlert().noTokenAlert(context);
+      showNotAuthorizedDialog(context);
     }
   }
 
@@ -73,29 +80,42 @@ class AuthStateHandling {
   void fillClientProfileListener(
       AuthRoleProfileState state, BuildContext context) {
     if (state.updateClientProfileStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.updateClientProfileStatus == CasualStatus.success) {
       context.pop();
-      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
-      context.pushReplacementNamed(AppRouteConfig.landing);
+      //context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
+      //context.pushReplacementNamed(AppRouteConfig.landing);
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
+          context.pushReplacementNamed(AppRouteConfig.landing);
+        },
+      );
     } else if (state.updateClientProfileStatus == CasualStatus.failure) {
       context.pop();
       print(state.message);
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     }
   }
 
   void fillFreelancerProfileListener(
       AuthRoleProfileState state, BuildContext context) {
     if (state.updateFreeLancerProfileStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.updateFreeLancerProfileStatus == CasualStatus.success) {
-      context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
+      //context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
       context.pop();
-      context.pushReplacementNamed(AppRouteConfig.landing);
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
+          context.pushReplacementNamed(AppRouteConfig.landing);
+        },
+      );
     } else if (state.updateFreeLancerProfileStatus == CasualStatus.failure) {
       context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     }
   }
 

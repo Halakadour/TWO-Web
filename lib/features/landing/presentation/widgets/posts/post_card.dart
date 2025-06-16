@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/widgets/images/fetch_network_image.dart';
 import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/custom_linked_text.dart';
@@ -59,7 +60,7 @@ class _PostCardState extends State<PostCard> {
             ),
             PaddingConfig.h8,
             CustomLinkedText(
-                title: "Add a reply",
+                title: TextStrings.sentReply,
                 onTap: () => context
                         .pushNamed(AppRouteConfig.replyToPost, pathParameters: {
                       'id': widget.postEntity.postId.toString(),

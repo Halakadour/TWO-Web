@@ -3,11 +3,12 @@ import 'package:lottie/lottie.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/buttons/close_elevated_button.dart';
+import 'package:two_website/core/widgets/buttons/elevated-buttons/close_elevated_button.dart';
 
-void showNotAuthorizedDialog(BuildContext context) {
+void showErrorDialog(BuildContext context, String errorMessage) {
   showDialog(
     context: context,
     barrierDismissible: true,
@@ -25,20 +26,20 @@ void showNotAuthorizedDialog(BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             children: [
               Lottie.asset(
-                JsonPath.fingerPrint,
+                JsonPath.networkError,
                 width: 120,
                 height: 120,
                 repeat: false,
               ),
               PaddingConfig.h16,
               Text(
-                "Access Denaid",
+                TextStrings.error,
                 textAlign: TextAlign.center,
                 style: AppTextStyle.headerSm(color: AppColors.redShade2),
               ),
               PaddingConfig.h8,
               Text(
-                "You Are Not Authorized",
+                errorMessage,
                 textAlign: TextAlign.center,
                 style: AppTextStyle.bodyMd(color: AppColors.redShade1),
               ),

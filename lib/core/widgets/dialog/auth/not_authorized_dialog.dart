@@ -3,20 +3,20 @@ import 'package:lottie/lottie.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/buttons/okay_elevated_button.dart';
+import 'package:two_website/core/widgets/buttons/elevated-buttons/close_elevated_button.dart';
 
-void showSuccessDialog(BuildContext context, void Function()? onPressed) {
+void showNotAuthorizedDialog(BuildContext context) {
   showDialog(
     context: context,
-    barrierDismissible: false,
+    barrierDismissible: true,
     builder: (BuildContext context) {
       return Dialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
         child: Container(
-          width: SizesConfig.dialogWidthMd,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -26,18 +26,25 @@ void showSuccessDialog(BuildContext context, void Function()? onPressed) {
             mainAxisSize: MainAxisSize.min,
             children: [
               Lottie.asset(
-                JsonPath.success,
-                width: 150,
-                height: 150,
-                repeat: true,
+                JsonPath.fingerPrint,
+                width: 120,
+                height: 120,
+                repeat: false,
               ),
               PaddingConfig.h16,
               Text(
-                "Success",
-                style: AppTextStyle.headerSm(color: AppColors.greenShade2),
+                TextStrings.accessDenaid,
+                textAlign: TextAlign.center,
+                style: AppTextStyle.headerSm(color: AppColors.redShade2),
+              ),
+              PaddingConfig.h8,
+              Text(
+                TextStrings.notAuthorized,
+                textAlign: TextAlign.center,
+                style: AppTextStyle.bodyMd(color: AppColors.redShade1),
               ),
               PaddingConfig.h24,
-              OkayElevatedButton(onPressed: onPressed),
+              const CloseElevatedButton(),
             ],
           ),
         ),

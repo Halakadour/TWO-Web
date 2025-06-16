@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:two_website/features/auth/data/models/profile_model.dart';
+import 'package:two_website/core/models/profile_model.dart';
 
 GetUserProfileResponseModel getUserProfileResponseModelFromJson(String str) =>
     GetUserProfileResponseModel.fromJson(json.decode(str));

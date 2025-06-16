@@ -4,7 +4,7 @@ import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/images/fetch_image_circle.dart';
 import 'package:two_website/core/widgets/textfield/custom_phone_number_textfield.dart';
-import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 
 class ClientDataStep extends StatelessWidget {
   final TextEditingController nameController;
@@ -33,7 +33,7 @@ class ClientDataStep extends StatelessWidget {
           ),
         ),
         PaddingConfig.h16,
-        Text("Full Name*", style: AppTextStyle.bodySm()),
+        Text("${TextStrings.fullName}*", style: AppTextStyle.bodySm()),
         PaddingConfig.h8,
         CustomTextFormField(
           controller: nameController,
@@ -41,7 +41,7 @@ class ClientDataStep extends StatelessWidget {
           validator: (p0) => p0 != null ? null : TextStrings.fieldValidation,
         ),
         PaddingConfig.h16,
-        Text("Phone Number*", style: AppTextStyle.bodySm()),
+        Text("${TextStrings.phoneNumber}*", style: AppTextStyle.bodySm()),
         PaddingConfig.h8,
         CustomPhoneNumberField(phoneController: phoneController),
         PaddingConfig.h16,

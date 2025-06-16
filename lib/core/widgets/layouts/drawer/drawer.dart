@@ -5,7 +5,7 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/functions/bloc-state-handling/auth_state_handling.dart';
 import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/dialog/auth/auth_dialogs.dart';
+import 'package:two_website/core/widgets/dialog/auth/logout_dialog.dart';
 import 'package:two_website/core/widgets/layouts/drawer/logout_widget.dart';
 import 'package:two_website/core/widgets/layouts/drawer/menu_item.dart';
 import 'package:two_website/core/widgets/layouts/drawer/sign_row.dart';
@@ -109,7 +109,7 @@ class CustomDrawer extends StatelessWidget {
                         listenWhen: (previous, current) =>
                             previous.logoutStatus != current.logoutStatus,
                         child: GestureDetector(
-                          onTap: () => AuthDialogs().logoutDialog(context),
+                          onTap: () => showLogoutDialog(context),
                           child: const LogoutWidget(),
                         ),
                       ),

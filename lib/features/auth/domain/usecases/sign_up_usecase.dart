@@ -1,29 +1,18 @@
 import 'package:dartz/dartz.dart';
+import 'package:two_website/core/models/user_model.dart';
 import 'package:two_website/core/usecases/use_case.dart';
-import 'package:two_website/features/auth/data/models/auth_response_model.dart';
+import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/domain/repos/auth_repo.dart';
 
 import '../../../../core/error/failures.dart';
 
-class SignUpUsecase extends UseCase<Future<Either<Failure, AuthResponseModel>>,
-    RegisterParams> {
+class SignUpUsecase
+    extends UseCase<Future<Either<Failure, UserModel>>, RegisterParams> {
   final AuthRepo authRepo;
   SignUpUsecase(this.authRepo);
 
   @override
-  Future<Either<Failure, AuthResponseModel>> call(RegisterParams param) async {
-    return await authRepo.signUp(
-        param.name, param.email, param.password, param.password);
+  Future<Either<Failure, UserModel>> call(RegisterParams param) async {
+    return await authRepo.signUp(param);
   }
-}
-
-class RegisterParams {
-  final String name;
-  final String email;
-  final String password;
-  RegisterParams({
-    required this.name,
-    required this.email,
-    required this.password,
-  });
 }

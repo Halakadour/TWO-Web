@@ -1,0 +1,38 @@
+// ignore_for_file: avoid_print
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:two_website/core/functions/bloc-state-handling/auth_state_handling.dart';
+import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
+import 'package:two_website/features/auth/presentation/pages/fill-freelancer-profile/responsive-pages/fill__freelancer_profile_desktop_tablet.dart';
+import 'package:two_website/features/auth/presentation/pages/fill-freelancer-profile/responsive-pages/fill__freelancer_profile_mobile.dart';
+
+class FillFreelancerProfilePage extends StatelessWidget {
+  const FillFreelancerProfilePage({super.key, required this.id});
+  final String id;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthRoleProfileBloc, AuthRoleProfileState>(
+      listener: (context, state) {
+        AuthStateHandling().fillFreelancerProfileListener(state, context);
+      },
+      listenWhen: (previous, current) {
+        return (previous.updateFreeLancerProfileStatus !=
+            current.updateFreeLancerProfileStatus);
+      },
+      child: CustomSiteTemplate(
+        desktop: FillFreelancerProfileDesktopTablet(
+          id: id,
+        ),
+        tablet: FillFreelancerProfileDesktopTablet(
+          id: id,
+        ),
+        mobile: FillFreelancerProfileMobile(
+          id: id,
+        ),
+      ),
+    );
+  }
+}

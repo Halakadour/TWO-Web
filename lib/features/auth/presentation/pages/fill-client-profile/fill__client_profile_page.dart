@@ -5,11 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/core/functions/bloc-state-handling/auth_state_handling.dart';
 import 'package:two_website/core/widgets/layouts/templates/custom_site_template.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/features/auth/presentation/pages/fill-client-profile/responsive-pages/fill_profile_mobile.dart';
-import 'package:two_website/features/auth/presentation/pages/fill-client-profile/responsive-pages/fill_profile_desktop_tablet.dart';
+import 'package:two_website/features/auth/presentation/pages/fill-client-profile/responsive-pages/fill__client_profile_mobile.dart';
+import 'package:two_website/features/auth/presentation/pages/fill-client-profile/responsive-pages/fill__client_profile_desktop_tablet.dart';
 
-class FillProfilePage extends StatelessWidget {
-  const FillProfilePage({super.key});
+class FillClientProfilePage extends StatelessWidget {
+  const FillClientProfilePage({super.key, required this.id});
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +22,16 @@ class FillProfilePage extends StatelessWidget {
         return (previous.updateClientProfileStatus !=
             current.updateClientProfileStatus);
       },
-      child: const CustomSiteTemplate(
-        desktop: FillProfileDesktopTablet(),
-        tablet: FillProfileDesktopTablet(),
-        mobile: FillProfileMobile(),
+      child: CustomSiteTemplate(
+        desktop: FillClientProfileDesktopTablet(
+          id: id,
+        ),
+        tablet: FillClientProfileDesktopTablet(
+          id: id,
+        ),
+        mobile: FillClientProfileMobile(
+          id: id,
+        ),
       ),
     );
   }

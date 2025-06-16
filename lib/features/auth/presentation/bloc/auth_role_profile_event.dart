@@ -8,22 +8,17 @@ abstract class AuthRoleProfileEvent {
 class CheckAuthEvent extends AuthRoleProfileEvent {}
 
 class RegisteNewUserEvent extends AuthRoleProfileEvent {
-  final String name;
-  final String email;
-  final String password;
+  final RegisterParams param;
+
   const RegisteNewUserEvent({
-    required this.name,
-    required this.email,
-    required this.password,
+    required this.param,
   });
 }
 
 class LoginUserEvent extends AuthRoleProfileEvent {
-  final String email;
-  final String password;
+  final LoginParams param;
   const LoginUserEvent({
-    required this.email,
-    required this.password,
+    required this.param,
   });
 }
 
@@ -31,38 +26,26 @@ class LogoutUserEvent extends AuthRoleProfileEvent {}
 
 // Role Events //
 
-class GetRolesWithoutClientEvent extends AuthRoleProfileEvent {}
-
 class GetRolesEvent extends AuthRoleProfileEvent {}
 
 // Profile Events //
 class UpdateClientProfileEvent extends AuthRoleProfileEvent {
-  final String image;
-  final int roleId;
-  final String subject;
-  final String description;
-  final String phone;
-
-  UpdateClientProfileEvent(
-      {required this.image,
-      required this.roleId,
-      required this.subject,
-      required this.description,
-      required this.phone});
+  final UpdateClientProfileParam param;
+  UpdateClientProfileEvent({
+    required this.param,
+  });
 }
 
 class UpdateFreelancerProfileEvent extends AuthRoleProfileEvent {
-  final String image;
-  final int roleId;
+  final UpdateFreeLanceAndGesutProfileParam param;
 
-  UpdateFreelancerProfileEvent({required this.image, required this.roleId});
+  UpdateFreelancerProfileEvent({required this.param});
 }
 
 class UpdateGuestProfileEvent extends AuthRoleProfileEvent {
-  final String image;
-  final int roleId;
+  final UpdateFreeLanceAndGesutProfileParam param;
 
-  UpdateGuestProfileEvent({required this.image, required this.roleId});
+  UpdateGuestProfileEvent({required this.param});
 }
 
 class GetUserProfileEvent extends AuthRoleProfileEvent {}

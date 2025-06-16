@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
@@ -19,7 +20,7 @@ class SaveElevatedButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(SizesConfig.buttonRadius))),
         onPressed: onPressed,
         child: Text(
-          "Save",
+          TextStrings.save,
           style: AppTextStyle.buttonStyle(color: AppColors.white),
         ));
   }

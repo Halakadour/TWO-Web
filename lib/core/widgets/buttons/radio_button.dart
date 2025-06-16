@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/features/landing/data/models/role_response_model.dart';
+import 'package:two_website/features/auth/data/models/role_response_model.dart';
 
 class CustomRadioButton extends StatelessWidget {
   const CustomRadioButton(

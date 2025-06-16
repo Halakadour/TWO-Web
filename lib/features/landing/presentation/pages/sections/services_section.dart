@@ -2,12 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/config/constants/padding_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
 import 'package:two_website/core/functions/device_utility.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
+import 'package:two_website/features/landing/domain/entities/service_entity.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
+import 'package:two_website/features/landing/presentation/widgets/services/service_card.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 
 class ServicesSection extends StatefulWidget {
@@ -59,7 +61,7 @@ class _ServicesSectionState extends State<ServicesSection> {
             PaddingConfig.h40,
             Flexible(
               child: Text(
-                "our experts team of programmers and software engineers will help to create your software as you dream, whether you order an application ar a website ypu would has a chanse to manage your busniss with the power of software tools. we have an offer to you!",
+                TextStrings.serviceText,
                 style: AppTextStyle.bodySm(color: AppColors.white),
                 maxLines: 3,
                 overflow: TextOverflow.fade,
@@ -84,16 +86,30 @@ class _ServicesSectionState extends State<ServicesSection> {
                   ),
                   PaddingConfig.w32,
                   Expanded(
-                    child: BlocBuilder<LandingBloc, LandingState>(
-                      buildWhen: (previous, current) =>
-                          previous.serviceListStatus !=
-                          current.serviceListStatus,
-                      builder: (context, state) {
-                        return LandingStateHandling()
-                            .showServicesList(context, state, _controller);
-                      },
+                      child: ListView.builder(
+                    itemCount: TextStrings.servicesList.length,
+                    scrollDirection: Axis.horizontal,
+                    controller: _controller,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => ServiceCard(
+                      serviceEntity: ServiceEntity(
+                          idE: 0,
+                          titleE: TextStrings.servicesList[index],
+                          descriptionE: "",
+                          imageE: TextStrings.servicesImagesList[index]),
                     ),
-                  ),
+                  )),
+                  // Expanded(
+                  //   child: BlocBuilder<LandingBloc, LandingState>(
+                  //     buildWhen: (previous, current) =>
+                  //         previous.serviceListStatus !=
+                  //         current.serviceListStatus,
+                  //     builder: (context, state) {
+                  //       return LandingStateHandling()
+                  //           .showServicesList(context, state, _controller);
+                  //     },
+                  //   ),
+                  // ),
                   PaddingConfig.w32,
                   IconButton(
                     icon: const Icon(

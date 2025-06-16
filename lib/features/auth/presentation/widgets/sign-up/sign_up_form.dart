@@ -5,9 +5,9 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
-import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
-import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/auth/presentation/widgets/google_git_row.dart';
 
@@ -141,19 +141,14 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(
               width: double.infinity,
               child: CustomCartoonButton(
-                title: TextStrings.signup,
+                title: TextStrings.signUp,
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    if (_confirmPasswordController.text !=
-                        _passwordController.text) {
-                      CustomQuickAlert().passwordMatchingAlert(context);
-                    } else {
-                      context.read<AuthRoleProfileBloc>().add(
-                          RegisteNewUserEvent(
-                              name: _fullnameController.text,
-                              email: _emailController.text,
-                              password: _passwordController.text));
-                    }
+                    context.read<AuthRoleProfileBloc>().add(RegisteNewUserEvent(
+                        param: RegisterParams(
+                            name: _fullnameController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text)));
                   }
                 },
               ),

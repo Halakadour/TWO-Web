@@ -32,7 +32,7 @@ class _SignUpButtonState extends State<SignUpButton> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
         ),
         child: Text(
-          LocaleKeys.signin.tr(),
+          LocaleKeys.login.tr(),
           style: AppTextStyle.buttonStyle(color: AppColors.white),
         ));
   }

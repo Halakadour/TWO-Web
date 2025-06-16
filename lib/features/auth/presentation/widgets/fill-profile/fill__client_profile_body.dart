@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/core/widgets/buttons/cancel_text_button.dart';
-import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
+import 'package:two_website/core/widgets/buttons/text-buttons/cancel_text_button.dart';
+import 'package:two_website/features/auth/data/datasources/auth_param.dart';
+import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/build_custom_step.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/steps/client_data_step.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/steps/project_request_step.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/steps/work_data_step.dart';
-import 'package:two_website/features/landing/data/models/role_response_model.dart';
 
-class FillProfileBody extends StatefulWidget {
-  const FillProfileBody({super.key});
+class FillClientProfileBody extends StatefulWidget {
+  const FillClientProfileBody({super.key, required this.id});
+  final String id;
 
   @override
-  State<FillProfileBody> createState() => _FillProfileBodyState();
+  State<FillClientProfileBody> createState() => _FillClientProfileBodyState();
 }
 
-class _FillProfileBodyState extends State<FillProfileBody> {
+class _FillClientProfileBodyState extends State<FillClientProfileBody> {
   //late final GlobalKey<FormState> _formKey;
   late final TextEditingController _nameController;
   late final TextEditingController _phoneController;
@@ -28,15 +30,14 @@ class _FillProfileBodyState extends State<FillProfileBody> {
   late final TextEditingController _projectDescriptionController;
   late final TextEditingController _mainAxsesController;
 
-  ValueNotifier<RoleModel?> role = ValueNotifier(null);
   ValueNotifier<String?> imageB64 = ValueNotifier(null);
   ValueNotifier<String?> fileB64 = ValueNotifier(null);
 
   ValueNotifier<int> currentStep = ValueNotifier(0);
-  ValueNotifier<int?> selectedProjectType = ValueNotifier(null);
-  ValueNotifier<int?> selectedCost = ValueNotifier(null);
-  ValueNotifier<int?> selectedDuration = ValueNotifier(null);
-  List<int> selectedDurations = [];
+  ValueNotifier<String?> selectedProjectType = ValueNotifier(null);
+  ValueNotifier<String?> selectedCost = ValueNotifier(null);
+  ValueNotifier<String?> selectedDuration = ValueNotifier(null);
+  final ValueNotifier<String?> selectedCooperationType = ValueNotifier(null);
 
   @override
   void initState() {
@@ -54,7 +55,6 @@ class _FillProfileBodyState extends State<FillProfileBody> {
 
   @override
   void dispose() {
-    role.dispose();
     imageB64.dispose();
     _nameController.dispose();
     _phoneController.dispose();
@@ -88,6 +88,27 @@ class _FillProfileBodyState extends State<FillProfileBody> {
               onStepContinue: () {
                 if (!isLastStep) {
                   currentStep.value++;
+                } else {
+                  context.read<AuthRoleProfileBloc>().add(
+                      UpdateClientProfileEvent(
+                          param: UpdateClientProfileParam(
+                              token: "token",
+                              roleId: widget.id,
+                              image: imageB64.value!,
+                              fullName: _nameController.text,
+                              companyName: _companyNameController.text,
+                              workEmail: _emailController.text,
+                              phoneNumber: _phoneController.text,
+                              projectType: selectedProjectType.value!,
+                              projectDescription: selectedDuration.value!,
+                              projectCost: selectedCost.value!,
+                              projectDuration: selectedDuration.value!,
+                              projectRequirements:
+                                  _projectDescriptionController.text,
+                              documents: fileB64.value!,
+                              cooperationType: selectedCooperationType.value!,
+                              contractTime: _dateController.text,
+                              visibilit: "0")));
                 }
               },
               onStepCancel: () {
@@ -102,7 +123,7 @@ class _FillProfileBodyState extends State<FillProfileBody> {
                     ElevatedButton(
                       onPressed: details.onStepContinue,
                       child: Text(
-                        isLastStep ? "Confirm" : "Next",
+                        isLastStep ? TextStrings.confirm : TextStrings.next,
                         style: AppTextStyle.buttonStyle(color: AppColors.white),
                       ),
                     ),
@@ -126,7 +147,7 @@ class _FillProfileBodyState extends State<FillProfileBody> {
         buildCustomStep(
           currentStep: currentStep.value,
           stepIndex: 0,
-          title: "Client Data",
+          title: TextStrings.clientData,
           activeColor: currentStep.value > 0
               ? AppColors.greenShade2
               : AppColors.fontLightColor,
@@ -140,7 +161,7 @@ class _FillProfileBodyState extends State<FillProfileBody> {
         buildCustomStep(
           currentStep: currentStep.value,
           stepIndex: 1,
-          title: "Project Request",
+          title: TextStrings.projectRequest,
           activeColor: currentStep.value > 1
               ? AppColors.greenShade2
               : AppColors.fontLightColor,
@@ -156,13 +177,14 @@ class _FillProfileBodyState extends State<FillProfileBody> {
         buildCustomStep(
           currentStep: currentStep.value,
           stepIndex: 2,
-          title: "Work Data",
+          title: TextStrings.workData,
           activeColor: currentStep.value > 2
               ? AppColors.greenShade2
               : AppColors.fontLightColor,
           content: WorkDataStep(
             emailController: _emailController,
             companyNameController: _companyNameController,
+            selectedCooperationType: selectedCooperationType,
             dateController: _dateController,
           ),
         ),

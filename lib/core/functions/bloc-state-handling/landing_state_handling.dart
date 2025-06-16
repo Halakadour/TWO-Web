@@ -7,7 +7,10 @@ import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/widgets/animation/empty_status_animation.dart';
-import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
+import 'package:two_website/core/widgets/dialog/auth/not_authorized_dialog.dart';
+import 'package:two_website/core/widgets/dialog/state/error_dialog.dart';
+import 'package:two_website/core/widgets/dialog/state/loading_dialog.dart';
+import 'package:two_website/core/widgets/dialog/state/success_dialog.dart';
 import 'package:two_website/core/widgets/shimmers/service-post-loading/loading_cards.dart';
 import 'package:two_website/core/widgets/shimmers/why-us-loading/loading_why_us_list.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
@@ -81,14 +84,18 @@ class LandingStateHandling {
 
   void sendReplyListener(LandingState state, BuildContext context) {
     if (state.sendReplyStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.sendReplyStatus == CasualStatus.success) {
       context.pop();
-      CustomQuickAlert().successAlert(context);
-      context.pop();
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
+        },
+      );
     } else if (state.sendReplyStatus == CasualStatus.failure) {
       context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     }
   }
 
@@ -103,15 +110,6 @@ class LandingStateHandling {
       if (state.serviceList.isEmpty) {
         return const EmptyStatusAnimation();
       } else {
-        // return GridView.builder(
-        //   scrollDirection: Axis.horizontal,
-        //   itemCount: state.serviceList.length,
-        //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //       crossAxisCount:
-        //           (MediaQuery.of(context).size.width ~/ 400).toInt()),
-        //   itemBuilder: (context, index) =>
-        //       ServiceCard(serviceEntity: state.serviceList[index]),
-        // );
         return ListView.builder(
           itemCount: state.serviceList.length,
           scrollDirection: Axis.horizontal,
@@ -135,16 +133,21 @@ class LandingStateHandling {
   // Contact Us Section
   void contactUsListener(LandingState state, BuildContext context) {
     if (state.createContcatStatus == CasualStatus.loading) {
-      CustomQuickAlert().loadingAlert(context);
+      showLoadingDialog(context);
     } else if (state.createContcatStatus == CasualStatus.success) {
       context.pop();
-      CustomQuickAlert().successAlert(context);
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
+        },
+      );
     } else if (state.createContcatStatus == CasualStatus.failure) {
       context.pop();
-      CustomQuickAlert().failureAlert(context, state.message);
+      showErrorDialog(context, state.message);
     } else if (state.createContcatStatus == CasualStatus.notAuthorized) {
       context.pop();
-      CustomQuickAlert().noTokenAlert(context);
+      showNotAuthorizedDialog(context);
     }
   }
 }

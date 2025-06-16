@@ -18,10 +18,10 @@ import 'package:two_website/features/auth/domain/usecases/sign_out_usecase.dart'
 import 'package:two_website/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/landing/domain/usecases/create_contact_us_usecase.dart';
-import 'package:two_website/features/landing/domain/usecases/update_client_profile_usecase.dart';
-import 'package:two_website/features/landing/domain/usecases/update_freelance_profile_usecase.dart';
-import 'package:two_website/features/landing/domain/usecases/update_guest_profile_usecase.dart';
-import 'package:two_website/features/landing/domain/usecases/show_roles_usecase.dart';
+import 'package:two_website/features/auth/domain/usecases/update_client_profile_usecase.dart';
+import 'package:two_website/features/auth/domain/usecases/update_freelance_profile_usecase.dart';
+import 'package:two_website/features/auth/domain/usecases/update_guest_profile_usecase.dart';
+import 'package:two_website/features/auth/domain/usecases/show_roles_usecase.dart';
 import 'package:two_website/features/landing/domain/usecases/show_service_usecase.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 

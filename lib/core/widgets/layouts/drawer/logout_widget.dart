@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
@@ -26,7 +27,7 @@ class LogoutWidget extends StatelessWidget {
             ),
           ),
           Text(
-            "Logout",
+            TextStrings.logout,
             style: AppTextStyle.buttonStyle(
               color: AppColors.redShade2,
             ),

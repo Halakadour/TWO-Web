@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 
-import '../../../../config/theme/color.dart';
-import '../../../../config/theme/text_style.dart';
+import '../../../config/theme/color.dart';
+import '../../../config/theme/text_style.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {

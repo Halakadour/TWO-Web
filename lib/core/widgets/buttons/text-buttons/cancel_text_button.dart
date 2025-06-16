@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
@@ -15,7 +16,7 @@ class CancelTextButton extends StatelessWidget {
               context.pop();
             },
         child: Text(
-          "Back",
+          TextStrings.back,
           style: AppTextStyle.buttonStyle(color: AppColors.fontLightColor),
         ));
   }

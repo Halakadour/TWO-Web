@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/about_us_column.dart';
 import 'package:two_website/features/landing/presentation/widgets/about-us-why-us/why_us_column.dart';
 
@@ -11,9 +12,10 @@ class AboutUsTabletMobile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         // About Us Part
-        AboutUsColumn(),
+        Expanded(child: AboutUsColumn()),
+        PaddingConfig.h24,
         // Why Us Part
-        WhyUsColumn()
+        Expanded(child: WhyUsColumn())
       ],
     );
   }

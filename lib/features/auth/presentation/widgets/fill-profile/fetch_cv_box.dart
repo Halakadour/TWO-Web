@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
@@ -58,7 +59,7 @@ class FetchCvBox extends StatelessWidget {
           ValueListenableBuilder(
             valueListenable: fileName,
             builder: (context, value, child) => Text(
-              value ?? "select or drop a file",
+              value ?? TextStrings.selectFile,
               style: AppTextStyle.bodySm(color: AppColors.greenShade2),
             ),
           ),

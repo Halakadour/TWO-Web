@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_website/core/error/exceptions.dart';
 import 'package:two_website/features/landing/data/models/about_us_model.dart';
 import 'package:two_website/features/landing/data/models/post_model.dart';
-import 'package:two_website/features/landing/data/models/role_response_model.dart';
 import 'package:two_website/features/landing/data/models/service_model.dart';
 import 'package:two_website/features/landing/data/models/why_us_model.dart';
 
@@ -20,8 +19,6 @@ abstract class LandingLocaleDatasource {
   Future<Unit> cacheActivePosts(List<PostModel> postsList);
   Future<List<PostModel>> getCachedUnActivePosts();
   Future<Unit> cacheUnActivePosts(List<PostModel> postsList);
-  Future<Unit> cacheRoles(List<RoleModel> roleList);
-  Future<List<RoleModel>> getCachedRoles();
   Future<List<ServiceModel>> getCachedServices();
   Future<Unit> cacheServices(List<ServiceModel> servicesList);
 }
@@ -30,7 +27,6 @@ const String ABOUT_US = "ABOUT_US";
 const String WHY_US = "WHY_US";
 const String ACTIVE_POSTS = "ACTIVE_POSTS";
 const String UN_ACTIVE_POSTS = "UN_ACTIVE_POSTS";
-const String ROLES = "ROLES";
 const String SERVICES = "SERVICES";
 
 class LandingLocaleDatasourceImpl extends LandingLocaleDatasource {
@@ -55,17 +51,6 @@ class LandingLocaleDatasourceImpl extends LandingLocaleDatasource {
     sharedPreferences.setString(
       ACTIVE_POSTS,
       json.encode(postModelToJson),
-    );
-    return Future.value(unit);
-  }
-
-  @override
-  Future<Unit> cacheRoles(List<RoleModel> roleList) {
-    List roleModelToJson =
-        roleList.map<Map<String, dynamic>>((role) => role.toJson()).toList();
-    sharedPreferences.setString(
-      ROLES,
-      json.encode(roleModelToJson),
     );
     return Future.value(unit);
   }
@@ -127,22 +112,6 @@ class LandingLocaleDatasourceImpl extends LandingLocaleDatasource {
           )
           .toList();
       return Future.value(jsonToPostModel);
-    } else {
-      throw EmptyCacheException(message: "Empty Cache Exception");
-    }
-  }
-
-  @override
-  Future<List<RoleModel>> getCachedRoles() {
-    final jsonString = sharedPreferences.getString(ROLES);
-    if (jsonString != null) {
-      List decodeJsonData = json.decode(jsonString);
-      List<RoleModel> jsonToRoleModel = decodeJsonData
-          .map<RoleModel>(
-            (jsonRoleModel) => RoleModel.fromJson(jsonRoleModel),
-          )
-          .toList();
-      return Future.value(jsonToRoleModel);
     } else {
       throw EmptyCacheException(message: "Empty Cache Exception");
     }

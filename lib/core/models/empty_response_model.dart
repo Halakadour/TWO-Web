@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-SignOutResponseModel logoutUserModelFromJson(String str) =>
-    SignOutResponseModel.fromJson(json.decode(str));
+EmptyResponseModel emptyResponseModelFromJson(String str) =>
+    EmptyResponseModel.fromJson(json.decode(str));
 
-String logoutUserModelToJson(SignOutResponseModel data) =>
+String emptyResponseModelToJson(EmptyResponseModel data) =>
     json.encode(data.toJson());
 
-class SignOutResponseModel {
+class EmptyResponseModel {
   final int status;
   final String msg;
   final List<dynamic> data;
 
-  SignOutResponseModel({
+  EmptyResponseModel({
     required this.status,
     required this.msg,
     required this.data,
   });
 
-  factory SignOutResponseModel.fromJson(Map<String, dynamic> json) =>
-      SignOutResponseModel(
+  factory EmptyResponseModel.fromJson(Map<String, dynamic> json) =>
+      EmptyResponseModel(
         status: json["status"],
         msg: json["msg"],
         data: List<dynamic>.from(json["data"].map((x) => x)),

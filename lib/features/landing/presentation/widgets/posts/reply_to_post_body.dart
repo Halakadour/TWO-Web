@@ -7,8 +7,7 @@ import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/bloc-state-handling/landing_state_handling.dart';
-import 'package:two_website/core/widgets/quick-alert/custom_quick_alert.dart';
-import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/fetch_cv_box.dart';
 import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
@@ -65,7 +64,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
               },
               controller: _fullnameController,
               prefixIconPath: IconsPath.user,
-              labelText: "Name"),
+              labelText: TextStrings.fullName),
           PaddingConfig.h16,
           CustomTextFormField(
               borderColor: AppColors.black,
@@ -78,13 +77,13 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
               },
               controller: _emailController,
               prefixIconPath: IconsPath.email,
-              labelText: "Email"),
+              labelText: TextStrings.email),
           PaddingConfig.h16,
           IntlPhoneField(
             initialCountryCode: 'SY',
             controller: _phoneController,
             decoration: InputDecoration(
-                labelText: "Phone Number",
+                labelText: TextStrings.phoneNumber,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: AppColors.gray))),
@@ -99,12 +98,13 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
             listenWhen: (previous, current) =>
                 previous.sendReplyStatus != current.sendReplyStatus,
             child: CustomCartoonButton(
-              title: "Sent a reply",
+              title: TextStrings.sentReply,
               width: double.infinity,
               onTap: () {
                 if (_formKey.currentState!.validate()) {
                   if (_cvFile == null) {
-                    CustomQuickAlert().addCvAlert(context);
+                    ScaffoldMessenger(
+                        child: SnackBar(content: Text(TextStrings.addCV)));
                   } else {
                     context.read<LandingBloc>().add(ReplyToPostEvent(
                         fullName: _fullnameController.text,

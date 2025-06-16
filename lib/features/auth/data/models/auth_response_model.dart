@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:two_website/features/auth/data/models/user_model.dart';
+import 'package:two_website/core/models/user_model.dart';
 
 AuthResponseModel authResponseModelFromJson(String str) =>
     AuthResponseModel.fromJson(json.decode(str));

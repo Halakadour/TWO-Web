@@ -7,7 +7,7 @@ import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/network/enums.dart';
-import 'package:two_website/core/widgets/dialog/auth/auth_dialogs.dart';
+import 'package:two_website/core/widgets/dialog/auth/make_an_account_dialog.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/lang/locale_keys.g.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
@@ -47,7 +47,7 @@ class _TwoDetailsState extends State<TwoDetails> {
                 CasualStatus.authorized) {
               context.pushNamed(AppRouteConfig.contactUs);
             } else {
-              AuthDialogs().makeAccountDialog(context);
+              showMakeAccountDialog(context);
             }
           },
         ),

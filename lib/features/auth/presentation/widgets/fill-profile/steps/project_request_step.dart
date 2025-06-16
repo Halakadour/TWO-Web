@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/text_style.dart';
-import 'package:two_website/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/custom_choise_chip.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/fetch_cv_box.dart';
 
@@ -17,9 +17,9 @@ class ProjectRequestStep extends StatelessWidget {
     required this.fileB64,
   });
 
-  final ValueNotifier<int?> selectedProjectType;
-  final ValueNotifier<int?> selectedCost;
-  final ValueNotifier<int?> selectedDuration;
+  final ValueNotifier<String?> selectedProjectType;
+  final ValueNotifier<String?> selectedCost;
+  final ValueNotifier<String?> selectedDuration;
   final TextEditingController projectDescriptionController;
   final TextEditingController mainAxsesController;
   final ValueNotifier<String?> fileB64;
@@ -30,31 +30,32 @@ class ProjectRequestStep extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PaddingConfig.h16,
-        Text("Project Type*", style: AppTextStyle.bodySm()),
+        Text("${TextStrings.projectType}*", style: AppTextStyle.bodySm()),
         PaddingConfig.h16,
         Wrap(
           spacing: 8,
           runSpacing: 8,
           children: List.generate(5, (index) {
             final labels = [
-              "Mobile App",
-              "Website",
-              "System Analysis",
-              "Software Testings",
-              "Maintain"
+              TextStrings.mobileApp,
+              TextStrings.website,
+              TextStrings.systemAnalysis,
+              TextStrings.softwareTestings,
+              TextStrings.maintain,
             ];
             return ValueListenableBuilder(
               valueListenable: selectedProjectType,
               builder: (context, value, child) => CustomChoiceChip(
                 label: labels[index],
-                selected: selectedProjectType.value == index,
-                onSelected: () => selectedProjectType.value = index,
+                selected: selectedProjectType.value == labels[index],
+                onSelected: () => selectedProjectType.value = labels[index],
               ),
             );
           }),
         ),
         PaddingConfig.h24,
-        Text("Project Description*", style: AppTextStyle.bodySm()),
+        Text("${TextStrings.projectDescription}*",
+            style: AppTextStyle.bodySm()),
         PaddingConfig.h16,
         CustomTextFormField(
           controller: projectDescriptionController,
@@ -63,54 +64,54 @@ class ProjectRequestStep extends StatelessWidget {
           validator: (p0) => p0 != null ? null : TextStrings.fieldValidation,
         ),
         PaddingConfig.h24,
-        Text("Expected Cost*", style: AppTextStyle.bodySm()),
+        Text("${TextStrings.expectedCost}*", style: AppTextStyle.bodySm()),
         PaddingConfig.h16,
         Wrap(
           spacing: 8,
           runSpacing: 8,
           children: List.generate(4, (index) {
             final labels = [
-              "Less than \$1000",
+              "${TextStrings.lessThan} \$1000",
               "\$1000 - \$5000",
               "\$6000 - \$9000",
-              "More than \$10000"
+              "${TextStrings.moreThan} \$10000"
             ];
             return ValueListenableBuilder(
               valueListenable: selectedCost,
               builder: (context, value, child) => CustomChoiceChip(
                 label: labels[index],
-                selected: selectedCost.value == index,
-                onSelected: () => selectedCost.value = index,
+                selected: selectedCost.value == labels[index],
+                onSelected: () => selectedCost.value = labels[index],
               ),
             );
           }),
         ),
         PaddingConfig.h24,
-        Text("Expected Duration*", style: AppTextStyle.bodySm()),
+        Text("${TextStrings.expectedDuration}*", style: AppTextStyle.bodySm()),
         PaddingConfig.h16,
         Wrap(
           spacing: 8,
           runSpacing: 8,
           children: List.generate(4, (index) {
             final labels = [
-              "Less than month",
-              "from 3 - 5 months",
-              "from 6 - 10 months",
-              "More than 1 year"
+              "${TextStrings.lessThan} 2 ",
+              "3 - 5 ${TextStrings.month}",
+              "6 - 10 ${TextStrings.month}",
+              "${TextStrings.moreThan} 1 ${TextStrings.year}"
             ];
             return ValueListenableBuilder(
               valueListenable: selectedDuration,
               builder: (context, value, child) => CustomChoiceChip(
                 label: labels[index],
-                selected: selectedDuration.value == index,
-                onSelected: () => selectedDuration.value = index,
+                selected: selectedDuration.value == labels[index],
+                onSelected: () => selectedDuration.value = labels[index],
               ),
             );
           }),
         ),
         PaddingConfig.h24,
         Text(
-          "Do you prepare any project document?\nif yes please upload it",
+          TextStrings.doYouPrepareDocumnet,
           style: AppTextStyle.bodySm(),
         ),
         PaddingConfig.h16,
@@ -123,7 +124,7 @@ class ProjectRequestStep extends StatelessWidget {
         ),
         PaddingConfig.h24,
         Text(
-          "Key feature or requirement that the\nproject should include?",
+          TextStrings.keyRequirment,
           style: AppTextStyle.bodySm(),
         ),
         PaddingConfig.h16,

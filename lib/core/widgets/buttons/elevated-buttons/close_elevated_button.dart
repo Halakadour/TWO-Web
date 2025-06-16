@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 
-class OkayElevatedButton extends StatelessWidget {
-  const OkayElevatedButton({super.key, required this.onPressed});
-  final void Function()? onPressed;
+class CloseElevatedButton extends StatelessWidget {
+  const CloseElevatedButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        backgroundColor: AppColors.greenShade2,
+        fixedSize: const Size(
+          SizesConfig.buttonWidth,
+          SizesConfig.buttonHeight,
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        backgroundColor: AppColors.navy,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SizesConfig.buttonRadius),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () => context.pop(),
       child: Text(
-        "Okay",
+        TextStrings.close,
         style: AppTextStyle.buttonStyle(color: AppColors.white),
       ),
     );

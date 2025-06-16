@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/assets_path.dart';
+import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/functions/auth_services.dart';
@@ -41,7 +42,7 @@ class GoogleGitRow extends StatelessWidget {
                   ),
                   PaddingConfig.w8,
                   Text(
-                    "Containe With Google",
+                    TextStrings.containeWithGoogle,
                     style: AppTextStyle.buttonStyle(),
                   )
                 ],
@@ -69,7 +70,7 @@ class GoogleGitRow extends StatelessWidget {
                   SvgPicture.asset(IconsPath.githup),
                   PaddingConfig.w8,
                   Text(
-                    "Containe With Githup",
+                    TextStrings.containeWithGithup,
                     style: AppTextStyle.buttonStyle(),
                   )
                 ],

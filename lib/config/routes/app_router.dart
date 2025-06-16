@@ -1,7 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/features/auth/presentation/pages/choose-user-type/choose_user_type_page.dart';
-import 'package:two_website/features/auth/presentation/pages/fill-client-profile/fill_profile_page.dart';
+import 'package:two_website/features/auth/presentation/pages/fill-client-profile/fill__client_profile_page.dart';
+import 'package:two_website/features/auth/presentation/pages/fill-freelancer-profile/fill__freelancer_profile_page.dart';
 import 'package:two_website/features/auth/presentation/pages/login/login_page.dart';
 import 'package:two_website/features/auth/presentation/pages/sign-up/sign_up_page.dart';
 import 'package:two_website/features/landing/presentation/pages/landing_page.dart';
@@ -9,7 +10,7 @@ import 'package:two_website/features/landing/presentation/pages/reply_to_post_pa
 
 class AppRouter {
   GoRouter router = GoRouter(
-    initialLocation: '/fillProfile',
+    initialLocation: '/',
     routes: [
       GoRoute(
         name: AppRouteConfig.landing,
@@ -33,9 +34,18 @@ class AppRouter {
         builder: (context, state) => const ChooseUserTypePage(),
       ),
       GoRoute(
-        name: AppRouteConfig.fillProfile,
-        path: '/fillProfile',
-        builder: (context, state) => const FillProfilePage(),
+        name: AppRouteConfig.fillClientProfile,
+        path: '/fillClientProfile/:id',
+        builder: (context, state) => FillClientProfilePage(
+          id: state.pathParameters['id'] ?? '',
+        ),
+      ),
+      GoRoute(
+        name: AppRouteConfig.fillFreelancerProfile,
+        path: '/fillFreelancerProfile/:id',
+        builder: (context, state) => FillFreelancerProfilePage(
+          id: state.pathParameters['id'] ?? '',
+        ),
       ),
       GoRoute(
           name: AppRouteConfig.replyToPost,

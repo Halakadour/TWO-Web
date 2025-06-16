@@ -1,34 +1,41 @@
 import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
+import 'package:two_website/core/models/empty_response_model.dart';
+import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/data/models/get_user_profile_response_model.dart';
 import 'package:two_website/features/auth/data/models/auth_response_model.dart';
-import 'package:two_website/features/auth/data/models/sign_out_response_model.dart';
+import 'package:two_website/features/auth/data/models/role_response_model.dart';
 
 import '../../../../core/api/post_api.dart';
 import '../../../../core/api/post_api_with_token.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<AuthResponseModel> signUp(
-      String name, String email, String password, String confirmPassword);
-  Future<AuthResponseModel> signIn(String token, String email, String password);
-  Future<SignOutResponseModel> signOut(String token);
+  Future<AuthResponseModel> signUp(RegisterParams param);
+  Future<AuthResponseModel> signIn(LoginParams param);
+  Future<EmptyResponseModel> signOut(String token);
   Future<AuthResponseModel> registLoginWithGoogle();
   Future<AuthResponseModel> registLoginWithGithup();
   Future<GetUserProfileResponseModel> getUserProfile(String token);
+  Future<EmptyResponseModel> updateFreeLanceProfile(
+      UpdateFreeLanceAndGesutProfileParam param);
+  Future<EmptyResponseModel> updateGuestProfile(
+      UpdateFreeLanceAndGesutProfileParam param);
+  Future<EmptyResponseModel> updateClientProfile(
+      UpdateClientProfileParam param);
+  Future<RoleResponesModel> showRoles();
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
-  Future<AuthResponseModel> signUp(String name, String email, String password,
-      String confirmPassword) async {
+  Future<AuthResponseModel> signUp(RegisterParams param) async {
     final result = PostApi(
       uri: Uri.parse("$baseUri/api/register"),
       body: ({
-        'name': name,
-        'email': email,
-        'password': password,
-        'password_confirmation': confirmPassword
+        'name': param.name,
+        'email': param.email,
+        'password': param.password,
+        'password_confirmation': param.password
       }),
       fromJson: authResponseModelFromJson,
     );
@@ -36,13 +43,12 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<AuthResponseModel> signIn(
-      String token, String email, String password) async {
+  Future<AuthResponseModel> signIn(LoginParams param) async {
     final result = PostApi(
       uri: Uri.parse("$baseUri/api/login"),
       body: ({
-        'email': email,
-        'password': password,
+        'email': param.email,
+        'password': param.password,
       }),
       fromJson: authResponseModelFromJson,
     );
@@ -50,12 +56,12 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<SignOutResponseModel> signOut(String token) async {
+  Future<EmptyResponseModel> signOut(String token) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/logout"),
         token: token,
         body: ({}),
-        fromJson: logoutUserModelFromJson);
+        fromJson: emptyResponseModelFromJson);
     return await result.call();
   }
 
@@ -82,6 +88,69 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       token: token,
       fromJson: getUserProfileResponseModelFromJson,
     );
+    return await result.callRequest();
+  }
+
+  @override
+  Future<EmptyResponseModel> updateClientProfile(
+      UpdateClientProfileParam param) async {
+    final result = PostApiWithToken(
+        uri: Uri.parse("$baseUri/api/update/client/profile"),
+        body: ({
+          'role_id': param.roleId,
+          'image': '$imageBase64${param.image}',
+          'full_name': param.fullName,
+          'company_name': param.companyName,
+          'email': param.workEmail,
+          'phone': param.phoneNumber,
+          'project_type': param.projectType,
+          'project_description': param.projectDescription,
+          'cost': param.projectCost,
+          'duration': param.projectDuration,
+          'requirements': param.projectRequirements,
+          'document': '$pdfBase64${param.documents}',
+          'cooperation_type': param.cooperationType,
+          'contact_time': param.contractTime,
+          'private': "0"
+        }),
+        fromJson: emptyResponseModelFromJson,
+        token: param.token);
+    return await result.call();
+  }
+
+  @override
+  Future<EmptyResponseModel> updateFreeLanceProfile(
+      UpdateFreeLanceAndGesutProfileParam param) async {
+    final result = PostApiWithToken(
+        uri: Uri.parse("$baseUri/api/update/freelancer/profile"),
+        body: ({
+          'role_id': param.roleId,
+          'image': '$imageBase64${param.image}',
+        }),
+        fromJson: emptyResponseModelFromJson,
+        token: param.token);
+    return await result.call();
+  }
+
+  @override
+  Future<EmptyResponseModel> updateGuestProfile(
+      UpdateFreeLanceAndGesutProfileParam param) async {
+    final result = PostApiWithToken(
+        uri: Uri.parse("$baseUri/api/update/user/profile"),
+        body: ({
+          'role_id': param.roleId,
+          'image': '$imageBase64${param.image}',
+        }),
+        fromJson: emptyResponseModelFromJson,
+        token: param.token);
+    return await result.call();
+  }
+
+  @override
+  Future<RoleResponesModel> showRoles() async {
+    final result = GetApi(
+        uri: Uri.parse("$baseUri/api/show/role/client"),
+        fromJson: roleResponesModelFromJson);
     return await result.callRequest();
   }
 }

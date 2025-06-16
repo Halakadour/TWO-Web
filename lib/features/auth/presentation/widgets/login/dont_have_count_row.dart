@@ -23,7 +23,7 @@ class DontHaveCountRow extends StatelessWidget {
             onPressed: () =>
                 context.pushReplacementNamed(AppRouteConfig.signup),
             child: Text(
-              TextStrings.signup,
+              TextStrings.signIn,
               style: AppTextStyle.bodyLg(color: AppColors.greenShade2),
             ))
       ],

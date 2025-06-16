@@ -57,7 +57,7 @@ class CustomMenuState extends State<CustomMenu> {
                     () => _scrollToSection(2)),
                 _menuItem(context, LocaleKeys.posters.tr(),
                     () => _scrollToSection(3)),
-                _menuItem(context, LocaleKeys.signin.tr(), () {},
+                _menuItem(context, LocaleKeys.login.tr(), () {},
                     isButton: true),
                 _menuItem(
                   context,
