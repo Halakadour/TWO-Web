@@ -102,4 +102,5 @@ class JsonPath {
   static const loading = '${_animationImagesPath}loading_circle.json';
   static const home1 = '${_animationImagesPath}home1.json';
   static const home2 = '${_animationImagesPath}home2.json';
+  static const noData = '${_animationImagesPath}no_data.json';
 }

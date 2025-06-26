@@ -11,21 +11,11 @@ class LoadingUserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.white),
-          ),
-        ),
-        PaddingConfig.w8,
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
@@ -51,7 +41,19 @@ class LoadingUserProfile extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
+        PaddingConfig.w8,
+        Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: AppColors.white),
+          ),
+        ),
+        PaddingConfig.w16,
       ],
     );
   }

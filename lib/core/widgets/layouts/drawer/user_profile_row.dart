@@ -12,23 +12,12 @@ class UserProfileRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // image
-            FetchNetworkImage(
-              imagePath: profileEntity.pImage!,
-              shape: BoxShape.circle,
-            ),
-          ],
-        ),
-        PaddingConfig.w8,
         // Name and Email
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
               profileEntity.pName,
@@ -38,12 +27,20 @@ class UserProfileRow extends StatelessWidget {
             ),
             Text(
               profileEntity.pRole,
-              style: AppTextStyle.bodyMd(
+              style: AppTextStyle.bodySm(
                 color: AppColors.fontLightColor,
               ),
             ),
           ],
         ),
+        PaddingConfig.w8,
+        FetchNetworkImage(
+          weight: 40,
+          height: 40,
+          imagePath: profileEntity.pImage!,
+          shape: BoxShape.circle,
+        ),
+        PaddingConfig.w16,
       ],
     );
   }

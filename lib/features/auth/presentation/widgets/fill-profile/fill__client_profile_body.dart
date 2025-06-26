@@ -5,6 +5,7 @@ import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/buttons/text-buttons/cancel_text_button.dart';
+import 'package:two_website/core/widgets/dialog/auth/forget_some_thing_dialog.dart';
 import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/fill-profile/build_custom_step.dart';
@@ -21,7 +22,12 @@ class FillClientProfileBody extends StatefulWidget {
 }
 
 class _FillClientProfileBodyState extends State<FillClientProfileBody> {
-  //late final GlobalKey<FormState> _formKey;
+  final List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(), // ClientDataStep
+    GlobalKey<FormState>(), // ProjectDataStep
+    GlobalKey<FormState>(), // WorkDataStep
+  ];
+
   late final TextEditingController _nameController;
   late final TextEditingController _phoneController;
   late final TextEditingController _emailController;
@@ -41,7 +47,6 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
 
   @override
   void initState() {
-    //_formKey = GlobalKey<FormState>();
     _nameController = TextEditingController();
     _phoneController = TextEditingController();
     _emailController = TextEditingController();
@@ -55,7 +60,6 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
 
   @override
   void dispose() {
-    imageB64.dispose();
     _nameController.dispose();
     _phoneController.dispose();
     _emailController.dispose();
@@ -63,6 +67,13 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
     _dateController.dispose();
     _projectDescriptionController.dispose();
     _mainAxsesController.dispose();
+    imageB64.dispose();
+    fileB64.dispose();
+    currentStep.dispose();
+    selectedProjectType.dispose();
+    selectedCost.dispose();
+    selectedDuration.dispose();
+    selectedCooperationType.dispose();
 
     super.dispose();
   }
@@ -86,12 +97,29 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
               steps: getSteps(),
               currentStep: value,
               onStepContinue: () {
-                if (!isLastStep) {
-                  currentStep.value++;
-                } else {
-                  context.read<AuthRoleProfileBloc>().add(
-                      UpdateClientProfileEvent(
-                          param: UpdateClientProfileParam(
+                if (formKeys[currentStep.value].currentState!.validate()) {
+                  if (currentStep.value < getSteps().length - 1) {
+                    if (currentStep.value == 0 && imageB64.value == null) {
+                      forgetSomeThingDialog(context, "image");
+                    } else if (currentStep.value == 1 &&
+                        selectedProjectType.value == null) {
+                      forgetSomeThingDialog(context, "project type");
+                    } else if (currentStep.value == 1 &&
+                        selectedCost.value == null) {
+                      forgetSomeThingDialog(context, "project Cost");
+                    } else if (currentStep.value == 1 &&
+                        selectedDuration.value == null) {
+                      forgetSomeThingDialog(context, "project duration");
+                    } else if (currentStep.value == 2 &&
+                        selectedCooperationType.value == null) {
+                      forgetSomeThingDialog(context, "coopertion type");
+                    } else {
+                      currentStep.value++;
+                    }
+                  } else {
+                    context.read<AuthRoleProfileBloc>().add(
+                          UpdateClientProfileEvent(
+                            param: UpdateClientProfileParam(
                               token: "token",
                               roleId: widget.id,
                               image: imageB64.value!,
@@ -100,7 +128,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
                               workEmail: _emailController.text,
                               phoneNumber: _phoneController.text,
                               projectType: selectedProjectType.value!,
-                              projectDescription: selectedDuration.value!,
+                              projectDescription: _mainAxsesController.text,
                               projectCost: selectedCost.value!,
                               projectDuration: selectedDuration.value!,
                               projectRequirements:
@@ -108,7 +136,11 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
                               documents: fileB64.value!,
                               cooperationType: selectedCooperationType.value!,
                               contractTime: _dateController.text,
-                              visibilit: "0")));
+                              visibilit: "0",
+                            ),
+                          ),
+                        );
+                  }
                 }
               },
               onStepCancel: () {
@@ -152,6 +184,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
               ? AppColors.greenShade2
               : AppColors.fontLightColor,
           content: ClientDataStep(
+            formKey: formKeys[0],
             nameController: _nameController,
             phoneController: _phoneController,
             imageB64: imageB64.value,
@@ -166,6 +199,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
               ? AppColors.greenShade2
               : AppColors.fontLightColor,
           content: ProjectRequestStep(
+            formKey: formKeys[1],
             selectedProjectType: selectedProjectType,
             selectedCost: selectedCost,
             selectedDuration: selectedDuration,
@@ -182,6 +216,7 @@ class _FillClientProfileBodyState extends State<FillClientProfileBody> {
               ? AppColors.greenShade2
               : AppColors.fontLightColor,
           content: WorkDataStep(
+            formKey: formKeys[2],
             emailController: _emailController,
             companyNameController: _companyNameController,
             selectedCooperationType: selectedCooperationType,

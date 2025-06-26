@@ -35,6 +35,7 @@ class _TwoDetailsState extends State<TwoDetails> {
               TextSpan(
                   text: LocaleKeys.homeTitle1.tr(),
                   style: AppTextStyle.headerLg()),
+              TextSpan(text: " ", style: AppTextStyle.headerLg()),
               TextSpan(
                   text: LocaleKeys.homeTitle2.tr(),
                   style: AppTextStyle.headerLg(color: AppColors.greenShade2))

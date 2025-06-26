@@ -65,7 +65,7 @@ class CustomCartoonButton extends StatelessWidget {
                         ),
                         PaddingConfig.w16,
                         // ignore: deprecated_member_use
-                        SvgPicture.asset(IconsPath.arrowRight,
+                        SvgPicture.asset(IconsPath.arrowLeft,
                             // ignore: deprecated_member_use
                             color: AppColors.white),
                       ],

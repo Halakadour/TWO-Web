@@ -17,7 +17,7 @@ void main() async {
       path: 'assets/lang',
       supportedLocales: const [Locale('en'), Locale('ar')],
       fallbackLocale: const Locale('ar'),
-      startLocale: const Locale('en'),
+      startLocale: const Locale('ar'),
       saveLocale: true,
       child: const MainApp()));
 }
@@ -30,8 +30,9 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              di.sl<AuthRoleProfileBloc>()..add(CheckAuthEvent()),
+          create: (context) => di.sl<AuthRoleProfileBloc>()
+            ..add(CheckAuthEvent())
+            ..add(GetUserProfileEvent()),
         ),
         BlocProvider(
           create: (context) => di.sl<LandingBloc>(),

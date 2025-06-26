@@ -47,23 +47,14 @@ class _MobileAppBarState extends State<MobileAppBar> {
           width: 50,
           child: SvgPicture.asset(ImagesPath.webLogo),
         ),
-        PaddingConfig.w16
+        PaddingConfig.w16,
         // User Data
         // BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
         //   buildWhen: (previous, current) =>
-        //       previous.authorizedStatus != current.authorizedStatus,
+        //       previous.profileEntityStatus != current.profileEntityStatus,
         //   builder: (context, state) {
         //     if (state.authorizedStatus == CasualStatus.authorized) {
-        //       return BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
-        //         buildWhen: (previous, current) =>
-        //             previous.profileEntityStatus != current.profileEntityStatus,
-        //         builder: (context, state) {
-        //           return AuthStateHandling().getUserProfileHeader(
-        //             state,
-        //             context,
-        //           );
-        //         },
-        //       );
+        //       return AuthStateHandling().getUserProfileHeader(state, context);
         //     } else {
         //       return const SignUpButton();
         //     }

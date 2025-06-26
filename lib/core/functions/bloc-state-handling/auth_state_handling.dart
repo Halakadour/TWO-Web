@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_website/config/routes/app_route_config.dart';
 import 'package:two_website/core/network/enums.dart';
@@ -43,8 +44,14 @@ class AuthStateHandling {
     } else if (state.authModelStatus == CasualStatus.success) {
       context.pop();
       await SharedPreferencesServices.setUserToken(state.authModel!.token);
-      //context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
-      context.pushReplacementNamed(AppRouteConfig.chooseUserType);
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
+          context.pushReplacementNamed(AppRouteConfig.landing);
+          context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
+        },
+      );
     } else if (state.authModelStatus == CasualStatus.failure ||
         state.authModelStatus == CasualStatus.notAuthorized) {
       context.pop();
@@ -83,13 +90,14 @@ class AuthStateHandling {
       showLoadingDialog(context);
     } else if (state.updateClientProfileStatus == CasualStatus.success) {
       context.pop();
-      //context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
-      //context.pushReplacementNamed(AppRouteConfig.landing);
       showSuccessDialog(
         context,
         () {
           context.pop();
           context.pushReplacementNamed(AppRouteConfig.landing);
+          Future.delayed(const Duration(milliseconds: 300), () {
+            context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
+          });
         },
       );
     } else if (state.updateClientProfileStatus == CasualStatus.failure) {
@@ -111,6 +119,9 @@ class AuthStateHandling {
         () {
           context.pop();
           context.pushReplacementNamed(AppRouteConfig.landing);
+          Future.delayed(const Duration(milliseconds: 300), () {
+            context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
+          });
         },
       );
     } else if (state.updateFreeLancerProfileStatus == CasualStatus.failure) {
@@ -123,14 +134,12 @@ class AuthStateHandling {
     AuthRoleProfileState state,
     BuildContext context,
   ) {
-    if (state.profileEntityStatus == CasualStatus.loading) {
-      return const LoadingUserProfile();
-    } else if (state.profileEntityStatus == CasualStatus.success) {
+    if (state.profileEntityStatus == CasualStatus.success) {
       return UserProfileRow(
         profileEntity: state.profileEntity!,
       );
     } else {
-      return const SizedBox();
+      return const LoadingUserProfile();
     }
   }
 

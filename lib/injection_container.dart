@@ -41,7 +41,8 @@ Future<void> init() async {
         showRolesUsecase: sl(),
         updateClientProfileUsecase: sl(),
         updateFreelanceProfileUsecase: sl(),
-        updateGuestProfileUsecase: sl()),
+        updateGuestProfileUsecase: sl(),
+        getUserProfileUsecase: sl()),
   );
   // Usecases
   sl.registerLazySingleton(

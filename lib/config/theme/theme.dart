@@ -18,7 +18,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(SizesConfig.buttonRadius),
           ),
-          textStyle: AppTextStyle.buttonStyle(),
+          textStyle: AppTextStyle.buttonStyle(color: AppColors.white),
         ),
       ),
       colorScheme: ColorScheme.fromSwatch(

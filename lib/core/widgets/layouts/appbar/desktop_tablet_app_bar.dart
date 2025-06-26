@@ -97,17 +97,18 @@ class _DesktopTabletAppBarState extends State<DesktopTabletAppBar> {
         PaddingConfig.w48,
         Row(
           children: [
-            if (context.read<AuthRoleProfileBloc>().state.authorizedStatus ==
-                CasualStatus.authorized)
-              BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
-                buildWhen: (previous, current) =>
-                    previous.profileEntityStatus != current.profileEntityStatus,
-                builder: (context, state) =>
-                    AuthStateHandling().getUserProfileImage(state, context),
-              ),
-            if (context.read<AuthRoleProfileBloc>().state.authorizedStatus !=
-                CasualStatus.authorized)
-              const SignRow(),
+            BlocBuilder<AuthRoleProfileBloc, AuthRoleProfileState>(
+              buildWhen: (previous, current) =>
+                  previous.profileEntityStatus != current.profileEntityStatus,
+              builder: (context, state) {
+                if (state.authorizedStatus == CasualStatus.authorized) {
+                  return AuthStateHandling()
+                      .getUserProfileHeader(state, context);
+                } else {
+                  return const SignRow();
+                }
+              },
+            ),
             const CustomVerticalDivider(),
             GestureDetector(
               onTapDown: (details) {

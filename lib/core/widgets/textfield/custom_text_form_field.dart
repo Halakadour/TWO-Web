@@ -87,6 +87,10 @@ class CustomTextFormField extends StatelessWidget {
                       BorderRadius.circular(SizesConfig.inputFieldRadius),
                   borderSide: BorderSide(
                       color: borderColor ?? AppColors.gray, width: 1)),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
+              borderSide:
+                  const BorderSide(color: AppColors.redShade2, width: 1)),
           enabledBorder: border ??
               OutlineInputBorder(
                   borderRadius:

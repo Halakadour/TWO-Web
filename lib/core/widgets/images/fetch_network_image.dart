@@ -49,11 +49,12 @@ class _FetchNetworkImageState extends State<FetchNetworkImage> {
             height: widget.height,
             width: widget.weight,
             clipBehavior: Clip.hardEdge,
-            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-                shape: widget.shape,
-                borderRadius:
-                    BorderRadius.circular(SizesConfig.borderRadiusMd)),
+              shape: widget.shape,
+              borderRadius: (widget.shape != BoxShape.circle)
+                  ? BorderRadius.circular(SizesConfig.borderRadiusSm)
+                  : null,
+            ),
             child: Image.memory(
               imageBytes!,
               fit: BoxFit.cover,

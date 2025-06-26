@@ -4,6 +4,7 @@ import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/models/user_model.dart';
 import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/domain/entity/profile_entity.dart';
+import 'package:two_website/features/auth/domain/usecases/get_user_profile_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/sign_up_usecase.dart';
@@ -29,6 +30,7 @@ class AuthRoleProfileBloc
   final UpdateClientProfileUsecase updateClientProfileUsecase;
   final UpdateFreelanceProfileUsecase updateFreelanceProfileUsecase;
   final UpdateGuestProfileUsecase updateGuestProfileUsecase;
+  final GetUserProfileUsecase getUserProfileUsecase;
   AuthRoleProfileBloc(
       {required this.registerUsecase,
       required this.loginUsecase,
@@ -36,7 +38,8 @@ class AuthRoleProfileBloc
       required this.showRolesUsecase,
       required this.updateClientProfileUsecase,
       required this.updateFreelanceProfileUsecase,
-      required this.updateGuestProfileUsecase})
+      required this.updateGuestProfileUsecase,
+      required this.getUserProfileUsecase})
       : super(AuthRoleProfileState()) {
     // Auth Bloc //
     on<RegisteNewUserEvent>((event, emit) async {
@@ -48,7 +51,9 @@ class AuthRoleProfileBloc
       result.fold(
           (l) => emit(state.copyWith(authModelStatus: CasualStatus.failure)),
           (r) => emit(state.copyWith(
-              authModel: r, authModelStatus: CasualStatus.success)));
+              authModel: r,
+              authModelStatus: CasualStatus.success,
+              authorizedStatus: CasualStatus.authorized)));
     });
     on<LoginUserEvent>((event, emit) async {
       emit(state.copyWith(authModelStatus: CasualStatus.loading));
@@ -57,7 +62,9 @@ class AuthRoleProfileBloc
       result.fold(
           (l) => emit(state.copyWith(authModelStatus: CasualStatus.failure)),
           (r) => emit(state.copyWith(
-              authModelStatus: CasualStatus.success, authModel: r)));
+              authModelStatus: CasualStatus.success,
+              authModel: r,
+              authorizedStatus: CasualStatus.authorized)));
     });
     on<LogoutUserEvent>((event, emit) async {
       emit(state.copyWith(logoutStatus: CasualStatus.loading));
@@ -161,6 +168,19 @@ class AuthRoleProfileBloc
               message: l.message)),
           (r) => emit(state.copyWith(
               updateFreeLancerProfileStatus: CasualStatus.success)),
+        );
+      }
+    });
+    on<GetUserProfileEvent>((event, emit) async {
+      emit(state.copyWith(profileEntityStatus: CasualStatus.loading));
+      final String? token = await SharedPreferencesServices.getUserToken();
+      if (token != null) {
+        final result = await getUserProfileUsecase.call(token);
+        result.fold(
+          (l) => emit(state.copyWith(
+              profileEntityStatus: CasualStatus.failure, message: l.message)),
+          (r) => emit(state.copyWith(
+              profileEntityStatus: CasualStatus.success, profileEntity: r)),
         );
       }
     });
