@@ -44,13 +44,16 @@ class _PostCardState extends State<PostCard> {
           children: [
             SizedBox(
               height: 300,
-              child: FittedBox(
-                  fit: BoxFit.cover,
-                  child:
-                      FetchNetworkImage(imagePath: widget.postEntity.poster)),
+              child: FetchNetworkImage(imagePath: widget.postEntity.poster),
             ),
             PaddingConfig.h8,
-            Text(widget.postEntity.body),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: 16.0),
+              child: Text(
+                widget.postEntity.body,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             const Spacer(),
             const SizedBox(
               width: double.infinity,

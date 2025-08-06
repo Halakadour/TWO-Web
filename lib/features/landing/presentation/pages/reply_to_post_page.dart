@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/theme/color.dart';
 import 'package:two_website/config/theme/text_style.dart';
+import 'package:two_website/core/widgets/buttons/icon-button/back_button.dart';
 import 'package:two_website/core/widgets/layouts/templates/login_template.dart';
 import 'package:two_website/core/widgets/layouts/templates/page_template.dart';
 import 'package:two_website/features/landing/presentation/widgets/posts/reply_to_post_body.dart';
@@ -39,9 +40,16 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "sent a reply".toUpperCase(),
-                              style: AppTextStyle.headerLg(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const CustomBackButton(),
+                                Text(
+                                  "sent a reply".toUpperCase(),
+                                  style: AppTextStyle.headerLg(),
+                                ),
+                                const SizedBox()
+                              ],
                             ),
                             PaddingConfig.h24,
                             ScrollTemplate(

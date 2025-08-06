@@ -19,14 +19,12 @@ class CustomChoiceChip extends StatelessWidget {
     return ChoiceChip(
       label: Text(
         label,
-        style: AppTextStyle.bodySm(
-          color: selected ? AppColors.black : AppColors.iconColor,
-        ),
+        style: AppTextStyle.bodySm(color: AppColors.black),
       ),
       selected: selected,
       onSelected: (_) => onSelected(),
       side: BorderSide(
-        color: selected ? Colors.transparent : AppColors.iconColor,
+        color: selected ? Colors.transparent : AppColors.black,
       ),
       backgroundColor: Colors.transparent,
       selectedColor: AppColors.greenShade2,
