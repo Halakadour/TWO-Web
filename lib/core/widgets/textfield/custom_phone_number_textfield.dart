@@ -25,16 +25,21 @@ class CustomPhoneNumberField extends StatelessWidget {
       validator: validator, // ✅ أضفنا الفاليديتر هون
       decoration: InputDecoration(
         labelText: "",
+        filled: true,
+        fillColor: AppColors.fieldColor,
         labelStyle: AppTextStyle.bodyMd(color: AppColors.fontLightColor),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
-            borderSide: const BorderSide(color: AppColors.gray, width: 1)),
+            borderSide:
+                const BorderSide(color: AppColors.fieldColor, width: 1)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
-            borderSide: const BorderSide(color: AppColors.gray, width: 1)),
+            borderSide:
+                const BorderSide(color: AppColors.fieldColor, width: 1)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(SizesConfig.inputFieldRadius),
-            borderSide: const BorderSide(color: AppColors.gray, width: 1)),
+            borderSide:
+                const BorderSide(color: AppColors.fieldColor, width: 1)),
       ),
     );
   }

@@ -68,6 +68,7 @@ abstract class  LocaleKeys {
   static const geust = 'geust';
   static const fillProfile = 'fillProfile';
   static const fillForm = 'fillForm';
+  static const orderProject = 'orderProject';
   static const clientData = 'clientData';
   static const projectRequest = 'projectRequest';
   static const workData = 'workData';

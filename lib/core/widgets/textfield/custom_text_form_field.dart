@@ -15,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
       required this.labelText,
       required this.controller,
       required this.validator,
+      this.onFieldSubmitted,
       this.hintText,
       this.hintStyle,
       this.style,
@@ -33,6 +34,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? postfixIconPath;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
   final String? hintText;
   final TextStyle? hintStyle;
   final String labelText;
@@ -54,11 +56,12 @@ class CustomTextFormField extends StatelessWidget {
       enabled: enabled,
       focusNode: focusNode,
       autofocus: autofocus,
-      style: style ?? AppTextStyle.bodyMd(color: AppColors.fontLightColor),
+      style: style ?? AppTextStyle.textfieldStyle(),
       autocorrect: true,
       controller: controller,
       validator: validator,
       obscureText: obscureText,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
           filled: filled,
           fillColor: fillColor ?? AppColors.fieldColor,

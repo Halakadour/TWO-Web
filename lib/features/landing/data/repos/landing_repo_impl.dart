@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/network/network_connection_checker.dart';
+import 'package:two_website/core/param/project_param.dart';
 import 'package:two_website/features/landing/data/datasources/landing_locale_datasource.dart';
 import 'package:two_website/features/landing/data/datasources/landing_remote_datasource.dart';
 import 'package:two_website/features/landing/data/models/contact_us_model.dart';
@@ -105,6 +106,16 @@ class LandingRepoImpl extends LandingRepo {
           final localWhys = await landingLocaleDatasource.getCachedWhyUs();
           return Right(localWhys);
         }
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> createProject(CreateProjectParam param) {
+    return wrapHandling(
+      tryCall: () async {
+        await landingRemoteDatasource.createProject(param);
+        return const Right(unit);
       },
     );
   }

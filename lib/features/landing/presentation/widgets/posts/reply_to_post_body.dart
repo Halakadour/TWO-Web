@@ -89,7 +89,11 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
                     borderSide: const BorderSide(color: AppColors.gray))),
           ),
           PaddingConfig.h16,
-          FetchCvBox(fileB64: _cvFile, onUpdate: updateCVFile),
+          FetchCvBox(
+            fileB64: _cvFile,
+            onUpdate: updateCVFile,
+            hasBorder: true,
+          ),
           PaddingConfig.h40,
           BlocListener<LandingBloc, LandingState>(
             listener: (context, state) {

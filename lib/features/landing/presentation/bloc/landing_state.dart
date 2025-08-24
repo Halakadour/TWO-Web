@@ -13,6 +13,7 @@ class LandingState {
   CasualStatus sendReplyStatus;
   CasualStatus serviceListStatus;
   List<ServiceEntity> serviceList;
+  CasualStatus createProjectStatus;
   LandingState({
     this.message = '',
     this.showAboutUsStatus = CasualStatus.initial,
@@ -25,6 +26,7 @@ class LandingState {
     this.sendReplyStatus = CasualStatus.initial,
     this.serviceListStatus = CasualStatus.initial,
     this.serviceList = const [],
+    this.createProjectStatus = CasualStatus.initial,
   });
 
   LandingState copyWith({
@@ -39,6 +41,7 @@ class LandingState {
     CasualStatus? sendReplyStatus,
     CasualStatus? serviceListStatus,
     List<ServiceEntity>? serviceList,
+    CasualStatus? createProjectStatus,
   }) {
     return LandingState(
       message: message ?? this.message,
@@ -53,6 +56,7 @@ class LandingState {
       sendReplyStatus: sendReplyStatus ?? this.sendReplyStatus,
       serviceListStatus: serviceListStatus ?? this.serviceListStatus,
       serviceList: serviceList ?? this.serviceList,
+      createProjectStatus: createProjectStatus ?? this.createProjectStatus,
     );
   }
 }

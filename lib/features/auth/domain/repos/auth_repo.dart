@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/error/handling_exception_manager.dart';
-import 'package:two_website/features/auth/data/datasources/auth_param.dart';
+import 'package:two_website/core/param/auth_param.dart';
 import 'package:two_website/features/auth/data/models/role_response_model.dart';
 import 'package:two_website/core/models/user_model.dart';
 import 'package:two_website/features/auth/domain/entity/profile_entity.dart';
@@ -20,9 +20,7 @@ abstract class AuthRepo with HandlingExceptionManager {
   // Profile //
   Future<Either<Failure, ProfileEntity>> getUserPorfile(String token);
   Future<Either<Failure, Unit>> updateFreelancerProfile(
-      UpdateFreeLanceAndGesutProfileParam param);
-  Future<Either<Failure, Unit>> updateGuestProfile(
-      UpdateFreeLanceAndGesutProfileParam param);
-  Future<Either<Failure, Unit>> updateClientProfile(
-      UpdateClientProfileParam param);
+      UpdateProfileParam param);
+  Future<Either<Failure, Unit>> updateGuestProfile(UpdateProfileParam param);
+  Future<Either<Failure, Unit>> updateClientProfile(UpdateProfileParam param);
 }

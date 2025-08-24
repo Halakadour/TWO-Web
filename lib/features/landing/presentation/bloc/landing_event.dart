@@ -35,3 +35,20 @@ class ReplyToPostEvent extends LandingEvent {
 }
 
 class ShowServicesEvent extends LandingEvent {}
+
+class CreateProjectEvent extends LandingEvent {
+  final String type;
+  final String description;
+  final List<String> requirements;
+  final String? document;
+  final String cooperationType;
+  final String contactTime;
+
+  CreateProjectEvent(
+      {required this.type,
+      required this.description,
+      required this.requirements,
+      required this.document,
+      required this.cooperationType,
+      required this.contactTime});
+}

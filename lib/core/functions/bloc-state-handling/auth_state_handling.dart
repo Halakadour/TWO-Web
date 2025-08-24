@@ -17,6 +17,7 @@ import 'package:two_website/core/widgets/shimmers/profile-loading/loading_user_i
 import 'package:two_website/core/widgets/shimmers/profile-loading/loading_user_profile.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/data/models/role_response_model.dart';
+import 'package:two_website/features/landing/presentation/bloc/landing_bloc.dart';
 
 class AuthStateHandling {
   // auth
@@ -94,13 +95,32 @@ class AuthStateHandling {
         context,
         () {
           context.pop();
+          context.pushReplacementNamed(AppRouteConfig.orderProject);
+        },
+      );
+    } else if (state.updateClientProfileStatus == CasualStatus.failure) {
+      context.pop();
+      print(state.message);
+      showErrorDialog(context, state.message);
+    }
+  }
+
+  void orderProjectListener(LandingState state, BuildContext context) {
+    if (state.createProjectStatus == CasualStatus.loading) {
+      showLoadingDialog(context);
+    } else if (state.createProjectStatus == CasualStatus.success) {
+      context.pop();
+      showSuccessDialog(
+        context,
+        () {
+          context.pop();
           context.pushReplacementNamed(AppRouteConfig.landing);
           Future.delayed(const Duration(milliseconds: 300), () {
             context.read<AuthRoleProfileBloc>().add(GetUserProfileEvent());
           });
         },
       );
-    } else if (state.updateClientProfileStatus == CasualStatus.failure) {
+    } else if (state.createProjectStatus == CasualStatus.failure) {
       context.pop();
       print(state.message);
       showErrorDialog(context, state.message);

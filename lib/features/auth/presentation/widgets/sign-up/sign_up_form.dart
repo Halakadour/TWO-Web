@@ -5,7 +5,6 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
-import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
@@ -145,10 +144,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     context.read<AuthRoleProfileBloc>().add(RegisteNewUserEvent(
-                        param: RegisterParams(
-                            name: _fullnameController.text,
-                            email: _emailController.text,
-                            password: _passwordController.text)));
+                        name: _fullnameController.text,
+                        email: _emailController.text,
+                        password: _passwordController.text));
                   }
                 },
               ),

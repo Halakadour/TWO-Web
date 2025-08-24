@@ -8,6 +8,7 @@ import 'package:two_website/features/landing/data/datasources/landing_locale_dat
 import 'package:two_website/features/landing/data/datasources/landing_remote_datasource.dart';
 import 'package:two_website/features/landing/data/repos/landing_repo_impl.dart';
 import 'package:two_website/features/landing/domain/repos/landing_repo.dart';
+import 'package:two_website/features/landing/domain/usecases/create_project_usecase.dart';
 import 'package:two_website/features/landing/domain/usecases/show_about_us_usecase.dart';
 import 'package:two_website/features/landing/domain/usecases/show_why_us_usecase.dart';
 import 'package:two_website/features/auth/data/datasources/auth_remote_data_source.dart';
@@ -79,7 +80,8 @@ Future<void> init() async {
         createContactUsUsecase: sl(),
         showActivePostsUsecase: sl(),
         replyToPostUsecase: sl(),
-        showServiceUsecase: sl()),
+        showServiceUsecase: sl(),
+        createProjectUsecase: sl()),
   );
   // Repos
   sl.registerLazySingleton<LandingRepo>(
@@ -92,6 +94,12 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<LandingLocaleDatasource>(
     () => LandingLocaleDatasourceImpl(sl()),
+  );
+
+  /**----------------- PROJECT FEATURE -----------------------**/
+  // Usecase
+  sl.registerLazySingleton(
+    () => CreateProjectUsecase(sl()),
   );
 
   /**----------------- ROLE FEATURE -----------------------**/

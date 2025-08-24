@@ -4,6 +4,7 @@ import 'package:two_website/features/auth/presentation/pages/choose-user-type/ch
 import 'package:two_website/features/auth/presentation/pages/fill-client-profile/fill__client_profile_page.dart';
 import 'package:two_website/features/auth/presentation/pages/fill-freelancer-profile/fill__freelancer_profile_page.dart';
 import 'package:two_website/features/auth/presentation/pages/login/login_page.dart';
+import 'package:two_website/features/auth/presentation/pages/order-project/order_project_page.dart';
 import 'package:two_website/features/auth/presentation/pages/sign-up/sign_up_page.dart';
 import 'package:two_website/features/landing/presentation/pages/landing_page.dart';
 import 'package:two_website/features/landing/presentation/pages/reply_to_post_page.dart';
@@ -30,26 +31,31 @@ class AppRouter {
       ),
       GoRoute(
         name: AppRouteConfig.chooseUserType,
-        path: '/chooseUserType',
+        path: '/choose-user-type',
         builder: (context, state) => const ChooseUserTypePage(),
       ),
       GoRoute(
         name: AppRouteConfig.fillClientProfile,
-        path: '/fillClientProfile/:id',
+        path: '/fill-client-profile/:id',
         builder: (context, state) => FillClientProfilePage(
           id: state.pathParameters['id'] ?? '',
         ),
       ),
       GoRoute(
+        name: AppRouteConfig.orderProject,
+        path: '/order-project',
+        builder: (context, state) => const OrderProjectPage(),
+      ),
+      GoRoute(
         name: AppRouteConfig.fillFreelancerProfile,
-        path: '/fillFreelancerProfile/:id',
+        path: '/fill-freelancer-profile/:id',
         builder: (context, state) => FillFreelancerProfilePage(
           id: state.pathParameters['id'] ?? '',
         ),
       ),
       GoRoute(
           name: AppRouteConfig.replyToPost,
-          path: '/replyToPost/:id/:image/:body',
+          path: '/reply-to-post/:id/:image/:body',
           builder: (context, state) => ReplyToPostPage(
               postId: state.pathParameters['id'] ?? '',
               postPoster: state.pathParameters['image'] ?? '',

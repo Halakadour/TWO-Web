@@ -41,7 +41,7 @@ class FetchCvBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: hasBorder ? Colors.transparent : AppColors.fieldColor,
         borderRadius: BorderRadius.circular(12),
-        border: hasBorder ? Border.all(color: AppColors.gray, width: 1) : null,
+        border: hasBorder ? Border.all(color: AppColors.black, width: 1) : null,
       ),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: Column(

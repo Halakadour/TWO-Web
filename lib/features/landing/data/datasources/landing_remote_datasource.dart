@@ -2,7 +2,9 @@ import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/post_api.dart';
 import 'package:two_website/core/api/post_api_with_token.dart';
+import 'package:two_website/core/param/project_param.dart';
 import 'package:two_website/features/landing/data/models/create_contact_us_response_model.dart';
+import 'package:two_website/features/landing/data/models/create_project_response_model.dart';
 import 'package:two_website/features/landing/data/models/reply_to_post_response_model.dart';
 import 'package:two_website/features/landing/data/models/show_about_us_response_model.dart';
 import 'package:two_website/features/landing/data/models/show_post_response_model.dart';
@@ -18,6 +20,7 @@ abstract class LandingRemoteDatasource {
   Future<ShowPostResponesModel> showActivePosts();
   Future<ReplyToPostResponesModel> replyToPost(
       String fullName, String email, String phone, String cv, int postId);
+  Future<CreateProjectResponseModel> createProject(CreateProjectParam param);
 }
 
 class LandingRemoteDatasourceImpl extends LandingRemoteDatasource {
@@ -82,5 +85,52 @@ class LandingRemoteDatasourceImpl extends LandingRemoteDatasource {
         uri: Uri.parse('$baseUri/api/show/services'),
         fromJson: showServiceResponesModelFromJson);
     return await result.callRequest();
+  }
+
+  @override
+  Future<CreateProjectResponseModel> createProject(
+      CreateProjectParam param) async {
+    if (param.document != null) {
+      Map<String, dynamic> body = {
+        "project_type": param.type,
+        "project_description": param.description,
+        // "requirements": "[${param.requirements.join(',')}]",
+        "requirements": param.requirements,
+        "document": "$pdfBase64${param.document!}",
+        "cooperation_type": param.cooperationType,
+        "contact_time": param.contactTime,
+        "private": "1"
+      };
+      // for (int i = 0; i < param.requirements.length; i++) {
+      //   body["requirements[$i]"] = param.requirements[i].toString();
+      // }
+      print(body);
+      final result = PostApiWithToken(
+          uri: Uri.parse("$baseUri/api/upload"),
+          body: body,
+          fromJson: createProjectResponseModelFromJson,
+          token: param.token);
+      return await result.call();
+    } else {
+      Map<String, dynamic> body = {
+        "project_type": param.type,
+        "project_description": param.description,
+        // "requirements": "[${param.requirements.join(',')}]",
+        "requirements": param.requirements,
+        "cooperation_type": param.cooperationType,
+        "contact_time": param.contactTime,
+        "private": "1"
+      };
+      // for (int i = 0; i < param.requirements.length; i++) {
+      //   body["requirements[$i]"] = param.requirements[i].toString();
+      // }
+      print(body);
+      final result = PostApiWithToken(
+          uri: Uri.parse("$baseUri/api/create/project"),
+          body: body,
+          fromJson: createProjectResponseModelFromJson,
+          token: param.token);
+      return await result.call();
+    }
   }
 }

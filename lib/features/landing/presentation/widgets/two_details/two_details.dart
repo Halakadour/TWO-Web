@@ -46,7 +46,9 @@ class _TwoDetailsState extends State<TwoDetails> {
           onTap: () {
             if (context.read<AuthRoleProfileBloc>().state.authorizedStatus ==
                 CasualStatus.authorized) {
-              context.pushNamed(AppRouteConfig.contactUs);
+              context.pushNamed(
+                AppRouteConfig.orderProject,
+              );
             } else {
               showMakeAccountDialog(context);
             }

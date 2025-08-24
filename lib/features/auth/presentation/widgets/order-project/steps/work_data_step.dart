@@ -3,20 +3,16 @@ import 'package:two_website/config/constants/padding_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/config/theme/text_style.dart';
 import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
-import 'package:two_website/features/auth/presentation/widgets/fill-profile/custom_choise_chip.dart';
+import 'package:two_website/features/auth/presentation/widgets/order-project/custom_choise_chip.dart';
 
 class WorkDataStep extends StatelessWidget {
   const WorkDataStep({
     super.key,
     required this.formKey,
-    required this.emailController,
-    required this.companyNameController,
     required this.selectedCooperationType,
     required this.dateController,
   });
   final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final TextEditingController companyNameController;
   final ValueNotifier<String?> selectedCooperationType;
   final TextEditingController dateController;
 
@@ -27,37 +23,6 @@ class WorkDataStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Email
-          Text(
-            "${TextStrings.workEmail}*",
-            style: AppTextStyle.bodySm(),
-          ),
-          PaddingConfig.h8,
-          CustomTextFormField(
-            controller: emailController,
-            labelText: "",
-            validator: (input) {
-              if (input == null || input.trim().isEmpty) {
-                return TextStrings.fieldValidation;
-              } else {
-                return null;
-              }
-            },
-          ),
-          PaddingConfig.h16,
-          // Company
-          Text(
-            "${TextStrings.companyName} (${TextStrings.optional})",
-            style: AppTextStyle.bodySm(),
-          ),
-          PaddingConfig.h8,
-          CustomTextFormField(
-            controller: companyNameController,
-            labelText: "",
-            validator: (input) {
-              return null;
-            },
-          ),
           PaddingConfig.h16,
           // Cooperation Type
           Text("${TextStrings.cooperationType}*", style: AppTextStyle.bodySm()),

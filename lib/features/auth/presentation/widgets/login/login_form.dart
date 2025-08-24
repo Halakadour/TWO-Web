@@ -5,7 +5,6 @@ import 'package:two_website/config/constants/sizes_config.dart';
 import 'package:two_website/config/strings/text_strings.dart';
 import 'package:two_website/core/error/validation.dart';
 import 'package:two_website/core/functions/tuggle_password.dart';
-import 'package:two_website/features/auth/data/datasources/auth_param.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/features/auth/presentation/widgets/google_git_row.dart';
 import 'package:two_website/features/auth/presentation/widgets/login/dont_have_count_row.dart';
@@ -120,9 +119,8 @@ class _LoginFormState extends State<LoginForm> {
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     context.read<AuthRoleProfileBloc>().add(LoginUserEvent(
-                        param: LoginParams(
-                            email: _emailController.text,
-                            password: _passwordController.text)));
+                        email: _emailController.text,
+                        password: _passwordController.text));
                   }
                 },
               ),

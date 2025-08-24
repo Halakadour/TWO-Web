@@ -2,7 +2,7 @@ import 'package:two_website/config/constants/base_uri.dart';
 import 'package:two_website/core/api/get_api.dart';
 import 'package:two_website/core/api/get_with_token_api.dart';
 import 'package:two_website/core/models/empty_response_model.dart';
-import 'package:two_website/features/auth/data/datasources/auth_param.dart';
+import 'package:two_website/core/param/auth_param.dart';
 import 'package:two_website/features/auth/data/models/get_user_profile_response_model.dart';
 import 'package:two_website/features/auth/data/models/auth_response_model.dart';
 import 'package:two_website/features/auth/data/models/role_response_model.dart';
@@ -17,12 +17,9 @@ abstract class AuthRemoteDataSource {
   Future<AuthResponseModel> registLoginWithGoogle();
   Future<AuthResponseModel> registLoginWithGithup();
   Future<GetUserProfileResponseModel> getUserProfile(String token);
-  Future<EmptyResponseModel> updateFreeLanceProfile(
-      UpdateFreeLanceAndGesutProfileParam param);
-  Future<EmptyResponseModel> updateGuestProfile(
-      UpdateFreeLanceAndGesutProfileParam param);
-  Future<EmptyResponseModel> updateClientProfile(
-      UpdateClientProfileParam param);
+  Future<EmptyResponseModel> updateFreeLanceProfile(UpdateProfileParam param);
+  Future<EmptyResponseModel> updateGuestProfile(UpdateProfileParam param);
+  Future<EmptyResponseModel> updateClientProfile(UpdateProfileParam param);
   Future<RoleResponesModel> showRoles();
 }
 
@@ -93,25 +90,31 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<EmptyResponseModel> updateClientProfile(
-      UpdateClientProfileParam param) async {
+      UpdateProfileParam param) async {
+    // uri: Uri.parse("$baseUri/api/update/client/profile"),
+    // body: ({
+    //   'role_id': param.roleId,
+    //   'image': '$imageBase64${param.image}',
+    //   'full_name': param.fullName,
+    //   'company_name': param.companyName,
+    //   'email': param.workEmail,
+    //   'phone': param.phoneNumber,
+    //   'project_type': param.projectType,
+    //   'project_description': param.projectDescription,
+    //   'cost': 'Not yet determinted',
+    //   'duration': 'Not yet determinted',
+    //   'requirements': param.projectRequirements,
+    //   'document': '$pdfBase64${param.documents}',
+    //   'cooperation_type': param.cooperationType,
+    //   'contact_time': param.contractTime,
+    //   'private': "1"
+    // }),
     final result = PostApiWithToken(
-        uri: Uri.parse("$baseUri/api/update/client/profile"),
+        uri: Uri.parse("$baseUri/api/update/freelancer/profile"),
         body: ({
           'role_id': param.roleId,
           'image': '$imageBase64${param.image}',
-          'full_name': param.fullName,
-          'company_name': param.companyName,
-          'email': param.workEmail,
-          'phone': param.phoneNumber,
-          'project_type': param.projectType,
-          'project_description': param.projectDescription,
-          'cost': param.projectCost,
-          'duration': param.projectDuration,
-          'requirements': param.projectRequirements,
-          'document': '$pdfBase64${param.documents}',
-          'cooperation_type': param.cooperationType,
-          'contact_time': param.contractTime,
-          'private': "0"
+          'phone': param.phoneNumber
         }),
         fromJson: emptyResponseModelFromJson,
         token: param.token);
@@ -120,12 +123,13 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<EmptyResponseModel> updateFreeLanceProfile(
-      UpdateFreeLanceAndGesutProfileParam param) async {
+      UpdateProfileParam param) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/update/freelancer/profile"),
         body: ({
           'role_id': param.roleId,
           'image': '$imageBase64${param.image}',
+          'phone': param.phoneNumber
         }),
         fromJson: emptyResponseModelFromJson,
         token: param.token);
@@ -134,12 +138,13 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<EmptyResponseModel> updateGuestProfile(
-      UpdateFreeLanceAndGesutProfileParam param) async {
+      UpdateProfileParam param) async {
     final result = PostApiWithToken(
         uri: Uri.parse("$baseUri/api/update/user/profile"),
         body: ({
           'role_id': param.roleId,
           'image': '$imageBase64${param.image}',
+          'phone': param.phoneNumber
         }),
         fromJson: emptyResponseModelFromJson,
         token: param.token);

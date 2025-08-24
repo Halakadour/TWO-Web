@@ -4,7 +4,7 @@ import 'package:two_website/core/error/failures.dart';
 import 'package:two_website/core/models/user_model.dart';
 import 'package:two_website/core/network/network_connection_checker.dart';
 import 'package:two_website/features/auth/data/datasources/auth_locale_data_source.dart';
-import 'package:two_website/features/auth/data/datasources/auth_param.dart';
+import 'package:two_website/core/param/auth_param.dart';
 import 'package:two_website/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:two_website/features/auth/data/models/role_response_model.dart';
 import 'package:two_website/features/auth/domain/entity/profile_entity.dart';
@@ -98,8 +98,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateClientProfile(
-      UpdateClientProfileParam param) {
+  Future<Either<Failure, Unit>> updateClientProfile(UpdateProfileParam param) {
     return wrapHandling(
       tryCall: () async {
         await authRemoteDataSource.updateClientProfile(param);
@@ -110,7 +109,7 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, Unit>> updateFreelancerProfile(
-      UpdateFreeLanceAndGesutProfileParam param) {
+      UpdateProfileParam param) {
     return wrapHandling(
       tryCall: () async {
         await authRemoteDataSource.updateFreeLanceProfile(param);
@@ -120,8 +119,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateGuestProfile(
-      UpdateFreeLanceAndGesutProfileParam param) {
+  Future<Either<Failure, Unit>> updateGuestProfile(UpdateProfileParam param) {
     return wrapHandling(
       tryCall: () async {
         await authRemoteDataSource.updateGuestProfile(param);

@@ -46,9 +46,10 @@ class _ReplyToPostPageState extends State<ReplyToPostPage> {
                                 const CustomBackButton(),
                                 Text(
                                   "sent a reply".toUpperCase(),
-                                  style: AppTextStyle.headerLg(),
+                                  style: AppTextStyle.headerMd(),
                                 ),
-                                const SizedBox()
+                                const SizedBox(),
+                                const SizedBox(),
                               ],
                             ),
                             PaddingConfig.h24,

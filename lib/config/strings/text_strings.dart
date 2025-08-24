@@ -79,6 +79,7 @@ class TextStrings {
   static final String geust = LocaleKeys.geust.tr();
   static final String fillProfile = LocaleKeys.fillProfile.tr();
   static final String fillForm = LocaleKeys.fillForm.tr();
+  static final String orderProject = LocaleKeys.orderProject.tr();
   static final String clientData = LocaleKeys.clientData.tr();
   static final String projectRequest = LocaleKeys.projectRequest.tr();
   static final String workData = LocaleKeys.workData.tr();

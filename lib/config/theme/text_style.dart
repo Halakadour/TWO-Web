@@ -127,8 +127,8 @@ class AppTextStyle {
   }
 
   static TextStyle textfieldStyle({
-    double fontSize = 10,
-    Color color = AppColors.gray,
+    double fontSize = 13,
+    Color color = AppColors.black,
     TextDecoration? decoration,
   }) {
     return TextStyle(

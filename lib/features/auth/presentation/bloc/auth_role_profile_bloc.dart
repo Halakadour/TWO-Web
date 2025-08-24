@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:two_website/core/network/enums.dart';
 import 'package:two_website/core/services/shared_preferences_services.dart';
 import 'package:two_website/core/models/user_model.dart';
-import 'package:two_website/features/auth/data/datasources/auth_param.dart';
+import 'package:two_website/core/param/auth_param.dart';
 import 'package:two_website/features/auth/domain/entity/profile_entity.dart';
 import 'package:two_website/features/auth/domain/usecases/get_user_profile_usecase.dart';
 import 'package:two_website/features/auth/domain/usecases/sign_in_usecase.dart';
@@ -45,9 +45,7 @@ class AuthRoleProfileBloc
     on<RegisteNewUserEvent>((event, emit) async {
       emit(state.copyWith(authModelStatus: CasualStatus.loading));
       final result = await registerUsecase.call(RegisterParams(
-          name: event.param.name,
-          email: event.param.email,
-          password: event.param.password));
+          name: event.name, email: event.email, password: event.password));
       result.fold(
           (l) => emit(state.copyWith(authModelStatus: CasualStatus.failure)),
           (r) => emit(state.copyWith(
@@ -57,8 +55,8 @@ class AuthRoleProfileBloc
     });
     on<LoginUserEvent>((event, emit) async {
       emit(state.copyWith(authModelStatus: CasualStatus.loading));
-      final result = await loginUsecase.call(LoginParams(
-          email: event.param.email, password: event.param.password));
+      final result = await loginUsecase
+          .call(LoginParams(email: event.email, password: event.password));
       result.fold(
           (l) => emit(state.copyWith(authModelStatus: CasualStatus.failure)),
           (r) => emit(state.copyWith(
@@ -104,24 +102,12 @@ class AuthRoleProfileBloc
       emit(state.copyWith(updateClientProfileStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
-        final result = await updateClientProfileUsecase.call(
-            UpdateClientProfileParam(
-                token: token,
-                roleId: event.param.roleId,
-                image: event.param.image,
-                fullName: event.param.fullName,
-                companyName: event.param.companyName,
-                workEmail: event.param.workEmail,
-                phoneNumber: event.param.phoneNumber,
-                projectType: event.param.projectType,
-                projectDescription: event.param.projectDescription,
-                projectCost: event.param.projectCost,
-                projectDuration: event.param.projectDuration,
-                projectRequirements: event.param.projectRequirements,
-                documents: event.param.documents,
-                cooperationType: event.param.cooperationType,
-                contractTime: event.param.contractTime,
-                visibilit: event.param.visibilit));
+        final result = await updateClientProfileUsecase.call(UpdateProfileParam(
+          token: token,
+          roleId: event.roleId,
+          image: event.image,
+          phoneNumber: event.phoneNumber,
+        ));
         result.fold(
           (l) => emit(state.copyWith(
               updateClientProfileStatus: CasualStatus.failure,
@@ -140,10 +126,11 @@ class AuthRoleProfileBloc
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
         final result = await updateFreelanceProfileUsecase.call(
-            UpdateFreeLanceAndGesutProfileParam(
+            UpdateProfileParam(
                 token: token,
-                image: event.param.image,
-                roleId: event.param.roleId));
+                image: event.image,
+                roleId: event.roleId,
+                phoneNumber: event.phoneNumber));
         result.fold(
           (l) => emit(state.copyWith(
               updateFreeLancerProfileStatus: CasualStatus.failure,
@@ -157,11 +144,11 @@ class AuthRoleProfileBloc
       emit(state.copyWith(updateGuestProfileStatus: CasualStatus.loading));
       final String? token = await SharedPreferencesServices.getUserToken();
       if (token != null) {
-        final result = await updateGuestProfileUsecase.call(
-            UpdateFreeLanceAndGesutProfileParam(
-                token: token,
-                image: event.param.image,
-                roleId: event.param.roleId));
+        final result = await updateGuestProfileUsecase.call(UpdateProfileParam(
+            token: token,
+            image: event.image,
+            roleId: event.roleId,
+            phoneNumber: event.phoneNumber));
         result.fold(
           (l) => emit(state.copyWith(
               updateFreeLancerProfileStatus: CasualStatus.failure,
