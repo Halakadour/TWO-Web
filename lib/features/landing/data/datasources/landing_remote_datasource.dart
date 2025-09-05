@@ -94,19 +94,14 @@ class LandingRemoteDatasourceImpl extends LandingRemoteDatasource {
       Map<String, dynamic> body = {
         "project_type": param.type,
         "project_description": param.description,
-        // "requirements": "[${param.requirements.join(',')}]",
         "requirements": param.requirements,
         "document": "$pdfBase64${param.document!}",
         "cooperation_type": param.cooperationType,
         "contact_time": param.contactTime,
         "private": "1"
       };
-      // for (int i = 0; i < param.requirements.length; i++) {
-      //   body["requirements[$i]"] = param.requirements[i].toString();
-      // }
-      print(body);
       final result = PostApiWithToken(
-          uri: Uri.parse("$baseUri/api/upload"),
+          uri: Uri.parse("$baseUri/api/create/project"),
           body: body,
           fromJson: createProjectResponseModelFromJson,
           token: param.token);
@@ -115,16 +110,11 @@ class LandingRemoteDatasourceImpl extends LandingRemoteDatasource {
       Map<String, dynamic> body = {
         "project_type": param.type,
         "project_description": param.description,
-        // "requirements": "[${param.requirements.join(',')}]",
         "requirements": param.requirements,
         "cooperation_type": param.cooperationType,
         "contact_time": param.contactTime,
         "private": "1"
       };
-      // for (int i = 0; i < param.requirements.length; i++) {
-      //   body["requirements[$i]"] = param.requirements[i].toString();
-      // }
-      print(body);
       final result = PostApiWithToken(
           uri: Uri.parse("$baseUri/api/create/project"),
           body: body,

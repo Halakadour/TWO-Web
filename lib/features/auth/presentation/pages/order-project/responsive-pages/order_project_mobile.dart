@@ -10,7 +10,7 @@ class OrderProjectMobile extends StatelessWidget {
     return const Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(SizesConfig.defaultSpace),
+          padding: EdgeInsets.all(SizesConfig.defaultSpace),
           child: Column(
             children: [
               // Body

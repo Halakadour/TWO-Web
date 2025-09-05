@@ -23,6 +23,7 @@ class CustomPhoneNumberField extends StatelessWidget {
       controller: _phoneController,
       initialCountryCode: 'SY',
       validator: validator, // ✅ أضفنا الفاليديتر هون
+      showCountryFlag: false,
       decoration: InputDecoration(
         labelText: "",
         filled: true,
