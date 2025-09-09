@@ -8,7 +8,6 @@ import 'package:two_website/core/functions/tuggle_password.dart';
 import 'package:two_website/features/auth/presentation/bloc/auth_role_profile_bloc.dart';
 import 'package:two_website/core/widgets/textfield/custom_text_form_field.dart';
 import 'package:two_website/core/widgets/buttons/custom_cartoon_button.dart';
-import 'package:two_website/features/auth/presentation/widgets/google_git_row.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -132,7 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
             const SizedBox(
               height: SizesConfig.spaceBtwItems,
             ),
-            const GoogleGitRow(),
+            //const GoogleGitRow(),
 
             const SizedBox(
               height: SizesConfig.spaceBtwItems,

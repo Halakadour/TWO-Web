@@ -82,6 +82,7 @@ class _ReplyToPostBodyState extends State<ReplyToPostBody> {
           IntlPhoneField(
             initialCountryCode: 'SY',
             controller: _phoneController,
+            showCountryFlag: false,
             decoration: InputDecoration(
                 labelText: TextStrings.phoneNumber,
                 border: OutlineInputBorder(
